@@ -1,0 +1,211 @@
+{
+  "pr_number": 42,
+  "pr_title": "Refactor payment processing to use strategy pattern",
+  "pr_url": "https://github.com/example/ecommerce/pull/42",
+  "repository": "example/ecommerce",
+  "branch": "refactor/payment-strategy",
+  "author": "lyme-agent",
+  "semantic_impact": [
+    {
+      "scope": "src/payment/processor.py",
+      "impact_level": "high",
+      "affected_files": [
+        "src/payment/processor.py"
+      ],
+      "affected_interfaces": [],
+      "behavioral_change": "modified: +120/-40 lines",
+      "reasoning": "120 additions, 40 deletions, status: modified"
+    },
+    {
+      "scope": "src/payment/strategies/credit_card.py",
+      "impact_level": "medium",
+      "affected_files": [
+        "src/payment/strategies/credit_card.py"
+      ],
+      "affected_interfaces": [],
+      "behavioral_change": "added: +85/-0 lines",
+      "reasoning": "85 additions, 0 deletions, status: added"
+    },
+    {
+      "scope": "src/payment/strategies/paypal.py",
+      "impact_level": "medium",
+      "affected_files": [
+        "src/payment/strategies/paypal.py"
+      ],
+      "affected_interfaces": [],
+      "behavioral_change": "added: +72/-0 lines",
+      "reasoning": "72 additions, 0 deletions, status: added"
+    },
+    {
+      "scope": "tests/test_payment.py",
+      "impact_level": "low",
+      "affected_files": [
+        "tests/test_payment.py"
+      ],
+      "affected_interfaces": [],
+      "behavioral_change": "modified: +45/-10 lines",
+      "reasoning": "45 additions, 10 deletions, status: modified"
+    },
+    {
+      "scope": "src/db/migration.py",
+      "impact_level": "high",
+      "affected_files": [
+        "src/db/migration.py"
+      ],
+      "affected_interfaces": [],
+      "behavioral_change": "deleted: +0/-300 lines",
+      "reasoning": "0 additions, 300 deletions, status: deleted"
+    }
+  ],
+  "invariant_violations": [],
+  "architectural_drifts": [],
+  "risk_zones": [
+    {
+      "file_path": "src/db/migration.py",
+      "risk_type": "file_deletion",
+      "risk_level": "high",
+      "description": "File src/db/migration.py deleted - verify no consumers depend on it",
+      "lines": "entire file",
+      "mitigation": "Check for import references and callers"
+    }
+  ],
+  "test_gaps": [
+    {
+      "area": "src/payment/processor.py",
+      "gap_type": "insufficient",
+      "severity": "low",
+      "description": "Test coverage may be insufficient for src/payment/processor.py",
+      "suggested_tests": [
+        "test_processor.py"
+      ]
+    },
+    {
+      "area": "src/payment/strategies/credit_card.py",
+      "gap_type": "insufficient",
+      "severity": "low",
+      "description": "Test coverage may be insufficient for src/payment/strategies/credit_card.py",
+      "suggested_tests": [
+        "test_credit_card.py"
+      ]
+    },
+    {
+      "area": "src/payment/strategies/paypal.py",
+      "gap_type": "insufficient",
+      "severity": "low",
+      "description": "Test coverage may be insufficient for src/payment/strategies/paypal.py",
+      "suggested_tests": [
+        "test_paypal.py"
+      ]
+    },
+    {
+      "area": "src/db/migration.py",
+      "gap_type": "insufficient",
+      "severity": "low",
+      "description": "Test coverage may be insufficient for src/db/migration.py",
+      "suggested_tests": [
+        "test_migration.py"
+      ]
+    }
+  ],
+  "missing_evidence": [
+    {
+      "claim": "Large change in src/payment/processor.py is safe",
+      "evidence_needed": "Benchmark results or performance impact analysis",
+      "evidence_type": "benchmark",
+      "severity": "medium"
+    }
+  ],
+  "rollback_difficulty": {
+    "level": "high",
+    "estimated_time_minutes": 30,
+    "strategy": "schema_rollback + data_migration",
+    "risks": [
+      "Data loss possible",
+      "Migration may not be reversible"
+    ],
+    "steps": [
+      "Revert schema migration",
+      "Restore deleted files",
+      "Run data backfill if needed",
+      "Verify with integration tests"
+    ]
+  },
+  "risk_score": {
+    "overall": "critical",
+    "score": 0.8,
+    "regression_risk": "high",
+    "security_risk": "none",
+    "deploy_risk": "critical",
+    "factors": [
+      "Risk zone: File src/db/migration.py deleted - verify no consumers depend on it"
+    ]
+  },
+  "review_summary": {
+    "verdict": "block",
+    "summary": "PR #42: 5 issues found. Risk score: 0.80 (ImpactLevel.CRITICAL). Verdict: block.",
+    "strengths": [],
+    "concerns": [
+      "Risk zones: 1",
+      "Test gaps: 4"
+    ],
+    "blocking_issues": []
+  },
+  "verification_checklist": {
+    "items": [
+      {
+        "check": "Semantic impact assessed",
+        "status": "done",
+        "details": ""
+      },
+      {
+        "check": "Invariant violations checked",
+        "status": "pass",
+        "details": ""
+      },
+      {
+        "check": "Architectural drift analyzed",
+        "status": "pass",
+        "details": ""
+      },
+      {
+        "check": "Risk zones identified",
+        "status": "warn",
+        "details": ""
+      },
+      {
+        "check": "Test gaps detected",
+        "status": "fail",
+        "details": ""
+      },
+      {
+        "check": "Missing evidence flagged",
+        "status": "warn",
+        "details": ""
+      },
+      {
+        "check": "Rollback strategy defined",
+        "status": "done",
+        "details": ""
+      },
+      {
+        "check": "Reviewer focus areas suggested",
+        "status": "done",
+        "details": ""
+      }
+    ]
+  },
+  "suggested_focus": {
+    "primary_focus": "Review 1 high-attention files first",
+    "files_to_review": [
+      "src/db/migration.py"
+    ],
+    "expertise_needed": [
+      "general"
+    ],
+    "risk_areas": [
+      "src/db/migration.py (file_deletion)"
+    ]
+  },
+  "trace_export": null,
+  "generated_at": 1778907015.213356
+}

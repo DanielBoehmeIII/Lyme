@@ -1,0 +1,10 @@
+{
+  "question": "Do semantic diffs correlate with post-merge bug rates?",
+  "category": "empirical",
+  "importance": "medium",
+  "status": "open",
+  "related_dimensions": [],
+  "proposed_experiments": [],
+  "raised_by": "",
+  "raised_at": 1778907015.2172441
+}

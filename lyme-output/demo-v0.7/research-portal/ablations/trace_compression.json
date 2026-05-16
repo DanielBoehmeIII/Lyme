@@ -1,0 +1,11 @@
+{
+  "component": "trace_compression",
+  "full_system_score": 0.81,
+  "ablated_score": 0.65,
+  "impact": -0.16,
+  "description": "Without trace compression, agent performance degrades 16%",
+  "tasks_affected": [
+    "causal_reasoning",
+    "temporal_reasoning"
+  ]
+}

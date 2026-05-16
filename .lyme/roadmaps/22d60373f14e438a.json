@@ -1,0 +1,70 @@
+{
+  "roadmap_id": "22d60373f14e438a",
+  "repo_path": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "generated_at": 1778905231.1772954,
+  "recommendations": {
+    "2_weeks": [
+      {
+        "title": "Address critical testability gap",
+        "description": "Current testability fitness: 0.30. No source functions detected to assess testability",
+        "priority": "high",
+        "horizon": "2_weeks",
+        "evidence": "Fitness assessment shows testability at 0.30",
+        "uncertainty": 0.3,
+        "expected_payoff": 0.4,
+        "likely_tradeoff": "Short-term effort for long-term maintainability",
+        "category": "fitness",
+        "target_files": [],
+        "effort_estimate": "medium"
+      }
+    ],
+    "6_weeks": [
+      {
+        "title": "Reduce technical debt in lowest-fitness areas",
+        "description": "Overall fitness: 0.32. Worst: testability",
+        "priority": "medium",
+        "horizon": "6_weeks",
+        "evidence": "Weakest dimension: testability (FitnessScore(dimension=<FitnessDimension.TESTABILITY: 'testability'>, score=0.3, confidence=0.3, explanation='No source functions detected to assess testability', contributing_factors={'test_files': 0, 'test_funcs': 0, 'source_funcs': 0}))",
+        "uncertainty": 0.35,
+        "expected_payoff": 0.5,
+        "likely_tradeoff": "Debt reduction vs new feature development",
+        "category": "technical_debt",
+        "target_files": [],
+        "effort_estimate": "medium"
+      }
+    ],
+    "3_months": []
+  },
+  "risk_reduction": [
+    {
+      "title": "Urgent: improve testability",
+      "description": "Fitness score 0.30 is critically low",
+      "priority": "critical",
+      "horizon": "2_weeks",
+      "evidence": "No source functions detected to assess testability",
+      "uncertainty": 0.3,
+      "expected_payoff": 0.5,
+      "likely_tradeoff": "Must allocate time despite other priorities",
+      "category": "risk",
+      "target_files": [],
+      "effort_estimate": "medium"
+    }
+  ],
+  "refactor_priorities": [
+    {
+      "title": "Low overall architecture fitness",
+      "description": "Overall fitness score: 0.32",
+      "priority": "low",
+      "horizon": "6_weeks",
+      "evidence": "Fitness assessment: {'repo_path': '/home/dboehmeiii/Desktop/repos/Lyme', 'overall_fitness': 0.3207, ",
+      "uncertainty": 0.3,
+      "expected_payoff": 0.7,
+      "likely_tradeoff": "Effort: 0.60",
+      "category": "refactor",
+      "target_files": [],
+      "effort_estimate": "medium"
+    }
+  ],
+  "testing_priorities": [],
+  "summary": "Technical Roadmap for Lyme\nOverall fitness: 0.32 (weakest: testability)\n\nNext 2 weeks: 1 recommendations\nNext 6 weeks: 1 recommendations\nNext 3 months: 0 recommendations\n\nImmediate priorities:\n  [high] Address critical testability gap\n\nShort-term priorities:\n  [medium] Reduce technical debt in lowest-fitness areas\n"
+}

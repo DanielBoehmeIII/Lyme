@@ -1,0 +1,163 @@
+{
+  "roadmap_id": "0886fe8d220146a4",
+  "repo_path": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "generated_at": 1778905129.0648217,
+  "recommendations": {
+    "2_weeks": [
+      {
+        "title": "Address critical testability gap",
+        "description": "Current testability fitness: 0.04. 59 tests for 2886 functions (2%)",
+        "priority": "high",
+        "horizon": "2_weeks",
+        "evidence": "Fitness assessment shows testability at 0.04",
+        "uncertainty": 0.3,
+        "expected_payoff": 0.4,
+        "likely_tradeoff": "Short-term effort for long-term maintainability",
+        "category": "fitness",
+        "target_files": [],
+        "effort_estimate": "medium"
+      }
+    ],
+    "6_weeks": [
+      {
+        "title": "Reduce technical debt in lowest-fitness areas",
+        "description": "Overall fitness: 0.29. Worst: testability",
+        "priority": "medium",
+        "horizon": "6_weeks",
+        "evidence": "Weakest dimension: testability (FitnessScore(dimension=<FitnessDimension.TESTABILITY: 'testability'>, score=0.040887040887040885, confidence=0.31022176022176023, explanation='59 tests for 2886 functions (2%)', contributing_factors={'test_files': 25, 'test_funcs': 59, 'source_funcs': 2886}))",
+        "uncertainty": 0.35,
+        "expected_payoff": 0.5,
+        "likely_tradeoff": "Debt reduction vs new feature development",
+        "category": "technical_debt",
+        "target_files": [],
+        "effort_estimate": "medium"
+      }
+    ],
+    "3_months": [
+      {
+        "title": "Dependency hygiene audit",
+        "description": "Review and update dependencies across 1 manifest files",
+        "priority": "low",
+        "horizon": "3_months",
+        "evidence": "1 dependency files to review",
+        "uncertainty": 0.3,
+        "expected_payoff": 0.3,
+        "likely_tradeoff": "Minor effort for reduced supply-chain risk",
+        "category": "dependencies",
+        "target_files": [],
+        "effort_estimate": "medium"
+      }
+    ]
+  },
+  "risk_reduction": [
+    {
+      "title": "Urgent: improve testability",
+      "description": "Fitness score 0.04 is critically low",
+      "priority": "critical",
+      "horizon": "2_weeks",
+      "evidence": "59 tests for 2886 functions (2%)",
+      "uncertainty": 0.3,
+      "expected_payoff": 0.5,
+      "likely_tradeoff": "Must allocate time despite other priorities",
+      "category": "risk",
+      "target_files": [],
+      "effort_estimate": "medium"
+    }
+  ],
+  "refactor_priorities": [
+    {
+      "title": "Accumulated TODOs/FIXMEs in src/lyme/evolution/metrics_engin",
+      "description": "5 TODOs + 3 FIXMEs/HACKs",
+      "priority": "low",
+      "horizon": "6_weeks",
+      "evidence": "5 TODOs, 3 FIXMEs/HACKs",
+      "uncertainty": 0.05,
+      "expected_payoff": 0.4,
+      "likely_tradeoff": "Effort: 0.30",
+      "category": "refactor",
+      "target_files": [
+        "src/lyme/evolution/metrics_engine.py"
+      ],
+      "effort_estimate": "medium"
+    },
+    {
+      "title": "Accumulated TODOs/FIXMEs in src/lyme/evolution/maintenance_d",
+      "description": "4 TODOs + 4 FIXMEs/HACKs",
+      "priority": "low",
+      "horizon": "6_weeks",
+      "evidence": "4 TODOs, 4 FIXMEs/HACKs",
+      "uncertainty": 0.05,
+      "expected_payoff": 0.4,
+      "likely_tradeoff": "Effort: 0.30",
+      "category": "refactor",
+      "target_files": [
+        "src/lyme/evolution/maintenance_detector.py"
+      ],
+      "effort_estimate": "medium"
+    },
+    {
+      "title": "Similar functions: test_database_process in test_database.py",
+      "description": "Look-alike functions with 75% structural similarity",
+      "priority": "low",
+      "horizon": "6_weeks",
+      "evidence": "Similarity: 75% between test_database_process and test_registry_process",
+      "uncertainty": 0.2,
+      "expected_payoff": 0.6,
+      "likely_tradeoff": "Effort: 0.40",
+      "category": "refactor",
+      "target_files": [
+        "lyme-experiments/synthetic/tests/test_database.py",
+        "lyme-experiments/synthetic/tests/test_registry.py"
+      ],
+      "effort_estimate": "medium"
+    },
+    {
+      "title": "Similar functions: test_registry_process in test_registry.py",
+      "description": "Look-alike functions with 75% structural similarity",
+      "priority": "low",
+      "horizon": "6_weeks",
+      "evidence": "Similarity: 75% between test_registry_process and test_adapter_process",
+      "uncertainty": 0.2,
+      "expected_payoff": 0.6,
+      "likely_tradeoff": "Effort: 0.40",
+      "category": "refactor",
+      "target_files": [
+        "lyme-experiments/synthetic/tests/test_registry.py",
+        "lyme-experiments/synthetic/tests/test_adapter.py"
+      ],
+      "effort_estimate": "medium"
+    },
+    {
+      "title": "Similar functions: test_adapter_process in test_adapter.py \u2194",
+      "description": "Look-alike functions with 75% structural similarity",
+      "priority": "low",
+      "horizon": "6_weeks",
+      "evidence": "Similarity: 75% between test_adapter_process and test_loader_process",
+      "uncertainty": 0.2,
+      "expected_payoff": 0.6,
+      "likely_tradeoff": "Effort: 0.40",
+      "category": "refactor",
+      "target_files": [
+        "lyme-experiments/synthetic/tests/test_adapter.py",
+        "lyme-experiments/synthetic/tests/test_loader.py"
+      ],
+      "effort_estimate": "medium"
+    }
+  ],
+  "testing_priorities": [
+    {
+      "title": "Systematic test coverage improvement",
+      "description": "Testability is the weakest fitness dimension",
+      "priority": "high",
+      "horizon": "3_months",
+      "evidence": "Fitness assessment: testability critical",
+      "uncertainty": 0.3,
+      "expected_payoff": 0.6,
+      "likely_tradeoff": "Significant time investment for safety net",
+      "category": "testing",
+      "target_files": [],
+      "effort_estimate": "medium"
+    }
+  ],
+  "summary": "Technical Roadmap for Lyme\nOverall fitness: 0.29 (weakest: testability)\n\nNext 2 weeks: 1 recommendations\nNext 6 weeks: 1 recommendations\nNext 3 months: 1 recommendations\n\nImmediate priorities:\n  [high] Address critical testability gap\n\nShort-term priorities:\n  [medium] Reduce technical debt in lowest-fitness areas\n\nMedium-term priorities:\n  [low] Dependency hygiene audit\n"
+}

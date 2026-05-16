@@ -1,0 +1,18 @@
+{
+  "version": "0.3.0",
+  "name": "Lyme",
+  "description": "Research infrastructure for local coding agent evaluation",
+  "architecture": "Dual-layer: Product + Research on shared telemetry substrate",
+  "modules": {
+    "cross_repo": {"path": "src/lyme/cross_repo/", "maturity": "stable", "description": "Cross-repository pattern mining and intelligence"},
+    "ecosystem": {"path": "src/lyme/ecosystem/", "maturity": "stable", "description": "Ecosystem knowledge graph (Python/FastAPI)"},
+    "epistemology": {"path": "src/lyme/epistemology/", "maturity": "stable", "description": "Evidence theory, epistemic debugging, confidence calibration"},
+    "governance": {"path": "src/lyme/governance/", "maturity": "stable", "description": "Autonomy policy, sensitive code, action review board"},
+    "skills": {"path": "src/lyme/skills/", "maturity": "stable", "description": "Skill library, transfer, benchmarks"},
+    "cognition": {"path": "src/lyme/cognition/", "maturity": "stable", "description": "Cognitive tracing and anomaly detection"},
+    "graph": {"path": "src/lyme/graph/", "maturity": "stable", "description": "Causal graph analysis"},
+    "discovery": {"path": "src/lyme/discovery/", "maturity": "stable", "description": "Invariant discovery"},
+    "benchmark": {"path": "src/lyme/benchmark/", "maturity": "stable", "description": "Benchmark engine and scenarios"},
+    "telemetry": {"path": "src/lyme/telemetry/", "maturity": "stable", "description": "Tracing, events, metrics"}
+  }
+}

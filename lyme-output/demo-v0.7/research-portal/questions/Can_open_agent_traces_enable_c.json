@@ -1,0 +1,17 @@
+{
+  "question": "Can open agent traces enable cross-framework agent comparison?",
+  "category": "standards",
+  "importance": "high",
+  "status": "open",
+  "related_dimensions": [
+    "evidence_grounding",
+    "memory_usefulness"
+  ],
+  "proposed_experiments": [
+    "Export traces from Claude Code, Copilot, and Codex into OATS",
+    "Compare failure patterns across frameworks",
+    "Measure trace completeness across systems"
+  ],
+  "raised_by": "",
+  "raised_at": 1778907015.2171795
+}

@@ -1,0 +1,28 @@
+{
+  "snapshot_id": "5dc3b958d5ff4c80",
+  "timestamp": 1778900455.9689052,
+  "commit": "",
+  "branch": "main",
+  "subsystem_health": {},
+  "evolution_trends": [],
+  "anomalies": [],
+  "debt_indicators": [],
+  "migration_risks": [],
+  "repair_patterns": [],
+  "drift_report": {
+    "report_id": "f401841008634c47",
+    "repository": "",
+    "branch": "",
+    "commit": "",
+    "timestamp": 1778900455.9688737,
+    "metrics": [],
+    "trends": [],
+    "overall_drift_score": 0.0,
+    "critical_count": 0,
+    "high_count": 0,
+    "medium_count": 0,
+    "stabilization_strategies": [],
+    "summary": "Overall drift: 0.0% | top: "
+  },
+  "metadata": {}
+}

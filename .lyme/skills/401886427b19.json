@@ -1,0 +1,41 @@
+{
+  "id": "401886427b19",
+  "name": "Run: test",
+  "description": "Extracted from successful run of test",
+  "skill_type": "test_fixing",
+  "status": "draft",
+  "task_type": "",
+  "preconditions": [],
+  "workflow_steps": [
+    {
+      "step_id": "1",
+      "description": "Execute test workflow",
+      "action": "test",
+      "tool": "lyme",
+      "expected_output": "success",
+      "timeout_s": 60,
+      "retry_count": 0,
+      "critical": false
+    }
+  ],
+  "required_tools": [],
+  "verification": [],
+  "failure_recovery": [],
+  "examples": [],
+  "confidence_history": [
+    {
+      "entry_id": "extracted",
+      "timestamp": "2026-05-16T03:14:46.711870+00:00",
+      "confidence": 0.7,
+      "success": true,
+      "context": "Extracted from run of test"
+    }
+  ],
+  "source_repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "source_pattern": "test",
+  "tags": [],
+  "metadata": {},
+  "created_at": "2026-05-16T03:14:46.711856+00:00",
+  "updated_at": "2026-05-16T03:14:46.711864+00:00",
+  "version": 1
+}

@@ -1,0 +1,24 @@
+{
+  "adr_id": "2510ae1bcd974f3a",
+  "title": "Adopt autonomous software evolution pipeline",
+  "status": "proposed",
+  "context": "Lyme v0.5 introduces autonomous software evolution capabilities including mutation engine, fitness-guided refactoring, and maintenance automation.",
+  "decision": "Implement evolution pipeline with sandbox isolation, fitness assessment, and reversible mutations.",
+  "rationale": "Cautious, measurable, reversible evolution requires isolated experiments with fitness validation before promotion.",
+  "constraints": [
+    "Must preserve behavioral equivalence",
+    "Must support rollback",
+    "Must measure fitness impact"
+  ],
+  "alternatives_considered": [
+    "Manual refactoring only",
+    "Full automation without sandbox",
+    "Separate maintenance tool"
+  ],
+  "alternatives_rejected": [],
+  "consequences": [],
+  "outcome": "",
+  "aged_well": null,
+  "created_at": 1778905231.1770792,
+  "tags": []
+}

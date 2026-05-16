@@ -1,0 +1,11 @@
+{
+  "component": "verification_graph",
+  "full_system_score": 0.81,
+  "ablated_score": 0.73,
+  "impact": -0.08,
+  "description": "Without verification graph, regression detection drops 8%",
+  "tasks_affected": [
+    "verification_quality",
+    "safe_autonomy"
+  ]
+}

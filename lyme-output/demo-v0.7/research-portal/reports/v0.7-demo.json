@@ -1,0 +1,29 @@
+{
+  "report_id": "v0.7-demo",
+  "title": "Lyme v0.7: Standardization, Integration, and Public Research Infrastructure",
+  "authors": [
+    "Lyme Project"
+  ],
+  "abstract": "This report presents the v0.7 release of Lyme, transforming it from a research project into shared infrastructure for the coding agent community. We introduce open standards for agent traces, semantic diffs, and cognition benchmarks; integrate with GitHub, CI/CD, and IDEs; and establish public research infrastructure.",
+  "methodology": "We designed and implemented 9 infrastructure components, validated with 60+ tests.",
+  "results": {
+    "standards": 3,
+    "integrations": 3,
+    "research_components": 3,
+    "total_tests": 60,
+    "schema_version": "0.7.0"
+  },
+  "conclusions": [
+    "Open standards make agent behavior portable and comparable",
+    "CI/CD integration brings cognition-aware governance",
+    "Research corpus enables reproducible agent studies",
+    "Lyme is now shared infrastructure for the field"
+  ],
+  "open_questions": [
+    "How do open standards evolve with new agent capabilities?",
+    "What governance policies best balance safety and velocity?",
+    "Can the research corpus enable meta-learning across agents?"
+  ],
+  "related_entries": [],
+  "published_at": 1778907015.2168546
+}

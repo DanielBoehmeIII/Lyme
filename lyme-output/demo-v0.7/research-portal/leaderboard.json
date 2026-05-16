@@ -1,0 +1,49 @@
+{
+  "name": "Lyme Software Cognition Benchmark",
+  "version": "0.7.0",
+  "entries": [
+    {
+      "rank": 1,
+      "agent_name": "lyme-agent-v0.7",
+      "model": "claude-3-opus",
+      "overall_score": 0.812,
+      "dimension_scores": {
+        "causal_reasoning": 0.85,
+        "invariant_preservation": 0.78,
+        "temporal_reasoning": 0.72,
+        "architecture_planning": 0.88,
+        "evidence_grounding": 0.9,
+        "safe_autonomy": 0.82,
+        "memory_usefulness": 0.65,
+        "verification_quality": 0.79
+      },
+      "tasks_completed": 14,
+      "total_tasks": 16,
+      "benchmark_version": "0.7.0",
+      "submitted_at": 1778907015.2152731,
+      "trace_id": "oat-refactor-002"
+    },
+    {
+      "rank": 2,
+      "agent_name": "baseline-gpt4",
+      "model": "gpt-4-turbo",
+      "overall_score": 0.743,
+      "dimension_scores": {
+        "causal_reasoning": 0.78,
+        "invariant_preservation": 0.72,
+        "temporal_reasoning": 0.68,
+        "architecture_planning": 0.75,
+        "evidence_grounding": 0.82,
+        "safe_autonomy": 0.71,
+        "memory_usefulness": 0.62,
+        "verification_quality": 0.74
+      },
+      "tasks_completed": 12,
+      "total_tasks": 16,
+      "benchmark_version": "0.7.0",
+      "submitted_at": 1778907015.2153506,
+      "trace_id": ""
+    }
+  ],
+  "last_updated": 1778907015.2153533
+}

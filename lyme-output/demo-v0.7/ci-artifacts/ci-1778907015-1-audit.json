@@ -1,0 +1,97 @@
+{
+  "run_id": "ci-1778907015-1",
+  "repository": "example/ecommerce",
+  "commit": "a1b2c3d4",
+  "branch": "refactor/payment-strategy",
+  "mode": "advisory",
+  "risk_score": 0.8,
+  "policy_decision": "warn",
+  "artifacts": [
+    {
+      "id": "ci-1778907015-1-trace",
+      "type": "open_agent_trace",
+      "format": "json",
+      "content": {
+        "schema": "open-agent-trace-standard",
+        "schema_version": "0.7.0",
+        "trace_id": "ci-1778907015",
+        "header": {
+          "agent": {
+            "name": "lyme-ci-runner",
+            "version": "0.7.0",
+            "framework": "lyme"
+          },
+          "system": {
+            "repo_name": "example/ecommerce"
+          }
+        },
+        "events": [
+          {
+            "type": "system",
+            "metadata": {
+              "action": "ci_run",
+              "commit": "a1b2c3d4",
+              "branch": "refactor/payment-strategy"
+            }
+          },
+          {
+            "type": "metric",
+            "metadata": {
+              "risk_score": 0.8,
+              "decision": "warn"
+            }
+          }
+        ],
+        "summary": {
+          "status": "completed",
+          "decision": "warn"
+        }
+      },
+      "created_at": 1778907015.2148752
+    },
+    {
+      "id": "ci-1778907015-1-semantic-diff",
+      "type": "semantic_diff",
+      "format": "json",
+      "content": {
+        "header": {
+          "diff_id": "ci-diff-1778907015"
+        },
+        "risk": {
+          "overall": "high",
+          "score": 0.8
+        },
+        "syntactic_changes": [
+          {
+            "file_path": "src/payment/processor.py",
+            "lines_added": 120,
+            "lines_removed": 40
+          },
+          {
+            "file_path": "src/payment/strategies/credit_card.py",
+            "lines_added": 85,
+            "lines_removed": 0
+          },
+          {
+            "file_path": "src/payment/strategies/paypal.py",
+            "lines_added": 72,
+            "lines_removed": 0
+          },
+          {
+            "file_path": "tests/test_payment.py",
+            "lines_added": 45,
+            "lines_removed": 10
+          },
+          {
+            "file_path": "src/db/migration.py",
+            "lines_added": 0,
+            "lines_removed": 300
+          }
+        ]
+      },
+      "created_at": 1778907015.215006
+    }
+  ],
+  "summary": "Lyme CI [advisory]: risk=0.80, decision=warn, violations=0, gaps=4",
+  "timestamp": 1778907015.215099
+}

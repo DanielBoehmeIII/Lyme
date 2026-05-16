@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head>
+<meta charset="utf-8">
+<title>Semantic Diff</title>
+<style>body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;max-width:960px;margin:40px auto;padding:0 20px;line-height:1.6;color:#1a1a2e;background:#f8f9fa}h1{color:#16213e}h2{color:#0f3460;border-bottom:2px solid #e2e8f0;padding-bottom:4px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #e2e8f0;padding:8px 12px;text-align:left}th{background:#e2e8f0}.risk-high{color:#e53e3e}.risk-medium{color:#dd6b20}code{background:#edf2f7;padding:2px 6px;border-radius:3px}</style></head><body>
+<div class='content'>
+<h1>Semantic Diff: sd-security-003</h1>
+<p>**Summary**: SemanticDiff v0.7.0 | 1 files | +2 -2 lines | Risk: RiskLevel.LOW | Intent: Fix SQL injection vulnerability in get_user()</p>
+<p>**Confidence**: 99%</p>
+<h2>Header</h2>
+<p>Repository: legacy-ecommerce</p>
+<p>Branch: fix/sql-injection</p>
+<p>Source: e5f6a1b2c3d4 → f6a1b2c3d4e5</p>
+<p>Author: </p>
+<h2>Syntactic Changes (1 files)</h2>
+<p>|------|------|---|---|-------|</p>
+<h2>Behavioral Intent</h2>
+<p>Type: IntentType.SECURITY</p>
+<p>Description: Fix SQL injection vulnerability in get_user()</p>
+<p>Motivation: user_id parameter was interpolated directly into SQL string, allowing injection</p>
+<p>Expected: Parameterized query prevents SQL injection</p>
+<p>Previous: String interpolation allowed malicious input to modify query</p>
+<p>Backward compatible: True</p>
+<h2>Affected Invariants (1)</h2>
+<p><strong>InvariantType.SECURITY_POLICY</strong>: All database queries must use parameterized statements (status: restored, confidence: 99%)</p>
+<h2>Architectural Impact</h2>
+<p>Level: ImpactLevel.LOW</p>
+<p>Subsystems: </p>
+<p>Coupling change: +0.00</p>
+<p>Complexity delta: +0</p>
+<h2>Risk Assessment</h2>
+<p>Overall: <strong>RiskLevel.LOW</strong></p>
+<p>Regression: RiskLevel.LOW</p>
+<p>Security: RiskLevel.NONE</p>
+<p>Performance: RiskLevel.NONE</p>
+<p>Rollback difficulty: RiskLevel.LOW</p>
+<p>Score: 0.05</p>
+<div class="risk-medium">⚠  Minimal change, clear improvement</div>
+<h2>Verification</h2>
+<p>Status: <strong>VerificationStatus.PASSED</strong></p>
+<p>Tests: 15/15 passed</p>
+<p>Static analysis: ✓</p>
+<p>Type checks: ✓</p>
+<div class="risk-medium">⚠  Gap: No SQL injection penetration test in CI</div>
+<h2>Rollback Strategy</h2>
+<p>Strategy: git_revert</p>
+<p>Complexity: simple</p>
+<p>Est. time: 1 min</p>
+<p>  1. git revert HEAD</p>
+</div></body></html>

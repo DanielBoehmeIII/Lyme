@@ -1,0 +1,18 @@
+{
+  "id": "1ed67c2a937545a1",
+  "type": "procedural",
+  "content": "{\"id\": \"f7d86f3ab6434c7f\", \"trigger_conditions\": [\"with_memory\", \"with_memory\", \"with_memory\", \"without_memory\", \"without_memory\"], \"steps\": [\"task1\", \"task1\", \"task1\", \"task1\", \"task1\", \"task1\"], \"expected_outcome\": \"completed\", \"confidence\": 0.9, \"success_rate\": 1.0, \"usage_count\": 0, \"source_traces\": [\"96d87fc570304ea4\"], \"created_at\": 1778897128.8904536, \"last_used\": 1778897128.8904538}",
+  "source_task": "with_memory",
+  "timestamp": 1778897128.890481,
+  "access_count": 0,
+  "last_accessed": 1778897128.890481,
+  "importance_score": 0.9,
+  "tags": [
+    "procedural",
+    "with_memory",
+    "with_memory",
+    "with_memory"
+  ],
+  "embedding": [],
+  "compressed": false
+}

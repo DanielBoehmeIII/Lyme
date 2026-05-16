@@ -1,0 +1,22 @@
+{
+  "entry_id": "e2",
+  "entry_type": "benchmark_run",
+  "title": "",
+  "description": "",
+  "created_at": 1778907093.8606176,
+  "data": {},
+  "reproducibility": {
+    "python_version": "",
+    "lyme_version": "0.7.0",
+    "model_name": "",
+    "model_version": "",
+    "random_seed": 42,
+    "environment_hash": "",
+    "dependencies": {},
+    "hardware_info": ""
+  },
+  "tags": [],
+  "source_hash": "44136fa355b3678a",
+  "parent_entry_id": null,
+  "citations": []
+}

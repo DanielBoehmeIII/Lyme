@@ -1,0 +1,33 @@
+benchmark:
+  output_dir: "./lyme-output"
+  replay_dir: "./lyme-replays"
+  experiments_dir: "./lyme-experiments"
+  max_parallel: 1
+  fail_fast: false
+  capture_stdout: true
+  record_thoughts: true
+  record_diffs: true
+  record_tool_calls: true
+  timeline_enabled: true
+
+storage:
+  backend: "json"
+  compress_traces: true
+  retention_days: 90
+  max_trace_size_mb: 50
+
+agents:
+  - name: "claude-code"
+    command: "claude"
+    agent_type: "claude-code"
+    timeout_s: 300
+    max_tokens: 128000
+
+  - name: "opencode"
+    command: "opencode"
+    agent_type: "opencode"
+    timeout_s: 300
+    max_tokens: 128000
+
+verbose: false
+debug: false

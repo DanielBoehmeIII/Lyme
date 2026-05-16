@@ -1,0 +1,146 @@
+{
+  "header": {
+    "diff_id": "sd-refactor-002",
+    "schema_version": "0.7.0",
+    "schema_urn": "urn:lyme:standard:semantic-diff:v1",
+    "source_commit": "c3d4e5f6a1b2",
+    "target_commit": "d4e5f6a1b2c3",
+    "branch": "refactor/payment-strategy",
+    "repository": "legacy-ecommerce",
+    "author": "refactor-agent",
+    "created_at": 1778906715.918658,
+    "pr_url": null,
+    "tags": {}
+  },
+  "syntactic_changes": [
+    {
+      "file_path": "/src/payment/processor.py",
+      "diff_type": "modification",
+      "lines_added": 45,
+      "lines_removed": 40,
+      "hunks": 5,
+      "old_code_preview": "",
+      "new_code_preview": "",
+      "language": "python",
+      "change_scope": "module",
+      "function_name": null,
+      "class_name": null
+    },
+    {
+      "file_path": "/src/payment/strategies/credit_card.py",
+      "diff_type": "addition",
+      "lines_added": 85,
+      "lines_removed": 0,
+      "hunks": 3,
+      "old_code_preview": "",
+      "new_code_preview": "",
+      "language": "python",
+      "change_scope": "class",
+      "function_name": null,
+      "class_name": "CreditCardStrategy"
+    },
+    {
+      "file_path": "/src/payment/strategies/paypal.py",
+      "diff_type": "addition",
+      "lines_added": 72,
+      "lines_removed": 0,
+      "hunks": 3,
+      "old_code_preview": "",
+      "new_code_preview": "",
+      "language": "python",
+      "change_scope": "class",
+      "function_name": null,
+      "class_name": "PayPalStrategy"
+    }
+  ],
+  "behavioral_intent": {
+    "intent_type": "refactoring",
+    "description": "Replace conditional payment dispatch with strategy pattern",
+    "motivation": "Reduce cyclomatic complexity and make adding new payment methods easier",
+    "expected_behavior": "Same payment behavior, decoupled dispatch logic",
+    "previous_behavior": "Single function with if/elif chain for each payment method",
+    "affected_interfaces": [
+      "process_payment() signature preserved"
+    ],
+    "user_facing_change": false,
+    "backward_compatible": true,
+    "migration_required": false
+  },
+  "affected_invariants": [
+    {
+      "invariant_type": "interface_contract",
+      "description": "process_payment() accepts (method, amount) and returns TransactionResult",
+      "location": "/src/payment/processor.py",
+      "status": "preserved",
+      "confidence": 0.92,
+      "evidence": []
+    },
+    {
+      "invariant_type": "business_rule",
+      "description": "All payment methods validate amount > 0 before processing",
+      "location": "/src/payment/strategies/*.py",
+      "status": "preserved",
+      "confidence": 0.88,
+      "evidence": []
+    }
+  ],
+  "architectural_impact": {
+    "impact_level": "medium",
+    "affected_subsystems": [
+      "payment",
+      "checkout"
+    ],
+    "dependency_changes": [
+      "Old monolithic processor.py -> 4 strategy files"
+    ],
+    "interface_changes": [],
+    "coupling_change": -0.25,
+    "cohesion_change": 0.35,
+    "complexity_delta": -16,
+    "architecture_description": "Migrated from conditional dispatch to strategy pattern. Each payment method is now independently testable."
+  },
+  "risk": {
+    "overall": "medium",
+    "regression_risk": "high",
+    "security_risk": "low",
+    "performance_risk": "low",
+    "compatibility_risk": "medium",
+    "deploy_risk": "medium",
+    "rollback_difficulty": "medium",
+    "risk_factors": [
+      "Core payment processing refactored",
+      "3 new files, 1 heavily modified",
+      "Integration tests needed before deploy",
+      "Backward compatibility layer required for external callers"
+    ],
+    "risk_score_numeric": 0.55
+  },
+  "verification": {
+    "status": "passed",
+    "tests_run": 25,
+    "tests_passed": 25,
+    "tests_failed": 0,
+    "coverage_percent": 88.0,
+    "static_analysis_passed": true,
+    "type_checks_passed": true,
+    "lint_passed": true,
+    "verification_gaps": [
+      "No security audit of new strategy dispatch"
+    ],
+    "verification_evidence": []
+  },
+  "rollback": {
+    "strategy": "patch_inverse",
+    "complexity": "moderate",
+    "estimated_time_minutes": 15,
+    "steps": [
+      "git revert <merge-commit>",
+      "Restore original processor.py",
+      "Remove strategies/ directory",
+      "Verify all payment tests pass"
+    ],
+    "data_loss_risk": "none"
+  },
+  "confidence": 0.78,
+  "summary": "SemanticDiff v0.7.0 | 3 files | +202 -40 lines | Risk: RiskLevel.MEDIUM | Intent: Replace conditional payment dispatch with strategy pattern"
+}

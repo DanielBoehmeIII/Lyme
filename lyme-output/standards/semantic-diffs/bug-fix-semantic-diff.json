@@ -1,0 +1,116 @@
+{
+  "header": {
+    "diff_id": "sd-bugfix-001",
+    "schema_version": "0.7.0",
+    "schema_urn": "urn:lyme:standard:semantic-diff:v1",
+    "source_commit": "a1b2c3d4e5f6",
+    "target_commit": "b2c3d4e5f6a1",
+    "branch": "fix/pagination-off-by-one",
+    "repository": "sample-project",
+    "author": "fixer-agent",
+    "created_at": 1778906715.918566,
+    "pr_url": "https://github.com/example/sample-project/pull/42",
+    "tags": {}
+  },
+  "syntactic_changes": [
+    {
+      "file_path": "/src/pagination.py",
+      "diff_type": "modification",
+      "lines_added": 1,
+      "lines_removed": 1,
+      "hunks": 1,
+      "old_code_preview": "end = start + per_page",
+      "new_code_preview": "end = min(start + per_page, len(items))",
+      "language": "python",
+      "change_scope": "function",
+      "function_name": "paginate",
+      "class_name": null
+    },
+    {
+      "file_path": "/tests/test_pagination.py",
+      "diff_type": "addition",
+      "lines_added": 12,
+      "lines_removed": 0,
+      "hunks": 1,
+      "old_code_preview": "",
+      "new_code_preview": "def test_paginate_last_page():\n    items = list(range(50))\n    result = paginate(items, 100, 20)\n    assert len(result) > 0",
+      "language": "python",
+      "change_scope": "test",
+      "function_name": "test_paginate_last_page",
+      "class_name": null
+    }
+  ],
+  "behavioral_intent": {
+    "intent_type": "bug_fix",
+    "description": "Fix off-by-one error in pagination where last page returns empty",
+    "motivation": "When page number is large enough that start + per_page exceeds list length, slicing returns empty list instead of remaining items",
+    "expected_behavior": "pagination returns correct remaining items on any valid page",
+    "previous_behavior": "last page returns empty list for large page numbers",
+    "affected_interfaces": [],
+    "user_facing_change": false,
+    "backward_compatible": true,
+    "migration_required": false
+  },
+  "affected_invariants": [
+    {
+      "invariant_type": "data_invariant",
+      "description": "paginate() always returns a subset of input items",
+      "location": "/src/pagination.py",
+      "status": "preserved",
+      "confidence": 0.99,
+      "evidence": [
+        "All items in result are from input list",
+        "Result length never exceeds per_page"
+      ]
+    }
+  ],
+  "architectural_impact": {
+    "impact_level": "low",
+    "affected_subsystems": [
+      "pagination module"
+    ],
+    "dependency_changes": [],
+    "interface_changes": [],
+    "coupling_change": 0.0,
+    "cohesion_change": 0.0,
+    "complexity_delta": 1,
+    "architecture_description": ""
+  },
+  "risk": {
+    "overall": "low",
+    "regression_risk": "low",
+    "security_risk": "none",
+    "performance_risk": "none",
+    "compatibility_risk": "low",
+    "deploy_risk": "low",
+    "rollback_difficulty": "low",
+    "risk_factors": [
+      "Small change, 1 line modified"
+    ],
+    "risk_score_numeric": 0.15
+  },
+  "verification": {
+    "status": "passed",
+    "tests_run": 12,
+    "tests_passed": 12,
+    "tests_failed": 0,
+    "coverage_percent": 95.0,
+    "static_analysis_passed": true,
+    "type_checks_passed": true,
+    "lint_passed": true,
+    "verification_gaps": [],
+    "verification_evidence": []
+  },
+  "rollback": {
+    "strategy": "git_revert",
+    "complexity": "simple",
+    "estimated_time_minutes": 2,
+    "steps": [
+      "git revert <commit>",
+      "Verify pagination tests pass"
+    ],
+    "data_loss_risk": "none"
+  },
+  "confidence": 0.97,
+  "summary": "SemanticDiff v0.7.0 | 2 files | +13 -1 lines | Risk: RiskLevel.LOW | Intent: Fix off-by-one error in pagination where last page returns empty"
+}

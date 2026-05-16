@@ -1,0 +1,99 @@
+{
+  "header": {
+    "diff_id": "sd-security-003",
+    "schema_version": "0.7.0",
+    "schema_urn": "urn:lyme:standard:semantic-diff:v1",
+    "source_commit": "e5f6a1b2c3d4",
+    "target_commit": "f6a1b2c3d4e5",
+    "branch": "fix/sql-injection",
+    "repository": "legacy-ecommerce",
+    "author": "",
+    "created_at": 1778906715.918719,
+    "pr_url": null,
+    "tags": {}
+  },
+  "syntactic_changes": [
+    {
+      "file_path": "/src/users/auth.py",
+      "diff_type": "modification",
+      "lines_added": 2,
+      "lines_removed": 2,
+      "hunks": 1,
+      "old_code_preview": "cursor.execute(f\"SELECT * FROM users WHERE id = {user_id}\")",
+      "new_code_preview": "cursor.execute(\"SELECT * FROM users WHERE id = %s\", (user_id,))",
+      "language": "python",
+      "change_scope": "function",
+      "function_name": "get_user",
+      "class_name": null
+    }
+  ],
+  "behavioral_intent": {
+    "intent_type": "security",
+    "description": "Fix SQL injection vulnerability in get_user()",
+    "motivation": "user_id parameter was interpolated directly into SQL string, allowing injection",
+    "expected_behavior": "Parameterized query prevents SQL injection",
+    "previous_behavior": "String interpolation allowed malicious input to modify query",
+    "affected_interfaces": [],
+    "user_facing_change": false,
+    "backward_compatible": true,
+    "migration_required": false
+  },
+  "affected_invariants": [
+    {
+      "invariant_type": "security_policy",
+      "description": "All database queries must use parameterized statements",
+      "location": "/src/users/auth.py",
+      "status": "restored",
+      "confidence": 0.99,
+      "evidence": []
+    }
+  ],
+  "architectural_impact": {
+    "impact_level": "low",
+    "affected_subsystems": [],
+    "dependency_changes": [],
+    "interface_changes": [],
+    "coupling_change": 0.0,
+    "cohesion_change": 0.0,
+    "complexity_delta": 0,
+    "architecture_description": ""
+  },
+  "risk": {
+    "overall": "low",
+    "regression_risk": "low",
+    "security_risk": "none",
+    "performance_risk": "none",
+    "compatibility_risk": "low",
+    "deploy_risk": "low",
+    "rollback_difficulty": "low",
+    "risk_factors": [
+      "Minimal change, clear improvement"
+    ],
+    "risk_score_numeric": 0.05
+  },
+  "verification": {
+    "status": "passed",
+    "tests_run": 15,
+    "tests_passed": 15,
+    "tests_failed": 0,
+    "coverage_percent": null,
+    "static_analysis_passed": true,
+    "type_checks_passed": true,
+    "lint_passed": true,
+    "verification_gaps": [
+      "No SQL injection penetration test in CI"
+    ],
+    "verification_evidence": []
+  },
+  "rollback": {
+    "strategy": "git_revert",
+    "complexity": "simple",
+    "estimated_time_minutes": 1,
+    "steps": [
+      "git revert HEAD"
+    ],
+    "data_loss_risk": "none"
+  },
+  "confidence": 0.99,
+  "summary": "SemanticDiff v0.7.0 | 1 files | +2 -2 lines | Risk: RiskLevel.LOW | Intent: Fix SQL injection vulnerability in get_user()"
+}

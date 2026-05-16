@@ -1,0 +1,42 @@
+{
+  "id": "ci-1778907015-1-trace",
+  "type": "open_agent_trace",
+  "format": "json",
+  "content": {
+    "schema": "open-agent-trace-standard",
+    "schema_version": "0.7.0",
+    "trace_id": "ci-1778907015",
+    "header": {
+      "agent": {
+        "name": "lyme-ci-runner",
+        "version": "0.7.0",
+        "framework": "lyme"
+      },
+      "system": {
+        "repo_name": "example/ecommerce"
+      }
+    },
+    "events": [
+      {
+        "type": "system",
+        "metadata": {
+          "action": "ci_run",
+          "commit": "a1b2c3d4",
+          "branch": "refactor/payment-strategy"
+        }
+      },
+      {
+        "type": "metric",
+        "metadata": {
+          "risk_score": 0.8,
+          "decision": "warn"
+        }
+      }
+    ],
+    "summary": {
+      "status": "completed",
+      "decision": "warn"
+    }
+  },
+  "created_at": 1778907015.2148752
+}

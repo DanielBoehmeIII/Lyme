@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lyme"
+version = "0.7.0"
+description = "Research infrastructure for local coding agent evaluation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Lyme Research"},
+]
+
+dependencies = [
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[project.scripts]
+lyme = "lyme.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["lyme*"]
+
+[tool.setuptools.package-data]
+"lyme.ui.templates" = ["*.html"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
