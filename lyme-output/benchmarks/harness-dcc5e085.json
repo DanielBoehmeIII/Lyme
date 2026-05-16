@@ -1,0 +1,48 @@
+{
+  "run_id": "dcc5e085",
+  "timestamp": "2026-05-16T04:57:31",
+  "total_tasks": 3,
+  "passed": 1,
+  "failed": 2,
+  "avg_latency_s": 0.018,
+  "avg_evidence": 0.0,
+  "avg_keyword_match": 0.33,
+  "categories": {
+    "bug_localization": {
+      "success_rate": 0.33,
+      "count": 3
+    }
+  },
+  "results": [
+    {
+      "task_name": "function_lookup",
+      "category": "bug_localization",
+      "success": false,
+      "latency_s": 0.027,
+      "evidence_count": 0,
+      "keyword_match": 0.0,
+      "output_preview": "No functions extracted.",
+      "error": null
+    },
+    {
+      "task_name": "class_location",
+      "category": "bug_localization",
+      "success": true,
+      "latency_s": 0.027,
+      "evidence_count": 0,
+      "keyword_match": 1.0,
+      "output_preview": "No classes extracted.",
+      "error": null
+    },
+    {
+      "task_name": "import_chain",
+      "category": "bug_localization",
+      "success": false,
+      "latency_s": 0.0,
+      "evidence_count": 0,
+      "keyword_match": 0.0,
+      "output_preview": "",
+      "error": "Cannot answer: 'Trace the imports for module Z' is outside Repo Q&A capability. Supported: language, framework, dependencies, file structure, functions, classes, tests, config."
+    }
+  ]
+}

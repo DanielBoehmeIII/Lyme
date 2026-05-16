@@ -1,0 +1,16 @@
+{
+  "call_id": "6de553e9",
+  "tool": "grep_search",
+  "params": {
+    "pattern": "import"
+  },
+  "success": true,
+  "latency_ms": 8.7,
+  "output_preview": "/home/dboehmeiii/Desktop/repos/Lyme/docs/LYME_MODEL_DESIGN.md:108:- Lyme Model imports Audit utilities (compression, memory) as libraries\n/home/dboehmeiii/Desktop/repos/Lyme/docs/LYME_MODEL_DESIGN.md:",
+  "error": null,
+  "retry_count": 0,
+  "evidence": "[grep_search] /home/dboehmeiii/Desktop/repos/Lyme/docs/LYME_MODEL_DESIGN.md:108:- Lyme Model imports Audit utilities (compression, memory) as libraries\n/home/dboehmeiii/Desktop/repos/Lyme/docs/LYME_MODEL_DESIGN.md:",
+  "event": "tool_call",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "safety_mode": "readonly"
+}

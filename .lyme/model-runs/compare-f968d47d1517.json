@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for any confusion, but as an AI model developed by Deepseek, I don't have access to external repositories or files. My capabilities are based on the information provided in our training data. Therefore, I can't provide specific language and framework details about a particular repo without additional context. If you could share more details about the programming languages and frameworks used in your repository, it would be helpful for me to give a more accurate answer.",
+    "latency_s": 1.92,
+    "length_chars": 483,
+    "evidence_signals": 1,
+    "tokens_per_second": 50.6,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "The repository uses Python as the programming language, with a few JavaScript files (5). The main codebase is written in Python, specifically using the Poetry package manager for dependency management. It also uses pytest for testing. \n\nSpecifically, the following are Python files:\n- `main.py`\n- All Python files under `lyme-experiments/synthetic/src/core/`\n- All Python files under `lyme-experiments/synthetic/src/models/`\n- All Python files under `lyme-experiments/synthetic/src/services/`\n- All Python files under `scripts/`\n- All Python files under `src/lyme/archfile/`\n- All Python files under `src/lyme/architecture/`. \n\nThe following are JavaScript files:\n- None in the given context, as per the repository structure provided.\n\nNote that the sensitive keywords mentioned in the RISKS section of your question (e.g., \"contains sensitive keywords\") do not seem to be present in any Python or JavaScript file from this repo. They might have been added for security reasons, but without more specific context it's hard to say exactly what they are used for.",
+    "latency_s": 7.62,
+    "length_chars": 1061,
+    "evidence_signals": 3,
+    "tokens_per_second": 35.3,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 5.7,
+    "evidence_improvement": 2,
+    "context_used": true
+  }
+}

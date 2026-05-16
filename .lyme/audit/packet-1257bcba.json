@@ -1,0 +1,12 @@
+{
+  "event": "subtask_completed",
+  "packet_id": "b77251e9",
+  "subtask_id": "1257bcba",
+  "task_goal": "Fix login",
+  "subtask_name": "Find auth",
+  "status": "completed",
+  "completed_subtasks": 1,
+  "total_subtasks": 1,
+  "evidence_count": 1,
+  "tokens_used": 0
+}

@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for any confusion, but as an AI model developed by Deepseek, I don't have the ability to access or analyze files from external repositories. My main function is to provide information and answer questions related to computer science based on my training data. If you can share more details about the repository or its content, I might be able to give a better answer.",
+    "latency_s": 1.6,
+    "length_chars": 377,
+    "evidence_signals": 1,
+    "tokens_per_second": 50.0,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "The repository uses Python as the programming language, with a few JavaScript files (5). The main codebase is written in Python, specifically using the Poetry package manager for dependency management. It also uses pytest for testing. \n\nSpecifically, the following are written in Python:\n- `main.py`\n- All python files under `lyme-experiments/synthetic/src/core/*.py`\n- All python files under `lyme-experiments/synthetic/src/models/*.py`\n- All python files under `lyme-experiments/synthetic/src/services/*.py`\n- All python test files under `lyme-experiments/synthetic/tests/*_test.py`\n- The Python scripts in the `scripts/` directory: \n    - `benchmark_capability.py`, \n    - `benchmark_compression.py`, \n    - `benchmark_compression_v2.py`, \n    - `benchmark_hardware.py`, \n    - `benchmark_tool_use.py`, \n    - `demo_v07.py`, \n    - and `generate_standards_examples.py`.\n- The Python files in the `src/lyme/archfile/` directory: `architecture_file.py`.\n- And the Python files in the `src/lyme/architecture/` directory: `advisor.py`. \n\nPlease note that these are just the relevant files as per your request, and there may be other Python files in the repository which were not specifically mentioned here due to their being sensitive or irrelevant for this context.",
+    "latency_s": 10.29,
+    "length_chars": 1266,
+    "evidence_signals": 4,
+    "tokens_per_second": 37.2,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 8.69,
+    "evidence_improvement": 3,
+    "context_used": true
+  }
+}

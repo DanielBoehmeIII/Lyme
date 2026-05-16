@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for the confusion but as an AI model, I don't have access to any external files or repositories unless they are shared with me in the context of our conversation. Could you please provide more details about the programming language and framework used in your repository? This will help me give a more accurate answer.",
+    "latency_s": 1.26,
+    "length_chars": 327,
+    "evidence_signals": 1,
+    "tokens_per_second": 54.0,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "The repository uses Python as the programming language, primarily because it is used in many of the files within the project. The main source code files are written in Python (.py), while some scripts (like benchmark_capability.py) also contain functions that can be run from a command line interface. \n\nThe framework used appears to be Pytest for running tests, as specified in the \"TESTS\" section of your question. The README file indicates that Lyme is built on top of Python and uses pytest for testing.\n\nSpecifically, the following files are written in Python:\n- main.py\n- scripts/benchmark_capability.py\n- scripts/benchmark_compression.py\n- scripts/benchmark_compression_v2.py\n- scripts/benchmark_hardware.py\n- scripts/benchmark_tool_use.py\n- lyme-experiments/synthetic/src/core/adapter.py\n- lyme-experiments/synthetic/src/core/config.py\n- lyme-experiments/synthetic/src/models/database.py\n- lyme-experiments/synthetic/src/services/auth.py\n- lyme-experiments/synthetic/tests/test_adapter.py\n- lyme-experiments/synthetic/tests/test_config.py\n- lyme-experiments/synthetic/tests/test_database.py\n- lyme-experiments/synthetic/tests/test_auth.py\n\nThe Python files in the project contain sensitive keywords, as indicated by the \"RISKS\" section of your question. These are likely to be password or other security-related strings that have been accidentally committed into the codebase.",
+    "latency_s": 10.67,
+    "length_chars": 1384,
+    "evidence_signals": 4,
+    "tokens_per_second": 36.6,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 9.41,
+    "evidence_improvement": 3,
+    "context_used": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "How many files are in the repo?",
+  "refused": false,
+  "confidence": 0.4,
+  "latency_s": 0.022,
+  "evidence_count": 1,
+  "context_tokens": 34,
+  "tool_calls": 0
+}

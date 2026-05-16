@@ -1,0 +1,16 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "3f8c486c",
+  "repo": "/tmp/tmpcqvwdmei",
+  "task": "test",
+  "total_tokens": 36,
+  "compile_time_s": 0.001,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [
+    "app.py",
+    "main.py"
+  ],
+  "total_analyzed_files": 2,
+  "timestamp": 1778921521.506606
+}

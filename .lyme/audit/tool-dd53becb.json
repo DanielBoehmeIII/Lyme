@@ -1,0 +1,16 @@
+{
+  "call_id": "dd53becb",
+  "tool": "list_directory",
+  "params": {
+    "path": "."
+  },
+  "success": true,
+  "latency_ms": 0.0,
+  "output_preview": "file1.py\nfile2.py",
+  "error": null,
+  "retry_count": 0,
+  "evidence": "[list_directory] file1.py\nfile2.py",
+  "event": "tool_call",
+  "repo": "/tmp/tmpw7zls6mr",
+  "safety_mode": "readonly"
+}

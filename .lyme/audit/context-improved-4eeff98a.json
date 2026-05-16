@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "4eeff98a",
+  "repo": "/tmp/tmposvwg7pf",
+  "task": "What functions are defined?",
+  "total_tokens": 45,
+  "compile_time_s": 0.0,
+  "ranked_files": 1,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 1,
+  "timestamp": 1778921740.147733
+}

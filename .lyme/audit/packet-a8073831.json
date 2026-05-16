@@ -1,0 +1,12 @@
+{
+  "event": "subtask_completed",
+  "packet_id": "c2d5f003",
+  "subtask_id": "a8073831",
+  "task_goal": "Test task",
+  "subtask_name": "Subtask 1",
+  "status": "completed",
+  "completed_subtasks": 1,
+  "total_subtasks": 1,
+  "evidence_count": 0,
+  "tokens_used": 0
+}

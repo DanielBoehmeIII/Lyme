@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "What framework?",
+  "refused": false,
+  "confidence": 0.4,
+  "latency_s": 0.28,
+  "evidence_count": 1,
+  "context_tokens": 655,
+  "tool_calls": 0
+}

@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for any confusion, but as an AI model developed by Deepseek, I don't have the ability to access or analyze code from external repositories. My main function is to provide information and answer questions related to computer science based on my training data. If you can share more details about the repository or its content, I might be able to help identify the programming language and framework used in it.",
+    "latency_s": 1.7,
+    "length_chars": 419,
+    "evidence_signals": 0,
+    "tokens_per_second": 50.4,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "The repository uses Python as the programming language, with a few JavaScript files (5). The build system is managed by setuptools/poetry, which is used to install the package in editable mode (-e option). The tests are run using pytest framework. \n\nSpecifically, the main source code and test files are written in Python:\n- Main file: `main.py`\n- Test files: `lyme-experiments/synthetic/tests/test_adapter.py`, `lyme-experiments/synthetic/tests/test_auth.py`, etc. \n\nThe repository also contains some JavaScript code in the `scripts/benchmark_capability.py` and `scripts/benchmark_compression.py` files. However, these are Python scripts that seem to be wrappers around other JavaScript tools or libraries. The actual language used for these benchmarks is likely not JavaScript but could be TypeScript if it's being transpiled from a .ts file.",
+    "latency_s": 6.45,
+    "length_chars": 844,
+    "evidence_signals": 3,
+    "tokens_per_second": 34.0,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 4.75,
+    "evidence_improvement": 3,
+    "context_used": true
+  }
+}

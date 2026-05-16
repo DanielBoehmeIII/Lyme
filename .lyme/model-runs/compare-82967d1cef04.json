@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for any confusion, but as an AI model developed by Deepseek, I don't have the ability to access or analyze files from external repositories due to privacy and security reasons. My main function is to provide information and answer questions related to computer science based on my training data. If you can share more details about the repo or its purpose, I might be able to give a better understanding of what programming language and framework it uses.",
+    "latency_s": 1.77,
+    "length_chars": 465,
+    "evidence_signals": 1,
+    "tokens_per_second": 53.0,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "This repository is written in Python, primarily using the Flask web framework for its backend services. The main entry point of the application is `main.py` which imports several modules from the `lyme-experiments/synthetic/src/core` and `lyme-experiments/synthetic/src/services` directories, indicating that it's a Python web application.",
+    "latency_s": 4.41,
+    "length_chars": 339,
+    "evidence_signals": 2,
+    "tokens_per_second": 19.1,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 2.64,
+    "evidence_improvement": 1,
+    "context_used": true
+  }
+}

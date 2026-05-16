@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "083537f8",
+  "repo": "/tmp/tmp9nu953ra",
+  "task": "What is the project structure?",
+  "total_tokens": 40,
+  "compile_time_s": 0.0,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 0,
+  "timestamp": 1778921447.2351818
+}

@@ -1,0 +1,16 @@
+{
+  "call_id": "5fd8f44a",
+  "tool": "grep_search",
+  "params": {
+    "pattern": "import"
+  },
+  "success": true,
+  "latency_ms": 11.4,
+  "output_preview": "/home/dboehmeiii/Desktop/repos/Lyme/main.py:14:from lyme.cli import main\n/home/dboehmeiii/Desktop/repos/Lyme/RELEASE_PLAN.md:359:[ ] All new modules import cleanly\n/home/dboehmeiii/Desktop/repos/Lyme/",
+  "error": null,
+  "retry_count": 0,
+  "evidence": "[grep_search] /home/dboehmeiii/Desktop/repos/Lyme/main.py:14:from lyme.cli import main\n/home/dboehmeiii/Desktop/repos/Lyme/RELEASE_PLAN.md:359:[ ] All new modules import cleanly\n/home/dboehmeiii/Desktop/repos/Lyme/",
+  "event": "tool_call",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "safety_mode": "readonly"
+}

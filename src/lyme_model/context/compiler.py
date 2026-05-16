@@ -23,19 +23,38 @@ class CompiledContext:
     build_commands: List[str] = field(default_factory=list)
     test_commands: List[str] = field(default_factory=list)
     total_tokens: int = 0
+    total_chars: int = 0
     compile_time_s: float = 0.0
+    readme_excerpt: str = ""
+    detected_frameworks: List[str] = field(default_factory=list)
+    detected_languages: Dict = field(default_factory=dict)
+    git_summary: str = ""
+    top_relevant_files: List[str] = field(default_factory=list)
 
     def to_text(self) -> str:
         sections = []
         if self.repo_summary:
             sections.append("REPOSITORY SUMMARY")
             sections.append(self.repo_summary)
+        if self.detected_frameworks:
+            sections.append("FRAMEWORKS")
+            sections.append(", ".join(self.detected_frameworks))
+        if self.git_summary:
+            sections.append("GIT STATUS")
+            sections.append(self.git_summary)
+        if self.readme_excerpt:
+            sections.append("README")
+            sections.append(self.readme_excerpt)
         if self.structure:
             sections.append("STRUCTURE")
             sections.append(self.structure)
         if self.api_surface:
             sections.append("API SURFACE")
             sections.append(self.api_surface)
+        if self.top_relevant_files:
+            sections.append("RELEVANT FILES")
+            for f in self.top_relevant_files:
+                sections.append(f"  {f}")
         if self.task_context:
             sections.append("TASK")
             sections.append(self.task_context)
@@ -77,8 +96,12 @@ class ContextCompiler:
 
         compiled = CompiledContext()
         compiled.repo_summary = self._summarize_repo()
+        compiled.detected_languages = self._detect_languages()
+        compiled.detected_frameworks = self._detect_frameworks()
+        compiled.readme_excerpt = self._extract_readme_excerpt()
         compiled.structure = self._get_structure()
         compiled.api_surface = self._extract_api_surface()
+        compiled.git_summary = self._git_status_summary()
         compiled.risks = self._find_risky_files()
         build_cmds, test_cmds = self._extract_commands()
         compiled.build_commands = build_cmds
@@ -86,18 +109,146 @@ class ContextCompiler:
 
         if task:
             compiled.task_context = self._build_task_context(task)
+            compiled.top_relevant_files = self._find_relevant_files(task)
 
+        full_text = compiled.to_text()
+        compiled.total_chars = len(full_text)
+        compiled.total_tokens = self._count_tokens(full_text)
         compiled.compile_time_s = round(time.time() - start, 3)
 
-        budget = max_tokens or self._estimate_token_budget(len(compiled.to_text()))
-        compiled.total_tokens = self._count_tokens(compiled.to_text())
-
+        budget = max_tokens or self._estimate_token_budget(len(full_text))
         if compiled.total_tokens > budget:
             compiled = self._truncate(compiled, budget)
 
         self._emit_trace(compiled, task)
 
         return compiled
+
+    def _detect_languages(self) -> Dict[str, int]:
+        """Count files by language extension."""
+        repo = self.repo_path
+        if not repo.is_dir():
+            return {}
+        ext_counts = {}
+        for f in repo.rglob("*"):
+            if f.is_file() and not f.name.startswith("."):
+                ext = f.suffix.lower()
+                if ext:
+                    ext_counts[ext] = ext_counts.get(ext, 0) + 1
+        return dict(sorted(ext_counts.items(), key=lambda x: -x[1])[:15])
+
+    def _detect_frameworks(self) -> List[str]:
+        """Detect likely frameworks from config files and imports."""
+        repo = self.repo_path
+        frameworks = []
+
+        if (repo / "pyproject.toml").exists():
+            text = (repo / "pyproject.toml").read_text(errors="ignore").lower()
+            if "fastapi" in text:
+                frameworks.append("FastAPI")
+            if "django" in text:
+                frameworks.append("Django")
+            if "flask" in text:
+                frameworks.append("Flask")
+            if "pytest" in text:
+                frameworks.append("pytest")
+
+        if (repo / "package.json").exists():
+            text = (repo / "package.json").read_text(errors="ignore").lower()
+            if "react" in text:
+                frameworks.append("React")
+            if "next" in text or "nextjs" in text:
+                frameworks.append("Next.js")
+            if "express" in text:
+                frameworks.append("Express")
+            if "jest" in text:
+                frameworks.append("Jest")
+
+        if (repo / "Cargo.toml").exists():
+            frameworks.append("Cargo")
+
+        if (repo / "go.mod").exists():
+            frameworks.append("Go Modules")
+
+        for py_file in sorted(repo.rglob("*.py"))[:50]:
+            if "site-packages" in str(py_file) or ".venv" in str(py_file):
+                continue
+            try:
+                text = py_file.read_text(errors="ignore")
+                if "import fastapi" in text:
+                    frameworks.append("FastAPI")
+                if "import django" in text:
+                    frameworks.append("Django")
+                if "from django" in text:
+                    frameworks.append("Django")
+            except Exception:
+                continue
+
+        return sorted(set(frameworks))
+
+    def _extract_readme_excerpt(self) -> str:
+        """Extract first meaningful lines from README."""
+        repo = self.repo_path
+        for name in ["README.md", "README.rst", "README.txt", "README"]:
+            readme = repo / name
+            if readme.exists():
+                lines = readme.read_text(errors="ignore").split("\n")
+                meaningful = [l.strip() for l in lines if l.strip() and not l.startswith(("#", "=", "-", "*"))]
+                excerpt = "\n".join(meaningful[:10])
+                if len(excerpt) > 500:
+                    excerpt = excerpt[:500] + "..."
+                return excerpt[:500]
+        return ""
+
+    def _git_status_summary(self) -> str:
+        """Get git status summary."""
+        try:
+            import subprocess
+            result = subprocess.run(
+                ["git", "status", "--short"],
+                capture_output=True, text=True, timeout=5,
+                cwd=self.repo_path
+            )
+            if result.returncode != 0:
+                return "Not a git repository or git not available"
+            lines = [l.strip() for l in result.stdout.split("\n") if l.strip()]
+            if not lines:
+                return "Clean working tree"
+            modified = sum(1 for l in lines if l.startswith("M") or l.startswith(" M"))
+            staged = sum(1 for l in lines if l.startswith("M ") or l.startswith("A ") or l.startswith("D "))
+            untracked = sum(1 for l in lines if l.startswith("?"))
+            summary = f"{len(lines)} changes"
+            if modified:
+                summary += f", {modified} modified"
+            if staged:
+                summary += f", {staged} staged"
+            if untracked:
+                summary += f", {untracked} untracked"
+            return summary
+        except Exception:
+            return "Git status unavailable"
+
+    def _find_relevant_files(self, task: str) -> List[str]:
+        """Find files relevant to a task based on keyword matching."""
+        repo = self.repo_path
+        if not repo.is_dir():
+            return []
+        keywords = set(task.lower().split())
+        scored = []
+        for f in sorted(repo.rglob("*")):
+            if not f.is_file() or f.name.startswith("."):
+                continue
+            if "site-packages" in str(f) or ".venv" in str(f) or "__pycache__" in str(f):
+                continue
+            try:
+                rel = str(f.relative_to(repo))
+                name_score = sum(1 for k in keywords if k in f.name.lower() or k in rel.lower())
+                if name_score > 0:
+                    scored.append((name_score, rel))
+            except Exception:
+                continue
+        scored.sort(key=lambda x: -x[0])
+        return [f for _, f in scored[:10]]
 
     def _summarize_repo(self) -> str:
         """Quick repo summary using file tree scan."""

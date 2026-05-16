@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "How many files?",
+  "refused": false,
+  "confidence": 0.4,
+  "latency_s": 0.306,
+  "evidence_count": 1,
+  "context_tokens": 693,
+  "tool_calls": 0
+}

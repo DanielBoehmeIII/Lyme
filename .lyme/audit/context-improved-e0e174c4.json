@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "e0e174c4",
+  "repo": "/tmp/tmpnol61e5e",
+  "task": "What language is this project?",
+  "total_tokens": 34,
+  "compile_time_s": 0.0,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 0,
+  "timestamp": 1778922154.9525397
+}

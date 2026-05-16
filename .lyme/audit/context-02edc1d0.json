@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "02edc1d0",
+  "repo": "/tmp/tmpgp8ebr1n",
+  "task": "Where is the hardware detection implemented?",
+  "total_tokens": 41,
+  "compile_time_s": 0.001,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 0,
+  "timestamp": 1778921849.084665
+}

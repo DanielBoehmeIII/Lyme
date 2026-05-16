@@ -1,0 +1,15 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "c48c87f0",
+  "repo": "/tmp/tmpqzq7m06t",
+  "task": "How is this project structured?",
+  "total_tokens": 38,
+  "compile_time_s": 0.001,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [
+    "src/main.py"
+  ],
+  "total_analyzed_files": 1,
+  "timestamp": 1778921930.5532277
+}

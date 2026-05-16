@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "What tests?",
+  "refused": false,
+  "confidence": 0.8,
+  "latency_s": 0.237,
+  "evidence_count": 5,
+  "context_tokens": 659,
+  "tool_calls": 0
+}

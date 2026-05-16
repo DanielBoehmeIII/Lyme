@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "83731fb3",
+  "repo": "/tmp/tmp06_9ta87",
+  "task": "test question",
+  "total_tokens": 31,
+  "compile_time_s": 0.0,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 0,
+  "timestamp": 1778923923.3951516
+}

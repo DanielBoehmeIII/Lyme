@@ -1,0 +1,22 @@
+{
+  "id": "ci-1778922065-1-semantic-diff",
+  "type": "semantic_diff",
+  "format": "json",
+  "content": {
+    "header": {
+      "diff_id": "ci-diff-1778922065"
+    },
+    "risk": {
+      "overall": "low",
+      "score": 0.35
+    },
+    "syntactic_changes": [
+      {
+        "file_path": "high_risk.py",
+        "lines_added": 500,
+        "lines_removed": 100
+      }
+    ]
+  },
+  "created_at": 1778922065.3015969
+}

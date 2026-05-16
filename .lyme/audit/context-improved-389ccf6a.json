@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "389ccf6a",
+  "repo": "/tmp/tmp9vt70g0t",
+  "task": "Find where class Y is defined",
+  "total_tokens": 35,
+  "compile_time_s": 0.0,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 0,
+  "timestamp": 1778921524.196711
+}

@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for any confusion, but as an AI model developed by Deepseek, I don't have the ability to access or analyze files from external repositories. My main function is to provide information and answer questions related to computer science based on my training data. If you could provide more context about the programming language and framework used in your repository, it would be helpful for me to give a more accurate response.",
+    "latency_s": 1.63,
+    "length_chars": 434,
+    "evidence_signals": 1,
+    "tokens_per_second": 53.4,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "This repository uses Python as the programming language, with a few files written in JavaScript/TypeScript (JS/TS). The main language used is Python for most of the codebase, especially in the `lyme-experiments/synthetic` directory. \n\nThe framework used appears to be pytest for running tests. It's mentioned in the README file but not explicitly stated in the repository structure or build instructions. \n\nFor sensitive keywords, it seems like they are present in Python files under `lyme-experiments/synthetic/src/core` and `scripts` directories. These could potentially be passwords or other sensitive information that should not be exposed publicly.",
+    "latency_s": 4.77,
+    "length_chars": 653,
+    "evidence_signals": 2,
+    "tokens_per_second": 30.6,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 3.14,
+    "evidence_improvement": 1,
+    "context_used": true
+  }
+}

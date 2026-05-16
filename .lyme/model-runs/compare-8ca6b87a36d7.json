@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for any confusion, but as an AI model developed by Deepseek, I don't have the ability to access or analyze files from external repositories unless they are shared with me in some way. Therefore, I can't provide specific language and framework details about a repo you mentioned. If you could share more information about the programming languages used or any file names related to these technologies, it would be helpful for me to give a more accurate answer.",
+    "latency_s": 1.91,
+    "length_chars": 469,
+    "evidence_signals": 1,
+    "tokens_per_second": 50.7,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "The repository uses Python as the programming language, with a few JavaScript files (5). The main codebase is written in Python, specifically using the Pytest testing framework. \n\nSpecifically, the following files are relevant to this repo:\n- .claude/commands/visual-sprint.md\n- .claude/skills/.claude/commands/atlas-sprint.md\n- lyme-experiments/synthetic/src/core/handler.py\n- lyme-experiments/synthetic/tests/test_handler.py\n\nThe build system is setup using Python's setuptools or poetry, and the tests are run with Pytest. \n\nThere are some files that contain sensitive keywords as identified in the RISKS section of your question. These include:\n- lyme-experiments/synthetic/src/core/adapter.py\n- lyme-experiments/synthetic/src/core/config.py\n- lyme-experiments/synthetic/src/models/database.py \n- lyme-experiments/synthetic/src/services/auth.py \n- lyme-experiments/synthetic/tests/test_auth.py \n- scripts/benchmark_capability.py \n- scripts/benchmark_compression.py \n- scripts/benchmark_compression_v2.py \n- scripts/benchmark_hardware.py \n- scripts/benchmark_tool_use.py \n\nPlease note that these files contain sensitive keywords and should not be shared or used without proper authorization.",
+    "latency_s": 10.08,
+    "length_chars": 1194,
+    "evidence_signals": 5,
+    "tokens_per_second": 36.5,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 8.17,
+    "evidence_improvement": 4,
+    "context_used": true
+  }
+}

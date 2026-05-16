@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for the misunderstanding, but as an AI model developed by Deepseek, I don't have access to external databases or repositories unless they are shared with me in the context of our conversation. Therefore, I can't provide specific language and framework details about a repo you mentioned without having that information first. Could you please share more details?",
+    "latency_s": 1.53,
+    "length_chars": 372,
+    "evidence_signals": 0,
+    "tokens_per_second": 50.3,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "The repository uses Python as the programming language, with a few JavaScript files (5). The main codebase is written in Python, specifically using the Poetry package manager for dependency management. It also utilizes pytest for testing. \n\nSpecifically, it's written in Python and can be installed via `pip install -e .` as specified in the README file. Tests are run with the command `pytest`. The sensitive keywords have been mentioned in the RELEASE_PLAN files but no specific files have been identified for them.",
+    "latency_s": 3.95,
+    "length_chars": 517,
+    "evidence_signals": 1,
+    "tokens_per_second": 29.4,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 2.42,
+    "evidence_improvement": 1,
+    "context_used": true
+  }
+}

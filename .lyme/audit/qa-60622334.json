@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "What language is used?",
+  "refused": false,
+  "confidence": 0.4,
+  "latency_s": 0.269,
+  "evidence_count": 1,
+  "context_tokens": 683,
+  "tool_calls": 0
+}

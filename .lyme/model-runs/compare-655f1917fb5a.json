@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for any confusion, but as an AI model developed by Deepseek, I don't have the ability to access or analyze files from external repositories. My capabilities are based on the information provided in the conversation. If you provide me with specific details about a programming language and framework used in your repository, I can help answer questions related to that technology stack.",
+    "latency_s": 4.68,
+    "length_chars": 395,
+    "evidence_signals": 1,
+    "tokens_per_second": 16.7,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "The repository uses Python as the programming language, with a few lines of JavaScript (JS/TS). The main codebase is written in Python, specifically using the Poetry package manager for dependency management. It also utilizes pytest for testing. \n\nSpecifically, the files that are relevant to this task include:\n- `lyme-experiments/synthetic/src/core/handler.py`\n- `lyme-experiments/synthetic/tests/test_handler.py`\n\nThe build command is `pip install -e .`, and the tests are run with pytest. \n\nThere are some files that contain sensitive keywords as identified by Lyme's RISKS section:\n- `lyme-experiments/synthetic/src/core/adapter.py`\n- `lyme-experiments/synthetic/src/core/config.py`\n- `lyme-experiments/synthetic/src/models/database.py`\n- `lyme-experiments/synthetic/src/services/auth.py`\n- `lyme-experiments/synthetic/tests/test_auth.py`\n- `scripts/benchmark_capability.py`\n- `scripts/benchmark_compression.py`\n- `scripts/benchmark_compression_v2.py`\n- `scripts/benchmark_hardware.py`\n- `scripts/benchmark_tool_use.py`",
+    "latency_s": 8.91,
+    "length_chars": 1024,
+    "evidence_signals": 4,
+    "tokens_per_second": 37.0,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 4.23,
+    "evidence_improvement": 3,
+    "context_used": true
+  }
+}

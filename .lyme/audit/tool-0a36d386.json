@@ -1,0 +1,16 @@
+{
+  "call_id": "0a36d386",
+  "tool": "grep_search",
+  "params": {
+    "pattern": "hello"
+  },
+  "success": true,
+  "latency_ms": 4.3,
+  "output_preview": "/tmp/tmpdr8bk4we/code.py:1:def hello():\n",
+  "error": null,
+  "retry_count": 0,
+  "evidence": "[grep_search] /tmp/tmpdr8bk4we/code.py:1:def hello():",
+  "event": "tool_call",
+  "repo": "/tmp/tmpdr8bk4we",
+  "safety_mode": "readonly"
+}

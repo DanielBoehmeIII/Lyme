@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language is this repo?",
+  "raw": {
+    "output": "I'm sorry for any confusion, but as an AI model developed by Deepseek, I don't have the ability to access or analyze files from external repositories. Therefore, I can't provide information about the programming language used in a particular repository without specific context provided to me. If you could share more details such as the file names and their contents, I would be able to help identify the most likely languages used.",
+    "latency_s": 1.78,
+    "length_chars": 433,
+    "evidence_signals": 1,
+    "tokens_per_second": 49.9,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "The repository is written in Python, as indicated by the files with a `.py` extension (main.py, pyproject.toml, etc.) and the build instructions using pip install -e . which are typical for Python projects. The README also mentions \"Lyme is a research platform disguised as a developer tool\", suggesting that this project might be written in Python or another language with similar functionality.",
+    "latency_s": 3.3,
+    "length_chars": 396,
+    "evidence_signals": 3,
+    "tokens_per_second": 26.4,
+    "success": true,
+    "context_tokens": 461
+  },
+  "delta": {
+    "latency_diff_s": 1.52,
+    "evidence_improvement": 2,
+    "context_used": true
+  }
+}

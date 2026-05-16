@@ -1,0 +1,28 @@
+{
+  "run_id": "860c27f2",
+  "timestamp": "2026-05-16T05:01:08",
+  "total_tasks": 1,
+  "passed": 1,
+  "failed": 0,
+  "avg_latency_s": 0.024,
+  "avg_evidence": 1.0,
+  "avg_keyword_match": 0.33,
+  "categories": {
+    "repo_id": {
+      "success_rate": 1.0,
+      "count": 1
+    }
+  },
+  "results": [
+    {
+      "task_name": "repo_language",
+      "category": "repo_id",
+      "success": true,
+      "latency_s": 0.024,
+      "evidence_count": 1,
+      "keyword_match": 0.33,
+      "output_preview": "The primary language is **Python**. Files: 3 total (1 Python, 0 JS/TS)",
+      "error": null
+    }
+  ]
+}

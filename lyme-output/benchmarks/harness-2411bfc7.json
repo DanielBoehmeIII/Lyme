@@ -1,0 +1,38 @@
+{
+  "run_id": "2411bfc7",
+  "timestamp": "2026-05-16T04:52:04",
+  "total_tasks": 2,
+  "passed": 1,
+  "failed": 1,
+  "avg_latency_s": 0.03,
+  "avg_evidence": 0.5,
+  "avg_keyword_match": 0.17,
+  "categories": {
+    "repo_id": {
+      "success_rate": 0.5,
+      "count": 2
+    }
+  },
+  "results": [
+    {
+      "task_name": "repo_language",
+      "category": "repo_id",
+      "success": true,
+      "latency_s": 0.03,
+      "evidence_count": 1,
+      "keyword_match": 0.33,
+      "output_preview": "The primary language is **Python**. Files: 1 total (0 Python, 0 JS/TS)",
+      "error": null
+    },
+    {
+      "task_name": "repo_framework",
+      "category": "repo_id",
+      "success": false,
+      "latency_s": 0.03,
+      "evidence_count": 0,
+      "keyword_match": 0.0,
+      "output_preview": "No frameworks detected in the repository.",
+      "error": null
+    }
+  ]
+}

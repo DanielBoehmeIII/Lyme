@@ -1,0 +1,17 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "9ea17739",
+  "repo": "/tmp/tmp6h86mzbn",
+  "task": "What language is this project?",
+  "total_tokens": 64,
+  "compile_time_s": 0.001,
+  "ranked_files": 1,
+  "frameworks": [
+    "flask"
+  ],
+  "entry_points": [
+    "src/app.py"
+  ],
+  "total_analyzed_files": 2,
+  "timestamp": 1778923923.775985
+}

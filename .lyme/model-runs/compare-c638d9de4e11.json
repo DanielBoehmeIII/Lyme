@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for any confusion, but as an AI model developed by Deepseek, I don't have the ability to access or analyze files from external repositories. My main function is to provide information and answer questions related to computer science based on my training data. If you could provide more context about a specific repository or its contents, I would be able to give a better response.",
+    "latency_s": 1.52,
+    "length_chars": 391,
+    "evidence_signals": 1,
+    "tokens_per_second": 53.3,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "The repository uses Python as the programming language, with a few lines of JavaScript for certain files (JS/TS files). The build system is set up using setuptools or poetry from Python's packaging tool. The framework used appears to be pytest for running tests. \n\nSpecifically, the main file is `main.py` written in Python and the API surface includes functions in various Python files:\n- `lyme-experiments/synthetic/src/core/adapter.py` contains functions like `save_adapter` and `validate_adapter`.\n- `lyme-experiments/synthetic/src/core/builder.py` also includes functions like `load_builder` and `validate_builder`.\n- Similarly, files in the `lyme-experiments/synthetic/src/core/config.py`, `lyme-experiments/synthetic/src/core/engine.py`, `lyme-experiments/synthetic/src/core/handler.py`, `lyme-experiments/synthetic/src/core/injector.py`, and `lyme-experiments/synthetic/src/core/utils.py` contain Python functions related to configuration, engine, handler, injector, and utility functionalities respectively.\n- In the files under `lyme-experiments/synthetic/src/models/database.py`, `lyme-experiments/synthetic/src/models/loader.py`, `lyme-experiments/synthetic/src/models/manager.py`, `lyme-experiments/synthetic/src/models/parser.py`, and `lyme-experiments/synthetic/src/models/registry.py`, functions related to database, loader, manager, parser, and registry are present.\n- In the files under `lyme-experiments/synthetic/src/services/auth.py`, `lyme-experiments/synthetic/src/services/controller.py`, `lyme-experiments/synthetic/src/services/factory.py`, `lyme-experiments/synthetic/src/services/provider.py`, and `lyme-experiments/synthetic/src/services/store.py`, functions related to authentication, controller, factory, provider, and store are present.\n- In the files under `lyme-experiments/synthetic/src/services/validator.py`, functions for validating data are present. \n\nThe tests are written using pytest in Python and can be found in the test_*.py files under the 'tests' directory. For instance, `lyme-experiments/synthetic/tests/test_adapter.py` contains tests for adapter functionality. \n\nFinally, scripts like `scripts/benchmark_capability.py` and `scripts/benchmark_compression.py` are also written in Python.",
+    "latency_s": 17.93,
+    "length_chars": 2236,
+    "evidence_signals": 4,
+    "tokens_per_second": 37.2,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 16.41,
+    "evidence_improvement": 3,
+    "context_used": true
+  }
+}

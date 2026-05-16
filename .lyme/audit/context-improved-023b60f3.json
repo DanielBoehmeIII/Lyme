@@ -1,0 +1,20 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "023b60f3",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "task": "What language is this project?",
+  "total_tokens": 705,
+  "compile_time_s": 0.239,
+  "ranked_files": 50,
+  "frameworks": [
+    "fastapi",
+    "pytest"
+  ],
+  "entry_points": [
+    "main.py",
+    "src/lyme/cli.py",
+    "src/lyme_model/cli.py"
+  ],
+  "total_analyzed_files": 466,
+  "timestamp": 1778921740.412458
+}

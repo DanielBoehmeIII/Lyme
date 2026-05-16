@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "c6506997",
+  "repo": "/tmp/tmp191_zw9u",
+  "task": "What Python framework is used in this project?",
+  "total_tokens": 43,
+  "compile_time_s": 0.001,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 0,
+  "timestamp": 1778921521.6092062
+}

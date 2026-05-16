@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "1a0a547c",
+  "repo": "/tmp/tmpq39e1i58",
+  "task": "what does this do?",
+  "total_tokens": 56,
+  "compile_time_s": 0.003,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 0,
+  "timestamp": 1778921927.929636
+}

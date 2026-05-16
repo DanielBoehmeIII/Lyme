@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "7f67b97b",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "task": "What language and framework does this repo use?",
+  "total_tokens": 464,
+  "compile_time_s": 0.485,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 10,
+  "timestamp": 1778922369.867118
+}

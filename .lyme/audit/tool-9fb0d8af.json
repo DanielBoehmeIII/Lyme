@@ -1,0 +1,16 @@
+{
+  "call_id": "9fb0d8af",
+  "tool": "read_file",
+  "params": {
+    "path": "data.py"
+  },
+  "success": true,
+  "latency_ms": 0.0,
+  "output_preview": "VERSION = '1.0'",
+  "error": null,
+  "retry_count": 0,
+  "evidence": "[read_file] VERSION = '1.0'",
+  "event": "tool_call",
+  "repo": "/tmp/tmp8ilkc9fq",
+  "safety_mode": "readonly"
+}

@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "What are the entry points?",
+  "refused": false,
+  "confidence": 0.0,
+  "latency_s": 0.027,
+  "evidence_count": 0,
+  "context_tokens": 34,
+  "tool_calls": 0
+}

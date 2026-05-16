@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for the confusion, but as an AI model developed by Deepseek, I don't have access to any external repositories or files unless they are provided in the context of our conversation. Could you please provide more information about the programming language and framework used in your repository? This will help me give a more accurate answer.",
+    "latency_s": 1.32,
+    "length_chars": 348,
+    "evidence_signals": 1,
+    "tokens_per_second": 53.7,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "The repository uses Python as the programming language, with a few JavaScript files (5 in total). The main codebase is written in Python, specifically using the Pytest testing framework. \n\nSpecifically, the following Python files are relevant to this task:\n- `main.py`\n- `lyme-experiments/synthetic/src/core/adapter.py`\n- `lyme-experiments/synthetic/src/core/config.py`\n- `lyme-experiments/synthetic/src/models/database.py`\n- `lyme-experiments/synthetic/src/services/auth.py`\n- `scripts/benchmark_capability.py`\n- `scripts/benchmark_compression.py`\n- `scripts/benchmark_compression_v2.py`\n- `scripts/benchmark_hardware.py`\n- `scripts/benchmark_tool_use.py`\n\nThe Python files contain sensitive keywords as per the RISKS section of your question. \n\nPlease note that this analysis is based on the provided information and does not include any additional context or details about the project structure, dependencies, or build setup. For a more accurate assessment, it would be beneficial to review the entire codebase or at least these specific files in detail.",
+    "latency_s": 8.41,
+    "length_chars": 1057,
+    "evidence_signals": 3,
+    "tokens_per_second": 34.8,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 7.09,
+    "evidence_improvement": 2,
+    "context_used": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "call_id": "4aedba3d",
+  "tool": "grep_search",
+  "params": {
+    "pattern": "import"
+  },
+  "success": true,
+  "latency_ms": 7.8,
+  "output_preview": "/home/dboehmeiii/Desktop/repos/Lyme/RELEASE_PLAN_v0.2.md:16:| **Automated Ablation** (`lyme research ablation`) | Understand which components matter | Component importance ranking | Alpha | Uses simul",
+  "error": null,
+  "retry_count": 0,
+  "evidence": "[grep_search] /home/dboehmeiii/Desktop/repos/Lyme/RELEASE_PLAN_v0.2.md:16:| **Automated Ablation** (`lyme research ablation`) | Understand which components matter | Component importance ranking | Alpha | Uses simul",
+  "event": "tool_call",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "safety_mode": "readonly"
+}

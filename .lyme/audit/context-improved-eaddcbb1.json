@@ -1,0 +1,15 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "eaddcbb1",
+  "repo": "/tmp/tmp29ae8rtw",
+  "task": "What language is this project?",
+  "total_tokens": 40,
+  "compile_time_s": 0.001,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [
+    "src/main.py"
+  ],
+  "total_analyzed_files": 1,
+  "timestamp": 1778922494.1815841
+}

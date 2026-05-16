@@ -1,0 +1,17 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "ef1efcd1",
+  "repo": "/tmp/tmp_5jjwcs1",
+  "task": "What framework is used?",
+  "total_tokens": 43,
+  "compile_time_s": 0.001,
+  "ranked_files": 0,
+  "frameworks": [
+    "flask"
+  ],
+  "entry_points": [
+    "app.py"
+  ],
+  "total_analyzed_files": 1,
+  "timestamp": 1778922979.9287784
+}

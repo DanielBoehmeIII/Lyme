@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for any confusion, but as an AI model developed by Deepseek, I don't have access to external databases or repositories unless they are shared with me in the context of our conversation. Therefore, I can't provide information about a specific repository language and framework without additional context. If you could share more details about the repo (like its URL), I would be able to help identify the programming languages and frameworks used.",
+    "latency_s": 1.83,
+    "length_chars": 456,
+    "evidence_signals": 0,
+    "tokens_per_second": 50.9,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "The repository uses Python as the programming language, with a few JavaScript files (5). The main codebase is written in Python, specifically using the Poetry package manager for dependency management. It also utilizes pytest for testing purposes. \n\nSpecifically, the following are Python-based:\n1. `main.py`\n2. `lyme-experiments/synthetic/src/core/adapter.py`\n3. `lyme-experiments/synthetic/src/core/config.py`\n4. `lyme-experiments/synthetic/src/models/database.py`\n5. `lyme-experiments/synthetic/src/services/auth.py`\n6. `scripts/benchmark_capability.py`\n7. `scripts/benchmark_compression.py`\n8. `scripts/benchmark_hardware.py`\n9. `scripts/benchmark_tool_use.py`\n10. `lyme-experiments/synthetic/tests/test_auth.py` \n\nThe build process is managed by Poetry, which can be installed using the command provided in the repository's README file (`pip install -e .`). The tests are run with pytest.",
+    "latency_s": 8.06,
+    "length_chars": 893,
+    "evidence_signals": 4,
+    "tokens_per_second": 35.2,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 6.23,
+    "evidence_improvement": 4,
+    "context_used": true
+  }
+}

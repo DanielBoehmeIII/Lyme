@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for any confusion, but as an AI model developed by Deepseek, I don't have the ability to access or analyze files from external repositories. My main function is to provide information and answer questions related to computer science based on my training data. If you can provide more specific details about your question, I would be glad to help!",
+    "latency_s": 5.58,
+    "length_chars": 356,
+    "evidence_signals": 1,
+    "tokens_per_second": 13.4,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "The repository uses Python as the programming language, with a few JavaScript files (5 in total). The main framework used is pytest for testing. \n\nSpecifically, the following files are written in Python:\n- `main.py`\n- All .py files under `lyme-experiments/synthetic/src/core/`\n- All .py files under `lyme-experiments/synthetic/src/models/`\n- All .py files under `lyme-experiments/synthetic/src/services/`\n- All .py files under `lyme-experiments/synthetic/tests/`\n- `scripts/benchmark_capability.py`\n- `scripts/benchmark_compression.py`\n- `scripts/benchmark_compression_v2.py`\n- `scripts/benchmark_hardware.py`\n- `scripts/benchmark_tool_use.py`\n- All .py files under `src/lyme/archfile/`\n- All .py files under `src/lyme/architecture/`\n\nThe build system is setuptools/poetry, which can be installed using the command provided in the BUILD section of your question. \n\nThere are also some potential sensitive keywords identified in certain Python files:\n- In `lyme-experiments/synthetic/src/core/adapter.py`\n- In `lyme-experiments/synthetic/src/core/config.py`\n- In `lyme-experiments/synthetic/src/models/database.py`\n- In `lyme-experiments/synthetic/src/services/auth.py`\n- In `lyme-experiments/synthetic/tests/test_auth.py`\n- In `scripts/benchmark_capability.py`\n- In `scripts/benchmark_compression.py`\n- In `scripts/benchmark_compression_v2.py`\n- In `scripts/benchmark_hardware.py`\n- In `scripts/benchmark_tool_use.py`",
+    "latency_s": 13.05,
+    "length_chars": 1417,
+    "evidence_signals": 4,
+    "tokens_per_second": 36.4,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 7.47,
+    "evidence_improvement": 3,
+    "context_used": true
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "event": "benchmark_completed",
+  "run_id": "605fa1b3",
+  "total_tasks": 8,
+  "passed": 2,
+  "failed": 6,
+  "avg_latency_s": 0.023,
+  "avg_evidence": 0.4,
+  "categories": {
+    "repo_id": {
+      "success_rate": 0.2,
+      "count": 5
+    },
+    "commands": {
+      "success_rate": 0.5,
+      "count": 2
+    },
+    "risk": {
+      "success_rate": 0.0,
+      "count": 1
+    }
+  }
+}

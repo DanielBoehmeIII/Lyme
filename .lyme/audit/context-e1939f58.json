@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "e1939f58",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "task": "Fix failing tests in test_week1_context_compiler",
+  "total_tokens": 461,
+  "compile_time_s": 0.358,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 10,
+  "timestamp": 1778922211.0026448
+}

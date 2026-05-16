@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "a2f2bbf6",
+  "repo": "/tmp/tmppk3f1yr6",
+  "task": "What is the project structure?",
+  "total_tokens": 48,
+  "compile_time_s": 0.002,
+  "ranked_files": 1,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 1,
+  "timestamp": 1778921739.957533
+}

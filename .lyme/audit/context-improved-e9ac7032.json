@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "e9ac7032",
+  "repo": "/tmp/tmp1xfcw75i",
+  "task": "What test framework is used?",
+  "total_tokens": 34,
+  "compile_time_s": 0.0,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 0,
+  "timestamp": 1778922451.5055974
+}

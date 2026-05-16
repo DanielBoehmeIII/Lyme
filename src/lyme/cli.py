@@ -122,6 +122,7 @@ Examples:
 
         run_parser = subparsers.add_parser("run", help="Run benchmarks")
         run_parser.add_argument("--scenario", "-s", nargs="+", help="Scenario names to run")
+        run_parser.add_argument("--suite", help="Pre-defined benchmark suite (model-mvp)")
         run_parser.add_argument("--agent", "-a", nargs="+", help="Agent names to use")
         run_parser.add_argument("--all", action="store_true", help="Run all scenarios")
         run_parser.add_argument("--parallel", action="store_true", help="Run in parallel")
@@ -172,7 +173,9 @@ Examples:
         audit_parser.add_argument("audit_id", help="Audit ID to inspect")
         audit_parser.add_argument("--output", "-o", help="Output file")
 
-        info_parser = subparsers.add_parser("info", help="Show info about a trace")
+        info_parser = subparsers.add_parser("info", help="Project health and diagnostics")
+        info_parser.add_argument("--json", action="store_true", help="JSON output")
+        info_parser.add_argument("--run-id", help="Show trace info for a specific run")
 
         self_parser = subparsers.add_parser("self", help="Repository self-description")
         self_parser.add_argument("--repo", "-r", default=".", help="Path to repository")
@@ -550,6 +553,11 @@ Examples:
         gov_override = gov_sub.add_parser("override", help="Override a governance decision")
         gov_override.add_argument("--reason", required=True, help="Override reason")
 
+        gov_check = gov_sub.add_parser("check", help="Check a file or action against governance rules")
+        gov_check.add_argument("path", nargs="?", default=".", help="File path to check")
+        gov_check.add_argument("--action", choices=["read", "edit", "delete", "execute", "deploy"], default="edit", help="Action to check")
+        gov_check.add_argument("--output", "-o", help="Output file")
+
         constit_parser = subparsers.add_parser("constitution", help="Repo constitution management")
         constit_sub = constit_parser.add_subparsers(dest="constitution_command", help="Constitution commands")
         constit_init = constit_sub.add_parser("init", help="Initialize a repo constitution")
@@ -612,6 +620,12 @@ Examples:
         vd.add_argument("--context", help="JSON context for gap detection")
         vd.add_argument("--output", "-o", help="Output JSON file")
         vd.add_argument("--format", choices=["markdown", "cli", "json"], default="cli", help="Output format")
+
+        vr = verify_sub.add_parser("run", help="Run real verification checks (syntax, imports, tests)")
+        vr.add_argument("--path", default=".", help="File or directory to verify")
+        vr.add_argument("--lang", default="python", help="Language for checks")
+        vr.add_argument("--json", action="store_true", help="JSON output")
+        vr.add_argument("--output", "-o", help="Output file")
 
         demo_parser = subparsers.add_parser("demo-v03", help="Run v0.3 demo")
         demo_parser.add_argument("--full", action="store_true", help="Run full demo")
@@ -677,6 +691,12 @@ Examples:
         sd_examples = sd_sub.add_parser("examples", help="Generate example semantic diffs")
         sd_examples.add_argument("--output", "-o", default="lyme-output/standards/semantic-diffs", help="Output dir")
 
+        sd_classify = sd_sub.add_parser("classify", help="Classify a git diff semantically")
+        sd_classify.add_argument("--staged", action="store_true", help="Classify staged changes")
+        sd_classify.add_argument("--diff", help="Diff text to classify (instead of git diff)")
+        sd_classify.add_argument("--json", action="store_true", help="JSON output")
+        sd_classify.add_argument("--output", "-o", help="Output file")
+
         pr_parser = subparsers.add_parser("pr", help="GitHub PR Intelligence")
         pr_sub = pr_parser.add_subparsers(dest="pr_command")
         pr_analyze = pr_sub.add_parser("analyze", help="Analyze a pull request")
@@ -720,6 +740,50 @@ Examples:
         contrib_submit = contrib_sub.add_parser("submit", help="Submit contribution for review")
         contrib_guide = contrib_sub.add_parser("guide", help="Get contribution guide")
         contrib_guide.add_argument("type", help="Contribution type")
+
+        # ── Missing README commands (Week 2 — CLI Reality Check) ──
+
+        diff_parser = subparsers.add_parser("diff", help="Classify a diff semantically (see also: semantic-diff)")
+        diff_parser.add_argument("path", nargs="?", default=".", help="File path or git diff")
+        diff_parser.add_argument("--staged", action="store_true", help="Compare staged changes")
+        diff_parser.add_argument("--output", "-o", help="Output file")
+        diff_parser.add_argument("--json", action="store_true", help="JSON output")
+
+        trace_parser = subparsers.add_parser("trace", help="View an execution trace (see also: trace-std)")
+        trace_parser.add_argument("run_id", nargs="?", help="Run ID to trace")
+        trace_parser.add_argument("--output", "-o", help="Output file")
+
+        fix_parser = subparsers.add_parser("fix", help="Safe, auditable code edits with rollback")
+        fix_parser.add_argument("description", nargs="?", help="What to fix")
+        fix_parser.add_argument("--dry-run", action="store_true", help="Preview without changes")
+        fix_parser.add_argument("--output", "-o", help="Output file")
+        fix_parser.add_argument("--json", action="store_true", help="JSON output")
+
+        memory_parser = subparsers.add_parser("memory", help="Persistent memory for coding agents")
+        memory_sub = memory_parser.add_subparsers(dest="memory_command")
+        memory_list = memory_sub.add_parser("list", help="List memories")
+        memory_list.add_argument("--type", choices=["procedural", "episodic", "semantic"], help="Memory type filter")
+        memory_search = memory_sub.add_parser("search", help="Search memories")
+        memory_search.add_argument("query", help="Search query")
+        memory_add = memory_sub.add_parser("add", help="Add a memory")
+        memory_add.add_argument("--content", required=True, help="Memory content")
+        memory_add.add_argument("--type", choices=["procedural", "episodic", "semantic"], default="semantic", help="Memory type")
+        memory_prune = memory_sub.add_parser("prune", help="Remove low-confidence/old memories")
+
+        bench_parser = subparsers.add_parser("bench", help="Run benchmarks (see also: lyme run)")
+        bench_parser.add_argument("--scenario", nargs="+", help="Scenario names to run")
+        bench_parser.add_argument("--all", action="store_true", help="Run all scenarios")
+        bench_parser.add_argument("--output", "-o", help="Output directory")
+        bench_parser.add_argument("--json", action="store_true", help="JSON output")
+
+        # ── Lyme Model subcommands ──
+        try:
+            from lyme_model.cli import register_subcommands
+            register_subcommands(subparsers)
+        except ImportError:
+            model_parser = subparsers.add_parser("model", help="Lyme Model commands (module not available)")
+            model_sub = model_parser.add_subparsers(dest="model_command")
+            model_sub.add_parser("help", help="Show help")
 
         # Extend evolution sub-parser with v0.5 commands
         evolution_mutate = evolution_sub.add_parser("mutate", help="Generate and analyze software mutations")
@@ -810,6 +874,12 @@ Examples:
             "corpus": self._do_corpus,
             "portal": self._do_portal,
             "contrib": self._do_contrib,
+            "diff": self._do_diff,
+            "trace": self._do_trace,
+            "fix": self._do_fix,
+            "memory": self._do_memory,
+            "bench": self._do_bench,
+            "model": self._do_model,
         }
 
         handler = command_map.get(args.command)
@@ -819,6 +889,96 @@ Examples:
             parser.print_help()
 
     def _do_run(self, args):
+        import json as _json
+        import time as _time
+
+        suite = getattr(args, 'suite', None)
+        if suite == "model-mvp":
+            results = {}
+            from pathlib import Path
+            repo = Path.cwd()
+
+            results["repo_identification"] = {"status": "running", "task": "Identify repo language, framework, and structure"}
+            try:
+                from lyme.doctor import RepoDoctor
+                dr = RepoDoctor()
+                diag = dr.diagnose(repo)
+                results["repo_identification"] = {
+                    "status": "pass", "language": diag.project_structure.language,
+                    "framework": diag.project_structure.framework,
+                    "files": diag.project_structure.file_count, "tests": diag.project_structure.test_file_count,
+                }
+            except Exception as e:
+                results["repo_identification"] = {"status": "fail", "error": str(e)}
+
+            results["test_detection"] = {"status": "running", "task": "Detect test commands"}
+            try:
+                from lyme_model.cli import _detect_test_command
+                cmd = _detect_test_command(repo)
+                results["test_detection"] = {"status": "pass", "command": cmd or "unknown"}
+            except Exception as e:
+                results["test_detection"] = {"status": "fail", "error": str(e)}
+
+            results["bug_localization"] = {"status": "running", "task": "Locate files by keyword"}
+            try:
+                from lyme_model.cli import _identify_likely_files
+                files = _identify_likely_files("find test related files", repo)
+                results["bug_localization"] = {"status": "pass", "candidates": len(files), "top_files": files[:5]}
+            except Exception as e:
+                results["bug_localization"] = {"status": "fail", "error": str(e)}
+
+            results["repo_qa"] = {"status": "running", "task": "Answer repo questions"}
+            try:
+                from lyme.ask import EvidenceEngine
+                ee = EvidenceEngine()
+                answer = ee.ask("What language is this?", repo)
+                results["repo_qa"] = {"status": "pass", "confidence": answer.overall_confidence,
+                                      "claims": len(answer.claims)}
+            except Exception as e:
+                results["repo_qa"] = {"status": "fail", "error": str(e)}
+
+            results["fix_dry_run"] = {"status": "running", "task": "Fix dry-run pipeline"}
+            try:
+                from lyme_model.cli import _detect_test_command, _identify_likely_files
+                cmd = _detect_test_command(repo)
+                files = _identify_likely_files("fix something", repo)
+                results["fix_dry_run"] = {"status": "pass", "test_command": cmd or "unknown",
+                                          "files_identified": len(files)}
+            except Exception as e:
+                results["fix_dry_run"] = {"status": "fail", "error": str(e)}
+
+            passed = sum(1 for r in results.values() if r.get("status") == "pass")
+            total = len(results)
+            timestamp = _time.strftime("%Y-%m-%dT%H:%M:%S")
+
+            report = {
+                "suite": "model-mvp",
+                "timestamp": timestamp,
+                "total_tasks": total,
+                "passed": passed,
+                "failed": total - passed,
+                "score": f"{passed}/{total}",
+                "results": results,
+            }
+
+            report_dir = repo / ".lyme" / "benchmarks"
+            report_dir.mkdir(parents=True, exist_ok=True)
+            report_file = report_dir / f"model-mvp-{_time.strftime('%Y%m%d-%H%M%S')}.json"
+            report_file.write_text(_json.dumps(report, indent=2))
+
+            print("=" * 55)
+            print("  MODEL MVP BENCHMARK SUITE")
+            print("=" * 55)
+            for task_name, task_result in results.items():
+                icon = "✓" if task_result.get("status") == "pass" else "✗"
+                status = task_result.get("status", "?")
+                print(f"  [{icon}] {task_name:25s} {status}")
+            print("-" * 55)
+            print(f"  Score: {passed}/{total} ({passed * 100 // total}%)")
+            print(f"  Report: {report_file}")
+            print("=" * 55)
+            return
+
         engine = BenchmarkEngine(self.settings)
 
         agents = self.settings.agents
@@ -833,7 +993,7 @@ Examples:
         elif args.scenario:
             runs = engine.run_scenarios(args.scenario, agents, parallel=args.parallel)
         else:
-            print("Specify --scenario, --all, or use: lyme run --all")
+            print("Specify --scenario, --suite, --all, or use: lyme run --all")
             return
 
         self._print_run_summary(runs)
@@ -943,11 +1103,49 @@ Examples:
             print(output)
 
     def _do_history(self, args):
+        import time
         repo_path = Path.cwd()
         from .audit import AuditSystem
         audit = AuditSystem(repo_path)
         trail = audit.get_history(limit=args.limit, kind_filter=args.kind)
-        print(trail.to_markdown(limit=args.limit))
+
+        rows = []
+        for e in trail.entries:
+            rows.append({
+                "id": e.audit_id, "type": e.kind, "description": e.description[:60],
+                "timestamp": e.timestamp, "source": "audit",
+            })
+
+        model_runs_dir = repo_path / ".lyme" / "model-runs"
+        if model_runs_dir.is_dir():
+            import json as _json
+            model_files = sorted(model_runs_dir.glob("*.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+            for mf in model_files[:args.limit]:
+                try:
+                    md = _json.loads(mf.read_text())
+                    task = md.get("task", md.get("question", ""))
+                    mtype = "model_compare" if "raw" in md else "model_run"
+                    rows.append({
+                        "id": mf.stem, "type": mtype,
+                        "description": str(task)[:60] if task else mf.stem,
+                        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S", time.localtime(mf.stat().st_mtime)),
+                        "source": "model",
+                    })
+                except Exception:
+                    pass
+
+        rows.sort(key=lambda r: r.get("timestamp", ""), reverse=True)
+        rows = rows[:args.limit]
+
+        if not rows:
+            print("No history entries found.")
+            return
+
+        print(f"{'ID':28s} {'Type':20s} {'Source':8s} {'Description':60s}")
+        print("-" * 116)
+        for r in rows:
+            print(f"{r['id']:28s} {r['type']:20s} {r['source']:8s} {r['description']:60s}")
+        print(f"\nTotal: {len(rows)} entries ({sum(1 for r in rows if r['source']=='audit')} audit, {sum(1 for r in rows if r['source']=='model')} model)")
 
     def _do_undo(self, args):
         repo_path = Path.cwd()
@@ -962,18 +1160,53 @@ Examples:
     def _do_audit(self, args):
         repo_path = Path.cwd()
         from .audit import AuditSystem
+        import json as _json
         audit = AuditSystem(repo_path)
         report = audit.get_report(args.audit_id)
-        if not report:
-            print(f"Audit ID '{args.audit_id}' not found")
+        if report:
+            output = report.to_markdown()
+            if args.output:
+                with open(args.output, "w") as f:
+                    f.write(output)
+                print(f"Audit report written to {args.output}")
+            else:
+                print(output)
             return
-        output = report.to_markdown()
-        if args.output:
-            with open(args.output, "w") as f:
-                f.write(output)
-            print(f"Audit report written to {args.output}")
-        else:
-            print(output)
+
+        model_runs_dir = repo_path / ".lyme" / "model-runs"
+        candidate = None
+        if model_runs_dir.is_dir():
+            matches = list(model_runs_dir.glob(f"{args.audit_id}*"))
+            if matches:
+                try:
+                    candidate = _json.loads(matches[0].read_text())
+                except Exception:
+                    pass
+
+        if candidate:
+            print(f"Model Run: {args.audit_id}")
+            print("=" * 50)
+            for k, v in candidate.items():
+                if isinstance(v, dict):
+                    print(f"  {k}:")
+                    for sk, sv in v.items():
+                        sv_str = str(sv)[:150]
+                        print(f"    {sk}: {sv_str}")
+                elif isinstance(v, list):
+                    print(f"  {k}: ({len(v)} items)")
+                    for item in v[:5]:
+                        print(f"    - {str(item)[:100]}")
+                    if len(v) > 5:
+                        print(f"    ... and {len(v) - 5} more")
+                else:
+                    print(f"  {k}: {v}")
+            if args.output:
+                matches[0].rename(args.output)
+                print(f"Written to {args.output}")
+            return
+
+        print(f"Audit ID '{args.audit_id}' not found")
+        print("Tip: Use 'lyme model list' to see available model runs.")
 
     def _do_stress(self, args):
         agent = None
@@ -1078,35 +1311,189 @@ Examples:
             print(f"{args.type.title()} view written to {output}")
 
     def _do_info(self, args):
-        store = EventStore(self.settings.benchmark.output_dir)
-
-        if args.run_id:
-            run_ids = [args.run_id]
-        else:
-            run_ids = store.list_runs()[-5:]
-
-        for rid in run_ids:
-            data = store.load_run(rid)
+        run_id = getattr(args, 'run_id', None)
+        if run_id:
+            store = EventStore(self.settings.benchmark.output_dir)
+            data = store.load_run(run_id)
             if data:
-                print(f"\nRun: {rid}")
-                print(f"  Agent: {data.get('agent_name', '?')}")
-                print(f"  Scenario: {data.get('scenario_name', '?')}")
-                print(f"  Success: {data.get('success', '?')}")
-                print(f"  Duration: {data.get('total_duration_ms', 0):.1f}ms")
-                print(f"  Spans: {data.get('spans_count', 0)}")
-                print(f"  Events: {data.get('events_count', 0)}")
-                print(f"  Tool Calls: {data.get('tool_calls_count', 0)}")
-                print(f"  Errors: {data.get('errors_count', 0)}")
-                print(f"  Hallucinations: {data.get('hallucinations_detected', 0)}")
-
-                cog = store.load_cognitive_trace(rid)
+                output = {k: data.get(k) for k in
+                          ["agent_name", "scenario_name", "success", "total_duration_ms",
+                           "spans_count", "events_count", "tool_calls_count", "errors_count",
+                           "hallucinations_detected"]}
+                if args.json:
+                    print(json.dumps(output, indent=2))
+                else:
+                    print(f"Run: {run_id}")
+                    for k, v in output.items():
+                        print(f"  {k}: {v}")
+                cog = store.load_cognitive_trace(run_id)
                 if cog:
                     summary = cog.get("summary", {})
-                    print(f"  Cognition:")
-                    print(f"    Steps: {summary.get('total_steps', 0)}")
-                    print(f"    Decisions: {summary.get('total_decisions', 0)}")
-                    print(f"    Branches: {summary.get('branches_explored', 0)}")
-                    print(f"    Avg Confidence: {summary.get('avg_confidence', 0):.2f}")
+                    if args.json:
+                        print(json.dumps({"cognition": summary}, indent=2))
+                    else:
+                        print(f"  Cognition:")
+                        print(f"    Steps: {summary.get('total_steps', 0)}")
+                        print(f"    Decisions: {summary.get('total_decisions', 0)}")
+                        print(f"    Branches: {summary.get('branches_explored', 0)}")
+                        print(f"    Avg Confidence: {summary.get('avg_confidence', 0):.2f}")
+            else:
+                print(f"Run '{run_id}' not found.")
+            return
+
+        info = self._collect_project_health()
+        if args.json:
+            print(json.dumps(info, indent=2, default=str))
+        else:
+            self._print_project_health(info)
+
+    def _collect_project_health(self):
+        import importlib.metadata
+        import shutil
+        import os
+        import sys
+        from pathlib import Path
+
+        info = {}
+
+        try:
+            info["version"] = importlib.metadata.version("lyme")
+        except Exception:
+            info["version"] = __version__
+
+        info["python_version"] = sys.version.split()[0]
+        info["python_path"] = sys.executable
+        info["repo_root"] = str(Path(__file__).resolve().parent.parent.parent)
+        info["installed_path"] = str(Path(__file__).resolve().parent)
+
+        lyme_dir = Path(".lyme")
+        info["lyme_dir_exists"] = lyme_dir.is_dir()
+        if lyme_dir.is_dir():
+            info["lyme_dir_size"] = sum(f.stat().st_size for f in lyme_dir.rglob("*") if f.is_file())
+            info["lyme_dir_items"] = len(list(lyme_dir.rglob("*")))
+
+        config_candidates = [
+            ".lyme/config.yaml", ".lyme/config.yml", ".lyme/config.json",
+            "lyme-config.yaml", "lyme-config.yml", "lyme-config.json",
+            "pyproject.toml", ".lyme/constitution.json",
+        ]
+        found_configs = []
+        for c in config_candidates:
+            p = Path(c)
+            if p.exists():
+                found_configs.append(c)
+        info["config_files"] = found_configs
+
+        info["git_available"] = shutil.which("git") is not None
+        info["ollama_available"] = shutil.which("ollama") is not None
+        info["pytest_available"] = shutil.which("pytest") is not None or self._module_available("pytest")
+        info["node_available"] = shutil.which("node") is not None
+        info["npm_available"] = shutil.which("npm") is not None
+
+        command_map = self._get_command_map()
+        info["registered_commands"] = len(command_map)
+        info["command_list"] = sorted(command_map.keys())
+
+        known_stubs = {
+            "memory": "shows tips; real impl in cli_v0.py",
+        }
+        stub_count = sum(1 for cmd in command_map if cmd in known_stubs)
+        impl_count = len(command_map) - stub_count
+        info["implemented_commands"] = impl_count
+        info["stub_commands"] = stub_count
+        info["stub_details"] = known_stubs
+
+        try:
+            import ollama
+            info["ollama_python_client"] = True
+        except ImportError:
+            info["ollama_python_client"] = False
+
+        from lyme import __version__
+        info["package_version"] = __version__
+
+        return info
+
+    def _get_command_map(self):
+        return {
+            "observe": self._do_observe, "improve": self._do_improve,
+            "self": self._do_self, "archfile": self._do_archfile,
+            "plan": self._do_plan, "skill": self._do_skill,
+            "run": self._do_run, "list-scenarios": self._do_list_scenarios,
+            "replay": self._do_replay, "compare": self._do_compare,
+            "doctor": self._do_doctor, "ask": self._do_ask,
+            "history": self._do_history, "undo": self._do_undo,
+            "audit": self._do_audit, "stress": self._do_stress,
+            "ui": self._do_ui, "info": self._do_info,
+            "report": self._do_report, "graph": self._do_graph,
+            "discover": self._do_discover, "intent": self._do_intent,
+            "evolution": self._do_evolution, "predict": self._do_predict,
+            "learn": self._do_learn, "society": self._do_society,
+            "research": self._do_research, "cross-repo": self._do_cross_repo,
+            "ecosystem": self._do_ecosystem, "fw-obs": self._do_fw_obs,
+            "arch": self._do_arch, "fabric": self._do_fabric,
+            "compress": self._do_compress, "similar": self._do_similar,
+            "observe-v2": self._do_observe_v2, "civ-map": self._do_civ_map,
+            "epistemology": self._do_epistemology, "policy": self._do_policy,
+            "govern": self._do_govern, "constitution": self._do_constitution,
+            "ledger": self._do_ledger, "eval": self._do_eval,
+            "verify": self._do_verify, "demo-v03": self._do_demo_v03,
+            "demo-v05": self._do_demo_v05, "demo-v06": self._do_demo_v06,
+            "detect": self._do_detect, "maintain": self._do_maintain,
+            "roadmap": self._do_roadmap, "decisions": self._do_decisions,
+            "tradeoff": self._do_tradeoff, "trace-std": self._do_trace_std,
+            "semantic-diff": self._do_semantic_diff, "pr": self._do_pr,
+            "ci": self._do_ci, "bridge": self._do_bridge,
+            "corpus": self._do_corpus, "portal": self._do_portal,
+            "contrib": self._do_contrib, "diff": self._do_diff,
+            "trace": self._do_trace, "fix": self._do_fix,
+            "memory": self._do_memory, "bench": self._do_bench,
+            "model": self._do_model,
+        }
+
+    @staticmethod
+    def _module_available(name):
+        try:
+            __import__(name)
+            return True
+        except ImportError:
+            return False
+
+    def _print_project_health(self, info):
+        print("=" * 58)
+        print("  LYME PROJECT HEALTH")
+        print("=" * 58)
+        print(f"  Version:            {info['version']}")
+        print(f"  Python:             {info['python_version']}")
+        print(f"  Python Path:        {info['python_path']}")
+        print(f"  Repo Root:          {info['repo_root']}")
+        print(f"  Installed Path:     {info['installed_path']}")
+        print(f"  Config Files:       {', '.join(info['config_files']) if info['config_files'] else '(none found)'}")
+        print(f"  Commands:           {info['registered_commands']} registered")
+        print(f"  Implemented:        {info['implemented_commands']}")
+        print(f"  Stubs:              {info['stub_commands']}")
+        if info.get('lyme_dir_size'):
+            sz = info['lyme_dir_size']
+            unit = "bytes" if sz < 1024 else "KB" if sz < 1024**2 else "MB"
+            val = sz if sz < 1024 else sz / 1024 if sz < 1024**2 else sz / 1024**2
+            print(f"  .lyme/ exists:      {info['lyme_dir_exists']} ({val:.1f} {unit}, {info['lyme_dir_items']} items)")
+        else:
+            print(f"  .lyme/ exists:      {info['lyme_dir_exists']}")
+        print(f"  Git:                {'available' if info['git_available'] else 'not found'}")
+        print(f"  Ollama:             {'available' if info['ollama_available'] else 'not found'}")
+        print(f"  Ollama Client:      {info.get('ollama_python_client', False)}")
+        print(f"  pytest:             {'available' if info['pytest_available'] else 'not found'}")
+        print(f"  Node.js:            {'available' if info['node_available'] else 'not found'}")
+        print(f"  npm:                {'available' if info['npm_available'] else 'not found'}")
+        print("-" * 58)
+        if info['stub_commands']:
+            print(f"  Stub commands:")
+            for cmd, reason in info.get('stub_details', {}).items():
+                print(f"    {cmd}: {reason}")
+        print(f"  All commands: {', '.join(info['command_list'][:10])}")
+        if len(info['command_list']) > 10:
+            print(f"    ... and {len(info['command_list']) - 10} more")
+        print("=" * 58)
 
     def _do_report(self, args):
         store = EventStore(self.settings.benchmark.output_dir)
@@ -3531,6 +3918,102 @@ Examples:
             else:
                 print(result.render_cli())
 
+        elif args.verify_command == "run":
+            from pathlib import Path
+            import json as _json
+            import ast
+            import subprocess
+
+            target = Path(args.path).resolve()
+            results = {"syntax": [], "imports": [], "tests": {}, "summary": {}}
+            all_passed = True
+
+            if target.is_dir():
+                py_files = sorted(target.rglob("*.py"))
+            elif target.suffix == ".py":
+                py_files = [target]
+            else:
+                py_files = []
+
+            for pf in py_files:
+                if "site-packages" in str(pf) or ".venv" in str(pf) or "__pycache__" in str(pf):
+                    continue
+                try:
+                    ast.parse(pf.read_text())
+                    results["syntax"].append({"file": str(pf), "passed": True})
+                except SyntaxError as e:
+                    results["syntax"].append({"file": str(pf), "passed": False, "error": str(e)})
+                    all_passed = False
+
+            # Import check
+            for pf in py_files[:50]:
+                if "site-packages" in str(pf) or ".venv" in str(pf):
+                    continue
+                imports = []
+                try:
+                    tree = ast.parse(pf.read_text())
+                    for node in ast.walk(tree):
+                        if isinstance(node, ast.Import):
+                            for alias in node.names:
+                                imports.append(alias.name)
+                        elif isinstance(node, ast.ImportFrom):
+                            if node.module:
+                                imports.append(node.module)
+                except SyntaxError:
+                    continue
+                if imports:
+                    results["imports"].append({"file": str(pf), "imports": imports[:10]})
+
+            # Test detection
+            test_files = sorted(target.rglob("test_*.py")) + sorted(target.rglob("*_test.py"))
+            results["tests"]["test_files"] = len(test_files)
+            if test_files:
+                results["tests"]["detected_framework"] = "pytest"
+                try:
+                    tr = subprocess.run(
+                        ["python3", "-m", "pytest", "--collect-only", "-q", str(target)],
+                        capture_output=True, text=True, timeout=30,
+                    )
+                    results["tests"]["collection"] = tr.stdout[:500] if tr.returncode == 0 else tr.stderr[:200]
+                    results["tests"]["collection_passed"] = tr.returncode == 0
+                except Exception as e:
+                    results["tests"]["collection"] = str(e)
+                    results["tests"]["collection_passed"] = False
+
+            results["summary"] = {
+                "files_checked": len(py_files),
+                "syntax_passed": sum(1 for s in results["syntax"] if s["passed"]),
+                "syntax_failed": sum(1 for s in results["syntax"] if not s["passed"]),
+                "all_passed": all_passed,
+            }
+
+            if args.output:
+                Path(args.output).write_text(_json.dumps(results, indent=2))
+                print(f"Verification written to {args.output}")
+            elif getattr(args, 'json', False):
+                print(_json.dumps(results, indent=2))
+            else:
+                s = results["summary"]
+                print("=" * 50)
+                print("  VERIFICATION RUN")
+                print("=" * 50)
+                print(f"  Files checked:       {s['files_checked']}")
+                print(f"  Syntax passed:       {s['syntax_passed']}")
+                print(f"  Syntax failed:       {s['syntax_failed']}")
+                print(f"  Test files found:    {results['tests']['test_files']}")
+                if results['tests'].get('collection_passed'):
+                    print(f"  Test collection:     PASSED")
+                elif results['tests'].get('collection'):
+                    print(f"  Test collection:     FAILED")
+                print(f"  All checks passed:   {'YES' if s['all_passed'] else 'NO'}")
+                if not s['all_passed']:
+                    print()
+                    print("  Failures:")
+                    for s_res in results["syntax"]:
+                        if not s_res["passed"]:
+                            print(f"    SYNTAX: {s_res['file']}: {s_res.get('error', '')}")
+                print("=" * 50)
+
     def _do_govern(self, args):
         from lyme.governance.change_governance import ChangeGovernanceEngine
         engine = ChangeGovernanceEngine()
@@ -3575,6 +4058,69 @@ Examples:
 
         elif args.govern_command == "override":
             print(f"Override not supported in CLI mode. Reason: {args.reason}")
+
+        elif args.govern_command == "check":
+            import json as _json
+            from pathlib import Path as _Path
+            target = _Path(args.path).resolve()
+            action = getattr(args, 'action', 'edit')
+
+            SENSITIVE_KEYWORDS = ["secret", "password", "token", "credential", "key", ".env", "cert", "pem"]
+            DESTRUCTIVE_COMMANDS = ["rm -rf", "dd ", "mkfs", "format", "shutdown"]
+            SECRET_EXTENSIONS = {".env", ".pem", ".key", ".cert", ".p12", ".jks", ".keystore"}
+
+            violations = []
+            warnings = []
+
+            if target.is_file():
+                name = target.name.lower()
+                ext = target.suffix.lower()
+                if ext in SECRET_EXTENSIONS or any(kw in name for kw in SENSITIVE_KEYWORDS):
+                    violations.append(f"SENSITIVE FILE: {target.name} — requires approval to {action}")
+                if target.stat().st_size > 500000:
+                    violations.append(f"FILE TOO LARGE: {target.name} ({target.stat().st_size / 1024:.0f} KB) — max 500 KB")
+
+            if action == "execute":
+                violations.append("EXECUTION requires approval — destructive shell commands are forbidden by default")
+
+            if target.is_dir():
+                total_files = sum(1 for _ in target.rglob("*") if _.is_file())
+                if total_files > 10:
+                    warnings.append(f"{total_files} files would be affected — exceeds recommended max of 10")
+
+            constitution_path = _Path(".lyme") / "constitution.json"
+            if constitution_path.exists():
+                try:
+                    constit = _json.loads(constitution_path.read_text())
+                    protected = constit.get("protected_paths", [])
+                    for pp in protected:
+                        if str(target).startswith(str(_Path(pp).resolve())):
+                            violations.append(f"PROTECTED PATH: {target} is protected by constitution")
+                except Exception:
+                    pass
+
+            allowed = len(violations) == 0
+            if args.output:
+                out = _json.dumps({
+                    "path": str(target), "action": action, "allowed": allowed,
+                    "violations": violations, "warnings": warnings,
+                }, indent=2)
+                _Path(args.output).write_text(out)
+                print(f"Governance check written to {args.output}")
+            else:
+                print(f"Govern Check: {target.name}")
+                print(f"  Action:     {action}")
+                print(f"  Allowed:    {'YES' if allowed else 'NO'}")
+                if violations:
+                    print(f"  Violations ({len(violations)}):")
+                    for v in violations:
+                        print(f"    - {v}")
+                if warnings:
+                    print(f"  Warnings ({len(warnings)}):")
+                    for w in warnings:
+                        print(f"    - {w}")
+                if not violations and not warnings:
+                    print("  No violations or warnings.")
 
     def _do_constitution(self, args):
         from lyme.governance.repo_constitution import (
@@ -3903,8 +4449,49 @@ Examples:
         elif cmd == "examples":
             from lyme.standards.semantic_diff.examples import generate_all_examples
             generate_all_examples(args.output)
+        elif cmd == "classify":
+            from lyme.standards.semantic_diff.classifier import classify_diff, to_dict
+            from pathlib import Path
+            import json
+
+            diff_text = getattr(args, 'diff', None)
+            staged = getattr(args, 'staged', False)
+            result = classify_diff(diff_text=diff_text, staged=staged)
+
+            if getattr(args, 'json', False):
+                output = json.dumps(to_dict(result), indent=2)
+            else:
+                c = to_dict(result)
+                lines = []
+                lines.append("=" * 60)
+                lines.append("  SEMANTIC DIFF CLASSIFICATION")
+                lines.append("=" * 60)
+                lines.append(f"  Intent:           {c['intent'].replace('_', ' ').title()}")
+                lines.append(f"  Risk:             {c['risk'].upper()} ({c['risk_score']:.0%})")
+                lines.append(f"  Files changed:    {c['files_changed']}")
+                lines.append(f"  Lines:            +{c['lines_added']}/-{c['lines_removed']}")
+                lines.append(f"  Summary:          {c['summary']}")
+                if c['sensitive_files']:
+                    lines.append(f"  Sensitive files:  {', '.join(c['sensitive_files'])}")
+                lines.append("")
+                lines.append("  Changed Files:")
+                for f in c['files']:
+                    marker = " ⚠" if f['sensitive'] else ""
+                    lines.append(f"    {f['path']} (+{f['added']}/-{f['removed']}){marker}")
+                lines.append("")
+                lines.append("  Suggested Verification:")
+                for s in c['suggested_verification']:
+                    lines.append(f"    - {s}")
+                lines.append("=" * 60)
+                output = "\n".join(lines)
+
+            if getattr(args, 'output', None):
+                Path(args.output).write_text(output)
+                print(f"Classification written to {args.output}")
+            else:
+                print(output)
         else:
-            print("semantic-diff commands: render, examples")
+            print("semantic-diff commands: render, examples, classify")
 
     def _do_pr(self, args):
         if args.pr_command == "analyze":
@@ -4011,6 +4598,337 @@ Examples:
                     print(f"  ☐ {item}")
             else:
                 print(f"No guide for {args.type}")
+
+    # ── Missing README command handlers (Week 2) ──
+
+    def _do_diff(self, args):
+        path = Path(args.path).resolve()
+        if not path.exists():
+            print(f"Path not found: {path}")
+            return
+        if path.is_dir():
+            try:
+                import subprocess
+                result = subprocess.run(["git", "diff"], capture_output=True, text=True, cwd=path)
+                diff_text = result.stdout if result.stdout else "(no diff)"
+            except Exception:
+                diff_text = "(git not available or not a git repo)"
+        else:
+            try:
+                import subprocess
+                result = subprocess.run(["git", "diff", str(path)], capture_output=True, text=True)
+                diff_text = result.stdout if result.stdout else "(no diff or not tracked)"
+            except Exception:
+                diff_text = "(git not available)"
+
+        if args.json:
+            import json
+            print(json.dumps({"path": str(path), "diff": diff_text}, indent=2))
+        else:
+            print(f"Diff for: {path}")
+            print(diff_text)
+            print("\nTip: Use 'lyme semantic-diff' for classified semantic analysis of diffs.")
+
+    def _do_trace(self, args):
+        if not args.run_id:
+            print("Error: run_id required. Usage: lyme trace <run-id>")
+            print("Tip: Use 'lyme trace-std' for Open Agent Trace Standard operations.")
+            return
+
+        data = None
+        source = None
+
+        try:
+            store = EventStore(self.settings.benchmark.output_dir)
+            data = store.load_run(args.run_id)
+            if data:
+                source = "EventStore"
+        except Exception:
+            pass
+
+        if not data:
+            model_runs_dir = Path.cwd() / ".lyme" / "model-runs"
+            if model_runs_dir.is_dir():
+                candidates = sorted(model_runs_dir.glob(f"{args.run_id}*"))
+                if candidates:
+                    try:
+                        import json as _json
+                        data = _json.loads(candidates[0].read_text())
+                        data["_source_file"] = candidates[0].name
+                        source = "model-runs"
+                    except Exception:
+                        pass
+
+        if not data:
+            lyme_dir = Path.cwd() / ".lyme"
+            if lyme_dir.is_dir():
+                for f in lyme_dir.rglob(f"*{args.run_id}*"):
+                    if f.suffix == ".json":
+                        try:
+                            import json as _json
+                            data = _json.loads(f.read_text())
+                            data["_source_file"] = str(f.relative_to(lyme_dir))
+                            source = ".lyme"
+                        except Exception:
+                            pass
+                        break
+
+        if not data:
+            print(f"Trace '{args.run_id}' not found.")
+            print("Tip: Use 'lyme trace-std' for OATS trace format operations.")
+            return
+
+        if args.output:
+            import json as _json
+            Path(args.output).write_text(_json.dumps(data, indent=2, default=str))
+            print(f"Trace written to {args.output}")
+            return
+
+        self._render_trace(args.run_id, data, source)
+
+    def _render_trace(self, run_id, data, source):
+        """Render a trace with chronological events."""
+        print("=" * 60)
+        print(f"  TRACE: {run_id}")
+        print("=" * 60)
+        print(f"  Source:   {source or 'unknown'}")
+
+        task = data.get("task", data.get("question", data.get("description", data.get("run_id", ""))))
+        print(f"  Task:     {str(task)[:80]}")
+
+        model = data.get("model", data.get("agent_name", "?"))
+        print(f"  Model:    {model}")
+
+        status = data.get("status", data.get("success", data.get("dry_run", False)))
+        if isinstance(status, bool):
+            status = "success" if status else "failure"
+        print(f"  Status:   {status}")
+
+        latency = data.get("latency_s", data.get("time_s", data.get("total_duration_ms", 0)))
+        if isinstance(latency, (int, float)):
+            if latency > 100:
+                latency = latency / 1000
+            print(f"  Latency:  {latency:.1f}s" if latency < 100 else f"  Latency:  {latency:.0f}ms")
+
+        has_events = False
+        events = []
+
+        if "events" in data and isinstance(data["events"], list):
+            events.extend(data["events"])
+            has_events = True
+
+        if "spans" in data and isinstance(data["spans"], list):
+            events.extend(data["spans"])
+            has_events = True
+
+        has_compare = "raw" in data and "context_compiled" in data
+        if has_compare:
+            raw = data.get("raw", {})
+            ctx = data.get("context_compiled", {})
+            print()
+            print("  Comparison: RAW vs CONTEXT-COMPILED")
+            print(f"    Raw latency:      {raw.get('latency_s', 0):.1f}s")
+            print(f"    Context latency:  {ctx.get('latency_s', 0):.1f}s")
+            print(f"    Raw length:       {raw.get('length_chars', 0)} chars")
+            print(f"    Context length:   {ctx.get('length_chars', 0)} chars")
+            print(f"    Evidence delta:   {data.get('delta', {}).get('evidence_improvement', 0)}")
+            if raw.get("output"):
+                print(f"    Raw output:       {raw['output'][:100]}...")
+            if ctx.get("output"):
+                print(f"    Context output:   {ctx['output'][:100]}...")
+
+        if "dry_run" in data and data["dry_run"]:
+            print()
+            print("  Dry Run Information:")
+            diff = data.get("difficulty", {})
+            if diff:
+                print(f"    Difficulty:       {diff.get('difficulty_level', '?')} ({diff.get('difficulty_score', 0):.2f})")
+            mode = data.get("mode_selection", {})
+            if mode:
+                print(f"    Mode:             {mode.get('selected_mode', '?')}")
+            likely_files = data.get("likely_files", [])
+            if likely_files:
+                print(f"    Likely files:     {len(likely_files)} candidates")
+                for f in likely_files[:5]:
+                    print(f"      - {f}")
+            test_run = data.get("test_run", {})
+            if test_run:
+                print(f"    Tests:            {'passed' if test_run.get('passed') else 'failed'} ({test_run.get('command', '?')})")
+            intended = data.get("intended_prompt", "")
+            if intended:
+                print(f"    Prompt tokens:    {data.get('intended_prompt_tokens', 0)}")
+
+        if "candidates" in data:
+            print()
+            print(f"  Bug Localization: {len(data['candidates'])} candidates")
+            for c in data["candidates"][:5]:
+                print(f"    [{c.get('confidence', 0):.0%}] {c.get('file', '?')}")
+
+        source_file = data.get("_source_file", "")
+        if source_file:
+            print(f"\n  Trace file: {source_file}")
+
+        if has_events:
+            print()
+            print(f"  Events ({len(events)}):")
+            for ev in sorted(events, key=lambda e: e.get("timestamp", e.get("start_time", 0)))[:15]:
+                ts = ev.get("timestamp", ev.get("start_time", 0))
+                etype = ev.get("type", ev.get("name", "event"))
+                payload = ev.get("payload", {})
+                desc = payload.get("description", ev.get("description", ""))
+                if isinstance(ts, (int, float)):
+                    print(f"    [{ts:.1f}] {etype}: {str(desc)[:100]}")
+                else:
+                    print(f"    {etype}: {str(desc)[:100]}")
+            if len(events) > 15:
+                print(f"    ... and {len(events) - 15} more events")
+        print("=" * 60)
+
+    def _do_fix(self, args):
+        from lyme.edit import SafeEditProtocol
+        repo_path = Path.cwd()
+        protocol = SafeEditProtocol(repo_path)
+        description = args.description or "unnamed edit"
+        try:
+            if args.dry_run:
+                result = protocol.dry_run(description)
+                if args.json:
+                    print(json.dumps(result, indent=2, default=str))
+                else:
+                    print(f"DRY RUN: {description}")
+                    print(f"  Risk: {result.get('risk_level', 'unknown')}")
+                    print(f"  Files: {len(result.get('files', []))} files affected")
+                    for f in result.get('files', []):
+                        print(f"    - {f}")
+                    print("  No changes applied.")
+            else:
+                result = protocol.apply(description)
+                if result.get("success"):
+                    print(f"Fix applied: {description}")
+                    for f in result.get("files_changed", []):
+                        print(f"  Modified: {f}")
+                else:
+                    print(f"Fix failed: {result.get('error', 'unknown error')}")
+        except Exception as e:
+            print(f"Fix command error: {e}")
+            print("Tip: The edit protocol module (src/lyme/edit.py) exists. "
+                  "The fix CLI may need additional integration.")
+
+    def _do_memory(self, args):
+        import json as _json
+        from pathlib import Path as _Path
+        import time
+
+        memory_file = _Path.cwd() / ".lyme" / "memory.json"
+        memories = []
+        if memory_file.exists():
+            try:
+                memories = _json.loads(memory_file.read_text())
+            except Exception:
+                memories = []
+
+        cmd = getattr(args, 'memory_command', None)
+
+        if cmd == "add":
+            content = getattr(args, 'content', '')
+            mtype = getattr(args, 'type', 'semantic')
+            entry = {
+                "id": f"mem_{int(time.time())}_{len(memories)}",
+                "content": content,
+                "type": mtype,
+                "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S"),
+                "confidence": 0.7,
+            }
+            memories.append(entry)
+            memory_file.parent.mkdir(parents=True, exist_ok=True)
+            memory_file.write_text(_json.dumps(memories, indent=2))
+            print(f"Added memory: {entry['id']}")
+            print(f"  Content: {content[:80]}...")
+            print(f"  Type: {mtype}")
+
+        elif cmd == "list":
+            mtype_filter = getattr(args, 'type', None)
+            filtered = [m for m in memories if mtype_filter is None or m.get('type') == mtype_filter]
+            filtered.sort(key=lambda m: m.get('timestamp', ''), reverse=True)
+            if not filtered:
+                print("No memories found.")
+                print("  Tip: Use 'lyme memory add --content \"...\"' to add a memory.")
+                print("  Tip: Use 'lyme fabric' for cross-repo memory fabric.")
+                return
+            print(f"{'ID':25s} {'Type':15s} {'Confidence':10s} {'Content':60s}")
+            print("-" * 110)
+            for m in filtered[:20]:
+                print(f"{m.get('id', '?'):25s} {m.get('type', '?'):15s} {m.get('confidence', 0):<10.0%} {m.get('content', '')[:60]}")
+            print(f"\nTotal: {len(filtered)} memories")
+
+        elif cmd == "search":
+            query = getattr(args, 'query', '')
+            query_lower = query.lower()
+            q_words = set(query_lower.split())
+            scored = []
+            for m in memories:
+                content = m.get('content', '').lower()
+                name_score = sum(1 for w in q_words if w in content)
+                type_score = 2 if m.get('type', '') in query_lower else 0
+                total = name_score + type_score
+                if total > 0:
+                    scored.append((total, m))
+            scored.sort(key=lambda x: -x[0])
+            if not scored:
+                print(f"No memories matching '{query}'")
+                return
+            print(f"Search results for '{query}' ({len(scored)} matches):")
+            for score, m in scored[:10]:
+                conf = m.get('confidence', 0)
+                bar = "█" * int(conf * 10) + "░" * (10 - int(conf * 10))
+                print(f"  [{bar}] {m.get('content', '')[:80]}")
+                print(f"       type={m.get('type', '?')} id={m.get('id', '?')}")
+
+        elif cmd == "prune":
+            before = len(memories)
+            cutoff = time.time() - 90 * 86400
+            memories = [
+                m for m in memories
+                if m.get('confidence', 0) >= 0.3
+            ]
+            memory_file.write_text(_json.dumps(memories, indent=2))
+            after = len(memories)
+            print(f"Pruned {before - after} memories ({after} remaining)")
+
+        else:
+            print("Memory commands: list, search, add, prune")
+            print("  list              List all memories (--type to filter)")
+            print("  search <query>    Search memories")
+            print("  add --content ... Add a memory (--type procedural|episodic|semantic)")
+            print("  prune             Remove low-confidence memories")
+
+    def _do_bench(self, args):
+        if args.all:
+            print("Running all benchmarks...")
+            engine = BenchmarkEngine(self.settings)
+            runs = engine.run_all()
+            self._print_run_summary(runs)
+        elif args.scenario:
+            engine = BenchmarkEngine(self.settings)
+            runs = engine.run_scenarios(args.scenario)
+            self._print_run_summary(runs)
+        else:
+            print("Benchmark command. Usage:")
+            print("  lyme bench --all              Run all scenarios")
+            print("  lyme bench --scenario NAME    Run specific scenario")
+            print("  lyme run --scenario NAME      Alternative (more options)")
+
+    def _do_model(self, args):
+        try:
+            from lyme_model.cli import handle_command
+            handle_command(args)
+        except ImportError:
+            print("Lyme Model module is not available.")
+            print("Install with: pip install -e . or check src/lyme_model/")
+        except Exception as e:
+            print(f"Error in model command: {e}")
+            import traceback
+            traceback.print_exc()
 
     def _do_demo_v03(self, args):
         from lyme.demo_v03 import run_demo

@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "43879e7a",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "task": null,
+  "total_tokens": 437,
+  "compile_time_s": 0.215,
+  "has_summary": true,
+  "has_task_context": false,
+  "risk_count": 10,
+  "timestamp": 1778922316.380064
+}

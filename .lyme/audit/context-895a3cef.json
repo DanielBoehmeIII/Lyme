@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "895a3cef",
+  "repo": "/tmp/tmpze2ce_ki",
+  "task": "What build system is used?",
+  "total_tokens": 50,
+  "compile_time_s": 0.002,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 0,
+  "timestamp": 1778922977.474775
+}

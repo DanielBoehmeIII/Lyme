@@ -1,0 +1,39 @@
+{
+  "suite": "model-mvp",
+  "timestamp": "2026-05-16T05:30:54",
+  "total_tasks": 5,
+  "passed": 4,
+  "failed": 1,
+  "score": "4/5",
+  "results": {
+    "repo_identification": {
+      "status": "fail",
+      "error": "'RepoDiagnosis' object has no attribute 'structure'"
+    },
+    "test_detection": {
+      "status": "pass",
+      "command": "python3 -m pytest"
+    },
+    "bug_localization": {
+      "status": "pass",
+      "candidates": 20,
+      "top_files": [
+        ".pytest_cache/CACHEDIR.TAG",
+        ".pytest_cache/README.md",
+        ".pytest_cache/v/cache/lastfailed",
+        ".pytest_cache/v/cache/nodeids",
+        "lyme-experiments/synthetic/tests/test_adapter.py"
+      ]
+    },
+    "repo_qa": {
+      "status": "pass",
+      "confidence": 0.9,
+      "claims": 1
+    },
+    "fix_dry_run": {
+      "status": "pass",
+      "test_command": "python3 -m pytest",
+      "files_identified": 7
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "7b3e4c9d",
+  "repo": "/tmp/tmpw9ujrfdv",
+  "task": "What framework is used?",
+  "total_tokens": 33,
+  "compile_time_s": 0.0,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 0,
+  "timestamp": 1778921449.921863
+}

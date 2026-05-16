@@ -1,0 +1,17 @@
+{
+  "call_id": "3bc340af",
+  "tool": "edit_file",
+  "params": {
+    "path": "test.py",
+    "content": "test"
+  },
+  "success": false,
+  "latency_ms": 0.0,
+  "output_preview": "",
+  "error": "Safety: 'edit_file' not allowed in readonly mode. Available: read_file, grep_search, list_directory, git_log, inspect_ast",
+  "retry_count": 0,
+  "evidence": "",
+  "event": "tool_call",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "safety_mode": "readonly"
+}

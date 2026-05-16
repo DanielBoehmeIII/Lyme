@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "6c46539b",
+  "repo": "/tmp/tmpxfnce_of",
+  "task": "What are the entry points?",
+  "total_tokens": 32,
+  "compile_time_s": 0.001,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 1,
+  "timestamp": 1778921851.322957
+}

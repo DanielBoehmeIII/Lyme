@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "54d876a9",
+  "repo": "/tmp/tmp06vrn1a8",
+  "task": "How do tests run in this project?",
+  "total_tokens": 52,
+  "compile_time_s": 0.003,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 0,
+  "timestamp": 1778923336.1523423
+}

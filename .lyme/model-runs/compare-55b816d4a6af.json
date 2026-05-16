@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for any confusion, but as an AI model developed by Deepseek, I don't have the ability to access or analyze files from external repositories unless they are shared with me in some way. My main function is to provide information and answer questions related to computer science based on my training data. If you can share specific details about your repository such as its programming language and framework usage, it would be helpful for me to give a more accurate response.",
+    "latency_s": 1.94,
+    "length_chars": 483,
+    "evidence_signals": 1,
+    "tokens_per_second": 49.9,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "The repository uses Python as the programming language, with a few JavaScript files (5). The main codebase is written in Python, specifically using the Poetry package manager for dependency management. The tests are run using pytest, which is a mature full-featured Python testing tool that helps you write better programs. \n\nThe specific files mentioning sensitive keywords include:\n\n1. `lyme-experiments/synthetic/src/core/adapter.py`\n2. `lyme-experiments/synthetic/src/core/config.py`\n3. `lyme-experiments/synthetic/src/models/database.py`\n4. `lyme-experiments/synthetic/src/services/auth.py`\n5. `lyme-experiments/synthetic/tests/test_auth.py`\n6. `scripts/benchmark_capability.py`\n7. `scripts/benchmark_compression.py`\n8. `scripts/benchmark_compression_v2.py`\n9. `scripts/benchmark_hardware.py`\n10. `scripts/benchmark_tool_use.py` \n\nThese files contain sensitive keywords, which are typically passwords or other secrets used for authentication and authorization in the application. It's important to note that these files should not be shared publicly as they may pose a security risk.",
+    "latency_s": 8.68,
+    "length_chars": 1088,
+    "evidence_signals": 4,
+    "tokens_per_second": 36.1,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 6.74,
+    "evidence_improvement": 3,
+    "context_used": true
+  }
+}

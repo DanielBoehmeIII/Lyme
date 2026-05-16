@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "4053a278",
+  "repo": "/tmp/tmp51aniwik",
+  "task": "What risky or sensitive files exist?",
+  "total_tokens": 35,
+  "compile_time_s": 0.0,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 0,
+  "timestamp": 1778921524.3188884
+}

@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "7937eae3",
+  "repo": "/tmp/tmpsi3ja7g3",
+  "task": "Find where function X is defined",
+  "total_tokens": 35,
+  "compile_time_s": 0.0,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 0,
+  "timestamp": 1778922155.7091284
+}

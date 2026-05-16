@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "691818a4",
+  "repo": "/tmp/tmpwetaw658",
+  "task": "How many files are in the repo?",
+  "total_tokens": 36,
+  "compile_time_s": 0.001,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 0,
+  "timestamp": 1778922319.325559
+}

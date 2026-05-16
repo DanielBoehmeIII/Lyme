@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for the misunderstanding, but as an AI model developed by Deepseek, I don't have access to external databases or repositories unless they are shared with me in the context of our conversation. Therefore, I can't provide information about a specific repo language and framework without additional context. If you could share more details about the repository or its contents, I would be glad to help identify the programming languages and frameworks used.",
+    "latency_s": 1.76,
+    "length_chars": 464,
+    "evidence_signals": 0,
+    "tokens_per_second": 53.4,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "This repository uses Python as the programming language, with a few files written in JavaScript/TypeScript (JS/TS). The main source code is written in Python, specifically using the Poetry package manager for dependency management. It also uses pytest for testing. \n\nThe specific files that are relevant to this question include:\n- `lyme-experiments/synthetic/src/core/handler.py`\n- `lyme-experiments/synthetic/tests/test_handler.py`\n\nPlease note that the risk indicators you provided seem to be related to sensitive keywords in Python files, but without more context or specific file contents, it's hard to provide a definitive answer.",
+    "latency_s": 4.93,
+    "length_chars": 636,
+    "evidence_signals": 4,
+    "tokens_per_second": 30.8,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 3.17,
+    "evidence_improvement": 4,
+    "context_used": true
+  }
+}

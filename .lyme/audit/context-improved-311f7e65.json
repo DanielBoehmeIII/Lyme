@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "311f7e65",
+  "repo": "/tmp/tmp9rwjkxpo",
+  "task": null,
+  "total_tokens": 19,
+  "compile_time_s": 0.0,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 0,
+  "timestamp": 1778922317.0246036
+}

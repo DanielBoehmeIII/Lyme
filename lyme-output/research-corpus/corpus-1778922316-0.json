@@ -1,0 +1,30 @@
+{
+  "entry_id": "corpus-1778922316-0",
+  "entry_type": "agent_trace",
+  "title": "Test trace",
+  "description": "",
+  "created_at": 1778922316.6540532,
+  "data": {
+    "events": [
+      {
+        "type": "test"
+      }
+    ]
+  },
+  "reproducibility": {
+    "python_version": "",
+    "lyme_version": "0.7.0",
+    "model_name": "",
+    "model_version": "",
+    "random_seed": 42,
+    "environment_hash": "",
+    "dependencies": {},
+    "hardware_info": ""
+  },
+  "tags": [
+    "test"
+  ],
+  "source_hash": "88390201149bfd2f",
+  "parent_entry_id": null,
+  "citations": []
+}

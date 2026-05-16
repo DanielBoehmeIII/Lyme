@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry for any confusion, but as an AI model developed by Deepseek, I don't have the ability to access or analyze files from external repositories unless they are shared with me in some way. My primary function is to provide information and answer questions related to computer science based on my training data. If you can share more about your question (like a specific file name or code snippet), I'd be glad to help you understand the language and framework used in that context.",
+    "latency_s": 2.05,
+    "length_chars": 486,
+    "evidence_signals": 1,
+    "tokens_per_second": 50.8,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "The repository uses Python as the programming language, with a few JavaScript files (5). The build system is set up using Poetry, which is a package manager for Python developed by Python Software Foundation. The tests are run using pytest, a mature full-featured Python testing tool that helps you write better programs.",
+    "latency_s": 2.87,
+    "length_chars": 321,
+    "evidence_signals": 1,
+    "tokens_per_second": 23.0,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 0.82,
+    "evidence_improvement": 0,
+    "context_used": true
+  }
+}

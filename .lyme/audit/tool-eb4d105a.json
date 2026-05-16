@@ -1,0 +1,16 @@
+{
+  "call_id": "eb4d105a",
+  "tool": "grep_search",
+  "params": {
+    "pattern": "hello"
+  },
+  "success": true,
+  "latency_ms": 4.5,
+  "output_preview": "/tmp/tmpsovowp2i/code.py:1:def hello():\n",
+  "error": null,
+  "retry_count": 0,
+  "evidence": "[grep_search] /tmp/tmpsovowp2i/code.py:1:def hello():",
+  "event": "tool_call",
+  "repo": "/tmp/tmpsovowp2i",
+  "safety_mode": "readonly"
+}

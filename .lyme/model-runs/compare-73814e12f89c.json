@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "task": "What language and framework does this repo use?",
+  "raw": {
+    "output": "I'm sorry, but as an AI model developed by Deepseek, I don't have the ability to access or analyze external repositories or files for information about their programming languages and frameworks. My main function is to provide assistance with computer science-related questions. If you can provide more context or details related to your question, I might be able to help you better.",
+    "latency_s": 1.56,
+    "length_chars": 383,
+    "evidence_signals": 1,
+    "tokens_per_second": 50.6,
+    "success": true
+  },
+  "context_compiled": {
+    "output": "This repository uses Python as the programming language, with a few files written in JavaScript/TypeScript (JS/TS). The main codebase is written in Python, specifically using the Poetry package manager for dependency management. It also utilizes pytest for testing. \n\nThe specific files that are relevant to this context include:\n- `lyme-experiments/synthetic/src/core/handler.py`\n- `lyme-experiments/synthetic/tests/test_handler.py`\n- `scripts/benchmark_capability.py`\n- `scripts/benchmark_compression.py`\n- `scripts/benchmark_hardware.py`\n- `scripts/benchmark_tool_use.py`\n\nThe files that contain sensitive keywords are:\n- `lyme-experiments/synthetic/src/core/adapter.py` \n- `lyme-experiments/synthetic/src/core/config.py` \n- `lyme-experiments/synthetic/src/models/database.py` \n- `lyme-experiments/synthetic/src/services/auth.py` \n- `lyme-experiments/synthetic/tests/test_auth.py` \n- `scripts/benchmark_capability.py` \n- `scripts/benchmark_compression.py` \n- `scripts/benchmark_hardware.py` \n- `scripts/benchmark_tool_use.py` \n\nThe build command is `pip install -e .` and the tests are run with pytest.",
+    "latency_s": 9.88,
+    "length_chars": 1105,
+    "evidence_signals": 4,
+    "tokens_per_second": 36.8,
+    "success": true,
+    "context_tokens": 464
+  },
+  "delta": {
+    "latency_diff_s": 8.32,
+    "evidence_improvement": 3,
+    "context_used": true
+  }
+}
