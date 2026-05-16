@@ -1,0 +1,99 @@
+{
+  "experiment_id": "tool-use-20260516-034008",
+  "data_sources": {
+    "total_examples": 45,
+    "train": 31,
+    "test": 14,
+    "standard_traces": 32,
+    "synthetic": 7,
+    "edge_cases": 6,
+    "action_types": 7
+  },
+  "comparisons": [
+    {
+      "variant": "HeuristicRouter",
+      "variant_info": {
+        "name": "HeuristicRouter",
+        "type": "rule-based"
+      },
+      "accuracy": 0.4286,
+      "correct": 6,
+      "total": 14,
+      "is_winner": true
+    },
+    {
+      "variant": "Prompted (Qwen2.5-Coder-1.5B-Instruct)",
+      "variant_info": {
+        "name": "Prompted (Qwen2.5-Coder-1.5B-Instruct)",
+        "type": "prompted"
+      },
+      "accuracy": 0.4286,
+      "correct": 6,
+      "total": 14,
+      "is_winner": false
+    },
+    {
+      "variant": "TrainedPolicy",
+      "variant_info": {
+        "name": "TrainedPolicy",
+        "type": "trained"
+      },
+      "accuracy": 0.4286,
+      "correct": 6,
+      "total": 14,
+      "is_winner": false,
+      "training": {
+        "mode": "simulated",
+        "training_examples": 31,
+        "action_weights": {
+          "run_command": 0.5,
+          "stop": 0.9167,
+          "generate_patch": 0.6667,
+          "search": 0.5556,
+          "read": 0.75,
+          "verify": 0.5
+        }
+      }
+    }
+  ],
+  "winner": "HeuristicRouter",
+  "by_action": {
+    "generate_patch": {
+      "count": 9,
+      "correct": 0
+    },
+    "inspect_ast": {
+      "count": 2,
+      "correct": 0
+    },
+    "read": {
+      "count": 6,
+      "correct": 0
+    },
+    "run_command": {
+      "count": 5,
+      "correct": 0
+    },
+    "search": {
+      "count": 11,
+      "correct": 0
+    },
+    "stop": {
+      "count": 6,
+      "correct": 0
+    },
+    "verify": {
+      "count": 6,
+      "correct": 0
+    }
+  },
+  "conclusions": [
+    "Heuristic router provides baseline: 0.429 accuracy",
+    "Prompted model improves: 0.429 accuracy",
+    "Trained policy: 0.429 accuracy",
+    "Training data: 31 examples across 7 action types",
+    "Winner: HeuristicRouter (0.429)",
+    "Simulated \u2014 real training requires fine-tuning a small LM on tool-use data",
+    "Next: generate more labeled tool-use data from Lyme Audit traces"
+  ]
+}

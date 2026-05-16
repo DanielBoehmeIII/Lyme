@@ -1,0 +1,182 @@
+{
+  "models": {
+    "deepseek-coder:6.7b": {
+      "results": [
+        {
+          "task": "repo-qa",
+          "category": "repo_understanding",
+          "success": true,
+          "time_s": 2.55,
+          "tokens": 76,
+          "output_snippet": "1. FastAPI - It's a modern, fast (high-performance), web framework for building APIs with Python based on standard Python type hints.\n2. SQLAlchemy - It's an open source ORM that provides full suite o"
+        },
+        {
+          "task": "bug-finding",
+          "category": "bug_detection",
+          "success": true,
+          "time_s": 9.48,
+          "tokens": 275,
+          "output_snippet": "Here are the bugs in your Python code:\n\n1. `calculate_average` function: The division operation (`total / len(numbers)`) should be inside the try/except block to handle potential ZeroDivisionError if "
+        },
+        {
+          "task": "small-edit",
+          "category": "code_generation",
+          "success": true,
+          "time_s": 1.2,
+          "tokens": 23,
+          "output_snippet": "Here is your updated Python module with an added goodbye function:\n\n```python\ndef greet(name):\n    return f'Hello, {name}!'\n\ndef goodbye(name):\n    return f'Goodbye, {name}!'\n```"
+        },
+        {
+          "task": "test-repair",
+          "category": "testing",
+          "success": true,
+          "time_s": 3.81,
+          "tokens": 109,
+          "output_snippet": "Here's your corrected test code:\n\n```python\nfrom calculator import add, divide\n\ndef test_add():\n    result = add(2, 3)   # now it should return 5 not 6\n    assert result == 5   # BUG FIXED: expected v"
+        },
+        {
+          "task": "hallucination-resistance",
+          "category": "hallucination",
+          "success": false,
+          "time_s": 5.55,
+          "tokens": 158,
+          "output_snippet": "You can achieve this by using the `list_buckets` method to get a list of buckets, then loop through each bucket to fetch all objects. Here's how you could do it in Python:\n\n```python\nclient = CloudCli"
+        },
+        {
+          "task": "multi-file-reasoning",
+          "category": "reasoning",
+          "success": true,
+          "time_s": 10.1,
+          "tokens": 331,
+          "output_snippet": "Here are some potential security issues with the provided code:\n\n1. **Insecure Direct Object Reference (IDOR)**: The `User` class and its methods allow for creating a new user instance directly withou"
+        }
+      ],
+      "summary": {
+        "passed": 5,
+        "total": 6,
+        "pass_rate": 83.3,
+        "avg_time_s": 5.4,
+        "avg_tokens": 162.0
+      }
+    },
+    "llama3:8b": {
+      "results": [
+        {
+          "task": "repo-qa",
+          "category": "repo_understanding",
+          "success": true,
+          "time_s": 9.57,
+          "tokens": 60,
+          "output_snippet": "Based on the file structure and names, I can answer your questions as follows:\n\n1. The API framework used is FastAPI.\n2. The database ORM used is SQLAlchemy.\n3. There are 2 models defined: User and It"
+        },
+        {
+          "task": "bug-finding",
+          "category": "bug_detection",
+          "success": true,
+          "time_s": 7.71,
+          "tokens": 228,
+          "output_snippet": "Here are the bugs found in the code:\n\n1. **SQL Injection** (Line 5: `query = \"SELECT * FROM users WHERE id = \" + user_id`)\n\t* Explanation: The `user_id` variable is concatenated directly into the SQL "
+        },
+        {
+          "task": "small-edit",
+          "category": "code_generation",
+          "success": true,
+          "time_s": 0.89,
+          "tokens": 13,
+          "output_snippet": "Here is the new `goodbye` function:\n```python\ndef goodbye(name):\n    return f'Goodbye, {name}!'\n```"
+        },
+        {
+          "task": "test-repair",
+          "category": "testing",
+          "success": true,
+          "time_s": 4.44,
+          "tokens": 108,
+          "output_snippet": "Here is the corrected test code:\n\n```python\nfrom calculator import add, divide\n\ndef test_add():\n    result = add(2, 3)\n    assert result == 5  # Corrected expected value\n\ndef test_divide():\n    try:\n "
+        },
+        {
+          "task": "hallucination-resistance",
+          "category": "hallucination",
+          "success": true,
+          "time_s": 5.95,
+          "tokens": 154,
+          "output_snippet": "Here is the Python code to list all buckets and download all objects using the provided API:\n\n```python\nfrom typing import List\n\ndef list_and_download(client: CloudClient) -> List[dict]:\n    \"\"\"\n    L"
+        },
+        {
+          "task": "multi-file-reasoning",
+          "category": "reasoning",
+          "success": true,
+          "time_s": 13.74,
+          "tokens": 448,
+          "output_snippet": "A nice little Python project! After reviewing the code, I've identified some potential security issues:\n\n1. **Insecure Authentication**: The `login` function from `auth.py` takes a username and passwo"
+        }
+      ],
+      "summary": {
+        "passed": 6,
+        "total": 6,
+        "pass_rate": 100.0,
+        "avg_time_s": 7.1,
+        "avg_tokens": 168.0
+      }
+    },
+    "gpt-oss:20b": {
+      "results": [
+        {
+          "task": "repo-qa",
+          "category": "repo_understanding",
+          "success": true,
+          "time_s": 15.47,
+          "tokens": 83,
+          "output_snippet": "Thinking...\nWe need to answer the questions. The user provides file names and brief descriptions. We must infer: src/main.py contains FastAPI app with /users and /items endpoints => framework is FastA"
+        },
+        {
+          "task": "bug-finding",
+          "category": "bug_detection",
+          "success": false,
+          "error": "timeout",
+          "time_s": 60,
+          "tokens": 0
+        },
+        {
+          "task": "small-edit",
+          "category": "code_generation",
+          "success": true,
+          "time_s": 6.89,
+          "tokens": 65,
+          "output_snippet": "Thinking...\nUser wants a goodbye function that says goodbye to a name. They want to add a goodbye function that says goodbye to a name. They say \"Return ONLY the new function code, nothing else.\"\n\nThu"
+        },
+        {
+          "task": "test-repair",
+          "category": "testing",
+          "success": true,
+          "time_s": 14.32,
+          "tokens": 143,
+          "output_snippet": "Thinking...\nWe need to fix test. We import add, divide from calculator. test_add expects 5 (2+3). test_divide: divide(10,0) should not divide by zero; maybe test for raising error, or use a non-zero d"
+        },
+        {
+          "task": "hallucination-resistance",
+          "category": "hallucination",
+          "success": false,
+          "error": "timeout",
+          "time_s": 60,
+          "tokens": 0
+        },
+        {
+          "task": "multi-file-reasoning",
+          "category": "reasoning",
+          "success": false,
+          "error": "timeout",
+          "time_s": 60,
+          "tokens": 0
+        }
+      ],
+      "summary": {
+        "passed": 3,
+        "total": 6,
+        "pass_rate": 50.0,
+        "avg_time_s": 36.1,
+        "avg_tokens": 48.0
+      }
+    }
+  },
+  "summary": {}
+}

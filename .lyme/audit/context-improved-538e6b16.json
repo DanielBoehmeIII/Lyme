@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "538e6b16",
+  "repo": "/tmp/tmpgmxg_7xe",
+  "task": "test task",
+  "total_tokens": 29,
+  "compile_time_s": 0.001,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 0,
+  "timestamp": 1778920752.6796877
+}

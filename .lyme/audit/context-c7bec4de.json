@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "c7bec4de",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "task": "What is the project structure?",
+  "total_tokens": 358,
+  "compile_time_s": 0.114,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 10,
+  "timestamp": 1778920773.9442694
+}

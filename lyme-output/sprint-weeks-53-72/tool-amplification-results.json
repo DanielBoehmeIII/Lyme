@@ -1,0 +1,76 @@
+{
+  "runs": [
+    {
+      "task": "find-bug",
+      "condition": "model_only",
+      "score": 33.3,
+      "time_s": 20.34,
+      "hits": 1,
+      "total": 3
+    },
+    {
+      "task": "find-bug",
+      "condition": "naive_tools",
+      "score": 0.0,
+      "time_s": 12.27,
+      "hits": 0,
+      "total": 3
+    },
+    {
+      "task": "find-bug",
+      "condition": "lyme_tools",
+      "score": 0.0,
+      "time_s": 22.48,
+      "hits": 0,
+      "total": 3
+    },
+    {
+      "task": "trace-flow",
+      "condition": "model_only",
+      "score": 100.0,
+      "time_s": 14.11,
+      "hits": 8,
+      "total": 8
+    },
+    {
+      "task": "trace-flow",
+      "condition": "naive_tools",
+      "score": 25.0,
+      "time_s": 10.36,
+      "hits": 2,
+      "total": 8
+    },
+    {
+      "task": "trace-flow",
+      "condition": "lyme_tools",
+      "score": 50.0,
+      "time_s": 15.86,
+      "hits": 4,
+      "total": 8
+    },
+    {
+      "task": "db-schema",
+      "condition": "model_only",
+      "score": 71.4,
+      "time_s": 12.56,
+      "hits": 5,
+      "total": 7
+    },
+    {
+      "task": "db-schema",
+      "condition": "naive_tools",
+      "score": 28.6,
+      "time_s": 18.53,
+      "hits": 2,
+      "total": 7
+    },
+    {
+      "task": "db-schema",
+      "condition": "lyme_tools",
+      "score": 28.6,
+      "time_s": 14.32,
+      "hits": 2,
+      "total": 7
+    }
+  ]
+}

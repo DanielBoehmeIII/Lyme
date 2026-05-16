@@ -1,0 +1,16 @@
+{
+  "call_id": "520a6902",
+  "tool": "grep_search",
+  "params": {
+    "pattern": "def hello"
+  },
+  "success": true,
+  "latency_ms": 8.1,
+  "output_preview": "/home/dboehmeiii/Desktop/repos/Lyme/src/lyme_model/speed/profiler.py:116:        prompt: str = \"def hello():\\n    pass\",\n/home/dboehmeiii/Desktop/repos/Lyme/src/lyme_model/speed/profiler.py:142:      ",
+  "error": null,
+  "retry_count": 0,
+  "evidence": "[grep_search] /home/dboehmeiii/Desktop/repos/Lyme/src/lyme_model/speed/profiler.py:116:        prompt: str = \"def hello():\\n    pass\",\n/home/dboehmeiii/Desktop/repos/Lyme/src/lyme_model/speed/profiler.py:142:      ",
+  "event": "tool_call",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "safety_mode": "readonly"
+}

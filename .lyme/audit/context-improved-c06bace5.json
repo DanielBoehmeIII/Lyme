@@ -1,0 +1,15 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "c06bace5",
+  "repo": "/tmp/tmpeen1nzx8",
+  "task": "What framework is used?",
+  "total_tokens": 39,
+  "compile_time_s": 0.002,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [
+    "src/main.py"
+  ],
+  "total_analyzed_files": 1,
+  "timestamp": 1778920662.3284998
+}

@@ -1,2 +1,3 @@
 lyme
 lyme-output
+lyme_model

@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "b3aac0d5",
+  "repo": "/tmp/tmpddlhs87e",
+  "task": "Find GPU detection code",
+  "total_tokens": 61,
+  "compile_time_s": 0.001,
+  "ranked_files": 2,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 2,
+  "timestamp": 1778920856.9500706
+}

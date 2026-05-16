@@ -1,0 +1,17 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "b1ccf7e2",
+  "repo": "/tmp/tmpblqr9baw",
+  "task": "Where is hardware detection?",
+  "total_tokens": 77,
+  "compile_time_s": 0.002,
+  "ranked_files": 2,
+  "frameworks": [
+    "flask"
+  ],
+  "entry_points": [
+    "src/main.py"
+  ],
+  "total_analyzed_files": 2,
+  "timestamp": 1778920561.036169
+}

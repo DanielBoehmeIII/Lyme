@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "Find where function X is defined",
+  "refused": false,
+  "confidence": 0.95,
+  "latency_s": 0.23,
+  "evidence_count": 8,
+  "context_tokens": 692,
+  "tool_calls": 0
+}

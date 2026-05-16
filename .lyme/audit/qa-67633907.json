@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "What recent changes were made?",
+  "refused": false,
+  "confidence": 0.5,
+  "latency_s": 0.24,
+  "evidence_count": 2,
+  "context_tokens": 665,
+  "tool_calls": 0
+}

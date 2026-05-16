@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "ecf22673",
+  "repo": "/tmp/tmpc3vsdfvk",
+  "task": "test task",
+  "total_tokens": 29,
+  "compile_time_s": 0.0,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 0,
+  "timestamp": 1778920320.6382217
+}

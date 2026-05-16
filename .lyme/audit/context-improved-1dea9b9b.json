@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "1dea9b9b",
+  "repo": "/tmp/tmp32glkq47",
+  "task": "What build system is used?",
+  "total_tokens": 48,
+  "compile_time_s": 0.001,
+  "ranked_files": 1,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 1,
+  "timestamp": 1778920660.3210683
+}

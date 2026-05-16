@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "What test framework is used?",
+  "refused": false,
+  "confidence": 0.0,
+  "latency_s": 0.023,
+  "evidence_count": 0,
+  "context_tokens": 44,
+  "tool_calls": 0
+}

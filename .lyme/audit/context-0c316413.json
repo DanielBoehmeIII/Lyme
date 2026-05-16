@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "0c316413",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "task": "Where is the hardware detection implemented?",
+  "total_tokens": 359,
+  "compile_time_s": 0.121,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 10,
+  "timestamp": 1778920773.1213396
+}

@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "What functions are defined?",
+  "refused": false,
+  "confidence": 0.4,
+  "latency_s": 0.03,
+  "evidence_count": 1,
+  "context_tokens": 45,
+  "tool_calls": 0
+}

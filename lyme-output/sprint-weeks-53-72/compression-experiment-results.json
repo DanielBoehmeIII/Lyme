@@ -1,0 +1,192 @@
+{
+  "contexts": {
+    "raw_tokens": 317,
+    "compressed_tokens": 200
+  },
+  "runs": [
+    {
+      "model": "deepseek-coder:6.7b",
+      "task": "architecture",
+      "raw": {
+        "score": {
+          "keyword_score": 100.0,
+          "detail_score": 100.0,
+          "combined_score": 100.0,
+          "output_length": 2136
+        },
+        "time_s": 27.14
+      },
+      "compressed": {
+        "score": {
+          "keyword_score": 100.0,
+          "detail_score": 60.0,
+          "combined_score": 80.0,
+          "output_length": 1876
+        },
+        "time_s": 16.07
+      },
+      "improvement_pct": -20.0
+    },
+    {
+      "model": "deepseek-coder:6.7b",
+      "task": "bug-finding",
+      "raw": {
+        "score": {
+          "keyword_score": 75.0,
+          "detail_score": 50.0,
+          "combined_score": 62.5,
+          "output_length": 2849
+        },
+        "time_s": 26.98
+      },
+      "compressed": {
+        "score": {
+          "keyword_score": 75.0,
+          "detail_score": 0.0,
+          "combined_score": 37.5,
+          "output_length": 1649
+        },
+        "time_s": 15.56
+      },
+      "improvement_pct": -25.0
+    },
+    {
+      "model": "deepseek-coder:6.7b",
+      "task": "extension",
+      "raw": {
+        "score": {
+          "keyword_score": 80.0,
+          "detail_score": 66.7,
+          "combined_score": 75.0,
+          "output_length": 1946
+        },
+        "time_s": 21.54
+      },
+      "compressed": {
+        "score": {
+          "keyword_score": 100.0,
+          "detail_score": 66.7,
+          "combined_score": 87.5,
+          "output_length": 1912
+        },
+        "time_s": 18.95
+      },
+      "improvement_pct": 12.5
+    },
+    {
+      "model": "deepseek-coder:6.7b",
+      "task": "test-generation",
+      "raw": {
+        "score": {
+          "keyword_score": 60.0,
+          "detail_score": 75.0,
+          "combined_score": 66.7,
+          "output_length": 1567
+        },
+        "time_s": 14.85
+      },
+      "compressed": {
+        "score": {
+          "keyword_score": 100.0,
+          "detail_score": 100.0,
+          "combined_score": 100.0,
+          "output_length": 1296
+        },
+        "time_s": 12.84
+      },
+      "improvement_pct": 33.3
+    },
+    {
+      "model": "llama3:8b",
+      "task": "architecture",
+      "raw": {
+        "score": {
+          "keyword_score": 100.0,
+          "detail_score": 100.0,
+          "combined_score": 100.0,
+          "output_length": 2093
+        },
+        "time_s": 25.99
+      },
+      "compressed": {
+        "score": {
+          "keyword_score": 100.0,
+          "detail_score": 60.0,
+          "combined_score": 80.0,
+          "output_length": 2219
+        },
+        "time_s": 19.9
+      },
+      "improvement_pct": -20.0
+    },
+    {
+      "model": "llama3:8b",
+      "task": "bug-finding",
+      "raw": {
+        "score": {
+          "keyword_score": 75.0,
+          "detail_score": 0.0,
+          "combined_score": 37.5,
+          "output_length": 1822
+        },
+        "time_s": 17.16
+      },
+      "compressed": {
+        "score": {
+          "keyword_score": 75.0,
+          "detail_score": 0.0,
+          "combined_score": 37.5,
+          "output_length": 2059
+        },
+        "time_s": 17.63
+      },
+      "improvement_pct": 0.0
+    },
+    {
+      "model": "llama3:8b",
+      "task": "extension",
+      "raw": {
+        "score": {
+          "keyword_score": 80.0,
+          "detail_score": 66.7,
+          "combined_score": 75.0,
+          "output_length": 1721
+        },
+        "time_s": 17.37
+      },
+      "compressed": {
+        "score": {
+          "keyword_score": 60.0,
+          "detail_score": 66.7,
+          "combined_score": 62.5,
+          "output_length": 1946
+        },
+        "time_s": 19.05
+      },
+      "improvement_pct": -12.5
+    },
+    {
+      "model": "llama3:8b",
+      "task": "test-generation",
+      "raw": {
+        "score": {
+          "keyword_score": 100.0,
+          "detail_score": 75.0,
+          "combined_score": 88.9,
+          "output_length": 1397
+        },
+        "time_s": 12.69
+      },
+      "compressed": {
+        "score": {
+          "keyword_score": 100.0,
+          "detail_score": 75.0,
+          "combined_score": 88.9,
+          "output_length": 1697
+        },
+        "time_s": 14.3
+      },
+      "improvement_pct": 0.0
+    }
+  ]
+}

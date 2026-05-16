@@ -1,0 +1,20 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "17dcd326",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "task": "What is the project structure?",
+  "total_tokens": 695,
+  "compile_time_s": 0.223,
+  "ranked_files": 50,
+  "frameworks": [
+    "fastapi",
+    "pytest"
+  ],
+  "entry_points": [
+    "main.py",
+    "src/lyme/cli.py",
+    "src/lyme_model/cli.py"
+  ],
+  "total_analyzed_files": 455,
+  "timestamp": 1778920284.5856423
+}

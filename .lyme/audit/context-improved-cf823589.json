@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "cf823589",
+  "repo": "/tmp/tmpm7co652l",
+  "task": "Are there any risky files?",
+  "total_tokens": 34,
+  "compile_time_s": 0.001,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 0,
+  "timestamp": 1778920563.0415292
+}

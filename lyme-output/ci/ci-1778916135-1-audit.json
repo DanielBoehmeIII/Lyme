@@ -1,0 +1,55 @@
+{
+  "run_id": "ci-1778916135-1",
+  "repository": "test/repo",
+  "commit": "abc",
+  "branch": "main",
+  "mode": "advisory",
+  "risk_score": 0.0,
+  "policy_decision": "allow",
+  "artifacts": [
+    {
+      "id": "ci-1778916135-1-trace",
+      "type": "open_agent_trace",
+      "format": "json",
+      "content": {
+        "schema": "open-agent-trace-standard",
+        "schema_version": "0.7.0",
+        "trace_id": "ci-1778916135",
+        "header": {
+          "agent": {
+            "name": "lyme-ci-runner",
+            "version": "0.7.0",
+            "framework": "lyme"
+          },
+          "system": {
+            "repo_name": "test/repo"
+          }
+        },
+        "events": [
+          {
+            "type": "system",
+            "metadata": {
+              "action": "ci_run",
+              "commit": "abc",
+              "branch": "main"
+            }
+          },
+          {
+            "type": "metric",
+            "metadata": {
+              "risk_score": 0.0,
+              "decision": "allow"
+            }
+          }
+        ],
+        "summary": {
+          "status": "completed",
+          "decision": "allow"
+        }
+      },
+      "created_at": 1778916135.4214494
+    }
+  ],
+  "summary": "Lyme CI [advisory]: risk=0.00, decision=allow, violations=0, gaps=0",
+  "timestamp": 1778916135.4215646
+}

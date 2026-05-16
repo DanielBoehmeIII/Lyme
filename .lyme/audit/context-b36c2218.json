@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "b36c2218",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "task": "What Python framework is used in this project?",
+  "total_tokens": 361,
+  "compile_time_s": 0.118,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 10,
+  "timestamp": 1778920772.7003229
+}

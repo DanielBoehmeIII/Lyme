@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "How are tests run?",
+  "refused": false,
+  "confidence": 0.8,
+  "latency_s": 0.237,
+  "evidence_count": 5,
+  "context_tokens": 699,
+  "tool_calls": 0
+}

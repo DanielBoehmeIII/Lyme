@@ -1,0 +1,72 @@
+{
+  "experiment_id": "patch-plan-20260516-034150",
+  "data_sources": {
+    "total_examples": 18,
+    "train": 12,
+    "test": 6,
+    "from_dataset": 14,
+    "synthetic": 4,
+    "difficulty_levels": 3
+  },
+  "comparisons": [
+    {
+      "variant": "DirectPatch",
+      "accuracy": 0.4444444444444444,
+      "affected_files_correct": 0.4444444444444444,
+      "patch_correctness": 0.1111111111111111,
+      "risk_assessment_quality": 0.5,
+      "verification_completeness": 0.5,
+      "avg_latency_ms": 50,
+      "total": 18,
+      "is_winner": true
+    },
+    {
+      "variant": "PromptedPlan",
+      "accuracy": 0.4444444444444444,
+      "affected_files_correct": 0.4444444444444444,
+      "patch_correctness": 0.1111111111111111,
+      "risk_assessment_quality": 0.7,
+      "verification_completeness": 0.7,
+      "avg_latency_ms": 100,
+      "total": 18,
+      "is_winner": false
+    },
+    {
+      "variant": "TrainedPlan",
+      "accuracy": 0.3888888888888889,
+      "affected_files_correct": 0.3888888888888889,
+      "patch_correctness": 0.1111111111111111,
+      "risk_assessment_quality": 0.75,
+      "verification_completeness": 0.75,
+      "avg_latency_ms": 80,
+      "total": 18,
+      "is_winner": false
+    },
+    {
+      "variant": "PlanCritic",
+      "accuracy": 0.3888888888888889,
+      "affected_files_correct": 0.3888888888888889,
+      "patch_correctness": 0.1111111111111111,
+      "risk_assessment_quality": 0.85,
+      "verification_completeness": 0.85,
+      "avg_latency_ms": 120,
+      "total": 18,
+      "is_winner": false
+    }
+  ],
+  "winner": "DirectPatch",
+  "by_difficulty": {
+    "medium": 10,
+    "easy": 5,
+    "hard": 3
+  },
+  "conclusions": [
+    "DirectPatch baseline: 0.444 affected-files accuracy",
+    "PromptedPlan improved structure: 0.444 with explicit risk assessment",
+    "TrainedPlan: 0.389 accuracy from 12 training examples",
+    "PlanCritic (plan + critic): 0.389 with highest verification completeness",
+    "Winner: DirectPatch (0.444)",
+    "PlanCritic variant provides best risk assessment and verification completeness",
+    "Real training requires fine-tuning a small LM on patch-plan examples"
+  ]
+}

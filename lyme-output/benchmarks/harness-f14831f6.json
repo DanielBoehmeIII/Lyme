@@ -1,0 +1,48 @@
+{
+  "run_id": "f14831f6",
+  "timestamp": "2026-05-16T04:37:23",
+  "total_tasks": 3,
+  "passed": 1,
+  "failed": 2,
+  "avg_latency_s": 0.15,
+  "avg_evidence": 4.7,
+  "avg_keyword_match": 0.33,
+  "categories": {
+    "bug_localization": {
+      "success_rate": 0.33,
+      "count": 3
+    }
+  },
+  "results": [
+    {
+      "task_name": "function_lookup",
+      "category": "bug_localization",
+      "success": false,
+      "latency_s": 0.23,
+      "evidence_count": 8,
+      "keyword_match": 0.0,
+      "output_preview": "Key functions:\n  src/lyme/cli.py: __init__, run, _do_run, _do_list_scenarios, _do_replay, on_event, _do_compare, _do_ask\n  src/lyme_model/cli.py: register_subcommands, handle_command, _get_task_input,",
+      "error": null
+    },
+    {
+      "task_name": "class_location",
+      "category": "bug_localization",
+      "success": true,
+      "latency_s": 0.219,
+      "evidence_count": 6,
+      "keyword_match": 1.0,
+      "output_preview": "Key classes:\n  src/lyme/cli.py: LymeCLI\n  src/lyme_model/specialists/coordinator.py: MessageType, SpecialistRole, SpecialistMessage, BlackboardState, Blackboard, RouterDecision, SpecialistRouter, Conf",
+      "error": null
+    },
+    {
+      "task_name": "import_chain",
+      "category": "bug_localization",
+      "success": false,
+      "latency_s": 0.0,
+      "evidence_count": 0,
+      "keyword_match": 0.0,
+      "output_preview": "",
+      "error": "Cannot answer: 'Trace the imports for module Z' is outside Repo Q&A capability. Supported: language, framework, dependencies, file structure, functions, classes, tests, config."
+    }
+  ]
+}

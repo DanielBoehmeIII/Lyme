@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "Find where class Y is defined",
+  "refused": false,
+  "confidence": 0.9000000000000001,
+  "latency_s": 0.219,
+  "evidence_count": 6,
+  "context_tokens": 635,
+  "tool_calls": 0
+}

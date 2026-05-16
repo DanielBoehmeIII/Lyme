@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "2f9e2006",
+  "repo": "/tmp/tmp00zv3syh",
+  "task": "Find files related to context management",
+  "total_tokens": 41,
+  "compile_time_s": 0.0,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 0,
+  "timestamp": 1778920561.4778385
+}

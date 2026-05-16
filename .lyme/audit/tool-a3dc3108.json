@@ -1,0 +1,16 @@
+{
+  "call_id": "a3dc3108",
+  "tool": "run_test",
+  "params": {
+    "target": "test.py"
+  },
+  "success": false,
+  "latency_ms": 0.0,
+  "output_preview": "",
+  "error": "Safety: 'run_test' not allowed in readonly mode. Available: read_file, grep_search, list_directory, git_log, inspect_ast",
+  "retry_count": 0,
+  "evidence": "",
+  "event": "tool_call",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "safety_mode": "readonly"
+}

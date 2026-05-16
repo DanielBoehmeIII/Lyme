@@ -1,0 +1,80 @@
+{
+  "release": "lyme-model-v0.2",
+  "timestamp": "2026-05-16",
+  "status": "implemented",
+  "components": {
+    "week1_runtime": {
+      "status": "implemented",
+      "files": [
+        "src/lyme_model/context/compiler.py",
+        "src/lyme_model/hardware/detector.py",
+        "src/lyme_model/runtime/engine.py"
+      ],
+      "cli_commands": ["lyme model profile", "lyme model run", "lyme model context", "lyme model summary"]
+    },
+    "week2_context_quality": {
+      "status": "implemented",
+      "files": [
+        "src/lyme_model/context/improved.py",
+        "src/lyme_model/context/benchmark.py"
+      ],
+      "improvements": {
+        "keyword_coverage": "raw: 0.24 → current: 0.71 → improved: 0.71",
+        "task_relevant_ranking": "keyword + import graph scoring"
+      }
+    },
+    "week3_tool_use": {
+      "status": "implemented",
+      "files": ["src/lyme_model/tools/session.py"],
+      "features": ["readonly safety mode", "tool call parsing from model output", "evidence tracking", "latency tracing"]
+    },
+    "week4_repo_qa": {
+      "status": "implemented",
+      "files": ["src/lyme_model/slices/qa_engine.py"],
+      "features": ["evidence-grounded answers", "file citations", "refusal when unsupported", "7 question domains"]
+    },
+    "week5_benchmark_harness": {
+      "status": "implemented",
+      "files": ["src/lyme_model/eval/benchmark_harness.py"],
+      "metrics": ["correctness", "evidence usage", "latency", "tool calls", "context size"]
+    },
+    "week6_patch_planning": {
+      "status": "existing",
+      "files": ["src/lyme_model/planning/patch_planner.py"],
+      "coverage": "225 test lines"
+    },
+    "week7_patch_generation": {
+      "status": "existing",
+      "files": ["src/lyme_model/specialists/patch_generator.py"]
+    },
+    "week8_verification": {
+      "status": "existing",
+      "files": ["src/lyme_model/verification/verifier.py"],
+      "verifiers_count": 6
+    },
+    "week9_self_repair": {
+      "status": "existing",
+      "files": ["src/lyme_model/correction/loop.py"],
+      "max_retries": 2
+    }
+  },
+  "benchmarks": {
+    "total_tests": 755,
+    "test_pass_rate": "100%",
+    "standard_benchmark_pass_rate": "62.5%",
+    "regression_benchmark_pass_rate": "33.3%",
+    "context_keyword_coverage": "0.71 (improved)",
+    "avg_qa_latency": "0.23s"
+  },
+  "hardware_requirements": {
+    "minimal": "4GB RAM, CPU only",
+    "recommended": "8GB VRAM GPU",
+    "tested_on": "RTX 4060 (8GB), 16GB RAM, i7-12650H"
+  },
+  "known_limitations": [
+    "Risky file detection benchmark at 0% — needs git history analysis",
+    "Regression tasks (bug localization) at 33% — needs AST-aware search",
+    "Context compiler token count +86% vs current — needs compression for 3B models",
+    "No Ollama model integration yet for semantic answers (static analysis only)"
+  ]
+}

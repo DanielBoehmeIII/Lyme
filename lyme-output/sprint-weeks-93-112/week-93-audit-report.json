@@ -1,0 +1,911 @@
+{
+  "total_sources": 32,
+  "by_category": {
+    "unusable_synthetic_misleading": 2,
+    "usable_for_patch_critique": 2,
+    "usable_for_supervised_fine_tuning": 4,
+    "usable_only_for_evaluation": 24
+  },
+  "by_source_type": {
+    "audit_benchmark": 2,
+    "audit_diagnose": 2,
+    "audit_test": 1,
+    "ci_trace": 12,
+    "demo_artifact": 4,
+    "generated_data": 3,
+    "memory_entry": 5,
+    "standard_trace": 3
+  },
+  "overall_quality": 0.45,
+  "usable_quality": 0.95,
+  "assessments": [
+    {
+      "source_id": "53b6f66c-8b32-4602-a152-b0b1e1de301f",
+      "source_type": "audit_test",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/.lyme/audit/53b6f66c-8b32-4602-a152-b0b1e1de301f.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.1,
+      "correctness": 0.9,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": false,
+      "has_outcome": true,
+      "quality_score": 0.34,
+      "issues": [
+        "Skeleton entry \u2014 no tool call traces",
+        "No intermediate observations"
+      ],
+      "risks": [
+        "No task instruction captured",
+        "No intermediate state recorded"
+      ],
+      "missing_labels": [
+        "trace_id",
+        "metadata (task, observations, decisions)"
+      ]
+    },
+    {
+      "source_id": "63e3d91c-248c-4287-a688-97e3f6cb62ce",
+      "source_type": "audit_benchmark",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/.lyme/audit/63e3d91c-248c-4287-a688-97e3f6cb62ce.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.1,
+      "correctness": 0.9,
+      "has_task": false,
+      "has_tool_calls": true,
+      "has_patches": false,
+      "has_verification": false,
+      "has_outcome": true,
+      "quality_score": 0.34,
+      "issues": [
+        "Skeleton entry \u2014 no tool call traces",
+        "No intermediate observations"
+      ],
+      "risks": [
+        "No task instruction captured",
+        "No intermediate state recorded"
+      ],
+      "missing_labels": [
+        "trace_id",
+        "metadata (task, observations, decisions)"
+      ]
+    },
+    {
+      "source_id": "7e842cf5-b803-4df1-a8ab-538970c7c97f",
+      "source_type": "audit_diagnose",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/.lyme/audit/7e842cf5-b803-4df1-a8ab-538970c7c97f.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.1,
+      "correctness": 0.9,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": false,
+      "has_outcome": true,
+      "quality_score": 0.34,
+      "issues": [
+        "Skeleton entry \u2014 no tool call traces",
+        "No intermediate observations"
+      ],
+      "risks": [
+        "No task instruction captured",
+        "No intermediate state recorded"
+      ],
+      "missing_labels": [
+        "trace_id",
+        "metadata (task, observations, decisions)"
+      ]
+    },
+    {
+      "source_id": "98c75876-2047-4d23-b89f-64b46687f7cd",
+      "source_type": "audit_diagnose",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/.lyme/audit/98c75876-2047-4d23-b89f-64b46687f7cd.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.1,
+      "correctness": 0.9,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": false,
+      "has_outcome": true,
+      "quality_score": 0.34,
+      "issues": [
+        "Skeleton entry \u2014 no tool call traces",
+        "No intermediate observations"
+      ],
+      "risks": [
+        "No task instruction captured",
+        "No intermediate state recorded"
+      ],
+      "missing_labels": [
+        "trace_id",
+        "metadata (task, observations, decisions)"
+      ]
+    },
+    {
+      "source_id": "c65e5969-0640-4f05-9d7d-5b562c9d44cb",
+      "source_type": "audit_benchmark",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/.lyme/audit/c65e5969-0640-4f05-9d7d-5b562c9d44cb.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.1,
+      "correctness": 0.9,
+      "has_task": false,
+      "has_tool_calls": true,
+      "has_patches": false,
+      "has_verification": false,
+      "has_outcome": true,
+      "quality_score": 0.34,
+      "issues": [
+        "Skeleton entry \u2014 no tool call traces",
+        "No intermediate observations"
+      ],
+      "risks": [
+        "No task instruction captured",
+        "No intermediate state recorded"
+      ],
+      "missing_labels": [
+        "trace_id",
+        "metadata (task, observations, decisions)"
+      ]
+    },
+    {
+      "source_id": "oat-refactor-002",
+      "source_type": "standard_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/standards/traces/complex-refactor-trace.json",
+      "category": "usable_for_supervised_fine_tuning",
+      "category_label": "Supervised Fine-Tuning",
+      "completeness": 0.85,
+      "correctness": 1.0,
+      "has_task": true,
+      "has_tool_calls": true,
+      "has_patches": true,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.96,
+      "issues": [
+        "Failure-attempt trace \u2014 good for recovery training"
+      ],
+      "risks": [
+        "Synthetic/fictional repo paths",
+        "Single model attribution may leak"
+      ],
+      "missing_labels": [
+        "patch_plan (no explicit plan before execution)",
+        "repo_state (no pre-task repo snapshot)",
+        "final_answer (no structured final output)"
+      ]
+    },
+    {
+      "source_id": "oat-failed-003",
+      "source_type": "standard_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/standards/traces/failed-attempt-trace.json",
+      "category": "usable_for_supervised_fine_tuning",
+      "category_label": "Supervised Fine-Tuning",
+      "completeness": 0.85,
+      "correctness": 1.0,
+      "has_task": true,
+      "has_tool_calls": true,
+      "has_patches": true,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.94,
+      "issues": [
+        "Failure-attempt trace \u2014 good for recovery training"
+      ],
+      "risks": [
+        "Synthetic/fictional repo paths",
+        "Single model attribution may leak"
+      ],
+      "missing_labels": [
+        "patch_plan (no explicit plan before execution)",
+        "repo_state (no pre-task repo snapshot)",
+        "final_answer (no structured final output)"
+      ]
+    },
+    {
+      "source_id": "oat-simple-fix-001",
+      "source_type": "standard_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/standards/traces/simple-fix-trace.json",
+      "category": "usable_for_supervised_fine_tuning",
+      "category_label": "Supervised Fine-Tuning",
+      "completeness": 0.85,
+      "correctness": 1.0,
+      "has_task": true,
+      "has_tool_calls": true,
+      "has_patches": true,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.96,
+      "issues": [],
+      "risks": [
+        "Synthetic/fictional repo paths",
+        "Single model attribution may leak"
+      ],
+      "missing_labels": [
+        "patch_plan (no explicit plan before execution)",
+        "repo_state (no pre-task repo snapshot)",
+        "final_answer (no structured final output)"
+      ]
+    },
+    {
+      "source_id": "ci-1778906846-1-trace",
+      "source_type": "ci_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/ci/ci-1778906846-1-trace.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.2,
+      "correctness": 0.8,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.35,
+      "issues": [
+        "Skeleton CI trace \u2014 no tool calls",
+        "Only system + metric events"
+      ],
+      "risks": [
+        "CI metadata may contain repo identifiers"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "patches",
+        "observations"
+      ]
+    },
+    {
+      "source_id": "ci-1778906853-1-trace",
+      "source_type": "ci_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/ci/ci-1778906853-1-trace.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.2,
+      "correctness": 0.8,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.35,
+      "issues": [
+        "Skeleton CI trace \u2014 no tool calls",
+        "Only system + metric events"
+      ],
+      "risks": [
+        "CI metadata may contain repo identifiers"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "patches",
+        "observations"
+      ]
+    },
+    {
+      "source_id": "ci-1778906863-1-trace",
+      "source_type": "ci_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/ci/ci-1778906863-1-trace.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.2,
+      "correctness": 0.8,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.35,
+      "issues": [
+        "Skeleton CI trace \u2014 no tool calls",
+        "Only system + metric events"
+      ],
+      "risks": [
+        "CI metadata may contain repo identifiers"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "patches",
+        "observations"
+      ]
+    },
+    {
+      "source_id": "ci-1778907093-1-trace",
+      "source_type": "ci_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/ci/ci-1778907093-1-trace.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.2,
+      "correctness": 0.8,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.35,
+      "issues": [
+        "Skeleton CI trace \u2014 no tool calls",
+        "Only system + metric events"
+      ],
+      "risks": [
+        "CI metadata may contain repo identifiers"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "patches",
+        "observations"
+      ]
+    },
+    {
+      "source_id": "ci-1778911152-1-trace",
+      "source_type": "ci_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/ci/ci-1778911152-1-trace.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.2,
+      "correctness": 0.8,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.35,
+      "issues": [
+        "Skeleton CI trace \u2014 no tool calls",
+        "Only system + metric events"
+      ],
+      "risks": [
+        "CI metadata may contain repo identifiers"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "patches",
+        "observations"
+      ]
+    },
+    {
+      "source_id": "ci-1778915590-1-trace",
+      "source_type": "ci_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/ci/ci-1778915590-1-trace.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.2,
+      "correctness": 0.8,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.35,
+      "issues": [
+        "Skeleton CI trace \u2014 no tool calls",
+        "Only system + metric events"
+      ],
+      "risks": [
+        "CI metadata may contain repo identifiers"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "patches",
+        "observations"
+      ]
+    },
+    {
+      "source_id": "ci-1778915685-1-trace",
+      "source_type": "ci_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/ci/ci-1778915685-1-trace.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.2,
+      "correctness": 0.8,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.35,
+      "issues": [
+        "Skeleton CI trace \u2014 no tool calls",
+        "Only system + metric events"
+      ],
+      "risks": [
+        "CI metadata may contain repo identifiers"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "patches",
+        "observations"
+      ]
+    },
+    {
+      "source_id": "ci-1778915708-1-trace",
+      "source_type": "ci_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/ci/ci-1778915708-1-trace.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.2,
+      "correctness": 0.8,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.35,
+      "issues": [
+        "Skeleton CI trace \u2014 no tool calls",
+        "Only system + metric events"
+      ],
+      "risks": [
+        "CI metadata may contain repo identifiers"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "patches",
+        "observations"
+      ]
+    },
+    {
+      "source_id": "ci-1778915778-1-trace",
+      "source_type": "ci_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/ci/ci-1778915778-1-trace.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.2,
+      "correctness": 0.8,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.35,
+      "issues": [
+        "Skeleton CI trace \u2014 no tool calls",
+        "Only system + metric events"
+      ],
+      "risks": [
+        "CI metadata may contain repo identifiers"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "patches",
+        "observations"
+      ]
+    },
+    {
+      "source_id": "ci-1778915896-1-trace",
+      "source_type": "ci_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/ci/ci-1778915896-1-trace.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.2,
+      "correctness": 0.8,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.35,
+      "issues": [
+        "Skeleton CI trace \u2014 no tool calls",
+        "Only system + metric events"
+      ],
+      "risks": [
+        "CI metadata may contain repo identifiers"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "patches",
+        "observations"
+      ]
+    },
+    {
+      "source_id": "ci-1778916047-1-trace",
+      "source_type": "ci_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/ci/ci-1778916047-1-trace.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.2,
+      "correctness": 0.8,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.35,
+      "issues": [
+        "Skeleton CI trace \u2014 no tool calls",
+        "Only system + metric events"
+      ],
+      "risks": [
+        "CI metadata may contain repo identifiers"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "patches",
+        "observations"
+      ]
+    },
+    {
+      "source_id": "ci-1778916135-1-trace",
+      "source_type": "ci_trace",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/ci/ci-1778916135-1-trace.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.2,
+      "correctness": 0.8,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": true,
+      "has_outcome": true,
+      "quality_score": 0.35,
+      "issues": [
+        "Skeleton CI trace \u2014 no tool calls",
+        "Only system + metric events"
+      ],
+      "risks": [
+        "CI metadata may contain repo identifiers"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "patches",
+        "observations"
+      ]
+    },
+    {
+      "source_id": "01-pr-intelligence-report.json",
+      "source_type": "demo_artifact",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/demo-v0.7/01-pr-intelligence-report.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.5,
+      "correctness": 0.9,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": false,
+      "has_outcome": false,
+      "quality_score": 0.3,
+      "issues": [
+        "Demo artifact \u2014 may not reflect real usage"
+      ],
+      "risks": [
+        "Demo data may contain fictional decision patterns"
+      ],
+      "missing_labels": []
+    },
+    {
+      "source_id": "02-open-agent-trace.json",
+      "source_type": "demo_artifact",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/demo-v0.7/02-open-agent-trace.json",
+      "category": "usable_for_supervised_fine_tuning",
+      "category_label": "Supervised Fine-Tuning",
+      "completeness": 0.5,
+      "correctness": 0.9,
+      "has_task": true,
+      "has_tool_calls": true,
+      "has_patches": true,
+      "has_verification": false,
+      "has_outcome": false,
+      "quality_score": 0.96,
+      "issues": [
+        "Demo artifact \u2014 may not reflect real usage"
+      ],
+      "risks": [
+        "Demo data may contain fictional decision patterns"
+      ],
+      "missing_labels": []
+    },
+    {
+      "source_id": "03-semantic-diff.json",
+      "source_type": "demo_artifact",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/demo-v0.7/03-semantic-diff.json",
+      "category": "usable_for_patch_critique",
+      "category_label": "Patch Critique",
+      "completeness": 0.5,
+      "correctness": 0.9,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": true,
+      "has_verification": false,
+      "has_outcome": false,
+      "quality_score": 0.68,
+      "issues": [
+        "Demo artifact \u2014 may not reflect real usage"
+      ],
+      "risks": [
+        "Demo data may contain fictional decision patterns"
+      ],
+      "missing_labels": []
+    },
+    {
+      "source_id": "07-benchmark-leaderboard.json",
+      "source_type": "demo_artifact",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/demo-v0.7/07-benchmark-leaderboard.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.5,
+      "correctness": 0.9,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": false,
+      "has_outcome": false,
+      "quality_score": 0.3,
+      "issues": [
+        "Demo artifact \u2014 may not reflect real usage"
+      ],
+      "risks": [
+        "Demo data may contain fictional decision patterns"
+      ],
+      "missing_labels": []
+    },
+    {
+      "source_id": "synthetic_data_generate_synthetic",
+      "source_type": "generated_data",
+      "path": "src/lyme_model/learning/",
+      "category": "unusable_synthetic_misleading",
+      "category_label": "Unusable / Synthetic / Misleading",
+      "completeness": 0.4,
+      "correctness": 0.5,
+      "has_task": true,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": false,
+      "has_outcome": false,
+      "quality_score": 0.43,
+      "issues": [
+        "20% random labels",
+        "Hand-crafted situations, not from real traces",
+        "No patch content, no verification",
+        "Random correctness assignment"
+      ],
+      "risks": [
+        "Synthetic labels are incorrect 20% of the time",
+        "Simulated training has no real gradient signal"
+      ],
+      "missing_labels": [
+        "correctness_ground_truth",
+        "source_trace_id"
+      ]
+    },
+    {
+      "source_id": "simulated_training_toolpolicymodel.train_step",
+      "source_type": "generated_data",
+      "path": "src/lyme_model/learning/",
+      "category": "unusable_synthetic_misleading",
+      "category_label": "Unusable / Synthetic / Misleading",
+      "completeness": 0.4,
+      "correctness": 0.5,
+      "has_task": true,
+      "has_tool_calls": true,
+      "has_patches": false,
+      "has_verification": false,
+      "has_outcome": false,
+      "quality_score": 0.3,
+      "issues": [
+        "Not gradient-based \u2014 weight multiplication by 1.01/0.99",
+        "Creates illusion of learning",
+        "No validation against held-out data"
+      ],
+      "risks": [
+        "Synthetic labels are incorrect 20% of the time",
+        "Simulated training has no real gradient signal"
+      ],
+      "missing_labels": [
+        "correctness_ground_truth",
+        "source_trace_id"
+      ]
+    },
+    {
+      "source_id": "rule-based_critic_patchcritic.evaluate",
+      "source_type": "generated_data",
+      "path": "src/lyme_model/learning/",
+      "category": "usable_for_patch_critique",
+      "category_label": "Patch Critique",
+      "completeness": 0.4,
+      "correctness": 0.5,
+      "has_task": true,
+      "has_tool_calls": false,
+      "has_patches": true,
+      "has_verification": false,
+      "has_outcome": false,
+      "quality_score": 0.7,
+      "issues": [
+        "Rule-based, not learned",
+        "Can generate critique training pairs"
+      ],
+      "risks": [
+        "Synthetic labels are incorrect 20% of the time",
+        "Simulated training has no real gradient signal"
+      ],
+      "missing_labels": [
+        "correctness_ground_truth",
+        "source_trace_id"
+      ]
+    },
+    {
+      "source_id": "1ed67c2a937545a1.json",
+      "source_type": "memory_entry",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/memory/1ed67c2a937545a1.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.3,
+      "correctness": 0.7,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": false,
+      "has_outcome": false,
+      "quality_score": 0.4,
+      "issues": [
+        "Memory entry \u2014 structured observation, not agent trace",
+        "No tool call sequence, no patch"
+      ],
+      "risks": [
+        "Memory may contain stale or contradicted information"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "verification_result"
+      ]
+    },
+    {
+      "source_id": "262ec3818c134738.json",
+      "source_type": "memory_entry",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/memory/262ec3818c134738.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.3,
+      "correctness": 0.7,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": false,
+      "has_outcome": false,
+      "quality_score": 0.4,
+      "issues": [
+        "Memory entry \u2014 structured observation, not agent trace",
+        "No tool call sequence, no patch"
+      ],
+      "risks": [
+        "Memory may contain stale or contradicted information"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "verification_result"
+      ]
+    },
+    {
+      "source_id": "d51e1a1b0179443f.json",
+      "source_type": "memory_entry",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/memory/d51e1a1b0179443f.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.3,
+      "correctness": 0.7,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": false,
+      "has_outcome": false,
+      "quality_score": 0.4,
+      "issues": [
+        "Memory entry \u2014 structured observation, not agent trace",
+        "No tool call sequence, no patch"
+      ],
+      "risks": [
+        "Memory may contain stale or contradicted information"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "verification_result"
+      ]
+    },
+    {
+      "source_id": "d63296fccf514401.json",
+      "source_type": "memory_entry",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/memory/d63296fccf514401.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.3,
+      "correctness": 0.7,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": false,
+      "has_outcome": false,
+      "quality_score": 0.4,
+      "issues": [
+        "Memory entry \u2014 structured observation, not agent trace",
+        "No tool call sequence, no patch"
+      ],
+      "risks": [
+        "Memory may contain stale or contradicted information"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "verification_result"
+      ]
+    },
+    {
+      "source_id": "e86440e8b4d04642.json",
+      "source_type": "memory_entry",
+      "path": "/home/dboehmeiii/Desktop/repos/Lyme/lyme-output/memory/e86440e8b4d04642.json",
+      "category": "usable_only_for_evaluation",
+      "category_label": "Evaluation Only",
+      "completeness": 0.3,
+      "correctness": 0.7,
+      "has_task": false,
+      "has_tool_calls": false,
+      "has_patches": false,
+      "has_verification": false,
+      "has_outcome": false,
+      "quality_score": 0.4,
+      "issues": [
+        "Memory entry \u2014 structured observation, not agent trace",
+        "No tool call sequence, no patch"
+      ],
+      "risks": [
+        "Memory may contain stale or contradicted information"
+      ],
+      "missing_labels": [
+        "task",
+        "tool_calls",
+        "verification_result"
+      ]
+    }
+  ],
+  "leakage_risks": [
+    "Synthetic repo paths may not generalize to real codebases",
+    "Model attribution in traces (claude-3-opus, gpt-4-turbo) may leak model-specific patterns",
+    "Repo names in trace headers identify fictional projects but field exists for real data",
+    "human_intervention events contain user_message \u2014 benign now, critical in real data",
+    "file_path fields use generic paths now but would leak structure in real traces"
+  ],
+  "hallucination_risks": [
+    "Synthetic data has 20% random label noise \u2014 degrades any learned model",
+    "Simulated training (weight multiply) creates illusion of learning without gradients",
+    "No 'I don't know' examples \u2014 model always tries to answer",
+    "Patch content without full before/after context misses structural understanding"
+  ],
+  "missing_labels_global": [
+    "patch_plan \u2014 no trace records the plan before execution",
+    "repo_state \u2014 no pre-task snapshot of repository structure",
+    "final_answer \u2014 no structured final output",
+    "correctness_label \u2014 no explicit correct/incorrect per decision",
+    "alternative_actions \u2014 no counterfactual options recorded",
+    "grounding_score \u2014 no measure of evidence grounding per claim",
+    "difficulty_rating \u2014 exists in some traces but not in training schema"
+  ],
+  "recommendations": [
+    "Do NOT train on synthetic data \u2014 20% random label noise will degrade any learned model",
+    "Do NOT use simulated training as proxy \u2014 label as prototype only",
+    "Instrument runtime immediately to collect real traces before Week 96",
+    "Generate controlled data from synthetic repos \u2014 lyme-experiments/synthetic/ is ready",
+    "Add explicit correctness, grounding, and difficulty labels to every trace",
+    "Build sanitizer before any training data leaves local storage",
+    "Keep the 3 standard traces as eval-only \u2014 too few to train on, perfect for measurement"
+  ]
+}

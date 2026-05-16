@@ -1,0 +1,31 @@
+{
+  "model": "deepseek-coder:6.7b",
+  "results": [
+    {
+      "task": "repo-qa",
+      "success": true,
+      "time_s": 5.53,
+      "tokens_per_second": 21.9,
+      "error": null
+    },
+    {
+      "task": "code-gen",
+      "success": true,
+      "time_s": 5.92,
+      "tokens_per_second": 19.7,
+      "error": null
+    },
+    {
+      "task": "bug-find",
+      "success": true,
+      "time_s": 7.93,
+      "tokens_per_second": 22.2,
+      "error": null
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "total": 3,
+    "avg_time_s": 6.5
+  }
+}

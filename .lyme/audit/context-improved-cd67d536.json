@@ -1,0 +1,20 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "cd67d536",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "task": "How many files?",
+  "total_tokens": 666,
+  "compile_time_s": 0.214,
+  "ranked_files": 50,
+  "frameworks": [
+    "fastapi",
+    "pytest"
+  ],
+  "entry_points": [
+    "main.py",
+    "src/lyme/cli.py",
+    "src/lyme_model/cli.py"
+  ],
+  "total_analyzed_files": 463,
+  "timestamp": 1778920754.243018
+}

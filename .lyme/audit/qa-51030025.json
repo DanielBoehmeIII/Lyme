@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "What risky or sensitive files exist?",
+  "refused": false,
+  "confidence": 0.4,
+  "latency_s": 0.025,
+  "evidence_count": 1,
+  "context_tokens": 35,
+  "tool_calls": 0
+}

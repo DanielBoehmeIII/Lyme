@@ -1,0 +1,16 @@
+{
+  "call_id": "ffadfe99",
+  "tool": "read_file",
+  "params": {
+    "path": "src/main.py"
+  },
+  "success": false,
+  "latency_ms": 0.1,
+  "output_preview": "",
+  "error": "File not found: /home/dboehmeiii/Desktop/repos/Lyme/src/main.py",
+  "retry_count": 1,
+  "evidence": "",
+  "event": "tool_call",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "safety_mode": "readonly"
+}

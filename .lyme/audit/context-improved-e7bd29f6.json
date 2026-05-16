@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "e7bd29f6",
+  "repo": "/tmp/tmptqhanzbb",
+  "task": "Describe the file structure",
+  "total_tokens": 33,
+  "compile_time_s": 0.0,
+  "ranked_files": 0,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 0,
+  "timestamp": 1778920755.4762478
+}

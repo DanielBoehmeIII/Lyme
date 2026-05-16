@@ -1,0 +1,13 @@
+{
+  "event": "context_compiled_improved",
+  "trace_id": "9770ed51",
+  "repo": "/tmp/tmprm62av1x",
+  "task": "How do tests run in this project?",
+  "total_tokens": 50,
+  "compile_time_s": 0.001,
+  "ranked_files": 1,
+  "frameworks": [],
+  "entry_points": [],
+  "total_analyzed_files": 1,
+  "timestamp": 1778920309.5416083
+}

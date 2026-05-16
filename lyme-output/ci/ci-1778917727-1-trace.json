@@ -1,0 +1,42 @@
+{
+  "id": "ci-1778917727-1-trace",
+  "type": "open_agent_trace",
+  "format": "json",
+  "content": {
+    "schema": "open-agent-trace-standard",
+    "schema_version": "0.7.0",
+    "trace_id": "ci-1778917727",
+    "header": {
+      "agent": {
+        "name": "lyme-ci-runner",
+        "version": "0.7.0",
+        "framework": "lyme"
+      },
+      "system": {
+        "repo_name": "test/repo"
+      }
+    },
+    "events": [
+      {
+        "type": "system",
+        "metadata": {
+          "action": "ci_run",
+          "commit": "abc",
+          "branch": "main"
+        }
+      },
+      {
+        "type": "metric",
+        "metadata": {
+          "risk_score": 0.0,
+          "decision": "allow"
+        }
+      }
+    ],
+    "summary": {
+      "status": "completed",
+      "decision": "allow"
+    }
+  },
+  "created_at": 1778917727.3076668
+}

@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "a8d85332",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "task": "What build system is used?",
+  "total_tokens": 358,
+  "compile_time_s": 0.114,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 10,
+  "timestamp": 1778920774.3388867
+}

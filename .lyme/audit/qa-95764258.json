@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "What build system is used?",
+  "refused": false,
+  "confidence": 0.0,
+  "latency_s": 0.029,
+  "evidence_count": 0,
+  "context_tokens": 32,
+  "tool_calls": 0
+}

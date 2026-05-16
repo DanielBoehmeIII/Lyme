@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "b74fdf3b",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "task": "How do tests run in this project?",
+  "total_tokens": 360,
+  "compile_time_s": 0.112,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 10,
+  "timestamp": 1778920773.5251496
+}

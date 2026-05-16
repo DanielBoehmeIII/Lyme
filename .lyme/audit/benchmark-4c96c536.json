@@ -1,0 +1,15 @@
+{
+  "event": "benchmark_completed",
+  "run_id": "4c96c536",
+  "total_tasks": 3,
+  "passed": 1,
+  "failed": 2,
+  "avg_latency_s": 0.018,
+  "avg_evidence": 0.0,
+  "categories": {
+    "bug_localization": {
+      "success_rate": 0.33,
+      "count": 3
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "Describe the file structure",
+  "refused": false,
+  "confidence": 0.4,
+  "latency_s": 0.024,
+  "evidence_count": 1,
+  "context_tokens": 33,
+  "tool_calls": 0
+}

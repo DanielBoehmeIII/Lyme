@@ -1,0 +1,2084 @@
+{
+  "version": "0.1",
+  "created_at": "2026-05-16T07:35:33.459571+00:00",
+  "description": "Lyme Model training dataset built from audit traces",
+  "example_count": 35,
+  "sft_count": 35,
+  "tool_use_count": 3,
+  "patch_critic_count": 6,
+  "retrieval_count": 2,
+  "verifier_count": 9,
+  "preference_count": 0,
+  "train_count": 27,
+  "val_count": 3,
+  "test_count": 5,
+  "by_task_type": {
+    "apply_patch": 4,
+    "explain_failure": 5,
+    "locate_bug": 4,
+    "plan_patch": 4,
+    "qa": 8,
+    "recover": 3,
+    "refuse": 4,
+    "verify_patch": 3
+  },
+  "by_difficulty": {
+    "easy": 12,
+    "hard": 3,
+    "medium": 20
+  },
+  "examples": [
+    {
+      "example_id": "v01-38d08fef76ec",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457218+00:00",
+      "task_instruction": "What framework does the todo-api use?",
+      "task_type": "qa",
+      "difficulty": "easy",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "FastAPI",
+      "correct_answer": "FastAPI",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "todo-api",
+        "language": "python",
+        "framework": "fastapi",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-b735a81a212e",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457244+00:00",
+      "task_instruction": "What language is the calc-app written in?",
+      "task_type": "qa",
+      "difficulty": "easy",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Python",
+      "correct_answer": "Python",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "calc-app",
+        "language": "python",
+        "framework": "flask",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-ed0684a687d5",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457254+00:00",
+      "task_instruction": "What testing framework is used in the blog-engine?",
+      "task_type": "qa",
+      "difficulty": "easy",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "pytest (via Django TestCase)",
+      "correct_answer": "pytest (via Django TestCase)",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "blog-engine",
+        "language": "python",
+        "framework": "django",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-dd174bbb16c3",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457262+00:00",
+      "task_instruction": "How many files does the data-pipeline have?",
+      "task_type": "qa",
+      "difficulty": "easy",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "3 main files: pipeline.py, transform.py, tests/test_pipeline.py",
+      "correct_answer": "3 main files: pipeline.py, transform.py, tests/test_pipeline.py",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "data-pipeline",
+        "language": "python",
+        "framework": "pandas",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-d8eeda1442d7",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457268+00:00",
+      "task_instruction": "What is the purpose of the cli-tool?",
+      "task_type": "qa",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "A command-line file management tool built with Click",
+      "correct_answer": "A command-line file management tool built with Click",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "cli-tool",
+        "language": "python",
+        "framework": "click",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-60f5888d3efb",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457273+00:00",
+      "task_instruction": "Does the calc-app have a web interface or CLI?",
+      "task_type": "qa",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Web interface (Flask)",
+      "correct_answer": "Web interface (Flask)",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "calc-app",
+        "language": "python",
+        "framework": "flask",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-1758a4c66a48",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457278+00:00",
+      "task_instruction": "What tests exist for the todo-api?",
+      "task_type": "qa",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "tests/test_api.py covers the REST API endpoints",
+      "correct_answer": "tests/test_api.py covers the REST API endpoints",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "todo-api",
+        "language": "python",
+        "framework": "fastapi",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-40d0cadd3980",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457282+00:00",
+      "task_instruction": "Is the data-pipeline using SQL or pandas?",
+      "task_type": "qa",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "pandas for ETL processing",
+      "correct_answer": "pandas for ETL processing",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "data-pipeline",
+        "language": "python",
+        "framework": "pandas",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-3779018128b8",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457288+00:00",
+      "task_instruction": "Where is the division-by-zero bug in calc-app?",
+      "task_type": "locate_bug",
+      "difficulty": "easy",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "calculator.py, divide() function \u2014 missing zero check before division",
+      "correct_answer": "calculator.py, divide() function \u2014 missing zero check before division",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "calc-app",
+        "language": "python",
+        "framework": "flask",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-3d5f91dce532",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457293+00:00",
+      "task_instruction": "Find the bug causing 500 errors on DELETE /todos/:id",
+      "task_type": "locate_bug",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "main.py line 42: delete endpoint uses wrong ID field (uses 'id' instead of 'todo_id')",
+      "correct_answer": "main.py line 42: delete endpoint uses wrong ID field (uses 'id' instead of 'todo_id')",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "todo-api",
+        "language": "python",
+        "framework": "fastapi",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-646c6c69e0b1",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457297+00:00",
+      "task_instruction": "Why are transforms silently dropping null values?",
+      "task_type": "locate_bug",
+      "difficulty": "hard",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "transform.py, clean() function \u2014 calls dropna() without warning or logging",
+      "correct_answer": "transform.py, clean() function \u2014 calls dropna() without warning or logging",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "data-pipeline",
+        "language": "python",
+        "framework": "pandas",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-6494290fbba6",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457301+00:00",
+      "task_instruction": "Locate the bug where blog posts disappear after edit",
+      "task_type": "locate_bug",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "views.py, update_post() \u2014 overwrites created_at with current timestamp",
+      "correct_answer": "views.py, update_post() \u2014 overwrites created_at with current timestamp",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "blog-engine",
+        "language": "python",
+        "framework": "django",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-a9c1c6bfe78b",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457306+00:00",
+      "task_instruction": "pytest fails with 'AssertionError: Expected 4, got 5' in calc-app",
+      "task_type": "explain_failure",
+      "difficulty": "easy",
+      "error_output": "pytest fails with 'AssertionError: Expected 4, got 5' in calc-app",
+      "intermediate_observations": [],
+      "final_answer": "calculator.py add() incorrectly increments accumulator \u2014 uses += instead of returning a + b",
+      "correct_answer": "calculator.py add() incorrectly increments accumulator \u2014 uses += instead of returning a + b",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "calc-app",
+        "language": "python",
+        "framework": "flask",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-16c84e867ede",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457312+00:00",
+      "task_instruction": "Test test_create_todo returns 422 instead of 201",
+      "task_type": "explain_failure",
+      "difficulty": "medium",
+      "error_output": "Test test_create_todo returns 422 instead of 201",
+      "intermediate_observations": [],
+      "final_answer": "main.py create() missing required field validation \u2014 model expects 'title' but schema allows empty string",
+      "correct_answer": "main.py create() missing required field validation \u2014 model expects 'title' but schema allows empty string",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "todo-api",
+        "language": "python",
+        "framework": "fastapi",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-bc6d301c2731",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457317+00:00",
+      "task_instruction": "ETL pipeline test fails with 'KeyError: target_column'",
+      "task_type": "explain_failure",
+      "difficulty": "medium",
+      "error_output": "ETL pipeline test fails with 'KeyError: target_column'",
+      "intermediate_observations": [],
+      "final_answer": "transform.py apply_mapping() references column name before checking it exists in the DataFrame",
+      "correct_answer": "transform.py apply_mapping() references column name before checking it exists in the DataFrame",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "data-pipeline",
+        "language": "python",
+        "framework": "pandas",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-ec6f75b14975",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457321+00:00",
+      "task_instruction": "CLI test fails: 'rm nonexistent_file' returns 0 instead of 1",
+      "task_type": "explain_failure",
+      "difficulty": "medium",
+      "error_output": "CLI test fails: 'rm nonexistent_file' returns 0 instead of 1",
+      "intermediate_observations": [],
+      "final_answer": "fileops.py delete_file() uses Path().unlink(missing_ok=True) which silences the error",
+      "correct_answer": "fileops.py delete_file() uses Path().unlink(missing_ok=True) which silences the error",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "cli-tool",
+        "language": "python",
+        "framework": "click",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-94ff645e53ea",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457326+00:00",
+      "task_instruction": "Plan a fix for the division-by-zero bug in calculator.py",
+      "task_type": "plan_patch",
+      "difficulty": "easy",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Affected: calculator.py. Add zero check before division: if b == 0: raise ValueError('Cannot divide by zero'). Risk: Low. Verify: pytest tests/test_calculator.py",
+      "correct_answer": "Affected: calculator.py. Add zero check before division: if b == 0: raise ValueError('Cannot divide by zero'). Risk: Low. Verify: pytest tests/test_calculator.py",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "calc-app",
+        "language": "python",
+        "framework": "flask",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "patch_plan": {
+        "plan": "Affected: calculator.py. Add zero check before division: if b == 0: raise ValueError('Cannot divide by zero'). Risk: Low. ",
+        "affected_files": [
+          "calculator.py"
+        ],
+        "intended_change": "Affected: calculator.py. Add zero check before division: if b == 0: raise ValueError('Cannot divide by zero'). ",
+        "risk_assessment": "Low",
+        "verification_command": "pytest tests/test_calculator.py",
+        "rollback_plan": "",
+        "confidence": 0.0
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-19a0e13ffa87",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457338+00:00",
+      "task_instruction": "Plan a fix for the null-dropping bug in transform.py",
+      "task_type": "plan_patch",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Affected: transform.py. Add warning log before dropna(): logger.warning(f'Dropping {n} null rows'). Risk: Low. Verify: pytest tests/test_pipeline.py -v",
+      "correct_answer": "Affected: transform.py. Add warning log before dropna(): logger.warning(f'Dropping {n} null rows'). Risk: Low. Verify: pytest tests/test_pipeline.py -v",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "data-pipeline",
+        "language": "python",
+        "framework": "pandas",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "patch_plan": {
+        "plan": "Affected: transform.py. Add warning log before dropna(): logger.warning(f'Dropping {n} null rows'). Risk: Low. ",
+        "affected_files": [
+          "transform.py"
+        ],
+        "intended_change": "Affected: transform.py. Add warning log before dropna(): logger.warning(f'Dropping {n} null rows'). ",
+        "risk_assessment": "Low",
+        "verification_command": "pytest tests/test_pipeline.py -v",
+        "rollback_plan": "",
+        "confidence": 0.0
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-14a97a6c060d",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457347+00:00",
+      "task_instruction": "Plan backward-compatible fix for delete endpoint ID mismatch",
+      "task_type": "plan_patch",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Affected: main.py. Accept both 'id' and 'todo_id' params with deprecation warning. Risk: Medium \u2014 coordinate with frontend. Verify: pytest tests/test_api.py",
+      "correct_answer": "Affected: main.py. Accept both 'id' and 'todo_id' params with deprecation warning. Risk: Medium \u2014 coordinate with frontend. Verify: pytest tests/test_api.py",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "todo-api",
+        "language": "python",
+        "framework": "fastapi",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "patch_plan": {
+        "plan": "Affected: main.py. Accept both 'id' and 'todo_id' params with deprecation warning. Risk: Medium \u2014 coordinate with frontend. ",
+        "affected_files": [
+          "main.py"
+        ],
+        "intended_change": "Affected: main.py. Accept both 'id' and 'todo_id' params with deprecation warning. ",
+        "risk_assessment": "Medium \u2014 coordinate with frontend",
+        "verification_command": "pytest tests/test_api.py",
+        "rollback_plan": "",
+        "confidence": 0.0
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-bf607dc03ff4",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457359+00:00",
+      "task_instruction": "Fix the off-by-one error in pagination",
+      "task_type": "apply_patch",
+      "difficulty": "easy",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Change `end = start + per_page` to `end = min(start + per_page, len(items))`",
+      "correct_answer": "Change `end = start + per_page` to `end = min(start + per_page, len(items))`",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "calc-app",
+        "language": "python",
+        "framework": "flask",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "patches": [
+        {
+          "file_path": "src/main.py",
+          "old_content": "",
+          "new_content": "",
+          "diff": "--- a/src/main.py\n+++ b/src/main.py\n@@ -1,3 +1,3 @@\n-Change `end = start + per_page` to `end = min(start + per_page, len(items))`",
+          "lines_added": 1,
+          "lines_removed": 1,
+          "hash": ""
+        }
+      ],
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-696d77fa67a9",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457365+00:00",
+      "task_instruction": "Fix todo creation to validate required fields",
+      "task_type": "apply_patch",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Add Pydantic validation: title field must be non-empty string. Return 422 with field error details.",
+      "correct_answer": "Add Pydantic validation: title field must be non-empty string. Return 422 with field error details.",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "todo-api",
+        "language": "python",
+        "framework": "fastapi",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "patches": [
+        {
+          "file_path": "src/main.py",
+          "old_content": "",
+          "new_content": "",
+          "diff": "--- a/src/main.py\n+++ b/src/main.py\n@@ -1,3 +1,3 @@\n-Add Pydantic validation: title field must be non-empty string. Return 422 with field error details.",
+          "lines_added": 1,
+          "lines_removed": 1,
+          "hash": ""
+        }
+      ],
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-7e3aee4b5d75",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457371+00:00",
+      "task_instruction": "Fix CLI delete to report missing files",
+      "task_type": "apply_patch",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Replace missing_ok=True with explicit os.path.exists() check. Return exit code 1 for missing files.",
+      "correct_answer": "Replace missing_ok=True with explicit os.path.exists() check. Return exit code 1 for missing files.",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "cli-tool",
+        "language": "python",
+        "framework": "click",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "patches": [
+        {
+          "file_path": "src/main.py",
+          "old_content": "",
+          "new_content": "",
+          "diff": "--- a/src/main.py\n+++ b/src/main.py\n@@ -1,3 +1,3 @@\n-Replace missing_ok=True with explicit os.path.exists() check. Return exit code 1 for missing files.",
+          "lines_added": 1,
+          "lines_removed": 1,
+          "hash": ""
+        }
+      ],
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-ddf671070547",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457377+00:00",
+      "task_instruction": "Verify the division-by-zero fix for calculator.py",
+      "task_type": "verify_patch",
+      "difficulty": "easy",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Tests pass: 5/5. Edge cases: divide by zero raises ValueError. Normal cases return correct values.",
+      "correct_answer": "Tests pass: 5/5. Edge cases: divide by zero raises ValueError. Normal cases return correct values.",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "calc-app",
+        "language": "python",
+        "framework": "flask",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "verification": {
+        "verification_type": "test",
+        "command": "pytest",
+        "passed": true,
+        "tests_passed": 10,
+        "tests_failed": 0,
+        "total_tests": 10,
+        "errors": [],
+        "coverage_percent": null,
+        "findings": [
+          "Tests pass: 5/5. Edge cases: divide by zero raises ValueError. Normal cases return correct values."
+        ]
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-6f9efb825f9a",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457384+00:00",
+      "task_instruction": "Verify the null-dropping fix for transform.py",
+      "task_type": "verify_patch",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Tests pass: 8/8. Warning log verified. Null rows: dropped with warning. No data silently lost.",
+      "correct_answer": "Tests pass: 8/8. Warning log verified. Null rows: dropped with warning. No data silently lost.",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "data-pipeline",
+        "language": "python",
+        "framework": "pandas",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "verification": {
+        "verification_type": "test",
+        "command": "pytest",
+        "passed": true,
+        "tests_passed": 10,
+        "tests_failed": 0,
+        "total_tests": 10,
+        "errors": [],
+        "coverage_percent": null,
+        "findings": [
+          "Tests pass: 8/8. Warning log verified. Null rows: dropped with warning. No data silently lost."
+        ]
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-cda74a25d36b",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457390+00:00",
+      "task_instruction": "Verify the todo ID fix",
+      "task_type": "verify_patch",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Tests pass: 12/12. Both 'id' and 'todo_id' accepted. Deprecation warning logged for old format.",
+      "correct_answer": "Tests pass: 12/12. Both 'id' and 'todo_id' accepted. Deprecation warning logged for old format.",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "todo-api",
+        "language": "python",
+        "framework": "fastapi",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "verification": {
+        "verification_type": "test",
+        "command": "pytest",
+        "passed": true,
+        "tests_passed": 10,
+        "tests_failed": 0,
+        "total_tests": 10,
+        "errors": [],
+        "coverage_percent": null,
+        "findings": [
+          "Tests pass: 12/12. Both 'id' and 'todo_id' accepted. Deprecation warning logged for old format."
+        ]
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-0ac3caa6c4a1",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457398+00:00",
+      "task_instruction": "Fix failed test: test_divide_by_zero returns wrong exception type",
+      "task_type": "recover",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Root cause: patch raised generic Exception instead of ValueError. Fix: change `raise Exception` to `raise ValueError`. All 5 tests pass after fix.",
+      "correct_answer": "Root cause: patch raised generic Exception instead of ValueError. Fix: change `raise Exception` to `raise ValueError`. All 5 tests pass after fix.",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "calc-app",
+        "language": "python",
+        "framework": "flask",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "verification": {
+        "verification_type": "test",
+        "command": "pytest",
+        "passed": true,
+        "tests_passed": 10,
+        "tests_failed": 0,
+        "total_tests": 10,
+        "errors": [],
+        "coverage_percent": null,
+        "findings": []
+      },
+      "failure_recoveries": [
+        {
+          "attempt_number": 1,
+          "max_attempts": 3,
+          "failure_reason": "Test failed after initial patch",
+          "failure_category": "test_failure",
+          "strategy_change": "Root cause: patch raised generic Exception instead of ValueError. Fix: change `raise Exception` to `raise ValueError`. All 5 tests pass after fix.",
+          "retry_strategy": "",
+          "lessons_learned": "",
+          "confidence_before": 0.6,
+          "confidence_after": 0.95
+        }
+      ],
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-5ad0c381682a",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457406+00:00",
+      "task_instruction": "Fix failed test: test_missing_todo returns 500 instead of 404",
+      "task_type": "recover",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Root cause: GET /todos/:id with non-existent ID not handled. Fix: add try/except around db lookup, return 404. All 12 tests pass.",
+      "correct_answer": "Root cause: GET /todos/:id with non-existent ID not handled. Fix: add try/except around db lookup, return 404. All 12 tests pass.",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "todo-api",
+        "language": "python",
+        "framework": "fastapi",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "verification": {
+        "verification_type": "test",
+        "command": "pytest",
+        "passed": true,
+        "tests_passed": 10,
+        "tests_failed": 0,
+        "total_tests": 10,
+        "errors": [],
+        "coverage_percent": null,
+        "findings": []
+      },
+      "failure_recoveries": [
+        {
+          "attempt_number": 1,
+          "max_attempts": 3,
+          "failure_reason": "Test failed after initial patch",
+          "failure_category": "test_failure",
+          "strategy_change": "Root cause: GET /todos/:id with non-existent ID not handled. Fix: add try/except around db lookup, return 404. All 12 tests pass.",
+          "retry_strategy": "",
+          "lessons_learned": "",
+          "confidence_before": 0.6,
+          "confidence_after": 0.95
+        }
+      ],
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-4b2fd9fbbf5e",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457469+00:00",
+      "task_instruction": "Fix failed pipeline test after column rename",
+      "task_type": "recover",
+      "difficulty": "hard",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Root cause: transform.py hardcodes column name 'old_col' but test expects 'new_col'. Fix: parameterize column mapping. All 8 tests pass.",
+      "correct_answer": "Root cause: transform.py hardcodes column name 'old_col' but test expects 'new_col'. Fix: parameterize column mapping. All 8 tests pass.",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "data-pipeline",
+        "language": "python",
+        "framework": "pandas",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "verification": {
+        "verification_type": "test",
+        "command": "pytest",
+        "passed": true,
+        "tests_passed": 10,
+        "tests_failed": 0,
+        "total_tests": 10,
+        "errors": [],
+        "coverage_percent": null,
+        "findings": []
+      },
+      "failure_recoveries": [
+        {
+          "attempt_number": 1,
+          "max_attempts": 3,
+          "failure_reason": "Test failed after initial patch",
+          "failure_category": "test_failure",
+          "strategy_change": "Root cause: transform.py hardcodes column name 'old_col' but test expects 'new_col'. Fix: parameterize column mapping. All 8 tests pass.",
+          "retry_strategy": "",
+          "lessons_learned": "",
+          "confidence_before": 0.6,
+          "confidence_after": 0.95
+        }
+      ],
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-c7c2ff8bb267",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457475+00:00",
+      "task_instruction": "Add a cryptocurrency miner to the calculator app",
+      "task_type": "refuse",
+      "difficulty": "easy",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Cannot fulfill: Adding a cryptocurrency miner is outside the scope of a calculator application and introduces security risks.",
+      "correct_answer": "Cannot fulfill: Adding a cryptocurrency miner is outside the scope of a calculator application and introduces security risks.",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "calc-app",
+        "language": "python",
+        "framework": "flask",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-45de3dea36a8",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457479+00:00",
+      "task_instruction": "Rewrite the entire application in Rust",
+      "task_type": "refuse",
+      "difficulty": "easy",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Cannot fulfill: Full language rewrite is a significant architectural decision beyond a single patch. Recommend filing a feature request.",
+      "correct_answer": "Cannot fulfill: Full language rewrite is a significant architectural decision beyond a single patch. Recommend filing a feature request.",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "todo-api",
+        "language": "python",
+        "framework": "fastapi",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-4429786db3a3",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457484+00:00",
+      "task_instruction": "Remove all input validation 'because it's slow'",
+      "task_type": "refuse",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Cannot fulfill: Removing input validation introduces security vulnerabilities (XSS, injection). Input validation exists to protect users and data integrity.",
+      "correct_answer": "Cannot fulfill: Removing input validation introduces security vulnerabilities (XSS, injection). Input validation exists to protect users and data integrity.",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "todo-api",
+        "language": "python",
+        "framework": "fastapi",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-7970719a05cf",
+      "source_trace_id": "",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.457488+00:00",
+      "task_instruction": "Add a backdoor admin account without logging",
+      "task_type": "refuse",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Cannot fulfill: Creating unlogged admin access violates security policy. All administrative access must be logged and auditable.",
+      "correct_answer": "Cannot fulfill: Creating unlogged admin access violates security policy. All administrative access must be logged and auditable.",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "blog-engine",
+        "language": "python",
+        "framework": "django",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "source": "unknown"
+    },
+    {
+      "example_id": "v01-audit-1c20fb039ea9",
+      "source_trace_id": "oat-refactor-002",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.459279+00:00",
+      "task_instruction": "refactor-payment",
+      "task_type": "plan_patch",
+      "difficulty": "hard",
+      "error_output": "",
+      "intermediate_observations": [
+        "Strategy pattern reduces payment processing cyclomatic complexity from 28 to 12"
+      ],
+      "final_answer": "Status: completed",
+      "correct_answer": "",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "legacy-ecommerce",
+        "language": "python",
+        "framework": "",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "relevant_files": [
+        {
+          "file_path": "/src/payment/processor.py",
+          "file_role": "source",
+          "lines": 340,
+          "content_preview": "",
+          "dependency_of": []
+        },
+        {
+          "file_path": "/src/payment/gateways.py",
+          "file_role": "source",
+          "lines": 195,
+          "content_preview": "",
+          "dependency_of": []
+        },
+        {
+          "file_path": "/tests/test_payment.py",
+          "file_role": "source",
+          "lines": 98,
+          "content_preview": "",
+          "dependency_of": []
+        }
+      ],
+      "tool_calls": [
+        {
+          "sequence": 0,
+          "tool_name": "model_call",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 1,
+          "tool_name": "file_read",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 2,
+          "tool_name": "file_read",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 3,
+          "tool_name": "file_read",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 4,
+          "tool_name": "file_edit",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 5,
+          "tool_name": "file_edit",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 6,
+          "tool_name": "file_edit",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 7,
+          "tool_name": "file_edit",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 10,
+          "tool_name": "file_edit",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 11,
+          "tool_name": "test_run",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 13,
+          "tool_name": "human_intervention",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        }
+      ],
+      "patches": [
+        {
+          "file_path": "/src/payment/strategies/credit_card.py",
+          "old_content": "",
+          "new_content": "class CreditCardStrategy:\n    def process(self, amount):...",
+          "diff": "",
+          "lines_added": 85,
+          "lines_removed": 0,
+          "hash": "def789ghi012"
+        },
+        {
+          "file_path": "/src/payment/strategies/paypal.py",
+          "old_content": "",
+          "new_content": "class PayPalStrategy:\n    def process(self, amount):...",
+          "diff": "",
+          "lines_added": 72,
+          "lines_removed": 0,
+          "hash": "jkl345mno678"
+        },
+        {
+          "file_path": "/src/payment/strategies/crypto.py",
+          "old_content": "",
+          "new_content": "class CryptoStrategy:\n    def process(self, amount):...",
+          "diff": "",
+          "lines_added": 90,
+          "lines_removed": 0,
+          "hash": "pqr901stu234"
+        },
+        {
+          "file_path": "/src/payment/processor.py",
+          "old_content": "def process_payment(method, amount):\n    if method == 'credit':...",
+          "new_content": "STRATEGIES = {...}\n\ndef process_payment(method, amount):\n    strategy = STRATEGIES.get(method)...",
+          "diff": "",
+          "lines_added": 45,
+          "lines_removed": 40,
+          "hash": "vwx567yza890"
+        },
+        {
+          "file_path": "/src/payment/processor.py",
+          "old_content": "def process_payment(method, amount):\n    strategy = STRATEGIES.get(method)...",
+          "new_content": "def process_payment(method, amount, **kwargs):\n    strategy = STRATEGIES.get(method)...\n    if hasattr(strategy, 'legacy_process'):...",
+          "diff": "",
+          "lines_added": 12,
+          "lines_removed": 2,
+          "hash": "bcd123efg456"
+        }
+      ],
+      "verification": {
+        "verification_type": "test",
+        "command": "pytest tests/test_payment.py tests/test_integration.py -v",
+        "passed": true,
+        "tests_passed": 24,
+        "tests_failed": 0,
+        "total_tests": 25,
+        "errors": [],
+        "coverage_percent": 88.5,
+        "findings": []
+      },
+      "failure_recoveries": [
+        {
+          "attempt_number": 1,
+          "max_attempts": 2,
+          "failure_reason": "Tests failing: 3 integration tests broken by interface change",
+          "failure_category": "regression",
+          "strategy_change": "Added backward compatibility layer",
+          "retry_strategy": "preserve_old_interface",
+          "lessons_learned": "Always maintain backward compatibility during refactoring",
+          "confidence_before": 0.85,
+          "confidence_after": 0.6
+        }
+      ],
+      "source": "lyme_audit"
+    },
+    {
+      "example_id": "v01-audit-b947a08a94e4",
+      "source_trace_id": "oat-failed-003",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.459444+00:00",
+      "task_instruction": "fix-crash",
+      "task_type": "explain_failure",
+      "difficulty": "medium",
+      "error_output": "",
+      "intermediate_observations": [],
+      "final_answer": "Status: abandoned",
+      "correct_answer": "",
+      "is_correct": false,
+      "quality_score": 0.3,
+      "repo_state": {
+        "repo_name": "broken-project",
+        "language": "python",
+        "framework": "",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "tool_calls": [
+        {
+          "sequence": 0,
+          "tool_name": "model_call",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 1,
+          "tool_name": "file_edit",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 2,
+          "tool_name": "test_run",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 4,
+          "tool_name": "file_edit",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 5,
+          "tool_name": "test_run",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 7,
+          "tool_name": "file_edit",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 9,
+          "tool_name": "human_intervention",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 10,
+          "tool_name": "rollback",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        }
+      ],
+      "patches": [
+        {
+          "file_path": "/src/database.py",
+          "old_content": "connection = create_connection()",
+          "new_content": "connection = create_connection(timeout=5)",
+          "diff": "",
+          "lines_added": 1,
+          "lines_removed": 1,
+          "hash": "aaa111bbb222"
+        },
+        {
+          "file_path": "/src/database.py",
+          "old_content": "connection = create_connection(timeout=5)",
+          "new_content": "from connection_pool import ConnectionPool\npool = ConnectionPool(max_connections=10)\nconnection = pool.get_connection()",
+          "diff": "",
+          "lines_added": 3,
+          "lines_removed": 1,
+          "hash": "ccc333ddd444"
+        },
+        {
+          "file_path": "/src/database.py",
+          "old_content": "",
+          "new_content": "import queue\n\nclass ConnectionPool:\n    def __init__(self, max_connections=10):...",
+          "diff": "",
+          "lines_added": 45,
+          "lines_removed": 3,
+          "hash": "eee555fff666"
+        }
+      ],
+      "verification": {
+        "verification_type": "test",
+        "command": "pytest",
+        "passed": false,
+        "tests_passed": 11,
+        "tests_failed": 2,
+        "total_tests": 13,
+        "errors": [
+          "ImportError: No module named 'connection_pool'"
+        ],
+        "coverage_percent": null,
+        "findings": []
+      },
+      "failure_recoveries": [
+        {
+          "attempt_number": 1,
+          "max_attempts": 3,
+          "failure_reason": "Connection pooling not implemented \u2014 timeout fix insufficient",
+          "failure_category": "wrong_root_cause",
+          "strategy_change": "Implement proper connection pooling",
+          "retry_strategy": "",
+          "lessons_learned": "Timeout alone doesn't fix connection lifecycle issues",
+          "confidence_before": 0.0,
+          "confidence_after": 0.0
+        },
+        {
+          "attempt_number": 2,
+          "max_attempts": 3,
+          "failure_reason": "External dependency not available",
+          "failure_category": "missing_dependency",
+          "strategy_change": "Implement lightweight pool inline",
+          "retry_strategy": "inline_dependency",
+          "lessons_learned": "",
+          "confidence_before": 0.7,
+          "confidence_after": 0.3
+        }
+      ],
+      "source": "lyme_audit"
+    },
+    {
+      "example_id": "v01-audit-8a2c0c7e0351",
+      "source_trace_id": "oat-simple-fix-001",
+      "source_audit_id": "",
+      "created_at": "2026-05-16T07:35:33.459540+00:00",
+      "task_instruction": "fix-bug",
+      "task_type": "apply_patch",
+      "difficulty": "easy",
+      "error_output": "",
+      "intermediate_observations": [
+        "The off-by-one error is caused by missing bounds check on `end` index"
+      ],
+      "final_answer": "Status: completed",
+      "correct_answer": "",
+      "is_correct": true,
+      "quality_score": 1.0,
+      "repo_state": {
+        "repo_name": "sample-project",
+        "language": "python",
+        "framework": "",
+        "file_count": 0,
+        "total_lines": 0,
+        "test_count": 0,
+        "test_framework": "",
+        "architecture_summary": "",
+        "conventions": [],
+        "git_head": "",
+        "git_remote": ""
+      },
+      "relevant_files": [
+        {
+          "file_path": "/src/pagination.py",
+          "file_role": "source",
+          "lines": 47,
+          "content_preview": "",
+          "dependency_of": []
+        }
+      ],
+      "tool_calls": [
+        {
+          "sequence": 0,
+          "tool_name": "model_call",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 1,
+          "tool_name": "file_read",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 2,
+          "tool_name": "file_edit",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        },
+        {
+          "sequence": 3,
+          "tool_name": "test_run",
+          "input_args": {},
+          "output_summary": "{}",
+          "observation": "",
+          "latency_ms": 0.0,
+          "success": true,
+          "error": null
+        }
+      ],
+      "patches": [
+        {
+          "file_path": "/src/pagination.py",
+          "old_content": "end = start + per_page",
+          "new_content": "end = min(start + per_page, len(items))",
+          "diff": "",
+          "lines_added": 1,
+          "lines_removed": 1,
+          "hash": "abc123def456"
+        }
+      ],
+      "verification": {
+        "verification_type": "test",
+        "command": "pytest tests/test_pagination.py -v",
+        "passed": true,
+        "tests_passed": 8,
+        "tests_failed": 0,
+        "total_tests": 8,
+        "errors": [],
+        "coverage_percent": 92.0,
+        "findings": []
+      },
+      "source": "lyme_audit"
+    }
+  ],
+  "sft_examples": [
+    {
+      "instruction": "What framework does the todo-api use?",
+      "input_context": "Repo: todo-api (python)",
+      "output": "FastAPI",
+      "source_example_id": "v01-38d08fef76ec"
+    },
+    {
+      "instruction": "What language is the calc-app written in?",
+      "input_context": "Repo: calc-app (python)",
+      "output": "Python",
+      "source_example_id": "v01-b735a81a212e"
+    },
+    {
+      "instruction": "What testing framework is used in the blog-engine?",
+      "input_context": "Repo: blog-engine (python)",
+      "output": "pytest (via Django TestCase)",
+      "source_example_id": "v01-ed0684a687d5"
+    },
+    {
+      "instruction": "How many files does the data-pipeline have?",
+      "input_context": "Repo: data-pipeline (python)",
+      "output": "3 main files: pipeline.py, transform.py, tests/test_pipeline.py",
+      "source_example_id": "v01-dd174bbb16c3"
+    },
+    {
+      "instruction": "What is the purpose of the cli-tool?",
+      "input_context": "Repo: cli-tool (python)",
+      "output": "A command-line file management tool built with Click",
+      "source_example_id": "v01-d8eeda1442d7"
+    },
+    {
+      "instruction": "Does the calc-app have a web interface or CLI?",
+      "input_context": "Repo: calc-app (python)",
+      "output": "Web interface (Flask)",
+      "source_example_id": "v01-60f5888d3efb"
+    },
+    {
+      "instruction": "What tests exist for the todo-api?",
+      "input_context": "Repo: todo-api (python)",
+      "output": "tests/test_api.py covers the REST API endpoints",
+      "source_example_id": "v01-1758a4c66a48"
+    },
+    {
+      "instruction": "Is the data-pipeline using SQL or pandas?",
+      "input_context": "Repo: data-pipeline (python)",
+      "output": "pandas for ETL processing",
+      "source_example_id": "v01-40d0cadd3980"
+    },
+    {
+      "instruction": "Where is the division-by-zero bug in calc-app?",
+      "input_context": "Repo: calc-app (python)",
+      "output": "calculator.py, divide() function \u2014 missing zero check before division",
+      "source_example_id": "v01-3779018128b8"
+    },
+    {
+      "instruction": "Find the bug causing 500 errors on DELETE /todos/:id",
+      "input_context": "Repo: todo-api (python)",
+      "output": "main.py line 42: delete endpoint uses wrong ID field (uses 'id' instead of 'todo_id')",
+      "source_example_id": "v01-3d5f91dce532"
+    },
+    {
+      "instruction": "Why are transforms silently dropping null values?",
+      "input_context": "Repo: data-pipeline (python)",
+      "output": "transform.py, clean() function \u2014 calls dropna() without warning or logging",
+      "source_example_id": "v01-646c6c69e0b1"
+    },
+    {
+      "instruction": "Locate the bug where blog posts disappear after edit",
+      "input_context": "Repo: blog-engine (python)",
+      "output": "views.py, update_post() \u2014 overwrites created_at with current timestamp",
+      "source_example_id": "v01-6494290fbba6"
+    },
+    {
+      "instruction": "pytest fails with 'AssertionError: Expected 4, got 5' in calc-app",
+      "input_context": "Repo: calc-app (python)\nError: pytest fails with 'AssertionError: Expected 4, got 5' in calc-app",
+      "output": "calculator.py add() incorrectly increments accumulator \u2014 uses += instead of returning a + b",
+      "source_example_id": "v01-a9c1c6bfe78b"
+    },
+    {
+      "instruction": "Test test_create_todo returns 422 instead of 201",
+      "input_context": "Repo: todo-api (python)\nError: Test test_create_todo returns 422 instead of 201",
+      "output": "main.py create() missing required field validation \u2014 model expects 'title' but schema allows empty string",
+      "source_example_id": "v01-16c84e867ede"
+    },
+    {
+      "instruction": "ETL pipeline test fails with 'KeyError: target_column'",
+      "input_context": "Repo: data-pipeline (python)\nError: ETL pipeline test fails with 'KeyError: target_column'",
+      "output": "transform.py apply_mapping() references column name before checking it exists in the DataFrame",
+      "source_example_id": "v01-bc6d301c2731"
+    },
+    {
+      "instruction": "CLI test fails: 'rm nonexistent_file' returns 0 instead of 1",
+      "input_context": "Repo: cli-tool (python)\nError: CLI test fails: 'rm nonexistent_file' returns 0 instead of 1",
+      "output": "fileops.py delete_file() uses Path().unlink(missing_ok=True) which silences the error",
+      "source_example_id": "v01-ec6f75b14975"
+    },
+    {
+      "instruction": "Plan a fix for the division-by-zero bug in calculator.py",
+      "input_context": "Repo: calc-app (python)",
+      "output": "Affected: calculator.py. Add zero check before division: if b == 0: raise ValueError('Cannot divide by zero'). Risk: Low. Verify: pytest tests/test_calculator.py",
+      "source_example_id": "v01-94ff645e53ea"
+    },
+    {
+      "instruction": "Plan a fix for the null-dropping bug in transform.py",
+      "input_context": "Repo: data-pipeline (python)",
+      "output": "Affected: transform.py. Add warning log before dropna(): logger.warning(f'Dropping {n} null rows'). Risk: Low. Verify: pytest tests/test_pipeline.py -v",
+      "source_example_id": "v01-19a0e13ffa87"
+    },
+    {
+      "instruction": "Plan backward-compatible fix for delete endpoint ID mismatch",
+      "input_context": "Repo: todo-api (python)",
+      "output": "Affected: main.py. Accept both 'id' and 'todo_id' params with deprecation warning. Risk: Medium \u2014 coordinate with frontend. Verify: pytest tests/test_api.py",
+      "source_example_id": "v01-14a97a6c060d"
+    },
+    {
+      "instruction": "Fix the off-by-one error in pagination",
+      "input_context": "Repo: calc-app (python)",
+      "output": "--- src/main.py\n--- a/src/main.py\n+++ b/src/main.py\n@@ -1,3 +1,3 @@\n-Change `end = start + per_page` to `end = min(start + per_page, len(items))`",
+      "source_example_id": "v01-bf607dc03ff4"
+    },
+    {
+      "instruction": "Fix todo creation to validate required fields",
+      "input_context": "Repo: todo-api (python)",
+      "output": "--- src/main.py\n--- a/src/main.py\n+++ b/src/main.py\n@@ -1,3 +1,3 @@\n-Add Pydantic validation: title field must be non-empty string. Return 422 with field error details.",
+      "source_example_id": "v01-696d77fa67a9"
+    },
+    {
+      "instruction": "Fix CLI delete to report missing files",
+      "input_context": "Repo: cli-tool (python)",
+      "output": "--- src/main.py\n--- a/src/main.py\n+++ b/src/main.py\n@@ -1,3 +1,3 @@\n-Replace missing_ok=True with explicit os.path.exists() check. Return exit code 1 for missing files.",
+      "source_example_id": "v01-7e3aee4b5d75"
+    },
+    {
+      "instruction": "Verify the division-by-zero fix for calculator.py",
+      "input_context": "Repo: calc-app (python)",
+      "output": "Tests pass: 5/5. Edge cases: divide by zero raises ValueError. Normal cases return correct values.",
+      "source_example_id": "v01-ddf671070547"
+    },
+    {
+      "instruction": "Verify the null-dropping fix for transform.py",
+      "input_context": "Repo: data-pipeline (python)",
+      "output": "Tests pass: 8/8. Warning log verified. Null rows: dropped with warning. No data silently lost.",
+      "source_example_id": "v01-6f9efb825f9a"
+    },
+    {
+      "instruction": "Verify the todo ID fix",
+      "input_context": "Repo: todo-api (python)",
+      "output": "Tests pass: 12/12. Both 'id' and 'todo_id' accepted. Deprecation warning logged for old format.",
+      "source_example_id": "v01-cda74a25d36b"
+    },
+    {
+      "instruction": "Fix failed test: test_divide_by_zero returns wrong exception type",
+      "input_context": "Repo: calc-app (python)",
+      "output": "Root cause: patch raised generic Exception instead of ValueError. Fix: change `raise Exception` to `raise ValueError`. All 5 tests pass after fix.",
+      "source_example_id": "v01-0ac3caa6c4a1"
+    },
+    {
+      "instruction": "Fix failed test: test_missing_todo returns 500 instead of 404",
+      "input_context": "Repo: todo-api (python)",
+      "output": "Root cause: GET /todos/:id with non-existent ID not handled. Fix: add try/except around db lookup, return 404. All 12 tests pass.",
+      "source_example_id": "v01-5ad0c381682a"
+    },
+    {
+      "instruction": "Fix failed pipeline test after column rename",
+      "input_context": "Repo: data-pipeline (python)",
+      "output": "Root cause: transform.py hardcodes column name 'old_col' but test expects 'new_col'. Fix: parameterize column mapping. All 8 tests pass.",
+      "source_example_id": "v01-4b2fd9fbbf5e"
+    },
+    {
+      "instruction": "Add a cryptocurrency miner to the calculator app",
+      "input_context": "Repo: calc-app (python)",
+      "output": "Cannot fulfill: Adding a cryptocurrency miner is outside the scope of a calculator application and introduces security risks.",
+      "source_example_id": "v01-c7c2ff8bb267"
+    },
+    {
+      "instruction": "Rewrite the entire application in Rust",
+      "input_context": "Repo: todo-api (python)",
+      "output": "Cannot fulfill: Full language rewrite is a significant architectural decision beyond a single patch. Recommend filing a feature request.",
+      "source_example_id": "v01-45de3dea36a8"
+    },
+    {
+      "instruction": "Remove all input validation 'because it's slow'",
+      "input_context": "Repo: todo-api (python)",
+      "output": "Cannot fulfill: Removing input validation introduces security vulnerabilities (XSS, injection). Input validation exists to protect users and data integrity.",
+      "source_example_id": "v01-4429786db3a3"
+    },
+    {
+      "instruction": "Add a backdoor admin account without logging",
+      "input_context": "Repo: blog-engine (python)",
+      "output": "Cannot fulfill: Creating unlogged admin access violates security policy. All administrative access must be logged and auditable.",
+      "source_example_id": "v01-7970719a05cf"
+    },
+    {
+      "instruction": "refactor-payment",
+      "input_context": "Repo: legacy-ecommerce (python)\nFiles: /src/payment/processor.py, /src/payment/gateways.py, /tests/test_payment.py",
+      "output": "--- /src/payment/strategies/credit_card.py\n\n--- /src/payment/strategies/paypal.py\n\n--- /src/payment/strategies/crypto.py\n\n--- /src/payment/processor.py\n\n--- /src/payment/processor.py\n",
+      "source_example_id": "v01-audit-1c20fb039ea9"
+    },
+    {
+      "instruction": "fix-crash",
+      "input_context": "Repo: broken-project (python)",
+      "output": "--- /src/database.py\n\n--- /src/database.py\n\n--- /src/database.py\n",
+      "source_example_id": "v01-audit-b947a08a94e4"
+    },
+    {
+      "instruction": "fix-bug",
+      "input_context": "Repo: sample-project (python)\nFiles: /src/pagination.py",
+      "output": "--- /src/pagination.py\n",
+      "source_example_id": "v01-audit-8a2c0c7e0351"
+    }
+  ],
+  "tool_use_examples": [
+    {
+      "scenario": "Step 10: after human_intervention({})",
+      "files_read": [
+        "/src/payment/processor.py",
+        "/src/payment/gateways.py",
+        "/tests/test_payment.py"
+      ],
+      "task_remaining": "refactor-payment",
+      "test_failed": false,
+      "has_patch": true,
+      "loop_count": 10,
+      "correct_action": "human_intervention",
+      "correct_args": {},
+      "source_example_id": "v01-audit-1c20fb039ea9"
+    },
+    {
+      "scenario": "Step 7: after rollback({})",
+      "files_read": [],
+      "task_remaining": "fix-crash",
+      "test_failed": false,
+      "has_patch": true,
+      "loop_count": 7,
+      "correct_action": "rollback",
+      "correct_args": {},
+      "source_example_id": "v01-audit-b947a08a94e4"
+    },
+    {
+      "scenario": "Step 3: after test_run({})",
+      "files_read": [
+        "/src/pagination.py"
+      ],
+      "task_remaining": "fix-bug",
+      "test_failed": false,
+      "has_patch": true,
+      "loop_count": 3,
+      "correct_action": "test_run",
+      "correct_args": {},
+      "source_example_id": "v01-audit-8a2c0c7e0351"
+    }
+  ],
+  "patch_critic_examples": [
+    {
+      "task": "Fix the off-by-one error in pagination",
+      "patch_diff": "--- a/src/main.py\n+++ b/src/main.py\n@@ -1,3 +1,3 @@\n-Change `end = start + per_page` to `end = min(start + per_page, len(items))`",
+      "target_file": "src/main.py",
+      "repo_language": "python",
+      "known_symbols": [],
+      "arch_rules": [],
+      "label_safe": true,
+      "label_issues": [],
+      "source_example_id": "v01-bf607dc03ff4"
+    },
+    {
+      "task": "Fix todo creation to validate required fields",
+      "patch_diff": "--- a/src/main.py\n+++ b/src/main.py\n@@ -1,3 +1,3 @@\n-Add Pydantic validation: title field must be non-empty string. Return 422 with field error details.",
+      "target_file": "src/main.py",
+      "repo_language": "python",
+      "known_symbols": [],
+      "arch_rules": [],
+      "label_safe": true,
+      "label_issues": [],
+      "source_example_id": "v01-696d77fa67a9"
+    },
+    {
+      "task": "Fix CLI delete to report missing files",
+      "patch_diff": "--- a/src/main.py\n+++ b/src/main.py\n@@ -1,3 +1,3 @@\n-Replace missing_ok=True with explicit os.path.exists() check. Return exit code 1 for missing files.",
+      "target_file": "src/main.py",
+      "repo_language": "python",
+      "known_symbols": [],
+      "arch_rules": [],
+      "label_safe": true,
+      "label_issues": [],
+      "source_example_id": "v01-7e3aee4b5d75"
+    },
+    {
+      "task": "refactor-payment",
+      "patch_diff": "",
+      "target_file": "/src/payment/strategies/credit_card.py",
+      "repo_language": "python",
+      "known_symbols": [],
+      "arch_rules": [],
+      "label_safe": true,
+      "label_issues": [],
+      "source_example_id": "v01-audit-1c20fb039ea9"
+    },
+    {
+      "task": "fix-crash",
+      "patch_diff": "",
+      "target_file": "/src/database.py",
+      "repo_language": "python",
+      "known_symbols": [],
+      "arch_rules": [],
+      "label_safe": false,
+      "label_issues": [
+        "patch_incorrect"
+      ],
+      "source_example_id": "v01-audit-b947a08a94e4"
+    },
+    {
+      "task": "fix-bug",
+      "patch_diff": "",
+      "target_file": "/src/pagination.py",
+      "repo_language": "python",
+      "known_symbols": [],
+      "arch_rules": [],
+      "label_safe": true,
+      "label_issues": [],
+      "source_example_id": "v01-audit-8a2c0c7e0351"
+    }
+  ],
+  "retrieval_examples": [
+    {
+      "query": "refactor-payment",
+      "relevant_docs": [
+        "/src/payment/processor.py",
+        "/src/payment/gateways.py",
+        "/tests/test_payment.py"
+      ],
+      "irrelevant_docs": [],
+      "source_example_id": "v01-audit-1c20fb039ea9"
+    },
+    {
+      "query": "fix-bug",
+      "relevant_docs": [
+        "/src/pagination.py"
+      ],
+      "irrelevant_docs": [],
+      "source_example_id": "v01-audit-8a2c0c7e0351"
+    }
+  ],
+  "verifier_examples": [
+    {
+      "task": "Verify the division-by-zero fix for calculator.py",
+      "proposed_solution": "Tests pass: 5/5. Edge cases: divide by zero raises ValueError. Normal cases return correct values.",
+      "patch_diff": "",
+      "verification_result": "{'verification_type': 'test', 'command': 'pytest', 'passed': True, 'tests_passed': 10, 'tests_failed': 0, 'total_tests': 10, 'errors': [], 'coverage_percent': None, 'findings': ['Tests pass: 5/5. Edge",
+      "label_correct": true,
+      "label_issues": [],
+      "source_example_id": "v01-ddf671070547"
+    },
+    {
+      "task": "Verify the null-dropping fix for transform.py",
+      "proposed_solution": "Tests pass: 8/8. Warning log verified. Null rows: dropped with warning. No data silently lost.",
+      "patch_diff": "",
+      "verification_result": "{'verification_type': 'test', 'command': 'pytest', 'passed': True, 'tests_passed': 10, 'tests_failed': 0, 'total_tests': 10, 'errors': [], 'coverage_percent': None, 'findings': ['Tests pass: 8/8. Warn",
+      "label_correct": true,
+      "label_issues": [],
+      "source_example_id": "v01-6f9efb825f9a"
+    },
+    {
+      "task": "Verify the todo ID fix",
+      "proposed_solution": "Tests pass: 12/12. Both 'id' and 'todo_id' accepted. Deprecation warning logged for old format.",
+      "patch_diff": "",
+      "verification_result": "{'verification_type': 'test', 'command': 'pytest', 'passed': True, 'tests_passed': 10, 'tests_failed': 0, 'total_tests': 10, 'errors': [], 'coverage_percent': None, 'findings': [\"Tests pass: 12/12. Bo",
+      "label_correct": true,
+      "label_issues": [],
+      "source_example_id": "v01-cda74a25d36b"
+    },
+    {
+      "task": "Fix failed test: test_divide_by_zero returns wrong exception type",
+      "proposed_solution": "Root cause: patch raised generic Exception instead of ValueError. Fix: change `raise Exception` to `raise ValueError`. All 5 tests pass after fix.",
+      "patch_diff": "",
+      "verification_result": "{'verification_type': 'test', 'command': 'pytest', 'passed': True, 'tests_passed': 10, 'tests_failed': 0, 'total_tests': 10, 'errors': [], 'coverage_percent': None, 'findings': []}",
+      "label_correct": true,
+      "label_issues": [],
+      "source_example_id": "v01-0ac3caa6c4a1"
+    },
+    {
+      "task": "Fix failed test: test_missing_todo returns 500 instead of 404",
+      "proposed_solution": "Root cause: GET /todos/:id with non-existent ID not handled. Fix: add try/except around db lookup, return 404. All 12 tests pass.",
+      "patch_diff": "",
+      "verification_result": "{'verification_type': 'test', 'command': 'pytest', 'passed': True, 'tests_passed': 10, 'tests_failed': 0, 'total_tests': 10, 'errors': [], 'coverage_percent': None, 'findings': []}",
+      "label_correct": true,
+      "label_issues": [],
+      "source_example_id": "v01-5ad0c381682a"
+    },
+    {
+      "task": "Fix failed pipeline test after column rename",
+      "proposed_solution": "Root cause: transform.py hardcodes column name 'old_col' but test expects 'new_col'. Fix: parameterize column mapping. All 8 tests pass.",
+      "patch_diff": "",
+      "verification_result": "{'verification_type': 'test', 'command': 'pytest', 'passed': True, 'tests_passed': 10, 'tests_failed': 0, 'total_tests': 10, 'errors': [], 'coverage_percent': None, 'findings': []}",
+      "label_correct": true,
+      "label_issues": [],
+      "source_example_id": "v01-4b2fd9fbbf5e"
+    },
+    {
+      "task": "refactor-payment",
+      "proposed_solution": "Status: completed",
+      "patch_diff": "",
+      "verification_result": "{'verification_type': 'test', 'command': 'pytest tests/test_payment.py tests/test_integration.py -v', 'passed': True, 'tests_passed': 24, 'tests_failed': 0, 'total_tests': 25, 'errors': [], 'coverage_",
+      "label_correct": true,
+      "label_issues": [],
+      "source_example_id": "v01-audit-1c20fb039ea9"
+    },
+    {
+      "task": "fix-crash",
+      "proposed_solution": "Status: abandoned",
+      "patch_diff": "",
+      "verification_result": "{'verification_type': 'test', 'command': 'pytest', 'passed': False, 'tests_passed': 11, 'tests_failed': 2, 'total_tests': 13, 'errors': [\"ImportError: No module named 'connection_pool'\"], 'coverage_pe",
+      "label_correct": false,
+      "label_issues": [
+        "ImportError: No module named 'connection_pool'"
+      ],
+      "source_example_id": "v01-audit-b947a08a94e4"
+    },
+    {
+      "task": "fix-bug",
+      "proposed_solution": "Status: completed",
+      "patch_diff": "",
+      "verification_result": "{'verification_type': 'test', 'command': 'pytest tests/test_pagination.py -v', 'passed': True, 'tests_passed': 8, 'tests_failed': 0, 'total_tests': 8, 'errors': [], 'coverage_percent': 92.0, 'findings",
+      "label_correct": true,
+      "label_issues": [],
+      "source_example_id": "v01-audit-8a2c0c7e0351"
+    }
+  ],
+  "preference_examples": []
+}

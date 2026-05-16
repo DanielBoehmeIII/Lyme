@@ -1,0 +1,72 @@
+{
+  "hardware_profile": {
+    "cpu": {
+      "model": "12th Gen Intel(R) Core(TM) i7-12650H",
+      "cores": 16,
+      "architecture": "x86_64"
+    },
+    "ram": {
+      "total_gb": 16.5,
+      "available_gb": 0.8
+    },
+    "gpu": {
+      "present": true,
+      "name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "vram_total_mb": 8188,
+      "driver_version": "535.288.01",
+      "backend": "cuda"
+    },
+    "disk": {
+      "total_gb": 500.0,
+      "free_gb": 156.0,
+      "path": "/home"
+    },
+    "platform": "Linux-6.17.0-23-generic-x86_64-with-glibc2.39",
+    "ollama_available": true,
+    "ollama_models": [
+      {
+        "name": "deepseek-coder:6.7b",
+        "size": "3.8 GB"
+      },
+      {
+        "name": "llama3:8b",
+        "size": "4.7 GB"
+      },
+      {
+        "name": "gpt-oss:20b",
+        "size": "13 GB"
+      },
+      {
+        "name": "gpt-oss:20b-cloud",
+        "size": "- 5"
+      },
+      {
+        "name": "qwen3-vl:235b-cloud",
+        "size": "- 5"
+      }
+    ]
+  },
+  "results": [
+    {
+      "model": "deepseek-coder:6.7b",
+      "generation_time_s": 11.59,
+      "estimated_tokens": 120,
+      "tokens_per_second": 10.4,
+      "output_length_chars": 778
+    },
+    {
+      "model": "llama3:8b",
+      "generation_time_s": 10.06,
+      "estimated_tokens": 73,
+      "tokens_per_second": 7.3,
+      "output_length_chars": 506
+    },
+    {
+      "model": "gpt-oss:20b",
+      "generation_time_s": 36.84,
+      "estimated_tokens": 264,
+      "tokens_per_second": 7.2,
+      "output_length_chars": 2037
+    }
+  ]
+}

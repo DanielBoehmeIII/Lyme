@@ -1,0 +1,116 @@
+{
+  "context_stats": {
+    "raw_tokens": 2236,
+    "lyme_tokens": 323
+  },
+  "runs": [
+    {
+      "task": "architecture",
+      "strategy": "raw",
+      "score": 71.4,
+      "tokens": 2236,
+      "time_s": 31.75,
+      "hit_count": 5,
+      "total_keywords": 7
+    },
+    {
+      "task": "architecture",
+      "strategy": "lyme",
+      "score": 85.7,
+      "tokens": 323,
+      "time_s": 19.77,
+      "hit_count": 6,
+      "total_keywords": 7
+    },
+    {
+      "task": "change-impact",
+      "strategy": "raw",
+      "score": 85.7,
+      "tokens": 2236,
+      "time_s": 28.88,
+      "hit_count": 6,
+      "total_keywords": 7
+    },
+    {
+      "task": "change-impact",
+      "strategy": "lyme",
+      "score": 85.7,
+      "tokens": 323,
+      "time_s": 16.41,
+      "hit_count": 6,
+      "total_keywords": 7
+    },
+    {
+      "task": "bug-finding",
+      "strategy": "raw",
+      "score": 57.1,
+      "tokens": 2236,
+      "time_s": 29.22,
+      "hit_count": 4,
+      "total_keywords": 7
+    },
+    {
+      "task": "bug-finding",
+      "strategy": "lyme",
+      "score": 85.7,
+      "tokens": 323,
+      "time_s": 23.24,
+      "hit_count": 6,
+      "total_keywords": 7
+    },
+    {
+      "task": "summary",
+      "strategy": "raw",
+      "score": 100.0,
+      "tokens": 2236,
+      "time_s": 19.99,
+      "hit_count": 7,
+      "total_keywords": 7
+    },
+    {
+      "task": "summary",
+      "strategy": "lyme",
+      "score": 71.4,
+      "tokens": 323,
+      "time_s": 10.68,
+      "hit_count": 5,
+      "total_keywords": 7
+    },
+    {
+      "task": "architecture",
+      "strategy": "small_model_packet",
+      "score": 71.4,
+      "tokens": 375,
+      "time_s": 20.38,
+      "hit_count": 5,
+      "total_keywords": 7
+    },
+    {
+      "task": "change-impact",
+      "strategy": "small_model_packet",
+      "score": 85.7,
+      "tokens": 383,
+      "time_s": 25.84,
+      "hit_count": 6,
+      "total_keywords": 7
+    },
+    {
+      "task": "bug-finding",
+      "strategy": "small_model_packet",
+      "score": 71.4,
+      "tokens": 374,
+      "time_s": 15.34,
+      "hit_count": 5,
+      "total_keywords": 7
+    },
+    {
+      "task": "summary",
+      "strategy": "small_model_packet",
+      "score": 71.4,
+      "tokens": 376,
+      "time_s": 17.45,
+      "hit_count": 5,
+      "total_keywords": 7
+    }
+  ]
+}

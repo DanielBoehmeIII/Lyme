@@ -1,0 +1,10 @@
+{
+  "event": "qa_answer",
+  "question": "What language is this project?",
+  "refused": false,
+  "confidence": 0.4,
+  "latency_s": 0.247,
+  "evidence_count": 1,
+  "context_tokens": 698,
+  "tool_calls": 0
+}

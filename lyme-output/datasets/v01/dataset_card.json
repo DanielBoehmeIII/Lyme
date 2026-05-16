@@ -1,0 +1,42 @@
+{
+  "name": "Lyme Model Dataset v0.1",
+  "version": "0.1",
+  "description": "First local coding dataset for Lyme Model training",
+  "created_at": "2026-05-16T07:35:33.469432+00:00",
+  "total_examples": 35,
+  "train_count": 27,
+  "val_count": 3,
+  "test_count": 5,
+  "by_task_type": {
+    "qa": 8,
+    "explain_failure": 5,
+    "locate_bug": 4,
+    "plan_patch": 4,
+    "apply_patch": 4,
+    "refuse": 4,
+    "verify_patch": 3,
+    "recover": 3
+  },
+  "by_difficulty": {
+    "medium": 20,
+    "easy": 12,
+    "hard": 3
+  },
+  "by_source": {
+    "synthetic": 32,
+    "lyme_audit": 3
+  },
+  "known_limitations": [
+    "Small dataset size \u2014 not sufficient for full model training",
+    "Synthetic examples use fictional repos \u2014 may not generalize to real codebases",
+    "No multi-file change examples \u2014 all patches touch single files",
+    "No real-world user data \u2014 all examples are curated or generated",
+    "Refusal examples are limited \u2014 4 unsupported claim scenarios",
+    "Lyme Audit traces are hand-crafted \u2014 only 3 reference traces available",
+    "Difficulty labels are heuristic \u2014 not validated against model performance",
+    "No cross-repo transfer examples \u2014 each example is repo-isolated"
+  ],
+  "data_format_version": "0.1",
+  "license": "Research Use Only",
+  "sanitization_applied": true
+}

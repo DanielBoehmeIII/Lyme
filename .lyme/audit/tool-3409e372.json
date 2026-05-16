@@ -1,0 +1,16 @@
+{
+  "call_id": "3409e372",
+  "tool": "list_directory",
+  "params": {
+    "path": "."
+  },
+  "success": true,
+  "latency_ms": 0.1,
+  "output_preview": ".claude/\n.git/\n.lyme/\n.pytest_cache/\nMANIFESTO.md\nREADME.md\nRELEASE_PLAN.md\nRELEASE_PLAN_v0.2.md\nRELEASE_PLAN_v0.3.md\nRELEASE_PLAN_v0.4.md\nRELEASE_PLAN_v0.6.md\nRELEASE_PLAN_v0.7.md\nconfig/\ndocs/\nlyme-",
+  "error": null,
+  "retry_count": 0,
+  "evidence": "[list_directory] .claude/\n.git/\n.lyme/\n.pytest_cache/\nMANIFESTO.md\nREADME.md\nRELEASE_PLAN.md\nRELEASE_PLAN_v0.2.md\nRELEASE_PLAN_v0.3.md\nRELEASE_PLAN_v0.4.md\nRELEASE_PLAN_v0.6.md\nRELEASE_PLAN_v0.7.md\nconfig/\ndocs/\nlyme-",
+  "event": "tool_call",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "safety_mode": "readonly"
+}

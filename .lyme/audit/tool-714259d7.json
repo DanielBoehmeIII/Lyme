@@ -1,0 +1,16 @@
+{
+  "call_id": "714259d7",
+  "tool": "read_file",
+  "params": {
+    "path": "test.py"
+  },
+  "success": true,
+  "latency_ms": 0.0,
+  "output_preview": "x = 1",
+  "error": null,
+  "retry_count": 0,
+  "evidence": "[read_file] x = 1",
+  "event": "tool_call",
+  "repo": "/tmp/tmp127_vxjv",
+  "safety_mode": "readonly"
+}

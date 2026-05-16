@@ -1,0 +1,12 @@
+{
+  "event": "context_compiled",
+  "trace_id": "6e814883",
+  "repo": "/home/dboehmeiii/Desktop/repos/Lyme",
+  "task": "Find files related to context management",
+  "total_tokens": 359,
+  "compile_time_s": 0.117,
+  "has_summary": true,
+  "has_task_context": true,
+  "risk_count": 10,
+  "timestamp": 1778920774.7391865
+}
