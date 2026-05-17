@@ -1,0 +1,22 @@
+{
+  "total": 292,
+  "models": {
+    "curated_solution": 250,
+    "deepseek-coder:6.7b": 20,
+    "qwen2.5-coder:7b": 21,
+    "qwen2.5-coder:14b": 1
+  },
+  "types": {
+    "repo_qa": 18,
+    "test_repair": 56,
+    "patch_planning": 58,
+    "bug_localization": 58,
+    "unified_diff": 62,
+    "tool_use": 40
+  },
+  "splits": {
+    "train": 101,
+    "val": 22,
+    "test": 22
+  }
+}

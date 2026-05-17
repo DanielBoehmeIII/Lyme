@@ -1,0 +1,58 @@
+{
+  "week": 1,
+  "phase": "Foundation for Real Model Work",
+  "selection_date": "2026-05-16",
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "vram_gb": 8,
+    "ram_gb": 16,
+    "cuda_version": "12.1"
+  },
+  "candidates_benchmarked": [
+    "qwen2.5-coder:7b",
+    "qwen2.5-coder:14b",
+    "deepseek-coder:6.7b",
+    "starcoder2:7b",
+    "codellama:7b",
+    "codellama:7b-code",
+    "phi3:mini"
+  ],
+  "benchmark_summary": {
+    "phi3:mini": {"quality": 0.909, "speed_tok_s": 81.6, "vram_delta_mb": -2098, "rank": 1},
+    "deepseek-coder:6.7b": {"quality": 0.877, "speed_tok_s": 50.9, "vram_delta_mb": -1530, "rank": 2},
+    "qwen2.5-coder:14b": {"quality": 0.817, "speed_tok_s": 10.5, "vram_delta_mb": 2554, "rank": 3},
+    "qwen2.5-coder:7b": {"quality": 0.811, "speed_tok_s": 43.0, "vram_delta_mb": 4861, "rank": 4},
+    "codellama:7b": {"quality": 0.770, "speed_tok_s": 51.5, "vram_delta_mb": 1478, "rank": 5},
+    "codellama:7b-code": {"quality": 0.334, "speed_tok_s": 50.9, "vram_delta_mb": 0, "rank": 6},
+    "starcoder2:7b": {"quality": 0.237, "speed_tok_s": 45.4, "vram_delta_mb": -1484, "rank": 7}
+  },
+  "selection_primary": "deepseek-coder:6.7b",
+  "selection_primary_reasoning": "Best composite of coding quality (0.877), inference speed (50.9 tok/s), and VRAM efficiency. Dedicated code model (CSN dataset, 6.7B params). Proven in Lyme ecosystem. Fits comfortably in 8GB VRAM.",
+  "selection_fallback": "qwen2.5-coder:7b",
+  "selection_fallback_reasoning": "Strong dedicated code model (Qwen2.5-Coder, 7B params). Excellent coding benchmarks locally (quality 0.811). Good speed (43 tok/s). Fits in 8GB VRAM and is the plan's target for first SFT run in Week 6.",
+  "rejected_models": {
+    "qwen2.5-coder:14b": "Too large for 8GB VRAM (9 GB model, 2554 MB delta). Very slow at 10.5 tok/s. Only usable quantized.",
+    "starcoder2:7b": "Low coding quality score (0.237). Poor instruction following on quality tasks.",
+    "codellama:7b": "Adequate but outranked by deepseek-coder in both quality and speed.",
+    "codellama:7b-code": "Very low quality score (0.334), likely due to being code-fill model not instruction-tuned.",
+    "phi3:mini": "Surprisingly high quality (0.909) but only 3.8B params - too small for fine-tuning targets. Better as specialist draft model than primary base."
+  },
+  "selection_config": {
+    "primary": {
+      "name": "deepseek-coder:6.7b",
+      "ollama_tag": "deepseek-coder:6.7b",
+      "hf_model_id": "deepseek-ai/deepseek-coder-6.7b-instruct",
+      "params_b": 6.7,
+      "context_length": 16384,
+      "quantization_plan": ["Q4_K_M", "Q5_K_M", "Q8_0"]
+    },
+    "fallback": {
+      "name": "qwen2.5-coder:7b",
+      "ollama_tag": "qwen2.5-coder:7b",
+      "hf_model_id": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "params_b": 7.6,
+      "context_length": 32768,
+      "quantization_plan": ["Q4_K_M", "Q5_K_M", "Q8_0"]
+    }
+  }
+}

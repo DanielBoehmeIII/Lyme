@@ -1,0 +1,322 @@
+[
+  {
+    "teacher": "qwen2.5-coder:14b",
+    "task": "Fix ZeroDivisionError in average()",
+    "type": "bug_fix",
+    "difficulty": "easy",
+    "avg_tool_calls": 4.2,
+    "avg_patch_lines": 5.1,
+    "success_rate": 0.75,
+    "style": "verbose_explanations"
+  },
+  {
+    "teacher": "qwen2.5-coder:14b",
+    "task": "Fix SQL injection in get_user()",
+    "type": "security",
+    "difficulty": "hard",
+    "avg_tool_calls": 4.2,
+    "avg_patch_lines": 5.1,
+    "success_rate": 0.75,
+    "style": "verbose_explanations"
+  },
+  {
+    "teacher": "qwen2.5-coder:14b",
+    "task": "Rename User to Account across 4 files",
+    "type": "multi_file",
+    "difficulty": "hard",
+    "avg_tool_calls": 4.2,
+    "avg_patch_lines": 5.1,
+    "success_rate": 0.75,
+    "style": "verbose_explanations"
+  },
+  {
+    "teacher": "qwen2.5-coder:14b",
+    "task": "Fix wrong test assertion",
+    "type": "test_repair",
+    "difficulty": "easy",
+    "avg_tool_calls": 4.2,
+    "avg_patch_lines": 5.1,
+    "success_rate": 0.75,
+    "style": "verbose_explanations"
+  },
+  {
+    "teacher": "qwen2.5-coder:14b",
+    "task": "Add --verbose flag to CLI",
+    "type": "feature_add",
+    "difficulty": "medium",
+    "avg_tool_calls": 4.2,
+    "avg_patch_lines": 5.1,
+    "success_rate": 0.75,
+    "style": "verbose_explanations"
+  },
+  {
+    "teacher": "qwen2.5-coder:14b",
+    "task": "Find the bug causing KeyError in config",
+    "type": "bug_localization",
+    "difficulty": "medium",
+    "avg_tool_calls": 4.2,
+    "avg_patch_lines": 5.1,
+    "success_rate": 0.75,
+    "style": "verbose_explanations"
+  },
+  {
+    "teacher": "qwen2.5-coder:14b",
+    "task": "Fix off-by-one in get_last()",
+    "type": "bug_fix",
+    "difficulty": "easy",
+    "avg_tool_calls": 4.2,
+    "avg_patch_lines": 5.1,
+    "success_rate": 0.75,
+    "style": "verbose_explanations"
+  },
+  {
+    "teacher": "qwen2.5-coder:14b",
+    "task": "Add rate limiting middleware",
+    "type": "feature_add",
+    "difficulty": "expert",
+    "avg_tool_calls": 4.2,
+    "avg_patch_lines": 5.1,
+    "success_rate": 0.75,
+    "style": "verbose_explanations"
+  },
+  {
+    "teacher": "qwen2.5-coder:7b",
+    "task": "Fix ZeroDivisionError in average()",
+    "type": "bug_fix",
+    "difficulty": "easy",
+    "avg_tool_calls": 3.8,
+    "avg_patch_lines": 4.5,
+    "success_rate": 0.7,
+    "style": "concise"
+  },
+  {
+    "teacher": "qwen2.5-coder:7b",
+    "task": "Fix SQL injection in get_user()",
+    "type": "security",
+    "difficulty": "hard",
+    "avg_tool_calls": 3.8,
+    "avg_patch_lines": 4.5,
+    "success_rate": 0.7,
+    "style": "concise"
+  },
+  {
+    "teacher": "qwen2.5-coder:7b",
+    "task": "Rename User to Account across 4 files",
+    "type": "multi_file",
+    "difficulty": "hard",
+    "avg_tool_calls": 3.8,
+    "avg_patch_lines": 4.5,
+    "success_rate": 0.7,
+    "style": "concise"
+  },
+  {
+    "teacher": "qwen2.5-coder:7b",
+    "task": "Fix wrong test assertion",
+    "type": "test_repair",
+    "difficulty": "easy",
+    "avg_tool_calls": 3.8,
+    "avg_patch_lines": 4.5,
+    "success_rate": 0.7,
+    "style": "concise"
+  },
+  {
+    "teacher": "qwen2.5-coder:7b",
+    "task": "Add --verbose flag to CLI",
+    "type": "feature_add",
+    "difficulty": "medium",
+    "avg_tool_calls": 3.8,
+    "avg_patch_lines": 4.5,
+    "success_rate": 0.7,
+    "style": "concise"
+  },
+  {
+    "teacher": "qwen2.5-coder:7b",
+    "task": "Find the bug causing KeyError in config",
+    "type": "bug_localization",
+    "difficulty": "medium",
+    "avg_tool_calls": 3.8,
+    "avg_patch_lines": 4.5,
+    "success_rate": 0.7,
+    "style": "concise"
+  },
+  {
+    "teacher": "qwen2.5-coder:7b",
+    "task": "Fix off-by-one in get_last()",
+    "type": "bug_fix",
+    "difficulty": "easy",
+    "avg_tool_calls": 3.8,
+    "avg_patch_lines": 4.5,
+    "success_rate": 0.7,
+    "style": "concise"
+  },
+  {
+    "teacher": "qwen2.5-coder:7b",
+    "task": "Add rate limiting middleware",
+    "type": "feature_add",
+    "difficulty": "expert",
+    "avg_tool_calls": 3.8,
+    "avg_patch_lines": 4.5,
+    "success_rate": 0.7,
+    "style": "concise"
+  },
+  {
+    "teacher": "deepseek-coder:6.7b",
+    "task": "Fix ZeroDivisionError in average()",
+    "type": "bug_fix",
+    "difficulty": "easy",
+    "avg_tool_calls": 3.5,
+    "avg_patch_lines": 4.2,
+    "success_rate": 0.65,
+    "style": "minimal"
+  },
+  {
+    "teacher": "deepseek-coder:6.7b",
+    "task": "Fix SQL injection in get_user()",
+    "type": "security",
+    "difficulty": "hard",
+    "avg_tool_calls": 3.5,
+    "avg_patch_lines": 4.2,
+    "success_rate": 0.65,
+    "style": "minimal"
+  },
+  {
+    "teacher": "deepseek-coder:6.7b",
+    "task": "Rename User to Account across 4 files",
+    "type": "multi_file",
+    "difficulty": "hard",
+    "avg_tool_calls": 3.5,
+    "avg_patch_lines": 4.2,
+    "success_rate": 0.65,
+    "style": "minimal"
+  },
+  {
+    "teacher": "deepseek-coder:6.7b",
+    "task": "Fix wrong test assertion",
+    "type": "test_repair",
+    "difficulty": "easy",
+    "avg_tool_calls": 3.5,
+    "avg_patch_lines": 4.2,
+    "success_rate": 0.65,
+    "style": "minimal"
+  },
+  {
+    "teacher": "deepseek-coder:6.7b",
+    "task": "Add --verbose flag to CLI",
+    "type": "feature_add",
+    "difficulty": "medium",
+    "avg_tool_calls": 3.5,
+    "avg_patch_lines": 4.2,
+    "success_rate": 0.65,
+    "style": "minimal"
+  },
+  {
+    "teacher": "deepseek-coder:6.7b",
+    "task": "Find the bug causing KeyError in config",
+    "type": "bug_localization",
+    "difficulty": "medium",
+    "avg_tool_calls": 3.5,
+    "avg_patch_lines": 4.2,
+    "success_rate": 0.65,
+    "style": "minimal"
+  },
+  {
+    "teacher": "deepseek-coder:6.7b",
+    "task": "Fix off-by-one in get_last()",
+    "type": "bug_fix",
+    "difficulty": "easy",
+    "avg_tool_calls": 3.5,
+    "avg_patch_lines": 4.2,
+    "success_rate": 0.65,
+    "style": "minimal"
+  },
+  {
+    "teacher": "deepseek-coder:6.7b",
+    "task": "Add rate limiting middleware",
+    "type": "feature_add",
+    "difficulty": "expert",
+    "avg_tool_calls": 3.5,
+    "avg_patch_lines": 4.2,
+    "success_rate": 0.65,
+    "style": "minimal"
+  },
+  {
+    "teacher": "curated_solution",
+    "task": "Fix ZeroDivisionError in average()",
+    "type": "bug_fix",
+    "difficulty": "easy",
+    "avg_tool_calls": 3.0,
+    "avg_patch_lines": 3.8,
+    "success_rate": 0.95,
+    "style": "expert_minimal"
+  },
+  {
+    "teacher": "curated_solution",
+    "task": "Fix SQL injection in get_user()",
+    "type": "security",
+    "difficulty": "hard",
+    "avg_tool_calls": 3.0,
+    "avg_patch_lines": 3.8,
+    "success_rate": 0.95,
+    "style": "expert_minimal"
+  },
+  {
+    "teacher": "curated_solution",
+    "task": "Rename User to Account across 4 files",
+    "type": "multi_file",
+    "difficulty": "hard",
+    "avg_tool_calls": 3.0,
+    "avg_patch_lines": 3.8,
+    "success_rate": 0.95,
+    "style": "expert_minimal"
+  },
+  {
+    "teacher": "curated_solution",
+    "task": "Fix wrong test assertion",
+    "type": "test_repair",
+    "difficulty": "easy",
+    "avg_tool_calls": 3.0,
+    "avg_patch_lines": 3.8,
+    "success_rate": 0.95,
+    "style": "expert_minimal"
+  },
+  {
+    "teacher": "curated_solution",
+    "task": "Add --verbose flag to CLI",
+    "type": "feature_add",
+    "difficulty": "medium",
+    "avg_tool_calls": 3.0,
+    "avg_patch_lines": 3.8,
+    "success_rate": 0.95,
+    "style": "expert_minimal"
+  },
+  {
+    "teacher": "curated_solution",
+    "task": "Find the bug causing KeyError in config",
+    "type": "bug_localization",
+    "difficulty": "medium",
+    "avg_tool_calls": 3.0,
+    "avg_patch_lines": 3.8,
+    "success_rate": 0.95,
+    "style": "expert_minimal"
+  },
+  {
+    "teacher": "curated_solution",
+    "task": "Fix off-by-one in get_last()",
+    "type": "bug_fix",
+    "difficulty": "easy",
+    "avg_tool_calls": 3.0,
+    "avg_patch_lines": 3.8,
+    "success_rate": 0.95,
+    "style": "expert_minimal"
+  },
+  {
+    "teacher": "curated_solution",
+    "task": "Add rate limiting middleware",
+    "type": "feature_add",
+    "difficulty": "expert",
+    "avg_tool_calls": 3.0,
+    "avg_patch_lines": 3.8,
+    "success_rate": 0.95,
+    "style": "expert_minimal"
+  }
+]

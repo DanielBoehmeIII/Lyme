@@ -1,0 +1,4293 @@
+{
+  "report_time": "2026-05-16T22:09:06.459129+00:00",
+  "total_files": 105,
+  "total_lines": 15287,
+  "valid_examples": 15287,
+  "parse_errors": 0,
+  "estimated_tokens": 3069522,
+  "modalities": {
+    "bug_localization": 272,
+    "long_horizon_planning": 280,
+    "multi_file_edit": 280,
+    "patch_planning": 1304,
+    "refusal": 242,
+    "repo_qa": 3441,
+    "self_repair": 280,
+    "test_repair": 1480,
+    "tool_use": 1444,
+    "unified_diff": 5252,
+    "verification": 1012
+  },
+  "week41_categories": {
+    "bug_localization": 272,
+    "critique": 1012,
+    "diff_generation": 5252,
+    "long_horizon_planning": 280,
+    "multi_file_edit": 280,
+    "patch_planning": 1304,
+    "refusal": 242,
+    "repo_qa": 3441,
+    "self_repair": 280,
+    "test_repair": 1480,
+    "tool_use": 1444
+  },
+  "languages": {
+    "Go": 418,
+    "JavaScript": 416,
+    "Python": 13619,
+    "Rust": 420,
+    "TypeScript": 414
+  },
+  "quality_issues": {
+    "missing_instruction": 0,
+    "missing_output": 0,
+    "missing_modality": 0,
+    "missing_difficulty": 0,
+    "missing_source": 0,
+    "missing_repo_context": 0,
+    "parse_errors": 0
+  },
+  "duplicate_ids": 0,
+  "duplicate_rate_pct": 0.0,
+  "leakage": {
+    "train_count": 6230,
+    "val_count": 824,
+    "test_count": 823,
+    "leakage_count": 0,
+    "leakage_examples": []
+  },
+  "files": [
+    {
+      "file": "real_repo/test/combined.jsonl",
+      "total": 378,
+      "valid": 378,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 239,
+        "patch_planning": 125,
+        "test_repair": 14
+      },
+      "week41_categories": {
+        "diff_generation": 239,
+        "patch_planning": 125,
+        "test_repair": 14
+      },
+      "difficulties": {
+        "easy": 309,
+        "medium": 57,
+        "hard": 12
+      },
+      "sources": {
+        "unknown:mined": 378
+      },
+      "languages": {
+        "Python": 378
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 127.3,
+      "avg_target_len": 1027.4,
+      "avg_context_len": 191.0,
+      "avg_token_estimate": 336.0,
+      "total_tokens_estimated": 127013,
+      "canonical_format": 378,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 60
+    },
+    {
+      "file": "real_repo/test/patch_planning.jsonl",
+      "total": 125,
+      "valid": 125,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "patch_planning": 125
+      },
+      "week41_categories": {
+        "patch_planning": 125
+      },
+      "difficulties": {
+        "easy": 115,
+        "medium": 8,
+        "hard": 2
+      },
+      "sources": {
+        "unknown:mined": 125
+      },
+      "languages": {
+        "Python": 125
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 225.4,
+      "avg_target_len": 1039.9,
+      "avg_context_len": 191.0,
+      "avg_token_estimate": 363.7,
+      "total_tokens_estimated": 45458,
+      "canonical_format": 125,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 16
+    },
+    {
+      "file": "real_repo/test/test_repair.jsonl",
+      "total": 14,
+      "valid": 14,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 14
+      },
+      "week41_categories": {
+        "test_repair": 14
+      },
+      "difficulties": {
+        "hard": 2,
+        "easy": 5,
+        "medium": 7
+      },
+      "sources": {
+        "unknown:mined": 14
+      },
+      "languages": {
+        "Python": 14
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 125.9,
+      "avg_target_len": 1238.6,
+      "avg_context_len": 191.0,
+      "avg_token_estimate": 388.5,
+      "total_tokens_estimated": 5439,
+      "canonical_format": 14,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 6
+    },
+    {
+      "file": "real_repo/test/unified_diff.jsonl",
+      "total": 239,
+      "valid": 239,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 239
+      },
+      "week41_categories": {
+        "diff_generation": 239
+      },
+      "difficulties": {
+        "easy": 189,
+        "medium": 42,
+        "hard": 8
+      },
+      "sources": {
+        "unknown:mined": 239
+      },
+      "languages": {
+        "Python": 239
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 76.0,
+      "avg_target_len": 1008.4,
+      "avg_context_len": 191.0,
+      "avg_token_estimate": 318.5,
+      "total_tokens_estimated": 76116,
+      "canonical_format": 239,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 57
+    },
+    {
+      "file": "real_repo/train/combined.jsonl",
+      "total": 1760,
+      "valid": 1760,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "patch_planning": 226,
+        "test_repair": 42,
+        "unified_diff": 1492
+      },
+      "week41_categories": {
+        "patch_planning": 226,
+        "test_repair": 42,
+        "diff_generation": 1492
+      },
+      "difficulties": {
+        "easy": 1087,
+        "hard": 184,
+        "medium": 489
+      },
+      "sources": {
+        "unknown:mined": 1760
+      },
+      "languages": {
+        "Python": 1760
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 115.9,
+      "avg_target_len": 1458.0,
+      "avg_context_len": 189.2,
+      "avg_token_estimate": 440.4,
+      "total_tokens_estimated": 775120,
+      "canonical_format": 1760,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 747
+    },
+    {
+      "file": "real_repo/train/patch_planning.jsonl",
+      "total": 226,
+      "valid": 226,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "patch_planning": 226
+      },
+      "week41_categories": {
+        "patch_planning": 226
+      },
+      "difficulties": {
+        "easy": 166,
+        "hard": 25,
+        "medium": 35
+      },
+      "sources": {
+        "unknown:mined": 226
+      },
+      "languages": {
+        "Python": 226
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 111.3,
+      "avg_target_len": 1400.5,
+      "avg_context_len": 189.1,
+      "avg_token_estimate": 424.9,
+      "total_tokens_estimated": 96020,
+      "canonical_format": 226,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 88
+    },
+    {
+      "file": "real_repo/train/test_repair.jsonl",
+      "total": 42,
+      "valid": 42,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 42
+      },
+      "week41_categories": {
+        "test_repair": 42
+      },
+      "difficulties": {
+        "hard": 13,
+        "medium": 21,
+        "easy": 8
+      },
+      "sources": {
+        "unknown:mined": 42
+      },
+      "languages": {
+        "Python": 42
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 123.4,
+      "avg_target_len": 2484.2,
+      "avg_context_len": 188.7,
+      "avg_token_estimate": 698.8,
+      "total_tokens_estimated": 29348,
+      "canonical_format": 42,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 22
+    },
+    {
+      "file": "real_repo/train/unified_diff.jsonl",
+      "total": 1492,
+      "valid": 1492,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 1492
+      },
+      "week41_categories": {
+        "diff_generation": 1492
+      },
+      "difficulties": {
+        "easy": 913,
+        "hard": 146,
+        "medium": 433
+      },
+      "sources": {
+        "unknown:mined": 1492
+      },
+      "languages": {
+        "Python": 1492
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 116.4,
+      "avg_target_len": 1437.9,
+      "avg_context_len": 189.2,
+      "avg_token_estimate": 435.5,
+      "total_tokens_estimated": 649752,
+      "canonical_format": 1492,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 686
+    },
+    {
+      "file": "real_repo/val/combined.jsonl",
+      "total": 377,
+      "valid": 377,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 235,
+        "patch_planning": 135,
+        "test_repair": 7
+      },
+      "week41_categories": {
+        "diff_generation": 235,
+        "patch_planning": 135,
+        "test_repair": 7
+      },
+      "difficulties": {
+        "easy": 286,
+        "hard": 19,
+        "medium": 72
+      },
+      "sources": {
+        "unknown:mined": 377
+      },
+      "languages": {
+        "Python": 377
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 64.1,
+      "avg_target_len": 1446.9,
+      "avg_context_len": 188.2,
+      "avg_token_estimate": 424.4,
+      "total_tokens_estimated": 160013,
+      "canonical_format": 377,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 84
+    },
+    {
+      "file": "real_repo/val/patch_planning.jsonl",
+      "total": 135,
+      "valid": 135,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "patch_planning": 135
+      },
+      "week41_categories": {
+        "patch_planning": 135
+      },
+      "difficulties": {
+        "easy": 101,
+        "medium": 26,
+        "hard": 8
+      },
+      "sources": {
+        "unknown:mined": 135
+      },
+      "languages": {
+        "Python": 135
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 63.9,
+      "avg_target_len": 1486.0,
+      "avg_context_len": 188.3,
+      "avg_token_estimate": 434.2,
+      "total_tokens_estimated": 58613,
+      "canonical_format": 135,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 31
+    },
+    {
+      "file": "real_repo/val/test_repair.jsonl",
+      "total": 7,
+      "valid": 7,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 7
+      },
+      "week41_categories": {
+        "test_repair": 7
+      },
+      "difficulties": {
+        "hard": 2,
+        "easy": 3,
+        "medium": 2
+      },
+      "sources": {
+        "unknown:mined": 7
+      },
+      "languages": {
+        "Python": 7
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 54.7,
+      "avg_target_len": 1789.1,
+      "avg_context_len": 188.4,
+      "avg_token_estimate": 507.7,
+      "total_tokens_estimated": 3554,
+      "canonical_format": 7,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 6
+    },
+    {
+      "file": "real_repo/val/unified_diff.jsonl",
+      "total": 235,
+      "valid": 235,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 235
+      },
+      "week41_categories": {
+        "diff_generation": 235
+      },
+      "difficulties": {
+        "easy": 182,
+        "hard": 9,
+        "medium": 44
+      },
+      "sources": {
+        "unknown:mined": 235
+      },
+      "languages": {
+        "Python": 235
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 64.6,
+      "avg_target_len": 1414.3,
+      "avg_context_len": 188.1,
+      "avg_token_estimate": 416.4,
+      "total_tokens_estimated": 97846,
+      "canonical_format": 235,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 70
+    },
+    {
+      "file": "schema_demo.jsonl",
+      "total": 8,
+      "valid": 8,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "repo_qa": 1,
+        "bug_localization": 1,
+        "patch_planning": 1,
+        "unified_diff": 1,
+        "test_repair": 1,
+        "tool_use": 1,
+        "verification": 1,
+        "refusal": 1
+      },
+      "week41_categories": {
+        "repo_qa": 1,
+        "bug_localization": 1,
+        "patch_planning": 1,
+        "diff_generation": 1,
+        "test_repair": 1,
+        "tool_use": 1,
+        "critique": 1,
+        "refusal": 1
+      },
+      "difficulties": {
+        "medium": 8
+      },
+      "sources": {
+        "synthetic": 8
+      },
+      "languages": {
+        "Python": 8
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 52.2,
+      "avg_target_len": 105.5,
+      "avg_context_len": 187.2,
+      "avg_token_estimate": 86.0,
+      "total_tokens_estimated": 688,
+      "canonical_format": 8,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 4
+    },
+    {
+      "file": "synthetic_bugs/test/api_rename_mismatch.jsonl",
+      "total": 15,
+      "valid": 15,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 15
+      },
+      "week41_categories": {
+        "diff_generation": 15
+      },
+      "difficulties": {
+        "medium": 15
+      },
+      "sources": {
+        "synthetic": 15
+      },
+      "languages": {
+        "Python": 15
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 76.0,
+      "avg_target_len": 176.0,
+      "avg_context_len": 66.0,
+      "avg_token_estimate": 79.0,
+      "total_tokens_estimated": 1185,
+      "canonical_format": 15,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/test/bad_path_handling.jsonl",
+      "total": 18,
+      "valid": 18,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 18
+      },
+      "week41_categories": {
+        "diff_generation": 18
+      },
+      "difficulties": {
+        "medium": 18
+      },
+      "sources": {
+        "synthetic": 18
+      },
+      "languages": {
+        "Python": 18
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 57.0,
+      "avg_target_len": 359.0,
+      "avg_context_len": 65.0,
+      "avg_token_estimate": 120.0,
+      "total_tokens_estimated": 2160,
+      "canonical_format": 18,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/test/broken_test_expectation.jsonl",
+      "total": 18,
+      "valid": 18,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 18
+      },
+      "week41_categories": {
+        "test_repair": 18
+      },
+      "difficulties": {
+        "easy": 18
+      },
+      "sources": {
+        "synthetic": 18
+      },
+      "languages": {
+        "Python": 18
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 31.0,
+      "avg_target_len": 200.1,
+      "avg_context_len": 88.0,
+      "avg_token_estimate": 79.4,
+      "total_tokens_estimated": 1430,
+      "canonical_format": 18,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/test/combined.jsonl",
+      "total": 105,
+      "valid": 105,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 44,
+        "test_repair": 61
+      },
+      "week41_categories": {
+        "diff_generation": 44,
+        "test_repair": 61
+      },
+      "difficulties": {
+        "medium": 44,
+        "easy": 61
+      },
+      "sources": {
+        "synthetic": 105
+      },
+      "languages": {
+        "Python": 105
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 58.0,
+      "avg_target_len": 240.5,
+      "avg_context_len": 68.6,
+      "avg_token_estimate": 91.3,
+      "total_tokens_estimated": 9591,
+      "canonical_format": 105,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 8
+    },
+    {
+      "file": "synthetic_bugs/test/missing_null_check.jsonl",
+      "total": 14,
+      "valid": 14,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 14
+      },
+      "week41_categories": {
+        "test_repair": 14
+      },
+      "difficulties": {
+        "easy": 14
+      },
+      "sources": {
+        "synthetic": 14
+      },
+      "languages": {
+        "Python": 14
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 64.0,
+      "avg_target_len": 158.0,
+      "avg_context_len": 60.0,
+      "avg_token_estimate": 70.0,
+      "total_tokens_estimated": 980,
+      "canonical_format": 14,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/test/modality_test_repair.jsonl",
+      "total": 61,
+      "valid": 61,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 61
+      },
+      "week41_categories": {
+        "test_repair": 61
+      },
+      "difficulties": {
+        "easy": 61
+      },
+      "sources": {
+        "synthetic": 61
+      },
+      "languages": {
+        "Python": 61
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 49.6,
+      "avg_target_len": 228.1,
+      "avg_context_len": 70.4,
+      "avg_token_estimate": 86.6,
+      "total_tokens_estimated": 5281,
+      "canonical_format": 61,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 4
+    },
+    {
+      "file": "synthetic_bugs/test/modality_unified_diff.jsonl",
+      "total": 44,
+      "valid": 44,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 44
+      },
+      "week41_categories": {
+        "diff_generation": 44
+      },
+      "difficulties": {
+        "medium": 44
+      },
+      "sources": {
+        "synthetic": 44
+      },
+      "languages": {
+        "Python": 44
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 69.5,
+      "avg_target_len": 257.7,
+      "avg_context_len": 66.2,
+      "avg_token_estimate": 98.0,
+      "total_tokens_estimated": 4310,
+      "canonical_format": 44,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 4
+    },
+    {
+      "file": "synthetic_bugs/test/off_by_one.jsonl",
+      "total": 14,
+      "valid": 14,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 14
+      },
+      "week41_categories": {
+        "test_repair": 14
+      },
+      "difficulties": {
+        "easy": 14
+      },
+      "sources": {
+        "synthetic": 14
+      },
+      "languages": {
+        "Python": 14
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 61.0,
+      "avg_target_len": 182.0,
+      "avg_context_len": 59.0,
+      "avg_token_estimate": 75.0,
+      "total_tokens_estimated": 1050,
+      "canonical_format": 14,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/test/wrong_config_key.jsonl",
+      "total": 11,
+      "valid": 11,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 11
+      },
+      "week41_categories": {
+        "diff_generation": 11
+      },
+      "difficulties": {
+        "medium": 11
+      },
+      "sources": {
+        "synthetic": 11
+      },
+      "languages": {
+        "Python": 11
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 81.0,
+      "avg_target_len": 203.5,
+      "avg_context_len": 68.4,
+      "avg_token_estimate": 87.7,
+      "total_tokens_estimated": 965,
+      "canonical_format": 11,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 2
+    },
+    {
+      "file": "synthetic_bugs/test/wrong_import.jsonl",
+      "total": 15,
+      "valid": 15,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 15
+      },
+      "week41_categories": {
+        "test_repair": 15
+      },
+      "difficulties": {
+        "easy": 15
+      },
+      "sources": {
+        "synthetic": 15
+      },
+      "languages": {
+        "Python": 15
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 48.0,
+      "avg_target_len": 370.0,
+      "avg_context_len": 69.7,
+      "avg_token_estimate": 121.4,
+      "total_tokens_estimated": 1821,
+      "canonical_format": 15,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/train/api_rename_mismatch.jsonl",
+      "total": 65,
+      "valid": 65,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 65
+      },
+      "week41_categories": {
+        "diff_generation": 65
+      },
+      "difficulties": {
+        "medium": 65
+      },
+      "sources": {
+        "synthetic": 65
+      },
+      "languages": {
+        "Python": 65
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 75.2,
+      "avg_target_len": 175.2,
+      "avg_context_len": 66.0,
+      "avg_token_estimate": 78.6,
+      "total_tokens_estimated": 5110,
+      "canonical_format": 65,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/train/bad_path_handling.jsonl",
+      "total": 69,
+      "valid": 69,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 69
+      },
+      "week41_categories": {
+        "diff_generation": 69
+      },
+      "difficulties": {
+        "medium": 69
+      },
+      "sources": {
+        "synthetic": 69
+      },
+      "languages": {
+        "Python": 69
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 57.0,
+      "avg_target_len": 359.0,
+      "avg_context_len": 65.0,
+      "avg_token_estimate": 120.0,
+      "total_tokens_estimated": 8280,
+      "canonical_format": 69,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/train/broken_test_expectation.jsonl",
+      "total": 70,
+      "valid": 70,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 70
+      },
+      "week41_categories": {
+        "test_repair": 70
+      },
+      "difficulties": {
+        "easy": 70
+      },
+      "sources": {
+        "synthetic": 70
+      },
+      "languages": {
+        "Python": 70
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 31.0,
+      "avg_target_len": 199.5,
+      "avg_context_len": 88.0,
+      "avg_token_estimate": 79.3,
+      "total_tokens_estimated": 5554,
+      "canonical_format": 70,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/train/combined.jsonl",
+      "total": 489,
+      "valid": 489,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 208,
+        "test_repair": 281
+      },
+      "week41_categories": {
+        "diff_generation": 208,
+        "test_repair": 281
+      },
+      "difficulties": {
+        "medium": 208,
+        "easy": 281
+      },
+      "sources": {
+        "synthetic": 489
+      },
+      "languages": {
+        "Python": 489
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 59.6,
+      "avg_target_len": 235.7,
+      "avg_context_len": 68.1,
+      "avg_token_estimate": 90.4,
+      "total_tokens_estimated": 44229,
+      "canonical_format": 489,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 8
+    },
+    {
+      "file": "synthetic_bugs/train/missing_null_check.jsonl",
+      "total": 72,
+      "valid": 72,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 72
+      },
+      "week41_categories": {
+        "test_repair": 72
+      },
+      "difficulties": {
+        "easy": 72
+      },
+      "sources": {
+        "synthetic": 72
+      },
+      "languages": {
+        "Python": 72
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 64.0,
+      "avg_target_len": 158.0,
+      "avg_context_len": 60.0,
+      "avg_token_estimate": 70.0,
+      "total_tokens_estimated": 5040,
+      "canonical_format": 72,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/train/modality_test_repair.jsonl",
+      "total": 281,
+      "valid": 281,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 281
+      },
+      "week41_categories": {
+        "test_repair": 281
+      },
+      "difficulties": {
+        "easy": 281
+      },
+      "sources": {
+        "synthetic": 281
+      },
+      "languages": {
+        "Python": 281
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 51.0,
+      "avg_target_len": 227.7,
+      "avg_context_len": 69.2,
+      "avg_token_estimate": 86.6,
+      "total_tokens_estimated": 24327,
+      "canonical_format": 281,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 4
+    },
+    {
+      "file": "synthetic_bugs/train/modality_unified_diff.jsonl",
+      "total": 208,
+      "valid": 208,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 208
+      },
+      "week41_categories": {
+        "diff_generation": 208
+      },
+      "difficulties": {
+        "medium": 208
+      },
+      "sources": {
+        "synthetic": 208
+      },
+      "languages": {
+        "Python": 208
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 71.2,
+      "avg_target_len": 246.4,
+      "avg_context_len": 66.6,
+      "avg_token_estimate": 95.7,
+      "total_tokens_estimated": 19902,
+      "canonical_format": 208,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 4
+    },
+    {
+      "file": "synthetic_bugs/train/off_by_one.jsonl",
+      "total": 68,
+      "valid": 68,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 68
+      },
+      "week41_categories": {
+        "test_repair": 68
+      },
+      "difficulties": {
+        "easy": 68
+      },
+      "sources": {
+        "synthetic": 68
+      },
+      "languages": {
+        "Python": 68
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 61.0,
+      "avg_target_len": 182.0,
+      "avg_context_len": 59.0,
+      "avg_token_estimate": 75.0,
+      "total_tokens_estimated": 5100,
+      "canonical_format": 68,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/train/wrong_config_key.jsonl",
+      "total": 74,
+      "valid": 74,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 74
+      },
+      "week41_categories": {
+        "diff_generation": 74
+      },
+      "difficulties": {
+        "medium": 74
+      },
+      "sources": {
+        "synthetic": 74
+      },
+      "languages": {
+        "Python": 74
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 81.0,
+      "avg_target_len": 204.0,
+      "avg_context_len": 68.5,
+      "avg_token_estimate": 88.0,
+      "total_tokens_estimated": 6512,
+      "canonical_format": 74,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 2
+    },
+    {
+      "file": "synthetic_bugs/train/wrong_import.jsonl",
+      "total": 71,
+      "valid": 71,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 71
+      },
+      "week41_categories": {
+        "test_repair": 71
+      },
+      "difficulties": {
+        "easy": 71
+      },
+      "sources": {
+        "synthetic": 71
+      },
+      "languages": {
+        "Python": 71
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 48.0,
+      "avg_target_len": 370.0,
+      "avg_context_len": 69.9,
+      "avg_token_estimate": 121.6,
+      "total_tokens_estimated": 8633,
+      "canonical_format": 71,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/val/api_rename_mismatch.jsonl",
+      "total": 20,
+      "valid": 20,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 20
+      },
+      "week41_categories": {
+        "diff_generation": 20
+      },
+      "difficulties": {
+        "medium": 20
+      },
+      "sources": {
+        "synthetic": 20
+      },
+      "languages": {
+        "Python": 20
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 75.0,
+      "avg_target_len": 175.0,
+      "avg_context_len": 66.0,
+      "avg_token_estimate": 78.5,
+      "total_tokens_estimated": 1570,
+      "canonical_format": 20,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/val/bad_path_handling.jsonl",
+      "total": 13,
+      "valid": 13,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 13
+      },
+      "week41_categories": {
+        "diff_generation": 13
+      },
+      "difficulties": {
+        "medium": 13
+      },
+      "sources": {
+        "synthetic": 13
+      },
+      "languages": {
+        "Python": 13
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 57.0,
+      "avg_target_len": 359.0,
+      "avg_context_len": 65.0,
+      "avg_token_estimate": 120.0,
+      "total_tokens_estimated": 1560,
+      "canonical_format": 13,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/val/broken_test_expectation.jsonl",
+      "total": 12,
+      "valid": 12,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 12
+      },
+      "week41_categories": {
+        "test_repair": 12
+      },
+      "difficulties": {
+        "easy": 12
+      },
+      "sources": {
+        "synthetic": 12
+      },
+      "languages": {
+        "Python": 12
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 31.0,
+      "avg_target_len": 199.2,
+      "avg_context_len": 88.0,
+      "avg_token_estimate": 79.3,
+      "total_tokens_estimated": 952,
+      "canonical_format": 12,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/val/combined.jsonl",
+      "total": 106,
+      "valid": 106,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 48,
+        "test_repair": 58
+      },
+      "week41_categories": {
+        "diff_generation": 48,
+        "test_repair": 58
+      },
+      "difficulties": {
+        "medium": 48,
+        "easy": 58
+      },
+      "sources": {
+        "synthetic": 106
+      },
+      "languages": {
+        "Python": 106
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 61.3,
+      "avg_target_len": 229.1,
+      "avg_context_len": 67.2,
+      "avg_token_estimate": 89.0,
+      "total_tokens_estimated": 9432,
+      "canonical_format": 106,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 8
+    },
+    {
+      "file": "synthetic_bugs/val/missing_null_check.jsonl",
+      "total": 14,
+      "valid": 14,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 14
+      },
+      "week41_categories": {
+        "test_repair": 14
+      },
+      "difficulties": {
+        "easy": 14
+      },
+      "sources": {
+        "synthetic": 14
+      },
+      "languages": {
+        "Python": 14
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 64.0,
+      "avg_target_len": 158.0,
+      "avg_context_len": 60.0,
+      "avg_token_estimate": 70.0,
+      "total_tokens_estimated": 980,
+      "canonical_format": 14,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/val/modality_test_repair.jsonl",
+      "total": 58,
+      "valid": 58,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 58
+      },
+      "week41_categories": {
+        "test_repair": 58
+      },
+      "difficulties": {
+        "easy": 58
+      },
+      "sources": {
+        "synthetic": 58
+      },
+      "languages": {
+        "Python": 58
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 52.4,
+      "avg_target_len": 225.1,
+      "avg_context_len": 67.8,
+      "avg_token_estimate": 85.9,
+      "total_tokens_estimated": 4983,
+      "canonical_format": 58,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 4
+    },
+    {
+      "file": "synthetic_bugs/val/modality_unified_diff.jsonl",
+      "total": 48,
+      "valid": 48,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 48
+      },
+      "week41_categories": {
+        "diff_generation": 48
+      },
+      "difficulties": {
+        "medium": 48
+      },
+      "sources": {
+        "synthetic": 48
+      },
+      "languages": {
+        "Python": 48
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 72.0,
+      "avg_target_len": 233.9,
+      "avg_context_len": 66.5,
+      "avg_token_estimate": 92.7,
+      "total_tokens_estimated": 4449,
+      "canonical_format": 48,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 4
+    },
+    {
+      "file": "synthetic_bugs/val/off_by_one.jsonl",
+      "total": 18,
+      "valid": 18,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 18
+      },
+      "week41_categories": {
+        "test_repair": 18
+      },
+      "difficulties": {
+        "easy": 18
+      },
+      "sources": {
+        "synthetic": 18
+      },
+      "languages": {
+        "Python": 18
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 61.0,
+      "avg_target_len": 182.0,
+      "avg_context_len": 59.0,
+      "avg_token_estimate": 75.0,
+      "total_tokens_estimated": 1350,
+      "canonical_format": 18,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "synthetic_bugs/val/wrong_config_key.jsonl",
+      "total": 15,
+      "valid": 15,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 15
+      },
+      "week41_categories": {
+        "diff_generation": 15
+      },
+      "difficulties": {
+        "medium": 15
+      },
+      "sources": {
+        "synthetic": 15
+      },
+      "languages": {
+        "Python": 15
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 81.0,
+      "avg_target_len": 203.9,
+      "avg_context_len": 68.5,
+      "avg_token_estimate": 87.9,
+      "total_tokens_estimated": 1319,
+      "canonical_format": 15,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 2
+    },
+    {
+      "file": "synthetic_bugs/val/wrong_import.jsonl",
+      "total": 14,
+      "valid": 14,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 14
+      },
+      "week41_categories": {
+        "test_repair": 14
+      },
+      "difficulties": {
+        "easy": 14
+      },
+      "sources": {
+        "synthetic": 14
+      },
+      "languages": {
+        "Python": 14
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 48.0,
+      "avg_target_len": 370.0,
+      "avg_context_len": 69.7,
+      "avg_token_estimate": 121.5,
+      "total_tokens_estimated": 1701,
+      "canonical_format": 14,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/test/bug_localization.jsonl",
+      "total": 2,
+      "valid": 2,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "bug_localization": 2
+      },
+      "week41_categories": {
+        "bug_localization": 2
+      },
+      "difficulties": {
+        "medium": 2
+      },
+      "sources": {
+        "distilled": 2
+      },
+      "languages": {
+        "Python": 2
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 61.0,
+      "avg_target_len": 759.0,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 220.0,
+      "total_tokens_estimated": 440,
+      "canonical_format": 2,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/test/combined.jsonl",
+      "total": 6,
+      "valid": 6,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "patch_planning": 2,
+        "bug_localization": 2,
+        "unified_diff": 1,
+        "test_repair": 1
+      },
+      "week41_categories": {
+        "patch_planning": 2,
+        "bug_localization": 2,
+        "diff_generation": 1,
+        "test_repair": 1
+      },
+      "difficulties": {
+        "medium": 6
+      },
+      "sources": {
+        "distilled": 6
+      },
+      "languages": {
+        "Python": 6
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 79.2,
+      "avg_target_len": 1053.2,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 298.3,
+      "total_tokens_estimated": 1790,
+      "canonical_format": 6,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/test/patch_planning.jsonl",
+      "total": 2,
+      "valid": 2,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "patch_planning": 2
+      },
+      "week41_categories": {
+        "patch_planning": 2
+      },
+      "difficulties": {
+        "medium": 2
+      },
+      "sources": {
+        "distilled": 2
+      },
+      "languages": {
+        "Python": 2
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 104.0,
+      "avg_target_len": 1975.5,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 535.0,
+      "total_tokens_estimated": 1070,
+      "canonical_format": 2,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/test/test_repair.jsonl",
+      "total": 1,
+      "valid": 1,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 1
+      },
+      "week41_categories": {
+        "test_repair": 1
+      },
+      "difficulties": {
+        "medium": 1
+      },
+      "sources": {
+        "distilled": 1
+      },
+      "languages": {
+        "Python": 1
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 80.0,
+      "avg_target_len": 657.0,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 200.0,
+      "total_tokens_estimated": 200,
+      "canonical_format": 1,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/test/unified_diff.jsonl",
+      "total": 1,
+      "valid": 1,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 1
+      },
+      "week41_categories": {
+        "diff_generation": 1
+      },
+      "difficulties": {
+        "medium": 1
+      },
+      "sources": {
+        "distilled": 1
+      },
+      "languages": {
+        "Python": 1
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 65.0,
+      "avg_target_len": 193.0,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 80.0,
+      "total_tokens_estimated": 80,
+      "canonical_format": 1,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/train/bug_localization.jsonl",
+      "total": 7,
+      "valid": 7,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "bug_localization": 7
+      },
+      "week41_categories": {
+        "bug_localization": 7
+      },
+      "difficulties": {
+        "medium": 7
+      },
+      "sources": {
+        "distilled": 7
+      },
+      "languages": {
+        "Python": 7
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 71.3,
+      "avg_target_len": 801.3,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 233.6,
+      "total_tokens_estimated": 1635,
+      "canonical_format": 7,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/train/combined.jsonl",
+      "total": 25,
+      "valid": 25,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "tool_use": 1,
+        "bug_localization": 7,
+        "unified_diff": 4,
+        "patch_planning": 3,
+        "test_repair": 5,
+        "repo_qa": 5
+      },
+      "week41_categories": {
+        "tool_use": 1,
+        "bug_localization": 7,
+        "diff_generation": 4,
+        "patch_planning": 3,
+        "test_repair": 5,
+        "repo_qa": 5
+      },
+      "difficulties": {
+        "medium": 25
+      },
+      "sources": {
+        "distilled": 25
+      },
+      "languages": {
+        "Python": 25
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 73.8,
+      "avg_target_len": 726.6,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 215.5,
+      "total_tokens_estimated": 5387,
+      "canonical_format": 25,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/train/patch_planning.jsonl",
+      "total": 3,
+      "valid": 3,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "patch_planning": 3
+      },
+      "week41_categories": {
+        "patch_planning": 3
+      },
+      "difficulties": {
+        "medium": 3
+      },
+      "sources": {
+        "distilled": 3
+      },
+      "languages": {
+        "Python": 3
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 107.3,
+      "avg_target_len": 1638.7,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 452.0,
+      "total_tokens_estimated": 1356,
+      "canonical_format": 3,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/train/repo_qa.jsonl",
+      "total": 5,
+      "valid": 5,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "repo_qa": 5
+      },
+      "week41_categories": {
+        "repo_qa": 5
+      },
+      "difficulties": {
+        "medium": 5
+      },
+      "sources": {
+        "distilled": 5
+      },
+      "languages": {
+        "Python": 5
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 46.0,
+      "avg_target_len": 430.8,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 134.6,
+      "total_tokens_estimated": 673,
+      "canonical_format": 5,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/train/test_repair.jsonl",
+      "total": 5,
+      "valid": 5,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 5
+      },
+      "week41_categories": {
+        "test_repair": 5
+      },
+      "difficulties": {
+        "medium": 5
+      },
+      "sources": {
+        "distilled": 5
+      },
+      "languages": {
+        "Python": 5
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 78.8,
+      "avg_target_len": 375.0,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 128.8,
+      "total_tokens_estimated": 644,
+      "canonical_format": 5,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/train/tool_use.jsonl",
+      "total": 1,
+      "valid": 1,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "tool_use": 1
+      },
+      "week41_categories": {
+        "tool_use": 1
+      },
+      "difficulties": {
+        "medium": 1
+      },
+      "sources": {
+        "distilled": 1
+      },
+      "languages": {
+        "Python": 1
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 91.0,
+      "avg_target_len": 2400.0,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 638.0,
+      "total_tokens_estimated": 638,
+      "canonical_format": 1,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/train/unified_diff.jsonl",
+      "total": 4,
+      "valid": 4,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 4
+      },
+      "week41_categories": {
+        "diff_generation": 4
+      },
+      "difficulties": {
+        "medium": 4
+      },
+      "sources": {
+        "distilled": 4
+      },
+      "languages": {
+        "Python": 4
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 77.0,
+      "avg_target_len": 302.5,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 110.2,
+      "total_tokens_estimated": 441,
+      "canonical_format": 4,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/val/combined.jsonl",
+      "total": 5,
+      "valid": 5,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "tool_use": 2,
+        "unified_diff": 1,
+        "patch_planning": 1,
+        "repo_qa": 1
+      },
+      "week41_categories": {
+        "tool_use": 2,
+        "diff_generation": 1,
+        "patch_planning": 1,
+        "repo_qa": 1
+      },
+      "difficulties": {
+        "medium": 5
+      },
+      "sources": {
+        "distilled": 5
+      },
+      "languages": {
+        "Python": 5
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 76.2,
+      "avg_target_len": 1194.8,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 333.0,
+      "total_tokens_estimated": 1665,
+      "canonical_format": 5,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/val/patch_planning.jsonl",
+      "total": 1,
+      "valid": 1,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "patch_planning": 1
+      },
+      "week41_categories": {
+        "patch_planning": 1
+      },
+      "difficulties": {
+        "medium": 1
+      },
+      "sources": {
+        "distilled": 1
+      },
+      "languages": {
+        "Python": 1
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 94.0,
+      "avg_target_len": 2085.0,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 560.0,
+      "total_tokens_estimated": 560,
+      "canonical_format": 1,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/val/repo_qa.jsonl",
+      "total": 1,
+      "valid": 1,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "repo_qa": 1
+      },
+      "week41_categories": {
+        "repo_qa": 1
+      },
+      "difficulties": {
+        "medium": 1
+      },
+      "sources": {
+        "distilled": 1
+      },
+      "languages": {
+        "Python": 1
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 40.0,
+      "avg_target_len": 159.0,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 65.0,
+      "total_tokens_estimated": 65,
+      "canonical_format": 1,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/val/tool_use.jsonl",
+      "total": 2,
+      "valid": 2,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "tool_use": 2
+      },
+      "week41_categories": {
+        "tool_use": 2
+      },
+      "difficulties": {
+        "medium": 2
+      },
+      "sources": {
+        "distilled": 2
+      },
+      "languages": {
+        "Python": 2
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 91.0,
+      "avg_target_len": 1481.0,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 408.0,
+      "total_tokens_estimated": 816,
+      "canonical_format": 2,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "teacher_traces/val/unified_diff.jsonl",
+      "total": 1,
+      "valid": 1,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 1
+      },
+      "week41_categories": {
+        "diff_generation": 1
+      },
+      "difficulties": {
+        "medium": 1
+      },
+      "sources": {
+        "distilled": 1
+      },
+      "languages": {
+        "Python": 1
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 65.0,
+      "avg_target_len": 768.0,
+      "avg_context_len": 63.0,
+      "avg_token_estimate": 224.0,
+      "total_tokens_estimated": 224,
+      "canonical_format": 1,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "test/bug_localization.jsonl",
+      "total": 4,
+      "valid": 4,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "bug_localization": 4
+      },
+      "week41_categories": {
+        "bug_localization": 4
+      },
+      "difficulties": {
+        "medium": 4
+      },
+      "sources": {
+        "synthetic": 4
+      },
+      "languages": {
+        "Python": 4
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 55.0,
+      "avg_target_len": 120.8,
+      "avg_context_len": 208.2,
+      "avg_token_estimate": 95.5,
+      "total_tokens_estimated": 382,
+      "canonical_format": 4,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 8
+    },
+    {
+      "file": "test/combined.jsonl",
+      "total": 290,
+      "valid": 290,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "verification": 34,
+        "repo_qa": 175,
+        "test_repair": 4,
+        "tool_use": 49,
+        "refusal": 2,
+        "unified_diff": 13,
+        "patch_planning": 9,
+        "bug_localization": 4
+      },
+      "week41_categories": {
+        "critique": 34,
+        "repo_qa": 175,
+        "test_repair": 4,
+        "tool_use": 49,
+        "refusal": 2,
+        "diff_generation": 13,
+        "patch_planning": 9,
+        "bug_localization": 4
+      },
+      "difficulties": {
+        "medium": 290
+      },
+      "sources": {
+        "synthetic": 290
+      },
+      "languages": {
+        "Python": 199,
+        "Go": 23,
+        "TypeScript": 24,
+        "JavaScript": 19,
+        "Rust": 25
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 50.3,
+      "avg_target_len": 60.6,
+      "avg_context_len": 254.8,
+      "avg_token_estimate": 91.1,
+      "total_tokens_estimated": 26413,
+      "canonical_format": 290,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 52
+    },
+    {
+      "file": "test/examples.jsonl",
+      "total": 124,
+      "valid": 124,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "verification": 34,
+        "tool_use": 49,
+        "unified_diff": 13,
+        "patch_planning": 9,
+        "test_repair": 4,
+        "bug_localization": 4,
+        "repo_qa": 9,
+        "refusal": 2
+      },
+      "week41_categories": {
+        "critique": 34,
+        "tool_use": 49,
+        "diff_generation": 13,
+        "patch_planning": 9,
+        "test_repair": 4,
+        "bug_localization": 4,
+        "repo_qa": 9,
+        "refusal": 2
+      },
+      "difficulties": {
+        "medium": 124
+      },
+      "sources": {
+        "synthetic": 124
+      },
+      "languages": {
+        "Python": 124
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 61.2,
+      "avg_target_len": 72.5,
+      "avg_context_len": 202.0,
+      "avg_token_estimate": 83.5,
+      "total_tokens_estimated": 10358,
+      "canonical_format": 124,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 18
+    },
+    {
+      "file": "test/long_horizon_planning.jsonl",
+      "total": 40,
+      "valid": 40,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "long_horizon_planning": 40
+      },
+      "week41_categories": {
+        "long_horizon_planning": 40
+      },
+      "difficulties": {
+        "expert": 20,
+        "hard": 20
+      },
+      "sources": {
+        "synthetic": 40
+      },
+      "languages": {
+        "Python": 40
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 136.8,
+      "avg_target_len": 469.0,
+      "avg_context_len": 73.0,
+      "avg_token_estimate": 169.2,
+      "total_tokens_estimated": 6768,
+      "canonical_format": 40,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "test/multi_file_edit.jsonl",
+      "total": 40,
+      "valid": 40,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "multi_file_edit": 40
+      },
+      "week41_categories": {
+        "multi_file_edit": 40
+      },
+      "difficulties": {
+        "hard": 14,
+        "medium": 26
+      },
+      "sources": {
+        "synthetic": 40
+      },
+      "languages": {
+        "Python": 40
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 103.7,
+      "avg_target_len": 165.4,
+      "avg_context_len": 74.0,
+      "avg_token_estimate": 85.5,
+      "total_tokens_estimated": 3419,
+      "canonical_format": 40,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 16
+    },
+    {
+      "file": "test/patch.jsonl",
+      "total": 8,
+      "valid": 8,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 2,
+        "patch_planning": 3,
+        "unified_diff": 3
+      },
+      "week41_categories": {
+        "test_repair": 2,
+        "patch_planning": 3,
+        "diff_generation": 3
+      },
+      "difficulties": {
+        "medium": 8
+      },
+      "sources": {
+        "synthetic": 8
+      },
+      "languages": {
+        "Python": 8
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 79.4,
+      "avg_target_len": 148.6,
+      "avg_context_len": 219.9,
+      "avg_token_estimate": 111.6,
+      "total_tokens_estimated": 893,
+      "canonical_format": 8,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 6
+    },
+    {
+      "file": "test/patch_planning.jsonl",
+      "total": 9,
+      "valid": 9,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "patch_planning": 9
+      },
+      "week41_categories": {
+        "patch_planning": 9
+      },
+      "difficulties": {
+        "medium": 9
+      },
+      "sources": {
+        "synthetic": 9
+      },
+      "languages": {
+        "Python": 9
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 60.3,
+      "avg_target_len": 101.3,
+      "avg_context_len": 208.6,
+      "avg_token_estimate": 92.0,
+      "total_tokens_estimated": 828,
+      "canonical_format": 9,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 12
+    },
+    {
+      "file": "test/refusal.jsonl",
+      "total": 2,
+      "valid": 2,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "refusal": 2
+      },
+      "week41_categories": {
+        "refusal": 2
+      },
+      "difficulties": {
+        "medium": 2
+      },
+      "sources": {
+        "synthetic": 2
+      },
+      "languages": {
+        "Python": 2
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 33.0,
+      "avg_target_len": 75.5,
+      "avg_context_len": 184.0,
+      "avg_token_estimate": 72.5,
+      "total_tokens_estimated": 145,
+      "canonical_format": 2,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 0
+    },
+    {
+      "file": "test/repo_qa.jsonl",
+      "total": 166,
+      "valid": 166,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "repo_qa": 166
+      },
+      "week41_categories": {
+        "repo_qa": 166
+      },
+      "difficulties": {
+        "medium": 166
+      },
+      "sources": {
+        "synthetic": 166
+      },
+      "languages": {
+        "Python": 75,
+        "Go": 23,
+        "TypeScript": 24,
+        "JavaScript": 19,
+        "Rust": 25
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 42.2,
+      "avg_target_len": 51.8,
+      "avg_context_len": 294.2,
+      "avg_token_estimate": 96.7,
+      "total_tokens_estimated": 16055,
+      "canonical_format": 166,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 41
+    },
+    {
+      "file": "test/self_repair.jsonl",
+      "total": 40,
+      "valid": 40,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "self_repair": 40
+      },
+      "week41_categories": {
+        "self_repair": 40
+      },
+      "difficulties": {
+        "medium": 40
+      },
+      "sources": {
+        "synthetic": 40
+      },
+      "languages": {
+        "Python": 40
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 153.8,
+      "avg_target_len": 63.2,
+      "avg_context_len": 58.0,
+      "avg_token_estimate": 68.4,
+      "total_tokens_estimated": 2736,
+      "canonical_format": 40,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "test/test_repair.jsonl",
+      "total": 4,
+      "valid": 4,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 4
+      },
+      "week41_categories": {
+        "test_repair": 4
+      },
+      "difficulties": {
+        "medium": 4
+      },
+      "sources": {
+        "synthetic": 4
+      },
+      "languages": {
+        "Python": 4
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 79.8,
+      "avg_target_len": 52.0,
+      "avg_context_len": 192.0,
+      "avg_token_estimate": 80.8,
+      "total_tokens_estimated": 323,
+      "canonical_format": 4,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 3
+    },
+    {
+      "file": "test/tool_use.jsonl",
+      "total": 49,
+      "valid": 49,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "tool_use": 49
+      },
+      "week41_categories": {
+        "tool_use": 49
+      },
+      "difficulties": {
+        "medium": 49
+      },
+      "sources": {
+        "synthetic": 49
+      },
+      "languages": {
+        "Python": 49
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 64.6,
+      "avg_target_len": 37.6,
+      "avg_context_len": 210.4,
+      "avg_token_estimate": 77.8,
+      "total_tokens_estimated": 3810,
+      "canonical_format": 49,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 12
+    },
+    {
+      "file": "test/unified_diff.jsonl",
+      "total": 13,
+      "valid": 13,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 13
+      },
+      "week41_categories": {
+        "diff_generation": 13
+      },
+      "difficulties": {
+        "medium": 13
+      },
+      "sources": {
+        "synthetic": 13
+      },
+      "languages": {
+        "Python": 13
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 61.7,
+      "avg_target_len": 194.5,
+      "avg_context_len": 208.2,
+      "avg_token_estimate": 115.7,
+      "total_tokens_estimated": 1504,
+      "canonical_format": 13,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "test/verification.jsonl",
+      "total": 34,
+      "valid": 34,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "verification": 34
+      },
+      "week41_categories": {
+        "critique": 34
+      },
+      "difficulties": {
+        "medium": 34
+      },
+      "sources": {
+        "synthetic": 34
+      },
+      "languages": {
+        "Python": 34
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 64.1,
+      "avg_target_len": 66.9,
+      "avg_context_len": 185.6,
+      "avg_token_estimate": 78.8,
+      "total_tokens_estimated": 2678,
+      "canonical_format": 34,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 4
+    },
+    {
+      "file": "test.jsonl",
+      "total": 20,
+      "valid": 20,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "tool_use": 10,
+        "bug_localization": 4,
+        "patch_planning": 1,
+        "repo_qa": 2,
+        "refusal": 2,
+        "test_repair": 1
+      },
+      "week41_categories": {
+        "tool_use": 10,
+        "bug_localization": 4,
+        "patch_planning": 1,
+        "repo_qa": 2,
+        "refusal": 2,
+        "test_repair": 1
+      },
+      "difficulties": {
+        "easy": 13,
+        "medium": 7
+      },
+      "sources": {
+        "synthetic": 20
+      },
+      "languages": {
+        "Python": 20
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 35.1,
+      "avg_target_len": 51.1,
+      "avg_context_len": 106.1,
+      "avg_token_estimate": 47.6,
+      "total_tokens_estimated": 953,
+      "canonical_format": 20,
+      "flat_format": 20,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 0
+    },
+    {
+      "file": "train/bug_localization.jsonl",
+      "total": 61,
+      "valid": 61,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "bug_localization": 61
+      },
+      "week41_categories": {
+        "bug_localization": 61
+      },
+      "difficulties": {
+        "medium": 61
+      },
+      "sources": {
+        "synthetic": 61
+      },
+      "languages": {
+        "Python": 61
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 60.5,
+      "avg_target_len": 130.6,
+      "avg_context_len": 209.4,
+      "avg_token_estimate": 99.8,
+      "total_tokens_estimated": 6085,
+      "canonical_format": 61,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 12
+    },
+    {
+      "file": "train/combined.jsonl",
+      "total": 2332,
+      "valid": 2332,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "repo_qa": 1355,
+        "verification": 270,
+        "patch_planning": 70,
+        "unified_diff": 103,
+        "tool_use": 356,
+        "bug_localization": 61,
+        "refusal": 92,
+        "test_repair": 25
+      },
+      "week41_categories": {
+        "repo_qa": 1355,
+        "critique": 270,
+        "patch_planning": 70,
+        "diff_generation": 103,
+        "tool_use": 356,
+        "bug_localization": 61,
+        "refusal": 92,
+        "test_repair": 25
+      },
+      "difficulties": {
+        "medium": 2332
+      },
+      "sources": {
+        "synthetic": 2332
+      },
+      "languages": {
+        "Go": 168,
+        "Python": 1666,
+        "JavaScript": 170,
+        "Rust": 168,
+        "TypeScript": 160
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 49.9,
+      "avg_target_len": 65.3,
+      "avg_context_len": 251.6,
+      "avg_token_estimate": 91.3,
+      "total_tokens_estimated": 212911,
+      "canonical_format": 2332,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 54
+    },
+    {
+      "file": "train/examples.jsonl",
+      "total": 995,
+      "valid": 995,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "tool_use": 356,
+        "verification": 270,
+        "repo_qa": 94,
+        "bug_localization": 61,
+        "patch_planning": 70,
+        "unified_diff": 103,
+        "refusal": 16,
+        "test_repair": 25
+      },
+      "week41_categories": {
+        "tool_use": 356,
+        "critique": 270,
+        "repo_qa": 94,
+        "bug_localization": 61,
+        "patch_planning": 70,
+        "diff_generation": 103,
+        "refusal": 16,
+        "test_repair": 25
+      },
+      "difficulties": {
+        "medium": 995
+      },
+      "sources": {
+        "synthetic": 995
+      },
+      "languages": {
+        "Python": 995
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 60.4,
+      "avg_target_len": 74.8,
+      "avg_context_len": 201.1,
+      "avg_token_estimate": 83.7,
+      "total_tokens_estimated": 83301,
+      "canonical_format": 995,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 20
+    },
+    {
+      "file": "train/long_horizon_planning.jsonl",
+      "total": 200,
+      "valid": 200,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "long_horizon_planning": 200
+      },
+      "week41_categories": {
+        "long_horizon_planning": 200
+      },
+      "difficulties": {
+        "expert": 100,
+        "hard": 100
+      },
+      "sources": {
+        "synthetic": 200
+      },
+      "languages": {
+        "Python": 200
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 136.8,
+      "avg_target_len": 469.0,
+      "avg_context_len": 73.0,
+      "avg_token_estimate": 169.2,
+      "total_tokens_estimated": 33840,
+      "canonical_format": 200,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "train/multi_file_edit.jsonl",
+      "total": 200,
+      "valid": 200,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "multi_file_edit": 200
+      },
+      "week41_categories": {
+        "multi_file_edit": 200
+      },
+      "difficulties": {
+        "hard": 67,
+        "medium": 133
+      },
+      "sources": {
+        "synthetic": 200
+      },
+      "languages": {
+        "Python": 200
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 103.4,
+      "avg_target_len": 164.0,
+      "avg_context_len": 74.0,
+      "avg_token_estimate": 85.1,
+      "total_tokens_estimated": 17014,
+      "canonical_format": 200,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 16
+    },
+    {
+      "file": "train/patch.jsonl",
+      "total": 65,
+      "valid": 65,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "patch_planning": 29,
+        "unified_diff": 20,
+        "test_repair": 16
+      },
+      "week41_categories": {
+        "patch_planning": 29,
+        "diff_generation": 20,
+        "test_repair": 16
+      },
+      "difficulties": {
+        "medium": 65
+      },
+      "sources": {
+        "synthetic": 65
+      },
+      "languages": {
+        "Python": 65
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 75.8,
+      "avg_target_len": 149.1,
+      "avg_context_len": 220.7,
+      "avg_token_estimate": 111.0,
+      "total_tokens_estimated": 7214,
+      "canonical_format": 65,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 9
+    },
+    {
+      "file": "train/patch_planning.jsonl",
+      "total": 70,
+      "valid": 70,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "patch_planning": 70
+      },
+      "week41_categories": {
+        "patch_planning": 70
+      },
+      "difficulties": {
+        "medium": 70
+      },
+      "sources": {
+        "synthetic": 70
+      },
+      "languages": {
+        "Python": 70
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 55.5,
+      "avg_target_len": 102.4,
+      "avg_context_len": 210.4,
+      "avg_token_estimate": 91.7,
+      "total_tokens_estimated": 6420,
+      "canonical_format": 70,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 12
+    },
+    {
+      "file": "train/refusal.jsonl",
+      "total": 16,
+      "valid": 16,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "refusal": 16
+      },
+      "week41_categories": {
+        "refusal": 16
+      },
+      "difficulties": {
+        "medium": 16
+      },
+      "sources": {
+        "synthetic": 16
+      },
+      "languages": {
+        "Python": 16
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 33.6,
+      "avg_target_len": 73.2,
+      "avg_context_len": 184.0,
+      "avg_token_estimate": 72.4,
+      "total_tokens_estimated": 1158,
+      "canonical_format": 16,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 0
+    },
+    {
+      "file": "train/repo_qa.jsonl",
+      "total": 1337,
+      "valid": 1337,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "repo_qa": 1261,
+        "refusal": 76
+      },
+      "week41_categories": {
+        "repo_qa": 1261,
+        "refusal": 76
+      },
+      "difficulties": {
+        "medium": 1337
+      },
+      "sources": {
+        "synthetic": 1337
+      },
+      "languages": {
+        "Go": 168,
+        "Rust": 168,
+        "Python": 671,
+        "TypeScript": 160,
+        "JavaScript": 170
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 42.0,
+      "avg_target_len": 58.1,
+      "avg_context_len": 289.2,
+      "avg_token_estimate": 96.9,
+      "total_tokens_estimated": 129610,
+      "canonical_format": 1337,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 41
+    },
+    {
+      "file": "train/self_repair.jsonl",
+      "total": 200,
+      "valid": 200,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "self_repair": 200
+      },
+      "week41_categories": {
+        "self_repair": 200
+      },
+      "difficulties": {
+        "medium": 200
+      },
+      "sources": {
+        "synthetic": 200
+      },
+      "languages": {
+        "Python": 200
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 153.8,
+      "avg_target_len": 63.2,
+      "avg_context_len": 58.0,
+      "avg_token_estimate": 68.4,
+      "total_tokens_estimated": 13680,
+      "canonical_format": 200,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "train/test_repair.jsonl",
+      "total": 25,
+      "valid": 25,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 25
+      },
+      "week41_categories": {
+        "test_repair": 25
+      },
+      "difficulties": {
+        "medium": 25
+      },
+      "sources": {
+        "synthetic": 25
+      },
+      "languages": {
+        "Python": 25
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 87.7,
+      "avg_target_len": 74.2,
+      "avg_context_len": 192.0,
+      "avg_token_estimate": 88.1,
+      "total_tokens_estimated": 2202,
+      "canonical_format": 25,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 6
+    },
+    {
+      "file": "train/tool_use.jsonl",
+      "total": 356,
+      "valid": 356,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "tool_use": 356
+      },
+      "week41_categories": {
+        "tool_use": 356
+      },
+      "difficulties": {
+        "medium": 356
+      },
+      "sources": {
+        "synthetic": 356
+      },
+      "languages": {
+        "Python": 356
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 65.3,
+      "avg_target_len": 38.4,
+      "avg_context_len": 208.3,
+      "avg_token_estimate": 77.6,
+      "total_tokens_estimated": 27631,
+      "canonical_format": 356,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 12
+    },
+    {
+      "file": "train/unified_diff.jsonl",
+      "total": 103,
+      "valid": 103,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 103
+      },
+      "week41_categories": {
+        "diff_generation": 103
+      },
+      "difficulties": {
+        "medium": 103
+      },
+      "sources": {
+        "synthetic": 103
+      },
+      "languages": {
+        "Python": 103
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 55.6,
+      "avg_target_len": 195.4,
+      "avg_context_len": 205.5,
+      "avg_token_estimate": 113.7,
+      "total_tokens_estimated": 11713,
+      "canonical_format": 103,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 2
+    },
+    {
+      "file": "train/verification.jsonl",
+      "total": 270,
+      "valid": 270,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "verification": 270
+      },
+      "week41_categories": {
+        "critique": 270
+      },
+      "difficulties": {
+        "medium": 270
+      },
+      "sources": {
+        "synthetic": 270
+      },
+      "languages": {
+        "Python": 270
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 65.0,
+      "avg_target_len": 66.6,
+      "avg_context_len": 185.6,
+      "avg_token_estimate": 78.9,
+      "total_tokens_estimated": 21303,
+      "canonical_format": 270,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 4
+    },
+    {
+      "file": "train.jsonl",
+      "total": 160,
+      "valid": 160,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 23,
+        "tool_use": 56,
+        "repo_qa": 24,
+        "bug_localization": 28,
+        "patch_planning": 8,
+        "refusal": 19,
+        "unified_diff": 2
+      },
+      "week41_categories": {
+        "test_repair": 23,
+        "tool_use": 56,
+        "repo_qa": 24,
+        "bug_localization": 28,
+        "patch_planning": 8,
+        "refusal": 19,
+        "diff_generation": 2
+      },
+      "difficulties": {
+        "medium": 73,
+        "easy": 87
+      },
+      "sources": {
+        "synthetic": 160
+      },
+      "languages": {
+        "Python": 160
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 35.0,
+      "avg_target_len": 64.9,
+      "avg_context_len": 105.1,
+      "avg_token_estimate": 50.9,
+      "total_tokens_estimated": 8141,
+      "canonical_format": 160,
+      "flat_format": 160,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 0
+    },
+    {
+      "file": "val/bug_localization.jsonl",
+      "total": 7,
+      "valid": 7,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "bug_localization": 7
+      },
+      "week41_categories": {
+        "bug_localization": 7
+      },
+      "difficulties": {
+        "medium": 7
+      },
+      "sources": {
+        "synthetic": 7
+      },
+      "languages": {
+        "Python": 7
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 58.3,
+      "avg_target_len": 128.6,
+      "avg_context_len": 209.1,
+      "avg_token_estimate": 98.7,
+      "total_tokens_estimated": 691,
+      "canonical_format": 7,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 12
+    },
+    {
+      "file": "val/combined.jsonl",
+      "total": 290,
+      "valid": 290,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 10,
+        "repo_qa": 170,
+        "tool_use": 50,
+        "patch_planning": 11,
+        "verification": 33,
+        "refusal": 6,
+        "test_repair": 3,
+        "bug_localization": 7
+      },
+      "week41_categories": {
+        "diff_generation": 10,
+        "repo_qa": 170,
+        "tool_use": 50,
+        "patch_planning": 11,
+        "critique": 33,
+        "refusal": 6,
+        "test_repair": 3,
+        "bug_localization": 7
+      },
+      "difficulties": {
+        "medium": 290
+      },
+      "sources": {
+        "synthetic": 290
+      },
+      "languages": {
+        "Python": 213,
+        "Go": 18,
+        "TypeScript": 23,
+        "JavaScript": 19,
+        "Rust": 17
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 50.3,
+      "avg_target_len": 62.6,
+      "avg_context_len": 254.0,
+      "avg_token_estimate": 91.4,
+      "total_tokens_estimated": 26500,
+      "canonical_format": 290,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 51
+    },
+    {
+      "file": "val/examples.jsonl",
+      "total": 124,
+      "valid": 124,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 3,
+        "tool_use": 50,
+        "unified_diff": 10,
+        "verification": 33,
+        "patch_planning": 11,
+        "bug_localization": 7,
+        "repo_qa": 8,
+        "refusal": 2
+      },
+      "week41_categories": {
+        "test_repair": 3,
+        "tool_use": 50,
+        "diff_generation": 10,
+        "critique": 33,
+        "patch_planning": 11,
+        "bug_localization": 7,
+        "repo_qa": 8,
+        "refusal": 2
+      },
+      "difficulties": {
+        "medium": 124
+      },
+      "sources": {
+        "synthetic": 124
+      },
+      "languages": {
+        "Python": 124
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 61.1,
+      "avg_target_len": 71.9,
+      "avg_context_len": 201.9,
+      "avg_token_estimate": 83.4,
+      "total_tokens_estimated": 10341,
+      "canonical_format": 124,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 17
+    },
+    {
+      "file": "val/long_horizon_planning.jsonl",
+      "total": 40,
+      "valid": 40,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "long_horizon_planning": 40
+      },
+      "week41_categories": {
+        "long_horizon_planning": 40
+      },
+      "difficulties": {
+        "expert": 20,
+        "hard": 20
+      },
+      "sources": {
+        "synthetic": 40
+      },
+      "languages": {
+        "Python": 40
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 136.8,
+      "avg_target_len": 469.0,
+      "avg_context_len": 73.0,
+      "avg_token_estimate": 169.2,
+      "total_tokens_estimated": 6768,
+      "canonical_format": 40,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "val/multi_file_edit.jsonl",
+      "total": 40,
+      "valid": 40,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "multi_file_edit": 40
+      },
+      "week41_categories": {
+        "multi_file_edit": 40
+      },
+      "difficulties": {
+        "hard": 14,
+        "medium": 26
+      },
+      "sources": {
+        "synthetic": 40
+      },
+      "languages": {
+        "Python": 40
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 103.7,
+      "avg_target_len": 165.4,
+      "avg_context_len": 74.0,
+      "avg_token_estimate": 85.5,
+      "total_tokens_estimated": 3419,
+      "canonical_format": 40,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 16
+    },
+    {
+      "file": "val/patch.jsonl",
+      "total": 8,
+      "valid": 8,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "patch_planning": 4,
+        "unified_diff": 4
+      },
+      "week41_categories": {
+        "patch_planning": 4,
+        "diff_generation": 4
+      },
+      "difficulties": {
+        "medium": 8
+      },
+      "sources": {
+        "synthetic": 8
+      },
+      "languages": {
+        "Python": 8
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 64.9,
+      "avg_target_len": 144.6,
+      "avg_context_len": 221.4,
+      "avg_token_estimate": 107.5,
+      "total_tokens_estimated": 860,
+      "canonical_format": 8,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 7
+    },
+    {
+      "file": "val/patch_planning.jsonl",
+      "total": 11,
+      "valid": 11,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "patch_planning": 11
+      },
+      "week41_categories": {
+        "patch_planning": 11
+      },
+      "difficulties": {
+        "medium": 11
+      },
+      "sources": {
+        "synthetic": 11
+      },
+      "languages": {
+        "Python": 11
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 50.5,
+      "avg_target_len": 100.5,
+      "avg_context_len": 206.4,
+      "avg_token_estimate": 88.9,
+      "total_tokens_estimated": 978,
+      "canonical_format": 11,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 12
+    },
+    {
+      "file": "val/refusal.jsonl",
+      "total": 2,
+      "valid": 2,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "refusal": 2
+      },
+      "week41_categories": {
+        "refusal": 2
+      },
+      "difficulties": {
+        "medium": 2
+      },
+      "sources": {
+        "synthetic": 2
+      },
+      "languages": {
+        "Python": 2
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 33.5,
+      "avg_target_len": 71.0,
+      "avg_context_len": 184.0,
+      "avg_token_estimate": 71.5,
+      "total_tokens_estimated": 143,
+      "canonical_format": 2,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 0
+    },
+    {
+      "file": "val/repo_qa.jsonl",
+      "total": 166,
+      "valid": 166,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "repo_qa": 162,
+        "refusal": 4
+      },
+      "week41_categories": {
+        "repo_qa": 162,
+        "refusal": 4
+      },
+      "difficulties": {
+        "medium": 166
+      },
+      "sources": {
+        "synthetic": 166
+      },
+      "languages": {
+        "Python": 89,
+        "Go": 18,
+        "Rust": 17,
+        "TypeScript": 23,
+        "JavaScript": 19
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 42.1,
+      "avg_target_len": 55.7,
+      "avg_context_len": 292.9,
+      "avg_token_estimate": 97.3,
+      "total_tokens_estimated": 16159,
+      "canonical_format": 166,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 41
+    },
+    {
+      "file": "val/self_repair.jsonl",
+      "total": 40,
+      "valid": 40,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "self_repair": 40
+      },
+      "week41_categories": {
+        "self_repair": 40
+      },
+      "difficulties": {
+        "medium": 40
+      },
+      "sources": {
+        "synthetic": 40
+      },
+      "languages": {
+        "Python": 40
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 153.8,
+      "avg_target_len": 63.2,
+      "avg_context_len": 58.0,
+      "avg_token_estimate": 68.4,
+      "total_tokens_estimated": 2736,
+      "canonical_format": 40,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "val/test_repair.jsonl",
+      "total": 3,
+      "valid": 3,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 3
+      },
+      "week41_categories": {
+        "test_repair": 3
+      },
+      "difficulties": {
+        "medium": 3
+      },
+      "sources": {
+        "synthetic": 3
+      },
+      "languages": {
+        "Python": 3
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 81.7,
+      "avg_target_len": 56.3,
+      "avg_context_len": 192.0,
+      "avg_token_estimate": 82.0,
+      "total_tokens_estimated": 246,
+      "canonical_format": 3,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 3
+    },
+    {
+      "file": "val/tool_use.jsonl",
+      "total": 50,
+      "valid": 50,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "tool_use": 50
+      },
+      "week41_categories": {
+        "tool_use": 50
+      },
+      "difficulties": {
+        "medium": 50
+      },
+      "sources": {
+        "synthetic": 50
+      },
+      "languages": {
+        "Python": 50
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 65.1,
+      "avg_target_len": 38.1,
+      "avg_context_len": 209.4,
+      "avg_token_estimate": 77.8,
+      "total_tokens_estimated": 3891,
+      "canonical_format": 50,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 12
+    },
+    {
+      "file": "val/unified_diff.jsonl",
+      "total": 10,
+      "valid": 10,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "unified_diff": 10
+      },
+      "week41_categories": {
+        "diff_generation": 10
+      },
+      "difficulties": {
+        "medium": 10
+      },
+      "sources": {
+        "synthetic": 10
+      },
+      "languages": {
+        "Python": 10
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 57.7,
+      "avg_target_len": 196.0,
+      "avg_context_len": 209.0,
+      "avg_token_estimate": 115.4,
+      "total_tokens_estimated": 1154,
+      "canonical_format": 10,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 1
+    },
+    {
+      "file": "val/verification.jsonl",
+      "total": 33,
+      "valid": 33,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "verification": 33
+      },
+      "week41_categories": {
+        "critique": 33
+      },
+      "difficulties": {
+        "medium": 33
+      },
+      "sources": {
+        "synthetic": 33
+      },
+      "languages": {
+        "Python": 33
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 66.0,
+      "avg_target_len": 68.0,
+      "avg_context_len": 185.8,
+      "avg_token_estimate": 79.6,
+      "total_tokens_estimated": 2627,
+      "canonical_format": 33,
+      "flat_format": 0,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 4
+    },
+    {
+      "file": "val.jsonl",
+      "total": 20,
+      "valid": 20,
+      "errors": 0,
+      "error_details": [],
+      "modalities": {
+        "test_repair": 3,
+        "tool_use": 6,
+        "repo_qa": 2,
+        "bug_localization": 5,
+        "patch_planning": 4
+      },
+      "week41_categories": {
+        "test_repair": 3,
+        "tool_use": 6,
+        "repo_qa": 2,
+        "bug_localization": 5,
+        "patch_planning": 4
+      },
+      "difficulties": {
+        "medium": 11,
+        "easy": 9
+      },
+      "sources": {
+        "synthetic": 20
+      },
+      "languages": {
+        "Python": 20
+      },
+      "missing_instruction": 0,
+      "missing_output": 0,
+      "missing_modality": 0,
+      "missing_difficulty": 0,
+      "missing_source": 0,
+      "missing_repo_context": 0,
+      "avg_instruction_len": 35.0,
+      "avg_target_len": 78.2,
+      "avg_context_len": 108.5,
+      "avg_token_estimate": 55.0,
+      "total_tokens_estimated": 1101,
+      "canonical_format": 20,
+      "flat_format": 20,
+      "duplicate_ids": 0,
+      "duplicate_id_examples": [],
+      "unique_file_paths": 0
+    }
+  ]
+}

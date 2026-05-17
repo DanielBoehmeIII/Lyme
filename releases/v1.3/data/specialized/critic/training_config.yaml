@@ -1,0 +1,56 @@
+data:
+  instruction_template: '### Instruction:
+
+    {instruction}
+
+
+    ### Patch:
+
+    {context}
+
+
+    ### Critique:
+
+    '
+  test_file: datasets/specialized/critic/test/combined.jsonl
+  train_file: datasets/specialized/critic/train/combined.jsonl
+  val_file: datasets/specialized/critic/val/combined.jsonl
+lora:
+  alpha: 32
+  bias: none
+  dropout: 0.05
+  r: 16
+  target_modules:
+  - q_proj
+  - v_proj
+  - k_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+  task_type: CAUSAL_LM
+model:
+  device_map: auto
+  dtype: bfloat16
+  name: Qwen/Qwen2.5-Coder-0.5B-Instruct
+quantization:
+  bnb_4bit_compute_dtype: bfloat16
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+  enabled: true
+  load_in_4bit: true
+training:
+  bf16: true
+  eval_steps: 100
+  gradient_accumulation_steps: 8
+  gradient_checkpointing: true
+  learning_rate: 0.0002
+  logging_steps: 10
+  max_seq_length: 1024
+  num_train_epochs: 3
+  optim: paged_adamw_8bit
+  output_dir: checkpoints/critic_v1
+  per_device_eval_batch_size: 1
+  per_device_train_batch_size: 1
+  save_steps: 100
+  save_total_limit: 3

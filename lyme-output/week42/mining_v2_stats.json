@@ -1,0 +1,43 @@
+{
+  "total": 8248,
+  "unique": 8248,
+  "repos": {
+    "flask": 680,
+    "requests": 585,
+    "fastapi": 442,
+    "click": 466,
+    "tox": 960,
+    "pytest": 607,
+    "pyright": 799,
+    "express": 602,
+    "lodash": 375,
+    "mocha": 739,
+    "regex": 617,
+    "serde": 407,
+    "mux": 464,
+    "jwt": 505
+  },
+  "modalities": {
+    "unified_diff": 6099,
+    "patch_planning": 1877,
+    "test_repair": 272
+  },
+  "task_types": {
+    "small_fix": 1749,
+    "refactor": 658,
+    "bug_fix": 2343,
+    "feature": 1024,
+    "dep_update": 1485,
+    "fix_test": 66,
+    "update": 277,
+    "config_change": 392,
+    "cleanup": 48,
+    "add_test": 206
+  },
+  "languages": {
+    "Python": 4539,
+    "JavaScript": 1716,
+    "Rust": 1024,
+    "Go": 969
+  }
+}

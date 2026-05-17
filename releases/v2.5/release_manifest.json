@@ -1,0 +1,16 @@
+{
+  "version": "2.5",
+  "generated": "2026-05-16T23:43:02.535772+00:00",
+  "base_model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "primary_slice": "small_failing_test_repair",
+  "secondary_slice": "test_failure_localization",
+  "attack_slices": {
+    "config_key_rename_propagation": "STRONG CANDIDATE",
+    "import_migration": "STRONG CANDIDATE",
+    "patch_planning": "POSSIBLE",
+    "repo_qa_with_citations": "POSSIBLE but narrow",
+    "semantic_diff_explanation": "POSSIBLE",
+    "small_failing_test_repair": "STRONG CANDIDATE",
+    "test_failure_localization": "STRONG CANDIDATE"
+  }
+}

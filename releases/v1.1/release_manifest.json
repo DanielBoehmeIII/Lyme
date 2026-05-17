@@ -1,0 +1,21 @@
+{
+  "version": "1.1",
+  "build_date": "2026-05-16T23:00:32.097132+00:00",
+  "base_model": "Qwen/Qwen2.5-Coder-0.5B-Instruct",
+  "training_method": "QLoRA",
+  "sft_completed": false,
+  "specializations": [
+    "tool_use",
+    "diff_discipline",
+    "test_repair",
+    "multi_file_edit",
+    "critic"
+  ],
+  "metrics": {},
+  "assets": [
+    "checkpoints/sft_v1_week46",
+    "datasets/v1",
+    "datasets/specialized",
+    "datasets/generated"
+  ]
+}

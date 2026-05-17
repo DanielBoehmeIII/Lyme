@@ -1,0 +1,33 @@
+{
+  "total": 2515,
+  "unique": 2515,
+  "repos": {
+    "flask": 464,
+    "requests": 400,
+    "fastapi": 248,
+    "django": 505,
+    "click": 348,
+    "cpython": 550
+  },
+  "modalities": {
+    "unified_diff": 1966,
+    "patch_planning": 486,
+    "test_repair": 63
+  },
+  "task_types": {
+    "small_fix": 590,
+    "refactor": 182,
+    "bug_fix": 811,
+    "feature": 299,
+    "dep_update": 439,
+    "fix_test": 11,
+    "config_change": 47,
+    "update": 84,
+    "add_test": 52
+  },
+  "difficulties": {
+    "easy": 1682,
+    "hard": 215,
+    "medium": 618
+  }
+}

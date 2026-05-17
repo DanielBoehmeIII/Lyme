@@ -1,0 +1,21 @@
+{
+  "version": "1.2",
+  "theme": "agentic_local_coding_model",
+  "build_date": "2026-05-16T23:05:31.983144+00:00",
+  "base_model": "Qwen/Qwen2.5-Coder-0.5B-Instruct",
+  "components": [
+    "sft_v1",
+    "tool_use",
+    "diff_discipline",
+    "test_repair",
+    "multi_file_edit",
+    "critic_v1",
+    "action_grammar",
+    "react_traces",
+    "tool_feedback",
+    "stop_conditions",
+    "plan_patch_alignment",
+    "agent_runtime_v2"
+  ],
+  "total_training_examples": 18208
+}

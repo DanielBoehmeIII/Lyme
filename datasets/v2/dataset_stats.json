@@ -1,0 +1,62 @@
+{
+  "version": "2.0",
+  "total": 3613,
+  "total_unique": 2385,
+  "generated": "2026-05-16T23:23:56.498455+00:00",
+  "sources": {
+    "v1_existing": 5674,
+    "v1_critic": 243,
+    "v1_tool_policy": 335,
+    "mined": 0,
+    "synthetic_failures": 422,
+    "teacher_traces": 90
+  },
+  "splits": {
+    "sft": {
+      "train": 1824,
+      "val": 228,
+      "test": 228
+    },
+    "action": {
+      "train": 19,
+      "val": 2,
+      "test": 3
+    },
+    "critic": {
+      "train": 32,
+      "val": 4,
+      "test": 4
+    },
+    "reward": {
+      "train": 182,
+      "val": 23,
+      "test": 23
+    },
+    "heldout_hard": {
+      "train": 0,
+      "val": 0,
+      "test": 41
+    },
+    "eval_only": {
+      "train": 0,
+      "val": 0,
+      "test": 0
+    },
+    "preference": {
+      "train": 1000,
+      "val": 0,
+      "test": 0
+    }
+  },
+  "modalities": {
+    "unified_diff": 1739,
+    "patch_planning": 690,
+    "bug_localization": 43,
+    "repo_qa": 55,
+    "refusal": 17,
+    "multi_file_edit": 5,
+    "tool_use": 24,
+    "verification": 40,
+    "preference": 1000
+  }
+}

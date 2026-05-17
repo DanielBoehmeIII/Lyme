@@ -1,0 +1,154 @@
+{
+  "generated": "2026-05-16T23:40:04.461811+00:00",
+  "config_check": "ok",
+  "config_issues": [],
+  "data_available": {
+    "v2_sft_test": true,
+    "v2_action_test": true,
+    "v2_critic_test": true,
+    "v2_heldout_hard": true
+  },
+  "baseline": {
+    "v2_sft_test": {
+      "total": 228,
+      "by_modality": {
+        "unified_diff": 161,
+        "patch_planning": 51,
+        "bug_localization": 6,
+        "repo_qa": 8,
+        "multi_file_edit": 2
+      },
+      "by_difficulty": {
+        "easy": 145,
+        "medium": 57,
+        "hard": 26
+      },
+      "by_source": {
+        "synthetic": 3,
+        "real_repo": 200,
+        "v0": 20,
+        "synthetic_bugs": 2,
+        "teacher_traces": 1,
+        "distilled": 2
+      },
+      "by_language": {
+        "JavaScript": 45,
+        "Rust": 28,
+        "Go": 39,
+        "Python": 116
+      },
+      "avg_instruction_length": 121.3,
+      "avg_target_length": 1084.0,
+      "total_retrieved_files": 365,
+      "total_tool_calls": 11,
+      "total_candidate_patches": 0,
+      "has_patch_data": 5,
+      "has_reasoning_trace": 2
+    },
+    "v2_action_test": {
+      "total": 3,
+      "by_modality": {
+        "tool_use": 3
+      },
+      "by_difficulty": {
+        "medium": 3
+      },
+      "by_source": {
+        "v0": 3
+      },
+      "by_language": {
+        "Python": 3
+      },
+      "avg_instruction_length": 66.3,
+      "avg_target_length": 47.0,
+      "total_retrieved_files": 8,
+      "total_tool_calls": 11,
+      "total_candidate_patches": 0,
+      "has_patch_data": 0,
+      "has_reasoning_trace": 0
+    },
+    "v2_critic_test": {
+      "total": 4,
+      "by_modality": {
+        "verification": 4
+      },
+      "by_difficulty": {
+        "medium": 4
+      },
+      "by_source": {
+        "v0": 4
+      },
+      "by_language": {
+        "Python": 4
+      },
+      "avg_instruction_length": 66.2,
+      "avg_target_length": 67.2,
+      "total_retrieved_files": 4,
+      "total_tool_calls": 0,
+      "total_candidate_patches": 0,
+      "has_patch_data": 0,
+      "has_reasoning_trace": 0
+    },
+    "v2_heldout_hard": {
+      "total": 41,
+      "by_modality": {
+        "unified_diff": 35,
+        "patch_planning": 6
+      },
+      "by_difficulty": {
+        "hard": 41
+      },
+      "by_source": {
+        "synthetic_bugs": 1,
+        "real_repo": 37,
+        "synthetic": 3
+      },
+      "by_language": {
+        "Python": 20,
+        "Rust": 5,
+        "JavaScript": 11,
+        "Go": 5
+      },
+      "avg_instruction_length": 199.9,
+      "avg_target_length": 2622.9,
+      "total_retrieved_files": 96,
+      "total_tool_calls": 0,
+      "total_candidate_patches": 0,
+      "has_patch_data": 3,
+      "has_reasoning_trace": 0
+    }
+  },
+  "targets": {
+    "patch_validity": {
+      "v1": 0.67,
+      "v2_target": 0.8,
+      "delta": "+13%"
+    },
+    "test_repair_pass@1": {
+      "v1": 0.5,
+      "v2_target": 0.7,
+      "delta": "+20%"
+    },
+    "bug_localization_top3": {
+      "v1": 0.6,
+      "v2_target": 0.8,
+      "delta": "+20%"
+    },
+    "multi_file_edit_success": {
+      "v1": 0.4,
+      "v2_target": 0.65,
+      "delta": "+25%"
+    },
+    "tool_action_parse_rate": {
+      "v1": 0.75,
+      "v2_target": 0.9,
+      "delta": "+15%"
+    },
+    "refusal_accuracy": {
+      "v1": 0.8,
+      "v2_target": 0.92,
+      "delta": "+12%"
+    }
+  },
+  "training_status": "not_started"
+}

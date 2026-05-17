@@ -1,0 +1,72 @@
+# Lyme Model — Multi-File Edit v2
+# Specializes in bounded multi-file changes with cross-file consistency.
+# Base: SFT v2 checkpoint
+
+model:
+  name: "Qwen/Qwen2.5-Coder-7B-Instruct"
+  dtype: "bfloat16"
+  attn_implementation: "sdpa"
+  device_map: "auto"
+  adapter_path: "checkpoints/sft_v2/final"
+
+quantization:
+  enabled: true
+  method: "bitsandbytes"
+  load_in_4bit: true
+  bnb_4bit_compute_dtype: "bfloat16"
+  bnb_4bit_use_double_quant: true
+  bnb_4bit_quant_type: "nf4"
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules:
+    - "q_proj"
+    - "v_proj"
+    - "k_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+  bias: "none"
+  task_type: "CAUSAL_LM"
+
+training:
+  output_dir: "checkpoints/multi_file_edit_v2"
+  num_train_epochs: 3
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 8
+  gradient_checkpointing: true
+  learning_rate: 1.0e-4
+  warmup_ratio: 0.05
+  lr_scheduler_type: "cosine"
+  weight_decay: 0.01
+  max_grad_norm: 0.3
+  logging_steps: 10
+  save_steps: 100
+  eval_steps: 200
+  evaluation_strategy: "steps"
+  save_total_limit: 3
+  load_best_model_at_end: true
+  metric_for_best_model: "eval_loss"
+  report_to: "none"
+  seed: 91
+  fp16: false
+  bf16: true
+  optim: "paged_adamw_8bit"
+  max_seq_length: 2048
+
+  modality_filter: ["multi_file_edit"]
+
+data:
+  train_file: "datasets/v2/sft/train/multi_file_edit.jsonl"
+  val_file: "datasets/v2/sft/val/multi_file_edit.jsonl"
+  test_file: "datasets/v2/sft/test/multi_file_edit.jsonl"
+  instruction_template: "### Task:\n{instruction}\n\n### Files:\n{context}\n\n### Changes:\n{output}"
+  truncation_side: "left"
+
+resume:
+  enabled: false
+  checkpoint_path: ""

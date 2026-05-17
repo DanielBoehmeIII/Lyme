@@ -1,0 +1,65 @@
+{
+  "name": "lyme-agent-loop-v2",
+  "version": "2.0",
+  "description": "Parses model output as structured actions, executes tools, returns observations.",
+  "actions": {
+    "SEARCH": {
+      "description": "Search codebase for pattern",
+      "args": {
+        "query": "str",
+        "path": "str (optional)"
+      }
+    },
+    "READ": {
+      "description": "Read file contents",
+      "args": {
+        "path": "str"
+      }
+    },
+    "PATCH": {
+      "description": "Apply edit to file",
+      "args": {
+        "file": "str",
+        "old": "str",
+        "new": "str"
+      }
+    },
+    "RUN_TESTS": {
+      "description": "Run test command",
+      "args": {
+        "command": "str"
+      }
+    },
+    "VERIFY": {
+      "description": "Run verification check",
+      "args": {
+        "check": "str"
+      }
+    },
+    "LIST_DIR": {
+      "description": "List directory contents",
+      "args": {
+        "path": "str"
+      }
+    },
+    "STOP": {
+      "description": "Stop execution",
+      "args": {
+        "reason": "str"
+      }
+    }
+  },
+  "safety": {
+    "max_steps": 20,
+    "max_patch_size": 1000,
+    "allowed_dirs": [
+      "src/",
+      "tests/",
+      "config/"
+    ],
+    "forbidden_patterns": [
+      "rm -rf",
+      "DROP TABLE"
+    ]
+  }
+}

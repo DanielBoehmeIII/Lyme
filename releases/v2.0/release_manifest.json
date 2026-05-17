@@ -1,0 +1,72 @@
+{
+  "version": "2.0",
+  "generated": "2026-05-16T23:41:05.966663+00:00",
+  "base_model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "dataset": "Dataset v2",
+  "components": {
+    "sft_v2": {
+      "ready": false,
+      "path": "checkpoints/sft_v2/final"
+    },
+    "diff_discipline_v2": {
+      "ready": false,
+      "path": "checkpoints/diff_discipline_v2/final"
+    },
+    "test_repair_v2": {
+      "ready": false,
+      "path": "checkpoints/test_repair_v2/final"
+    },
+    "bug_localization_v2": {
+      "ready": false,
+      "path": "checkpoints/bug_localization_v2/final"
+    },
+    "multi_file_edit_v2": {
+      "ready": false,
+      "path": "checkpoints/multi_file_edit_v2/final"
+    }
+  },
+  "targets": {
+    "total_examples": 3325,
+    "patch_validity": 0.8,
+    "test_repair_pass@1": 0.7,
+    "bug_localization_top3": 0.8,
+    "multi_file_edit_success": 0.65,
+    "tool_action_parse": 0.9,
+    "refusal_accuracy": 0.92
+  },
+  "gap_vs_claude": {
+    "patch_validity": {
+      "claude_code": 0.92,
+      "opencode": 0.88,
+      "lyme_v2": 0.8,
+      "gap": -0.12
+    },
+    "test_repair_pass@1": {
+      "claude_code": 0.85,
+      "opencode": 0.8,
+      "lyme_v2": 0.7,
+      "gap": -0.15
+    },
+    "bug_localization_top3": {
+      "claude_code": 0.9,
+      "opencode": 0.85,
+      "lyme_v2": 0.8,
+      "gap": -0.1
+    },
+    "refusal_accuracy": {
+      "claude_code": 0.95,
+      "opencode": 0.92,
+      "lyme_v2": 0.92,
+      "gap": -0.03
+    },
+    "tool_action_parse": {
+      "claude_code": 0.95,
+      "opencode": 0.93,
+      "lyme_v2": 0.9,
+      "gap": -0.05
+    }
+  },
+  "adapter_dir": "adapters/v2.0/",
+  "release_dir": "releases/v2.0",
+  "training_command_sft": "python training/scripts/sft_train.py --config training/configs/sft_v2.yaml"
+}

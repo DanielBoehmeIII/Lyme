@@ -1,0 +1,134 @@
+{
+  "generated": "2026-05-16T23:37:13.204373+00:00",
+  "method": "known_benchmarks + live_eval",
+  "live_evals": 5,
+  "candidates": [
+    {
+      "model": "qwen2.5-coder:7b",
+      "class": "7B",
+      "params": 7.6,
+      "source": "live_eval",
+      "overall_accuracy": 0,
+      "humaneval": 0.832,
+      "patch_quality": 0.81,
+      "code_understanding": 0.85,
+      "known_issues": "Strong general coding. Large context (32K). Good instruction following."
+    },
+    {
+      "model": "deepseek-coder:6.7b",
+      "class": "7B",
+      "params": 6.7,
+      "source": "live_eval",
+      "overall_accuracy": 0,
+      "humaneval": 0.737,
+      "patch_quality": 0.88,
+      "code_understanding": 0.8,
+      "known_issues": "Limited context (16K). Dedicated code model. Strong patch quality."
+    },
+    {
+      "model": "starcoder2:7b",
+      "class": "7B",
+      "params": 7.0,
+      "source": "live_eval",
+      "overall_accuracy": 0,
+      "humaneval": 0.655,
+      "patch_quality": 0.67,
+      "code_understanding": 0.7,
+      "known_issues": "Weaker instruction following. Better for fill-in-middle tasks."
+    },
+    {
+      "model": "codellama:7b",
+      "class": "7B",
+      "params": 7.0,
+      "source": "live_eval",
+      "overall_accuracy": 0,
+      "humaneval": 0.624,
+      "patch_quality": 0.71,
+      "code_understanding": 0.68,
+      "known_issues": "Aging architecture. Larger 32K context but weaker than modern models."
+    },
+    {
+      "model": "qwen2.5-coder:14b",
+      "class": "14B",
+      "params": 14.8,
+      "source": "live_eval",
+      "overall_accuracy": 0,
+      "humaneval": 0.887,
+      "patch_quality": 0.88,
+      "code_understanding": 0.9,
+      "known_issues": "Needs 12-16GB VRAM. Best quality in class. Large 32K context."
+    },
+    {
+      "model": "starcoder2:15b",
+      "class": "14B",
+      "params": 15,
+      "source": "known_benchmarks",
+      "overall_accuracy": 0.5,
+      "humaneval": 0,
+      "patch_quality": 0,
+      "code_understanding": 0,
+      "known_issues": "Unknown"
+    },
+    {
+      "model": "codellama:13b",
+      "class": "14B",
+      "params": 13,
+      "source": "known_benchmarks",
+      "overall_accuracy": 0.712,
+      "humaneval": 0.669,
+      "patch_quality": 0.75,
+      "code_understanding": 0.73,
+      "known_issues": "Aging. Qwen2.5-Coder:14b is significantly better."
+    },
+    {
+      "model": "qwen2.5-coder:32b",
+      "class": "30B",
+      "params": 32.5,
+      "source": "known_benchmarks",
+      "overall_accuracy": 0.926,
+      "humaneval": 0.927,
+      "patch_quality": 0.92,
+      "code_understanding": 0.93,
+      "known_issues": "Needs 24GB+ VRAM. Best local coding model. 32K context."
+    },
+    {
+      "model": "codellama:34b",
+      "class": "30B",
+      "params": 34,
+      "source": "known_benchmarks",
+      "overall_accuracy": 0.717,
+      "humaneval": 0.652,
+      "patch_quality": 0.77,
+      "code_understanding": 0.75,
+      "known_issues": "Aging architecture. Qwen2.5-Coder:32b is much better."
+    }
+  ],
+  "selections": {
+    "14B": {
+      "selected": "codellama:13b",
+      "accuracy": 0.712,
+      "humaneval": 0.669,
+      "runners_up": [
+        "starcoder2:15b",
+        "qwen2.5-coder:14b"
+      ]
+    },
+    "30B": {
+      "selected": "qwen2.5-coder:32b",
+      "accuracy": 0.926,
+      "humaneval": 0.927,
+      "runners_up": [
+        "codellama:34b"
+      ]
+    },
+    "7B": {
+      "selected": "qwen2.5-coder:7b",
+      "accuracy": 0,
+      "humaneval": 0.832,
+      "runners_up": [
+        "deepseek-coder:6.7b",
+        "starcoder2:7b"
+      ]
+    }
+  }
+}

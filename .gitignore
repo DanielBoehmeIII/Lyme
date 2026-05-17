@@ -1,0 +1,11 @@
+
+# Model artifacts / training outputs
+checkpoints/
+adapters/
+*.safetensors
+*.pt
+*.bin
+*.gguf
+*.ckpt
+wandb/
+runs/

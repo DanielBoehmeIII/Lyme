@@ -1,0 +1,18 @@
+{
+  "name": "Local Imitation Evaluation v1",
+  "description": "Measure whether Lyme Model imitates useful teacher behavior",
+  "metrics": [
+    "same_relevant_files_found",
+    "similar_tool_sequence_length",
+    "similar_patch_minimality",
+    "test_success",
+    "lower_hallucination"
+  ],
+  "criteria": {
+    "same_relevant_files": "Model reads same files as teacher would",
+    "tool_sequence_length": "Model uses similar number of tool calls (\u00b12)",
+    "patch_minimality": "Model's patch is no more than 2 lines larger than teacher's",
+    "test_success": "Model's fix passes the same tests",
+    "hallucination": "Model does not reference files the teacher didn't need"
+  }
+}

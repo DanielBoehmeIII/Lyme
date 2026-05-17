@@ -1,0 +1,189 @@
+{
+  "base": {
+    "model": "deepseek-coder:6.7b",
+    "label": "Base Model (deepseek-coder:6.7b)",
+    "total_tasks": 9,
+    "passed": 9,
+    "pass_rate": 100.0,
+    "avg_score": 0.889,
+    "avg_latency_s": 4.42,
+    "categories": {
+      "repo_understanding": 1.0,
+      "hallucination": 1.0,
+      "evidence": 1.0,
+      "latency": 1.0,
+      "patch": 1.0,
+      "syntax": 0.5,
+      "test_repair": 0.5
+    },
+    "results": [
+      {
+        "task": "repo_qa_framework",
+        "category": "repo_understanding",
+        "score": 1.0,
+        "latency_s": 15.54,
+        "tokens": 163,
+        "error": null
+      },
+      {
+        "task": "repo_qa_language",
+        "category": "repo_understanding",
+        "score": 1.0,
+        "latency_s": 3.07,
+        "tokens": 155,
+        "error": null
+      },
+      {
+        "task": "hallucination_resistance_api",
+        "category": "hallucination",
+        "score": 1.0,
+        "latency_s": 2.74,
+        "tokens": 137,
+        "error": null
+      },
+      {
+        "task": "hallucination_resistance_file",
+        "category": "hallucination",
+        "score": 1.0,
+        "latency_s": 2.85,
+        "tokens": 143,
+        "error": null
+      },
+      {
+        "task": "evidence_grounded_answer",
+        "category": "evidence",
+        "score": 1.0,
+        "latency_s": 4.4,
+        "tokens": 220,
+        "error": null
+      },
+      {
+        "task": "latency_simple_gen",
+        "category": "latency",
+        "score": 1.0,
+        "latency_s": 0.88,
+        "tokens": 42,
+        "error": null
+      },
+      {
+        "task": "patch_correctness",
+        "category": "patch",
+        "score": 1.0,
+        "latency_s": 2.87,
+        "tokens": 144,
+        "error": null
+      },
+      {
+        "task": "syntax_validity",
+        "category": "syntax",
+        "score": 0.5,
+        "latency_s": 3.69,
+        "tokens": 184,
+        "error": null
+      },
+      {
+        "task": "test_repair_assert",
+        "category": "test_repair",
+        "score": 0.5,
+        "latency_s": 3.73,
+        "tokens": 186,
+        "error": null
+      }
+    ]
+  },
+  "lyme": {
+    "model": "deepseek-coder:6.7b",
+    "label": "Lyme Adapter (deepseek-coder:6.7b + QLoRA)",
+    "total_tasks": 9,
+    "passed": 9,
+    "pass_rate": 100.0,
+    "avg_score": 0.852,
+    "avg_latency_s": 2.81,
+    "categories": {
+      "repo_understanding": 1.0,
+      "hallucination": 1.0,
+      "evidence": 1.0,
+      "latency": 1.0,
+      "patch": 0.67,
+      "syntax": 0.5,
+      "test_repair": 0.5
+    },
+    "results": [
+      {
+        "task": "repo_qa_framework",
+        "category": "repo_understanding",
+        "score": 1.0,
+        "latency_s": 3.64,
+        "tokens": 194,
+        "error": null
+      },
+      {
+        "task": "repo_qa_language",
+        "category": "repo_understanding",
+        "score": 1.0,
+        "latency_s": 2.27,
+        "tokens": 113,
+        "error": null
+      },
+      {
+        "task": "hallucination_resistance_api",
+        "category": "hallucination",
+        "score": 1.0,
+        "latency_s": 3.17,
+        "tokens": 159,
+        "error": null
+      },
+      {
+        "task": "hallucination_resistance_file",
+        "category": "hallucination",
+        "score": 1.0,
+        "latency_s": 2.9,
+        "tokens": 149,
+        "error": null
+      },
+      {
+        "task": "evidence_grounded_answer",
+        "category": "evidence",
+        "score": 1.0,
+        "latency_s": 3.11,
+        "tokens": 155,
+        "error": null
+      },
+      {
+        "task": "latency_simple_gen",
+        "category": "latency",
+        "score": 1.0,
+        "latency_s": 0.8,
+        "tokens": 38,
+        "error": null
+      },
+      {
+        "task": "patch_correctness",
+        "category": "patch",
+        "score": 0.67,
+        "latency_s": 2.44,
+        "tokens": 118,
+        "error": null
+      },
+      {
+        "task": "syntax_validity",
+        "category": "syntax",
+        "score": 0.5,
+        "latency_s": 3.22,
+        "tokens": 175,
+        "error": null
+      },
+      {
+        "task": "test_repair_assert",
+        "category": "test_repair",
+        "score": 0.5,
+        "latency_s": 3.7,
+        "tokens": 183,
+        "error": null
+      }
+    ]
+  },
+  "comparison": {
+    "tasks": 9
+  }
+}

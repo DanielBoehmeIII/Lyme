@@ -1,0 +1,197 @@
+{
+  "total_examples": 16328,
+  "splits": {
+    "sft": {
+      "total": 13263,
+      "sub_splits": {
+        "train": 10610,
+        "val": 1326,
+        "test": 1327
+      },
+      "modalities": {
+        "unified_diff": 7328,
+        "repo_qa": 1561,
+        "patch_planning": 1772,
+        "test_repair": 1628,
+        "long_horizon_planning": 240,
+        "self_repair": 240,
+        "multi_file_edit": 240,
+        "refusal": 120,
+        "bug_localization": 134
+      },
+      "problem_types": {
+        "api_rename_mismatch": 262,
+        "locate_auth": 219,
+        "config_change": 239,
+        "type_mismatch": 250,
+        "identify_language": 118,
+        "dep_update": 1382,
+        "identify_dependencies": 111,
+        "update": 242,
+        "refactor": 558,
+        "bug_fix": 1900,
+        "repo_qa": 35,
+        "long_horizon_planning": 240,
+        "small_fix": 1514,
+        "missing_null_check": 300,
+        "explain_structure": 153,
+        "identify_config_files": 116,
+        "wrong_config_key": 258,
+        "unclosed_resource": 248,
+        "identify_risky_files": 164,
+        "feature": 861,
+        "missing_error_handling": 259,
+        "self_repair": 240,
+        "patch_planning": 36,
+        "infinite_loop": 249,
+        "race_condition": 254,
+        "identify_framework": 196,
+        "unified_diff": 26,
+        "multi_file_edit": 240,
+        "test_repair": 51,
+        "sql_injection": 296,
+        "identify_tests": 174,
+        "test_error": 44,
+        "resource_leak": 43,
+        "bad_path_handling": 259,
+        "wrong_import": 260,
+        "cleanup": 48,
+        "refusal": 21,
+        "explain_architecture": 118,
+        "add_test": 204,
+        "general": 203,
+        "broken_test_expectation": 259,
+        "off_by_one": 243,
+        "identify_entry_points": 146,
+        "fix_test": 62,
+        "zero_division": 43,
+        "global_state": 43,
+        "bug_localization": 65,
+        "identify_entry": 10,
+        "framework_identification": 1
+      }
+    },
+    "tool_policy": {
+      "total": 496,
+      "sub_splits": {
+        "train": 396,
+        "val": 50,
+        "test": 50
+      },
+      "modalities": {
+        "tool_use": 496
+      },
+      "problem_types": {
+        "general": 407,
+        "tool_use": 89
+      }
+    },
+    "critic": {
+      "total": 304,
+      "sub_splits": {
+        "train": 243,
+        "val": 30,
+        "test": 31
+      },
+      "modalities": {
+        "verification": 304
+      },
+      "problem_types": {
+        "general": 304
+      }
+    },
+    "eval_only": {
+      "total": 2265,
+      "sub_splits": {
+        "train": 1812,
+        "val": 226,
+        "test": 227
+      },
+      "modalities": {
+        "self_repair": 40,
+        "unified_diff": 1353,
+        "multi_file_edit": 40,
+        "repo_qa": 177,
+        "test_repair": 247,
+        "tool_use": 52,
+        "patch_planning": 274,
+        "verification": 34,
+        "long_horizon_planning": 40,
+        "bug_localization": 6,
+        "refusal": 2
+      },
+      "problem_types": {
+        "self_repair": 40,
+        "bug_fix": 443,
+        "small_fix": 235,
+        "multi_file_edit": 40,
+        "feature": 163,
+        "explain_structure": 21,
+        "broken_test_expectation": 40,
+        "api_rename_mismatch": 38,
+        "missing_error_handling": 41,
+        "sql_injection": 50,
+        "refactor": 100,
+        "general": 97,
+        "off_by_one": 56,
+        "config_change": 153,
+        "test_repair": 4,
+        "wrong_config_key": 41,
+        "locate_auth": 34,
+        "dep_update": 103,
+        "repo_qa": 2,
+        "identify_tests": 31,
+        "infinite_loop": 51,
+        "missing_null_check": 48,
+        "unclosed_resource": 52,
+        "bad_path_handling": 39,
+        "type_mismatch": 50,
+        "identify_risky_files": 32,
+        "wrong_import": 39,
+        "race_condition": 46,
+        "patch_planning": 6,
+        "resource_leak": 5,
+        "global_state": 5,
+        "update": 35,
+        "long_horizon_planning": 40,
+        "unified_diff": 7,
+        "identify_framework": 26,
+        "identify_config_files": 4,
+        "identify_language": 4,
+        "zero_division": 6,
+        "bug_localization": 2,
+        "identify_entry_points": 13,
+        "tool_use": 3,
+        "explain_architecture": 2,
+        "identify_dependencies": 8,
+        "test_error": 4,
+        "fix_test": 4,
+        "add_test": 2
+      }
+    },
+    "held_out_real_repo": {
+      "total": 0,
+      "sub_splits": {
+        "train": 0,
+        "val": 0,
+        "test": 0
+      },
+      "modalities": {}
+    }
+  },
+  "all_modalities": {
+    "unified_diff": 8681,
+    "repo_qa": 1738,
+    "patch_planning": 2046,
+    "test_repair": 1875,
+    "long_horizon_planning": 280,
+    "self_repair": 280,
+    "multi_file_edit": 280,
+    "refusal": 122,
+    "bug_localization": 140,
+    "tool_use": 548,
+    "verification": 338
+  },
+  "dataset_version": "1.0",
+  "build_date": "2026-05-16T22:24:07.803681+00:00"
+}

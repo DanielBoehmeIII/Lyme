@@ -1,0 +1,68 @@
+{
+  "name": "Lyme Agentic Eval Suite v1",
+  "description": "Evaluates agentic coding behavior: tool use, planning, patching, verification",
+  "scoring": {
+    "task_success": {
+      "weight": 40,
+      "description": "Task completes successfully"
+    },
+    "action_validity": {
+      "weight": 20,
+      "description": "All actions are parseable"
+    },
+    "tool_efficiency": {
+      "weight": 15,
+      "description": "Minimal unnecessary tool calls"
+    },
+    "patch_validity": {
+      "weight": 15,
+      "description": "Patch applies and is well-formed"
+    },
+    "final_verification": {
+      "weight": 10,
+      "description": "Verification step passes"
+    }
+  },
+  "tasks": [
+    {
+      "id": "agent-eval-001",
+      "task": "Fix the failing test: test_average_empty fails with ZeroDivisionError",
+      "files": {
+        "src/calculator.py": "def average(nums): return sum(nums) / len(nums)",
+        "tests/test_calc.py": "def test_average_empty(): assert average([]) == 0.0"
+      },
+      "expected_patch": "--- a/src/calculator.py\n+++ b/src/calculator.py\n@@ -1 +1,4 @@\n+def average(nums):\n+    if not nums:\n+        return 0.0\n     return sum(nums) / len(nums)",
+      "success_criteria": "tests pass"
+    },
+    {
+      "id": "agent-eval-002",
+      "task": "Find the bug: get_last([1,2,3]) raises IndexError",
+      "files": {
+        "src/utils.py": "def get_last(items):\n    if not items:\n        return None\n    return items[len(items)]"
+      },
+      "expected_answer": "Off-by-one error in src/utils.py: return items[len(items) - 1]",
+      "success_criteria": "correct localization"
+    },
+    {
+      "id": "agent-eval-003",
+      "task": "Add a --name CLI option to the greet command",
+      "files": {
+        "src/cli.py": "import click\n\n@click.command()\ndef greet():\n    click.echo('Hello!')",
+        "tests/test_cli.py": "from click.testing import CliRunner\nfrom src.cli import greet\n\ndef test_greet():\n    runner = CliRunner()\n    result = runner.invoke(greet, [])\n    assert result.exit_code == 0"
+      },
+      "expected_patch": "--- a/src/cli.py\n+++ b/src/cli.py\n@@ -1,4 +1,5 @@\n import click\n \n @click.command()\n-def greet():\n-    click.echo('Hello!')\n+@click.option('--name', default='World', help='Who to greet')\n+def greet(name):\n+    click.echo(f'Hello, {name}!')",
+      "success_criteria": "option works"
+    },
+    {
+      "id": "agent-eval-004",
+      "task": "Update config key from SECRET_KEY to APP_SECRET in all files",
+      "files": {
+        "config/settings.py": "SECRET_KEY = 'dev'",
+        "src/auth.py": "from config import SECRET_KEY",
+        "tests/test_auth.py": "from config import SECRET_KEY"
+      },
+      "expected_answer": "Multi-file rename across 3 files",
+      "success_criteria": "all references updated"
+    }
+  ]
+}

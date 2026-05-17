@@ -1,0 +1,126 @@
+{
+  "generated": "2026-05-16T23:41:05.925887+00:00",
+  "specializations": {
+    "diff_discipline": {
+      "config_ok": true,
+      "data_ok": true,
+      "checkpoint_ok": false,
+      "details": [
+        "Config: training/configs/diff_discipline_v2.yaml \u2705",
+        "Data: datasets/v2/sft/train/unified_diff.jsonl (1219 examples) \u2705",
+        "Checkpoint: checkpoints/diff_discipline_v2 \u274c NOT FOUND"
+      ]
+    },
+    "test_repair": {
+      "config_ok": true,
+      "data_ok": false,
+      "checkpoint_ok": false,
+      "details": [
+        "Config: training/configs/test_repair_v2.yaml \u2705",
+        "Data: datasets/v2/sft/train/test_repair.jsonl \u274c NOT FOUND",
+        "Checkpoint: checkpoints/test_repair_v2 \u274c NOT FOUND"
+      ]
+    },
+    "bug_localization": {
+      "config_ok": true,
+      "data_ok": true,
+      "checkpoint_ok": false,
+      "details": [
+        "Config: training/configs/bug_localization_v2.yaml \u2705",
+        "Data: datasets/v2/sft/train/bug_localization.jsonl (27 examples) \u2705",
+        "Checkpoint: checkpoints/bug_localization_v2 \u274c NOT FOUND"
+      ]
+    },
+    "multi_file_edit": {
+      "config_ok": true,
+      "data_ok": true,
+      "checkpoint_ok": false,
+      "details": [
+        "Config: training/configs/multi_file_edit_v2.yaml \u2705",
+        "Data: datasets/v2/sft/train/multi_file_edit.jsonl (2 examples) \u2705",
+        "Checkpoint: checkpoints/multi_file_edit_v2 \u274c NOT FOUND"
+      ]
+    }
+  },
+  "targets": [
+    {
+      "specialization": "diff_discipline",
+      "metric": "valid_diff_rate",
+      "target": 0.9,
+      "description": "Diff parses as valid unified diff"
+    },
+    {
+      "specialization": "diff_discipline",
+      "metric": "apply_success_rate",
+      "target": 0.85,
+      "description": "Patch applies cleanly"
+    },
+    {
+      "specialization": "diff_discipline",
+      "metric": "patch_minimality",
+      "target": 0.8,
+      "description": "Patch only changes necessary lines"
+    },
+    {
+      "specialization": "test_repair",
+      "metric": "first_attempt_pass",
+      "target": 0.7,
+      "description": "First patch passes tests"
+    },
+    {
+      "specialization": "test_repair",
+      "metric": "second_attempt_pass",
+      "target": 0.85,
+      "description": "Second patch passes after repair"
+    },
+    {
+      "specialization": "test_repair",
+      "metric": "regression_rate",
+      "target": 0.05,
+      "description": "Fix breaks unrelated tests"
+    },
+    {
+      "specialization": "test_repair",
+      "metric": "patch_size",
+      "target": 0.75,
+      "description": "Patch is minimal (<= 5 lines)"
+    },
+    {
+      "specialization": "bug_localization",
+      "metric": "top1_accuracy",
+      "target": 0.6,
+      "description": "Correct file:line as top guess"
+    },
+    {
+      "specialization": "bug_localization",
+      "metric": "top3_accuracy",
+      "target": 0.8,
+      "description": "Correct location in top 3"
+    },
+    {
+      "specialization": "bug_localization",
+      "metric": "wrong_file_rate",
+      "target": 0.15,
+      "description": "Wrong file identified"
+    },
+    {
+      "specialization": "multi_file_edit",
+      "metric": "cross_file_consistency",
+      "target": 0.75,
+      "description": "Changes across files are consistent"
+    },
+    {
+      "specialization": "multi_file_edit",
+      "metric": "patch_validity",
+      "target": 0.85,
+      "description": "All patches apply cleanly"
+    },
+    {
+      "specialization": "multi_file_edit",
+      "metric": "over_edit_rate",
+      "target": 0.1,
+      "description": "Unnecessary changes made"
+    }
+  ],
+  "all_ready": false
+}
