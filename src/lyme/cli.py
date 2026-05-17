@@ -884,7 +884,9 @@ Examples:
 
         handler = command_map.get(args.command)
         if handler:
-            handler(args)
+            rc = handler(args)
+            if isinstance(rc, int):
+                sys.exit(rc)
         else:
             parser.print_help()
 
@@ -4921,14 +4923,16 @@ Examples:
     def _do_model(self, args):
         try:
             from lyme_model.cli import handle_command
-            handle_command(args)
+            return handle_command(args)
         except ImportError:
             print("Lyme Model module is not available.")
             print("Install with: pip install -e . or check src/lyme_model/")
+            return 1
         except Exception as e:
             print(f"Error in model command: {e}")
             import traceback
             traceback.print_exc()
+            return 1
 
     def _do_demo_v03(self, args):
         from lyme.demo_v03 import run_demo

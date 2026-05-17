@@ -9,7 +9,7 @@ class ModelInfo:
     name: str
     size: str  # "3B", "7B", "8B", etc.
     quantization: str = "Q4"
-    backend: str = "ollama"
+    backend: str = "transformers"
     local: bool = True
 
     def to_dict(self) -> dict:
@@ -22,8 +22,8 @@ class ModelLoader:
     """Manages model discovery and selection."""
 
     AVAILABLE_MODELS = {
-        "deepseek-coder:6.7b": ModelInfo("deepseek-coder:6.7b", "6.7B", "Q4"),
-        "llama3:8b": ModelInfo("llama3:8b", "8B", "Q4"),
+        "deepseek-ai/deepseek-coder-6.7b-instruct": ModelInfo("deepseek-ai/deepseek-coder-6.7b-instruct", "6.7B", "Q4"),
+        "deepseek-ai/deepseek-coder-1.3b-instruct": ModelInfo("deepseek-ai/deepseek-coder-1.3b-instruct", "1.3B", "fp16"),
     }
 
     @classmethod
@@ -38,8 +38,8 @@ class ModelLoader:
     def recommend_for_hardware(cls, vram_mb: int) -> List[ModelInfo]:
         """Recommend models based on available VRAM."""
         if vram_mb >= 12000:
-            return [cls.AVAILABLE_MODELS["llama3:8b"], cls.AVAILABLE_MODELS["deepseek-coder:6.7b"]]
+            return [cls.AVAILABLE_MODELS["deepseek-ai/deepseek-coder-6.7b-instruct"]]
         elif vram_mb >= 6000:
-            return [cls.AVAILABLE_MODELS["deepseek-coder:6.7b"]]
+            return [cls.AVAILABLE_MODELS["deepseek-ai/deepseek-coder-6.7b-instruct"]]
         else:
             return []

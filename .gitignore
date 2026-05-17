@@ -3,9 +3,36 @@
 checkpoints/
 adapters/
 *.safetensors
+*.safetensors.tmp
 *.pt
 *.bin
 *.gguf
 *.ckpt
 wandb/
 runs/
+
+# Model offload directories (generated at inference time)
+.lyme/model_offload/
+adapters/*/.offload/
+
+# HuggingFace cache artifacts
+.huggingface/
+.cache/huggingface/
+
+# Lyme runtime state
+.lyme/model-runs/
+.lyme/model_offload/
+.lyme/audit/
+.lyme/model/
+
+# Generated outputs
+lyme-output/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Offload/cache
+*.safetensors.tmp
+adapters/*/.offload/
+.lyme/

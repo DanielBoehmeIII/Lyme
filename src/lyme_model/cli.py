@@ -26,6 +26,7 @@ import time
 
 from .runtime.engine import LocalInferenceEngine, AgentRuntime
 from .runtime.loader import ModelLoader
+from .runtime import server_client
 from .hardware.detector import detect_all
 from .eval.harness import ModelEvaluationHarness
 from .slices.repo_qa import RepoQASlice, RepoQABenchmark, RepoQADemo, repo_qa_slice
@@ -84,7 +85,7 @@ def register_subcommands(subparsers):
 
     # lyme model compare (raw vs context)
     compare = model_sub.add_parser("compare", help="Compare raw model vs context-compiled model")
-    compare.add_argument("--model", default="deepseek-coder:6.7b", help="Model name for comparison")
+    compare.add_argument("--model", default="deepseek-ai/deepseek-coder-6.7b-instruct", help="Model name for comparison")
     compare.add_argument("--task", default="What language and framework does this repo use?", help="Task for comparison")
     compare.add_argument("--json", action="store_true", help="JSON output")
 
@@ -99,15 +100,66 @@ def register_subcommands(subparsers):
                        help="Hardware tier")
     modes.add_argument("--json", action="store_true", help="JSON output")
 
-    # lyme model run (existing)
+    # lyme model run (enhanced)
     run = model_sub.add_parser("run", help="Execute a coding task")
     run.add_argument("task", nargs="?", help="Task description")
-    run.add_argument("--model", default="deepseek-coder:6.7b", help="Model name")
+    run.add_argument("--model", default=None, help="Base model name (defaults to current Lyme artifact)")
     run.add_argument("--repo", default=".", help="Repository path")
     run.add_argument("--context", help="Context file path")
+    run.add_argument("--no-context", action="store_true", help="Disable all context injection (overrides --context)")
     run.add_argument("--output", "-o", help="Output file for results")
     run.add_argument("--dry-run", action="store_true", help="Show what would happen")
     run.add_argument("--json", action="store_true", help="JSON output")
+    run.add_argument("--max-new-tokens", type=int, default=32, help="Max tokens to generate (default: 32)")
+    run.add_argument("--temperature", type=float, default=0.1, help="Sampling temperature (default: 0.1)")
+    run.add_argument("--top-p", type=float, default=0.95, help="Top-p sampling (default: 0.95)")
+    run.add_argument("--no-sample", action="store_true", default=True, help="Deterministic generation (default: on, deterministic)")
+    run.add_argument("--timeout", type=int, default=180, help="Generation timeout in seconds (default: 180)")
+    run.add_argument("--stream", action="store_true", default=False, help="Stream output tokens (experimental)")
+    run.add_argument("--raw-prompt", action="store_true", help="Send raw prompt without chat template formatting")
+    run.add_argument("--debug", action="store_true", help="Include full exception type and traceback in JSON error")
+    run.add_argument("--reuse-worker", action="store_true", default=False, help="(backcompat, now default) Reuse persistent model server")
+    run.add_argument("--no-server", action="store_true", default=False, help="One-shot isolated subprocess (no persistent server)")
+    run.add_argument("--load-in-4bit", action="store_true", default=False, help="Load model in 4-bit quantization (auto-detected for <=10GB VRAM)")
+    run.add_argument("--load-in-8bit", action="store_true", default=False, help="Load model in 8-bit quantization (requires bitsandbytes)")
+    run.add_argument("--dtype", default=None, choices=["float16", "bfloat16", "float32"], help="Torch dtype for model weights")
+
+    # lyme model server
+    server_cmd = model_sub.add_parser("server", help="Start persistent model server")
+    server_cmd.add_argument("--model", default=None, help="Base model name")
+    server_cmd.add_argument("--daemon", action="store_true", help="Run in background (auto-detached)")
+    server_cmd.add_argument("--load-in-4bit", action="store_true", default=False, help="Load in 4-bit")
+    server_cmd.add_argument("--load-in-8bit", action="store_true", default=False, help="Load in 8-bit")
+    server_cmd.add_argument("--dtype", default=None, choices=["float16", "bfloat16", "float32"], help="Torch dtype")
+    server_cmd.add_argument("--debug", action="store_true", help="Verbose errors with traceback")
+
+    # lyme model stop
+    model_sub.add_parser("stop", help="Stop the persistent model server. Examples: lyme model stop")
+
+    # lyme model status
+    status_cmd = model_sub.add_parser("status", help="Show persistent model server status. Examples: lyme model status, lyme model status --json")
+    status_cmd.add_argument("--json", action="store_true", help="JSON output")
+
+    # lyme model bench-perf (runtime performance benchmark)
+    bench_perf = model_sub.add_parser("bench-perf", help="Benchmark model runtime performance (load time, tok/s, VRAM)")
+    bench_perf.add_argument("--model", default=None, help="Base model name")
+    bench_perf.add_argument("--load-in-4bit", action="store_true", default=False, help="Load in 4-bit")
+    bench_perf.add_argument("--load-in-8bit", action="store_true", default=False, help="Load in 8-bit")
+    bench_perf.add_argument("--dtype", default=None, choices=["float16", "bfloat16", "float32"], help="Torch dtype")
+    bench_perf.add_argument("--json", action="store_true", help="JSON output")
+
+    # lyme model artifacts
+    model_sub.add_parser("artifacts", help="List Lyme Model adapter artifacts")
+
+    # lyme model current
+    model_sub.add_parser("current", help="Show the currently selected Lyme artifact")
+
+    # lyme model use
+    use_cmd = model_sub.add_parser("use", help="Select a Lyme artifact to use")
+    use_cmd.add_argument("artifact_path", help="Path to artifact directory")
+
+    # lyme model diagnose
+    model_sub.add_parser("diagnose", help="Diagnose current model adapter configuration")
 
     # lyme model list (existing)
     model_sub.add_parser("list", help="List available models")
@@ -117,7 +169,7 @@ def register_subcommands(subparsers):
 
     # lyme model eval (existing)
     eval_cmd = model_sub.add_parser("eval", help="Evaluate model on benchmarks")
-    eval_cmd.add_argument("--model", default="deepseek-coder:6.7b")
+    eval_cmd.add_argument("--model", default="deepseek-ai/deepseek-coder-6.7b-instruct")
 
     # lyme model context
     context_cmd = model_sub.add_parser("context", help="Compile repository context for model input")
@@ -217,7 +269,15 @@ def handle_command(args):
         "profile": _cmd_profile,
         "modes": _cmd_modes,
         "run": _cmd_run,
+        "server": _cmd_server,
+        "stop": _cmd_stop,
+        "status": _cmd_status,
+        "bench-perf": _cmd_bench_perf,
         "list": _cmd_list,
+        "artifacts": _cmd_artifacts,
+        "current": _cmd_current,
+        "use": _cmd_use,
+        "diagnose": _cmd_diagnose,
         "hardware": _cmd_hardware,
         "context": _cmd_context,
         "qa": _cmd_qa,
@@ -239,8 +299,12 @@ def handle_command(args):
     if handler:
         return handler(args)
     print("Error: Unknown model command", file=sys.stderr)
-    print("Available: ask, plan, fix, bench, resume, compare, profile, modes, run, context, context-benchmark, summary, qa, qa-benchmark, qa-demo, benchmark, eval-report, tools, list, hardware, eval", file=sys.stderr)
+    print("Available: ask, plan, fix, bench, resume, compare, profile, modes, run, diagnose, artifacts, current, use, context, context-benchmark, summary, qa, qa-benchmark, qa-demo, benchmark, eval-report, tools, list, hardware, eval", file=sys.stderr)
     return 1
+
+
+def _get_server_script() -> str:
+    return str(Path(__file__).resolve().parent / "runtime" / "server_worker.py")
 
 
 def _get_task_input(args) -> str:
@@ -576,27 +640,13 @@ def _cmd_resume(args):
 
 def _cmd_compare(args):
     """Compare raw model output vs context-compiled output on the same task."""
-    import shutil
-    model_name = getattr(args, 'model', 'deepseek-coder:6.7b')
-
-    if not shutil.which("ollama"):
-        print("Ollama is required for compare mode. Install ollama or use --json for saved report.")
-        return 1
+    model_name = getattr(args, 'model', 'deepseek-ai/deepseek-coder-6.7b-instruct')
 
     task = getattr(args, 'task', None)
     if not task:
         task = "What language and framework does this repo use? Describe the build system and test setup."
 
-    from .runtime.engine import LocalInferenceEngine, check_ollama, check_model_available
-    from .context import ContextCompiler
-
-    if not check_ollama():
-        print("Ollama is not running. Start it with: ollama serve")
-        return 1
-
-    if not check_model_available(model_name):
-        print(f"Model '{model_name}' not found. Pull it with: ollama pull {model_name}")
-        return 1
+    from .runtime.engine import LocalInferenceEngine
 
     engine = LocalInferenceEngine(model_name=model_name)
 
@@ -1008,54 +1058,658 @@ def _cmd_summary(args):
     return 0
 
 
+# ─── Artifact Helpers ──────────────────────────────────────────────────────────
+
+def _scan_artifacts():
+    """Scan adapters/ and checkpoints/ for Lyme adapter artifacts."""
+    artifacts = []
+    root = Path.cwd()
+    search_dirs = [root / "adapters", root / "checkpoints"]
+
+    for search_dir in search_dirs:
+        if not search_dir.is_dir():
+            continue
+        for entry in sorted(search_dir.rglob("adapter_model.safetensors")):
+            artifact_dir = entry.parent
+            config_file = artifact_dir / "adapter_config.json"
+            if not config_file.exists():
+                continue
+
+            # Compute relative path from project root
+            rel_path = artifact_dir.relative_to(root)
+
+            # Read adapter_config.json for base model
+            base_model = "unknown"
+            try:
+                config = json.loads(config_file.read_text())
+                base_model = config.get("base_model_name_or_path", "unknown")
+            except Exception:
+                pass
+
+            # Read metadata.json if present
+            metadata = {}
+            meta_file = artifact_dir / "metadata.json"
+            if meta_file.exists():
+                try:
+                    metadata = json.loads(meta_file.read_text())
+                except Exception:
+                    pass
+
+            eval_loss = metadata.get("eval_loss", None)
+            artifact_name = metadata.get("name", rel_path.name)
+
+            size_bytes = entry.stat().st_size
+            size_mb = size_bytes / (1024 * 1024)
+
+            artifacts.append({
+                "id": str(rel_path),
+                "name": artifact_name,
+                "path": str(rel_path),
+                "base_model": base_model,
+                "size_mb": round(size_mb, 1),
+                "eval_loss": eval_loss,
+            })
+
+    return artifacts
+
+
+def _get_current_artifact():
+    """Read .lyme/model/current.json and return the artifact info or None."""
+    current_file = Path.cwd() / ".lyme" / "model" / "current.json"
+    if not current_file.exists():
+        return None
+    try:
+        return json.loads(current_file.read_text())
+    except Exception:
+        return None
+
+
+def _suggest_best_artifact():
+    """Suggest the best available artifact."""
+    artifacts = _scan_artifacts()
+    # Prefer adapters/ over checkpoints/
+    preferred = [a for a in artifacts if a["path"].startswith("adapters/")]
+    if preferred:
+        return preferred[0]
+    if artifacts:
+        return artifacts[0]
+    return None
+
+
+# ─── Artifact Commands ─────────────────────────────────────────────────────────
+
+def _cmd_artifacts(args=None):
+    artifacts = _scan_artifacts()
+    if not artifacts:
+        print("No Lyme Model artifacts found.")
+        print("Expected directories: adapters/<name>/  or  checkpoints/<name>/")
+        print("Each artifact must contain adapter_model.safetensors and adapter_config.json.")
+        return 0
+
+    print(f"{'Artifact':45s} {'Base Model':40s} {'Size':8s} {'Eval Loss'}")
+    print("-" * 100)
+    for a in artifacts:
+        loss = f"{a['eval_loss']:.4f}" if a['eval_loss'] is not None else "-"
+        print(f"{a['id']:45s} {a['base_model']:40s} {a['size_mb']:>6.1f}MB {loss}")
+    print(f"\n{len(artifacts)} artifact(s) found.")
+    return 0
+
+
+def _cmd_current(args=None):
+    current = _get_current_artifact()
+    if current:
+        print("Current Lyme Model artifact:")
+        print(f"  Path:      {current.get('path', '?')}")
+        print(f"  Base Model: {current.get('base_model', '?')}")
+        print(f"  Selected:  {current.get('selected_at', '?')}")
+        return 0
+
+    suggest = _suggest_best_artifact()
+    if suggest:
+        print("No Lyme Model artifact configured.")
+        print()
+        print("Suggested artifact:")
+        print(f"  lyme model use {suggest['path']}/")
+        print()
+        print(f"  Base: {suggest['base_model']} | Size: {suggest['size_mb']}MB")
+        if suggest["eval_loss"] is not None:
+            print(f"  Eval loss: {suggest['eval_loss']}")
+    else:
+        print("No Lyme Model artifact found. Train or download an adapter first.")
+        print("Expected: adapters/<name>/adapter_model.safetensors")
+    return 0
+
+
+def _cmd_use(args):
+    raw_path = args.artifact_path
+    artifact_dir = Path(raw_path)
+    if not artifact_dir.is_absolute():
+        artifact_dir = Path.cwd() / artifact_dir
+
+    # Validate
+    safetensors_file = artifact_dir / "adapter_model.safetensors"
+    config_file = artifact_dir / "adapter_config.json"
+    if not safetensors_file.exists():
+        print(f"Error: {safetensors_file} not found", file=sys.stderr)
+        return 1
+    if not config_file.exists():
+        print(f"Error: {config_file} not found", file=sys.stderr)
+        return 1
+
+    # Read base model name
+    base_model = "unknown"
+    try:
+        config = json.loads(config_file.read_text())
+        base_model = config.get("base_model_name_or_path", "unknown")
+    except Exception:
+        pass
+
+    # Resolve relative path
+    try:
+        rel_path = artifact_dir.relative_to(Path.cwd())
+    except ValueError:
+        rel_path = artifact_dir
+
+    import datetime
+    current_data = {
+        "path": str(rel_path),
+        "base_model": base_model,
+        "selected_at": datetime.datetime.now().isoformat(timespec="seconds"),
+    }
+
+    current_dir = Path.cwd() / ".lyme" / "model"
+    current_dir.mkdir(parents=True, exist_ok=True)
+    current_file = current_dir / "current.json"
+    current_file.write_text(json.dumps(current_data, indent=2))
+
+    print(f"Selected Lyme Model artifact: {rel_path}")
+    print(f"  Base model: {base_model}")
+    print(f"  Written to: {current_file}")
+    return 0
+
+
+def _cmd_diagnose(args=None):
+    """Print diagnostic info about the current model adapter configuration."""
+    info = {}
+    current = _get_current_artifact()
+    if current:
+        info["artifact"] = current
+        adapter_path_str = current.get("path", "")
+        p = Path(adapter_path_str)
+        if not p.is_absolute():
+            p = Path.cwd() / p
+        config_file = p / "adapter_config.json"
+        weights_file = p / "adapter_model.safetensors"
+        if config_file.exists():
+            try:
+                cfg = json.loads(config_file.read_text())
+                info["adapter_config"] = {
+                    "base_model_name_or_path": cfg.get("base_model_name_or_path", "?"),
+                    "peft_type": cfg.get("peft_type", "?"),
+                    "task_type": cfg.get("task_type", "?"),
+                    "target_modules": cfg.get("target_modules", []),
+                }
+            except Exception as e:
+                info["adapter_config_error"] = str(e)
+        if weights_file.exists():
+            sz = weights_file.stat().st_size
+            info["adapter_weights_exists"] = True
+            info["adapter_weights_size_mb"] = round(sz / (1024 * 1024), 1)
+            try:
+                from safetensors import safe_open
+                keys = []
+                with safe_open(str(weights_file), framework="pt") as f:
+                    for i, k in enumerate(f.keys()):
+                        if i >= 20:
+                            break
+                        keys.append(k)
+                info["safetensors_keys_first_20"] = keys
+            except Exception:
+                info["safetensors_keys"] = "(could not read)"
+        else:
+            info["adapter_weights_exists"] = False
+    else:
+        info["artifact"] = None
+
+    import importlib
+    for mod_name in ["transformers", "peft", "accelerate", "torch"]:
+        try:
+            m = importlib.import_module(mod_name)
+            info[f"{mod_name}_version"] = getattr(m, "__version__", "?")
+        except ImportError:
+            info[f"{mod_name}_version"] = "NOT INSTALLED"
+
+    print(json.dumps(info, indent=2))
+    return 0
+
+
+# ─── New: Server / Stop / Bench-Perf ──────────────────────────────────────────
+
+def _cmd_server(args):
+    """Start persistent model server (foreground by default)."""
+    model_name = getattr(args, 'model', None)
+    adapter_path = None
+    if not model_name:
+        current = _get_current_artifact()
+        if current:
+            model_name = current.get("base_model", "deepseek-ai/deepseek-coder-6.7b-instruct")
+            raw_path = current.get("path")
+            if raw_path:
+                p = Path(raw_path)
+                if not p.is_absolute():
+                    p = Path.cwd() / p
+                adapter_path = str(p)
+        else:
+            print("No model specified and no artifact configured.", file=sys.stderr)
+            print("Use: lyme model server --model <name>", file=sys.stderr)
+            return 1
+
+    server_script = _get_server_script()
+    socket_path = server_client.get_socket_path()
+    socket_path.parent.mkdir(parents=True, exist_ok=True)
+
+    cmd = [sys.executable, server_script,
+           "--model", model_name,
+           "--socket-path", str(socket_path)]
+    if adapter_path:
+        cmd.extend(["--adapter-path", adapter_path])
+    if getattr(args, 'load_in_4bit', False):
+        cmd.append("--load-in-4bit")
+    if getattr(args, 'load_in_8bit', False):
+        cmd.append("--load-in-8bit")
+    if getattr(args, 'dtype', None):
+        cmd.extend(["--dtype", args.dtype])
+    if getattr(args, 'debug', False):
+        cmd.append("--debug")
+
+    is_daemon = getattr(args, 'daemon', False)
+
+    if is_daemon:
+        import subprocess
+        proc = subprocess.Popen(
+            cmd,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            start_new_session=True,
+        )
+        print(f"Server started (PID {proc.pid})")
+        print(f"Socket: {socket_path}")
+        print(f"Stop with: lyme model stop")
+        return 0
+    else:
+        print(f"Starting server: {model_name}")
+        print(f"Socket: {socket_path}")
+        print("Server running in foreground. Press Ctrl+C to stop.")
+        os.execvp(sys.executable, [sys.executable] + cmd)
+
+
+def _cmd_stop(args=None):
+    """Stop the persistent model server."""
+    socket_path = server_client.get_socket_path()
+    pid_path = server_client.get_pid_path()
+
+    if not socket_path.exists():
+        print("No server socket found. Server is not running.")
+        return 0
+
+    try:
+        server_client.send_shutdown(timeout=5)
+        print("Server stopped.")
+    except Exception as exc:
+        print(f"Could not shut down server gracefully: {exc}")
+        for p in [socket_path, pid_path]:
+            try:
+                if p.exists():
+                    p.unlink()
+            except OSError:
+                pass
+    return 0
+
+
+def _cmd_status(args):
+    """Show persistent model server status."""
+    socket_path = server_client.get_socket_path()
+    stats = server_client.get_server_status(timeout=3)
+
+    if stats.get("status") != "ok":
+        result = {
+            "status": "stopped",
+            "socket_path": str(socket_path),
+            "error": stats.get("error", "Server not running"),
+        }
+        if getattr(args, 'json', False):
+            print(json.dumps(result, indent=2))
+        else:
+            print(f"Server status: STOPPED")
+            print(f"Socket: {socket_path}")
+            if not socket_path.exists():
+                print("Socket file not found.")
+        return 0
+
+    uptime_m = stats.get("uptime_s", 0) // 60
+    uptime_s = stats.get("uptime_s", 0) % 60
+    quant = "4-bit" if stats.get("load_in_4bit") else "8-bit" if stats.get("load_in_8bit") else "none"
+    vram = stats.get("vram_allocated_mb", 0)
+    ram = stats.get("ram_mb", 0)
+
+    result = {
+        "status": "running",
+        "pid": stats.get("pid"),
+        "model": stats.get("model"),
+        "quantization": quant,
+        "dtype": stats.get("dtype"),
+        "socket_path": str(socket_path),
+        "uptime_s": stats.get("uptime_s", 0),
+        "vram_allocated_mb": vram,
+        "ram_mb": ram,
+        "cuda_available": stats.get("cuda_available", False),
+    }
+
+    if getattr(args, 'json', False):
+        print(json.dumps(result, indent=2))
+    else:
+        print(f"Server status: RUNNING")
+        print(f"  PID:       {stats.get('pid')}")
+        print(f"  Model:     {stats.get('model')}")
+        print(f"  Quant:     {quant}")
+        print(f"  Dtype:     {stats.get('dtype')}")
+        print(f"  Socket:    {socket_path}")
+        print(f"  Uptime:    {int(uptime_m)}m {int(uptime_s)}s")
+        print(f"  VRAM:      {vram} MB")
+        print(f"  RAM:       {ram} MB")
+        print(f"  CUDA:      {stats.get('cuda_available', False)}")
+    return 0
+
+
+def _cmd_bench_perf(args):
+    """Benchmark model runtime performance."""
+    import subprocess
+    import time
+
+    model_name = getattr(args, 'model', None) or "deepseek-ai/deepseek-coder-6.7b-instruct"
+    load_in_4bit = getattr(args, 'load_in_4bit', False)
+    load_in_8bit = getattr(args, 'load_in_8bit', False)
+    dtype = getattr(args, 'dtype', None)
+
+    # Clean up any existing server
+    server_client.send_shutdown()
+
+    # Build server command
+    server_script = _get_server_script()
+    socket_path = server_client.get_socket_path()
+    socket_path.parent.mkdir(parents=True, exist_ok=True)
+
+    cmd = [sys.executable, server_script,
+           "--model", model_name,
+           "--socket-path", str(socket_path)]
+    if load_in_4bit:
+        cmd.append("--load-in-4bit")
+    elif load_in_8bit:
+        cmd.append("--load-in-8bit")
+    if dtype:
+        cmd.extend(["--dtype", dtype])
+
+    # Start server (cold start)
+    t0 = time.time()
+    proc = subprocess.Popen(
+        cmd,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        start_new_session=True,
+    )
+
+    load_time = None
+    for _ in range(180):
+        if server_client.is_server_running():
+            load_time = round(time.time() - t0, 1)
+            break
+        time.sleep(1)
+
+    if load_time is None:
+        result = {"error": "Server failed to start within 180s", "model": model_name}
+        if args.json:
+            print(json.dumps(result, indent=2))
+        else:
+            print(f"Error: {result['error']}", file=sys.stderr)
+        return 1
+
+    try:
+        # First-token latency: generate 1 token
+        t1 = time.time()
+        result_1 = server_client.send_generate(
+            "Return the word hello.",
+            {"max_new_tokens": 1, "do_sample": False, "use_cache": True},
+            timeout=30,
+        )
+        first_token_ms = round((time.time() - t1) * 1000, 1)
+
+        # Tokens/sec: generate 50 tokens
+        t2 = time.time()
+        result_n = server_client.send_generate(
+            "Return the word hello repeatedly until I say stop.",
+            {"max_new_tokens": 50, "do_sample": False, "use_cache": True},
+            timeout=60,
+        )
+        gen_time = time.time() - t2
+        tokens_per_sec = round(result_n["generated_tokens"] / gen_time, 2) if gen_time > 0 else 0.0
+
+        # Server stats for VRAM/RAM
+        stats = server_client.get_server_stats()
+
+    except Exception as exc:
+        result = {"error": str(exc), "model": model_name}
+        if args.json:
+            print(json.dumps(result, indent=2))
+        else:
+            print(f"Error: {result['error']}", file=sys.stderr)
+        return 1
+    finally:
+        server_client.send_shutdown()
+
+    bench_result = {
+        "model": model_name,
+        "load_time_s": load_time,
+        "first_token_latency_ms": first_token_ms,
+        "tokens_per_second": tokens_per_sec,
+        "generated_tokens": result_n.get("generated_tokens", 0),
+        "vram_allocated_mb": stats.get("vram_allocated_mb", 0),
+        "vram_reserved_mb": stats.get("vram_reserved_mb", 0),
+        "ram_mb": stats.get("ram_mb", 0),
+        "load_in_4bit": load_in_4bit,
+        "load_in_8bit": load_in_8bit,
+        "dtype": dtype or "auto",
+        "cuda_available": stats.get("cuda_available", False),
+    }
+
+    if args.json:
+        print(json.dumps(bench_result, indent=2))
+    else:
+        print("=" * 55)
+        print("  LYME MODEL PERFORMANCE BENCHMARK")
+        print("=" * 55)
+        print(f"  Model:              {bench_result['model']}")
+        print(f"  Load time:          {bench_result['load_time_s']}s")
+        print(f"  First-token latency: {bench_result['first_token_latency_ms']}ms")
+        print(f"  Tokens/sec:         {bench_result['tokens_per_second']}")
+        print(f"  Generated tokens:   {bench_result['generated_tokens']}")
+        print(f"  VRAM allocated:     {bench_result['vram_allocated_mb']} MB")
+        print(f"  VRAM reserved:      {bench_result['vram_reserved_mb']} MB")
+        print(f"  RAM:                {bench_result['ram_mb']} MB")
+        print(f"  Quantization:       {'4-bit' if load_in_4bit else '8-bit' if load_in_8bit else 'none'}")
+        print(f"  Dtype:              {bench_result['dtype']}")
+        print(f"  CUDA:               {bench_result['cuda_available']}")
+        print("=" * 55)
+
+    return 0
+
+
 # ─── Existing Commands (enhanced) ──────────────────────────────────────────────
+
+def _detect_cuda_vram() -> Optional[int]:
+    """Detect CUDA VRAM in MB. Returns None if CUDA not available."""
+    try:
+        import subprocess
+        import shutil
+        nvidia_smi = shutil.which("nvidia-smi")
+        if not nvidia_smi:
+            return None
+        result = subprocess.run(
+            [nvidia_smi, "--query-gpu=memory.total", "--format=csv,noheader"],
+            capture_output=True, text=True, timeout=10,
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            mem_str = result.stdout.strip().split("\n")[0].strip()
+            return int(mem_str.replace(" MiB", "").replace(" MB", ""))
+    except Exception:
+        pass
+    return None
+
 
 def _cmd_run(args):
     task = getattr(args, 'task', None)
     if not task and not sys.stdin.isatty():
         task = sys.stdin.read().strip()
     if not task:
-        print("Error: Task description required", file=sys.stderr)
+        _emit_error("Error: Task description required", args, _is_hard_failure=True)
         return 1
+
+    # Resolve model name and optional adapter path:
+    #   --model  → base model only (no adapter)
+    #   artifact → base model + PEFT adapter
+    artifact_path = None
+    model_name = getattr(args, 'model', None)
+    if not model_name:
+        current = _get_current_artifact()
+        if current is None:
+            parts = ["No Lyme Model artifact configured."]
+            suggest = _suggest_best_artifact()
+            if suggest:
+                parts.append(f"Suggested: lyme model use {suggest['path']}/")
+            parts.append("Or specify --model <base-model-name> to use a base model directly.")
+            msg = "\n".join(parts)
+            _emit_error(msg, args, _is_hard_failure=True)
+            return 1
+        model_name = current.get("base_model", "deepseek-ai/deepseek-coder-6.7b-instruct")
+        raw_path = current.get("path")
+        if raw_path:
+            p = Path(raw_path)
+            if not p.is_absolute():
+                p = Path.cwd() / p
+            artifact_path = str(p)
+
+    use_json = getattr(args, 'json', False)
 
     if getattr(args, 'dry_run', False):
         est = diff_estimator.estimate(task)
         mode = mode_selector.select_mode(est.difficulty_score, est.risk.value, "standard_gpu", 1000)
         result = {
             "task": task,
+            "model": model_name,
             "dry_run": True,
             "estimate": est.to_dict(),
             "mode": mode.to_dict(),
         }
-        if args.json:
+        if use_json:
             print(json.dumps(result, indent=2, default=str))
         else:
             print(f"DRY RUN: {task}")
+            print(f"  Model: {model_name}")
             print(f"  Type: {est.task_type.value} | Difficulty: {est.difficulty_level.value}")
             print(f"  Mode: {mode.selected_mode.value}")
         return 0
 
-    runtime = AgentRuntime(model_name=getattr(args, 'model', 'deepseek-coder:6.7b'),
-                            repo_path=getattr(args, 'repo', '.'))
+    # Hardware-aware 4-bit quantization: auto-detect for <=10GB VRAM
+    load_in_4bit = getattr(args, 'load_in_4bit', False)
+    load_in_8bit = getattr(args, 'load_in_8bit', False)
+    if not load_in_4bit and not load_in_8bit:
+        vram_mb = _detect_cuda_vram()
+        if vram_mb is not None and vram_mb <= 10240:
+            load_in_4bit = True
+            if not use_json:
+                print(f"Auto-detected 4-bit quantization ({vram_mb // 1024}GB VRAM)", file=sys.stderr)
+
+    # Use persistent server by default, --no-server for isolated subprocess
+    use_server = not getattr(args, 'no_server', False)
+
+    # Generation safety kwargs: default deterministic, pass through to engine
+    no_sample = getattr(args, 'no_sample', True)
+    do_sample = not no_sample
+    gen_kwargs = {
+        "max_new_tokens": getattr(args, 'max_new_tokens', 32),
+        "temperature": getattr(args, 'temperature', 0.1),
+        "top_p": getattr(args, 'top_p', 0.95),
+        "do_sample": do_sample,
+        "timeout": getattr(args, 'timeout', 180),
+        "verbose": not use_json,
+        "debug": getattr(args, 'debug', False),
+        "reuse_worker": use_server,
+        "load_in_4bit": load_in_4bit,
+        "load_in_8bit": load_in_8bit,
+        "dtype": getattr(args, 'dtype', None),
+    }
+
+    runtime = AgentRuntime(
+        model_name=model_name,
+        adapter_path=artifact_path,
+        repo_path=getattr(args, 'repo', '.'),
+        **gen_kwargs,
+    )
+    no_context = getattr(args, 'no_context', False)
     context = None
-    if hasattr(args, 'context') and args.context:
+    if not no_context and hasattr(args, 'context') and args.context:
         context = Path(args.context).read_text()
 
-    result = runtime.run_task(task, context)
+    try:
+        result = runtime.run_task(task, context, raw_prompt=getattr(args, 'raw_prompt', False))
+    except Exception as exc:
+        _emit_error(f"Runtime error: {exc}", args)
+        return 1
 
-    if args.json:
-        print(json.dumps(result.to_dict(), indent=2))
+    if use_json:
+        d = result.to_dict()
+        if getattr(args, 'debug', False) and result.error_traceback:
+            d["traceback"] = result.error_traceback
+        print(json.dumps(d, indent=2))
     else:
-        print(result.output)
+        if result.success:
+            print(result.output)
+        else:
+            print(f"Error: {result.error}", file=sys.stderr)
     return 0 if result.success else 1
 
 
+def _emit_error(message: str, args, _is_hard_failure: bool = True):
+    """Print error: JSON stdout on --json, stderr otherwise."""
+    if getattr(args, 'json', False):
+        print(json.dumps({
+            "success": not _is_hard_failure,
+            "error": message,
+        }, indent=2))
+    else:
+        print(message, file=sys.stderr)
+
+
 def _cmd_list(args=None):
+    # Section 1: Lyme Model artifacts
+    artifacts = _scan_artifacts()
+    if artifacts:
+        print("Lyme Model Artifacts:")
+        print(f"{'Artifact':45s} {'Base Model':40s} {'Size':8s}")
+        print("-" * 95)
+        for a in artifacts:
+            print(f"{a['id']:45s} {a['base_model']:40s} {a['size_mb']:>6.1f}MB")
+        print()
+
+    # Section 2: Base / runtime models
     models = ModelLoader.list_models()
-    print(f"{'Model':30s} {'Size':8s} {'Quant':6s} {'Backend':10s}")
-    print("-" * 54)
-    for m in models:
-        print(f"{m.name:30s} {m.size:8s} {m.quantization:6s} {m.backend:10s}")
+    if models:
+        print("Base / Runtime Models:")
+        print(f"{'Model':30s} {'Size':8s} {'Quant':6s} {'Backend':10s}")
+        print("-" * 54)
+        for m in models:
+            print(f"{m.name:30s} {m.size:8s} {m.quantization:6s} {m.backend:10s}")
+    else:
+        print("No base models registered.")
     return 0
 
 
@@ -1425,7 +2079,7 @@ def _cmd_hardware(args=None):
 
 
 def _cmd_eval(args):
-    harness = ModelEvaluationHarness(model_name=getattr(args, 'model', 'deepseek-coder:6.7b'))
+    harness = ModelEvaluationHarness(model_name=getattr(args, 'model', 'deepseek-ai/deepseek-coder-6.7b-instruct'))
     results = harness.run_all()
     harness.print_summary(results)
     return 0

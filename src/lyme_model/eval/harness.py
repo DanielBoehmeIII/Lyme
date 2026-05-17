@@ -44,7 +44,7 @@ BENCHMARK_SCENARIOS = [
 class ModelEvaluationHarness:
     """Evaluates Lyme Model on benchmark tasks."""
 
-    def __init__(self, model_name: str = "deepseek-coder:6.7b"):
+    def __init__(self, model_name: str = "deepseek-ai/deepseek-coder-6.7b-instruct"):
         self.model_name = model_name
         self.engine = LocalInferenceEngine(model_name)
 
@@ -84,7 +84,8 @@ class ModelEvaluationHarness:
             "results": results,
             "summary": {"passed": passed, "total": total, "avg_time_s": round(avg_time, 1)},
         }
-        path = f"lyme-output/model-eval-{self.model_name.replace(':', '-')}.json"
+        safe_name = self.model_name.replace('/', '--').replace(':', '-')
+        path = f"lyme-output/model-eval-{safe_name}.json"
         with open(path, "w") as f:
             json.dump(output, f, indent=2)
         print(f"Saved to {path}")
