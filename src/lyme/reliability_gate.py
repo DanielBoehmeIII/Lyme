@@ -109,8 +109,8 @@ class ReliabilityGate:
     def _check_heal(self) -> dict:
         try:
             result = subprocess.run(
-                [sys.executable, "-m", "lyme", "heal", "--dry-run", "--json", "--verify", "quick", "--timeout", "120"],
-                capture_output=True, text=True, timeout=130,
+                [sys.executable, "-m", "lyme", "heal", "--dry-run", "--json", "--verify", "quick", "--timeout", "60"],
+                capture_output=True, text=True, timeout=70,
                 cwd=str(self._repo_path),
             )
             import json
@@ -119,15 +119,27 @@ class ReliabilityGate:
                 completed = data.get("status") == "complete"
                 issues_found = data.get("issues_found", 0)
                 fixes_applied = data.get("fixes_applied", 0)
-                passed = completed
-                detail = (
-                    f"Heal: {issues_found} issues, {fixes_applied} fixes"
-                    if passed
-                    else f"Heal status: {data.get('status', 'unknown')}"
+                timed_out = data.get("timed_out", False)
+                has_timeout_issues = any(
+                    i.get("category") == "timeout" for i in data.get("issues", [])
                 )
-            else:
+                passed = completed and not (timed_out or has_timeout_issues)
+                parts = [f"Heal: {issues_found} issues, {fixes_applied} fixes"]
+                if timed_out or has_timeout_issues:
+                    parts.append("TIMEOUT")
+                if data.get("test_command"):
+                    parts.append(f"cmd: {data['test_command']}")
+                detail = " | ".join(parts)
+            elif result.returncode != 0:
                 passed = False
-                detail = f"Heal failed: {result.stderr[:200]}"
+                try:
+                    data = json.loads(result.stdout)
+                    issues_found = data.get("issues_found", 0)
+                    fixes_applied = data.get("fixes_applied", 0)
+                    timed_out = data.get("timed_out", False)
+                    detail = f"Heal: {issues_found} issues, {fixes_applied} fixes" + (" | TIMEOUT" if timed_out else "")
+                except Exception:
+                    detail = f"Heal failed: {result.stderr[:200]}"
             return {
                 "passed": passed,
                 "score": 1.0 if passed else 0.0,

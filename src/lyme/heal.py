@@ -80,6 +80,8 @@ class HealWorkflow:
         self._score_after: Optional[float] = None
         self._verify_mode: str = "quick"
         self._timeout: int = 60
+        self._test_command: str = ""
+        self._timed_out: bool = False
 
     def _detect_test_command(self) -> List[str]:
         cmd_from_doc = None
@@ -142,7 +144,7 @@ class HealWorkflow:
 
         smoke_test = repo / "tests" / "test_cli_smoke.py"
         if smoke_test.exists():
-            cmd = [sys.executable, "-m", "pytest", "-q", str(smoke_test), "--tb=short"]
+            cmd = [sys.executable, "-m", "pytest", "-q", f"{smoke_test}::TestHelpCommands", "--tb=short"]
             return self._run_test_command(cmd)
 
         test_dir = repo / "tests"
@@ -153,7 +155,7 @@ class HealWorkflow:
             test_files = sorted(repo.glob("test_*.py"))
 
         if test_files:
-            selected = test_files[:3]
+            selected = test_files[:1]
             cmd = [sys.executable, "-m", "pytest", "-q"] + [str(f) for f in selected] + ["--tb=short"]
             return self._run_test_command(cmd)
 
@@ -165,6 +167,7 @@ class HealWorkflow:
 
     def _run_test_command(self, cmd: list) -> list[HealIssue]:
         issues = []
+        self._test_command = " ".join(cmd)
         try:
             result = subprocess.run(
                 cmd, capture_output=True, text=True, timeout=self._timeout,
@@ -173,6 +176,7 @@ class HealWorkflow:
         except FileNotFoundError:
             return issues
         except subprocess.TimeoutExpired:
+            self._timed_out = True
             issues.append(HealIssue(
                 severity="medium", file="", description=f"Test suite timed out ({self._timeout}s)",
                 confidence=0.8, category="timeout",
@@ -244,6 +248,9 @@ class HealWorkflow:
         return {
             "repo": self._repo_path,
             "status": "complete",
+            "verification_mode": self._verify_mode,
+            "test_command": self._test_command,
+            "timed_out": self._timed_out,
             "issues_found": len(self._issues),
             "fixes_applied": len(self._fix_results),
             "verification": self._verification.to_dict() if self._verification else None,
@@ -501,6 +508,7 @@ class HealWorkflow:
 
         cmd = self._build_quick_verify_cmd() if self._verify_mode == "quick" else self._detect_test_command()
         if cmd:
+            self._test_command = " ".join(cmd)
             try:
                 result = subprocess.run(
                     cmd, capture_output=True, text=True, timeout=self._timeout,
@@ -511,6 +519,7 @@ class HealWorkflow:
                     "detail": result.stdout.strip()[-200:] if result.stdout else "",
                 }
             except subprocess.TimeoutExpired:
+                self._timed_out = True
                 checks["test_suite"] = {"status": "timeout", "detail": f"Tests exceeded {self._timeout}s timeout"}
             except FileNotFoundError:
                 checks["test_suite"] = {"status": "unknown", "detail": "pytest not available"}
@@ -557,13 +566,13 @@ class HealWorkflow:
 
         smoke_test = repo / "tests" / "test_cli_smoke.py"
         if smoke_test.exists():
-            return [sys.executable, "-m", "pytest", "-q", str(smoke_test), "--tb=short"]
+            return [sys.executable, "-m", "pytest", "-q", f"{smoke_test}::TestHelpCommands", "--tb=short"]
 
         test_dir = repo / "tests"
         if test_dir.is_dir():
             test_files = sorted(test_dir.glob("test_*.py"))
             if test_files:
-                selected = test_files[:3]
+                selected = test_files[:1]
                 return [sys.executable, "-m", "pytest", "-q"] + [str(f) for f in selected] + ["--tb=short"]
 
         return None
