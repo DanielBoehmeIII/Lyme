@@ -41,6 +41,11 @@ from .context import ContextCompiler, ImprovedContextCompiler, ContextBenchmark
 from .tools import ToolSession, ToolCallParser, SafetyMode
 from .slices.qa_engine import QAEngine, QABenchmark, run_qa_demo
 from .eval.benchmark_harness import ModelBenchmarkHarness, run_model_benchmark
+from .trial import TrialRunner, TrialReplay, TrialReport
+from .arena import ArenaRunner, ArenaScorer, LeaderboardGenerator, RegressionChecker, ArenaConfig, ToolName
+from .ticket import TicketRunner, AcceptanceGrader, RevenueEstimator
+from .autonomy import AutonomyController, AuditTrail, ContinuationExplainer, AutonomyLevel, AutonomyConfig, Action
+from .workflow import WorkflowExecutor, PRReporter, IssueIngester
 from .release_v06 import v06
 from .release_v07 import v07
 
@@ -254,6 +259,157 @@ def register_subcommands(subparsers):
     locate_cmd.add_argument("--repo", default=".", help="Repository path")
     locate_cmd.add_argument("--json", action="store_true", help="JSON output")
 
+    # lyme model trial
+    trial_cmd = model_sub.add_parser("trial", help="Trial harness commands")
+    trial_sub = trial_cmd.add_subparsers(dest="trial_command")
+
+    trial_list = trial_sub.add_parser("list", help="List seeded trial tasks")
+    trial_list.add_argument("--type", choices=["fix_failing_test", "implement_feature", "refactor_module", "update_dependency", "add_docs"], help="Filter by task type")
+    trial_list.add_argument("--difficulty", choices=["easy", "medium", "hard"], help="Filter by difficulty")
+    trial_list.add_argument("--json", action="store_true", help="JSON output")
+
+    trial_run = trial_sub.add_parser("run", help="Run a single trial task")
+    trial_run.add_argument("task_id", help="Task ID to run")
+    trial_run.add_argument("--repo", default=".", help="Repository path")
+    trial_run.add_argument("--dry-run", action="store_true", help="Show what would happen without executing")
+    trial_run.add_argument("--json", action="store_true", help="JSON output")
+
+    trial_run_all = trial_sub.add_parser("run-all", help="Run all trial tasks")
+    trial_run_all.add_argument("--repo", default=".", help="Repository path")
+    trial_run_all.add_argument("--dry-run", action="store_true", help="Show what would happen without executing")
+    trial_run_all.add_argument("--json", action="store_true", help="JSON output")
+
+    trial_run_type = trial_sub.add_parser("run-type", help="Run trials by type")
+    trial_run_type.add_argument("task_type", choices=["fix_failing_test", "implement_feature", "refactor_module", "update_dependency", "add_docs"], help="Task type to run")
+    trial_run_type.add_argument("--repo", default=".", help="Repository path")
+    trial_run_type.add_argument("--dry-run", action="store_true", help="Show what would happen without executing")
+    trial_run_type.add_argument("--json", action="store_true", help="JSON output")
+
+    trial_replay = trial_sub.add_parser("replay", help="Replay a completed trial")
+    trial_replay.add_argument("trial_id", help="Trial ID or Run ID to replay")
+    trial_replay.add_argument("--json", action="store_true", help="JSON output")
+
+    trial_report = trial_sub.add_parser("report", help="Generate report for a trial or run")
+    trial_report.add_argument("trial_id", help="Trial ID or Run ID")
+    trial_report.add_argument("--output", "-o", help="Output file path")
+    trial_report.add_argument("--json", action="store_true", help="JSON output")
+
+    trial_results = trial_sub.add_parser("results", help="List all trial results")
+    trial_results.add_argument("--json", action="store_true", help="JSON output")
+    trial_results.add_argument("--limit", type=int, default=20, help="Max entries")
+
+    trial_summary = trial_sub.add_parser("summary", help="Show summary of a trial run")
+    trial_summary.add_argument("run_id", help="Run ID")
+    trial_summary.add_argument("--json", action="store_true", help="JSON output")
+
+    trial_compare = trial_sub.add_parser("compare", help="Compare two trial runs")
+    trial_compare.add_argument("run_ids", nargs="+", help="Run IDs to compare")
+
+    # lyme model arena
+    arena_cmd = model_sub.add_parser("arena", help="Benchmark arena commands")
+    arena_sub = arena_cmd.add_subparsers(dest="arena_command")
+
+    arena_run = arena_sub.add_parser("run", help="Run arena benchmark")
+    arena_run.add_argument("--task-type", choices=["fix_failing_test", "implement_feature", "refactor_module", "update_dependency", "add_docs", "all"], default="all",
+                           help="Task type to benchmark (default: all)")
+    arena_run.add_argument("--tasks", nargs="*", help="Specific task IDs (overrides --task-type)")
+    arena_run.add_argument("--tools", nargs="+", default=["lyme"],
+                           choices=["lyme", "claude_code", "codex", "opencode", "aider", "cursor"],
+                           help="Tools to compare (default: lyme)")
+    arena_run.add_argument("--repo", default=".", help="Repository path")
+    arena_run.add_argument("--dry-run", action="store_true", help="Show what would happen without executing")
+    arena_run.add_argument("--json", action="store_true", help="JSON output")
+
+    arena_leaderboard = arena_sub.add_parser("leaderboard", help="Generate leaderboard from arena results")
+    arena_leaderboard.add_argument("--run-id", help="Specific run ID (default: latest)")
+    arena_leaderboard.add_argument("--format", choices=["markdown", "html", "both"], default="both",
+                                   help="Output format")
+    arena_leaderboard.add_argument("--output", "-o", help="Output file path")
+
+    arena_regression = arena_sub.add_parser("regression", help="Check regression gates")
+    arena_regression.add_argument("--run-id", help="Specific run ID (default: latest)")
+
+    arena_list = arena_sub.add_parser("list", help="List arena runs")
+
+    arena_results = arena_sub.add_parser("results", help="Show arena results")
+    arena_results.add_argument("--run-id", help="Run ID (default: latest)")
+    arena_results.add_argument("--json", action="store_true", help="JSON output")
+
+    # lyme model ticket
+    ticket_cmd = model_sub.add_parser("ticket", help="Paid ticket simulator commands")
+    ticket_sub = ticket_cmd.add_subparsers(dest="ticket_command")
+
+    ticket_list = ticket_sub.add_parser("list", help="List seeded client tickets")
+    ticket_list.add_argument("--difficulty", choices=["easy", "medium", "hard", "expert"], help="Filter by difficulty")
+    ticket_list.add_argument("--json", action="store_true", help="JSON output")
+
+    ticket_run = ticket_sub.add_parser("run", help="Run a single ticket simulation")
+    ticket_run.add_argument("ticket_id", help="Ticket ID to run")
+    ticket_run.add_argument("--dry-run", action="store_true", help="Show what would happen without executing")
+    ticket_run.add_argument("--json", action="store_true", help="JSON output")
+
+    ticket_run_all = ticket_sub.add_parser("run-all", help="Run all ticket simulations")
+    ticket_run_all.add_argument("--dry-run", action="store_true", help="Show what would happen without executing")
+    ticket_run_all.add_argument("--json", action="store_true", help="JSON output")
+
+    ticket_results = ticket_sub.add_parser("results", help="List ticket results")
+    ticket_results.add_argument("--json", action="store_true", help="JSON output")
+
+    ticket_report = ticket_sub.add_parser("report", help="Generate ticket benchmark report")
+    ticket_report.add_argument("--run-id", help="Run ID (default: latest)")
+
+    # lyme model autonomy
+    autonomy_cmd = model_sub.add_parser("autonomy", help="Trust-gated autonomy commands")
+    autonomy_sub = autonomy_cmd.add_subparsers(dest="autonomy_command")
+
+    autonomy_mode = autonomy_sub.add_parser("mode", help="Set or show autonomy level")
+    autonomy_mode.add_argument("level", nargs="?",
+                               choices=["suggest_only", "patch_only", "patch_and_test",
+                                        "patch_and_commit", "patch_and_pr", "continuous_background"],
+                               help="Autonomy level to set")
+    autonomy_mode.add_argument("--show", action="store_true", help="Show current configuration")
+
+    autonomy_decide = autonomy_sub.add_parser("decide", help="Ask whether an action is allowed")
+    autonomy_decide.add_argument("action", choices=[a.value for a in Action],
+                                 help="Action to check")
+    autonomy_decide.add_argument("--description", "-d", required=True, help="Action description")
+    autonomy_decide.add_argument("--confidence", "-c", type=float, default=0.8, help="Confidence (0-1)")
+    autonomy_decide.add_argument("--risk", "-r", type=float, default=0.2, help="Risk score (0-1)")
+    autonomy_decide.add_argument("--files", nargs="*", default=[], help="Affected files")
+
+    autonomy_approvals = autonomy_sub.add_parser("approvals", help="List pending approvals")
+    autonomy_approvals.add_argument("--approve", help="Approval ID to approve")
+    autonomy_approvals.add_argument("--deny", help="Approval ID to deny")
+    autonomy_approvals.add_argument("--reason", help="Reason for decision")
+
+    autonomy_audit = autonomy_sub.add_parser("audit", help="Show audit trail")
+    autonomy_audit.add_argument("--limit", type=int, default=20, help="Max entries")
+    autonomy_audit.add_argument("--json", action="store_true", help="JSON output")
+
+    autonomy_explain = autonomy_sub.add_parser("explain", help="Explain current autonomy configuration")
+
+    # lyme model workflow
+    workflow_cmd = model_sub.add_parser("workflow", help="Issue→Verified PR workflow commands")
+    workflow_sub = workflow_cmd.add_subparsers(dest="workflow_command")
+
+    workflow_run = workflow_sub.add_parser("run", help="Run full Issue→Verified PR workflow")
+    workflow_run.add_argument("--url", help="GitHub issue URL")
+    workflow_run.add_argument("--text", "-t", help="Issue text (title on first line, body after)")
+    workflow_run.add_argument("--id", default="issue-001", help="Issue ID for manual tickets")
+    workflow_run.add_argument("--repo", default=".", help="Repository path")
+    workflow_run.add_argument("--dry-run", action="store_true", help="Show plan without executing")
+    workflow_run.add_argument("--simulate", action="store_true", help="Simulate execution (default: true)")
+    workflow_run.add_argument("--json", action="store_true", help="JSON output")
+
+    workflow_report = workflow_sub.add_parser("report", help="Generate workflow report")
+    workflow_report.add_argument("ticket_id", help="Ticket/issue ID")
+    workflow_report.add_argument("--output", "-o", help="Output file path")
+
+    workflow_plan = workflow_sub.add_parser("plan", help="Show implementation plan for an issue")
+    workflow_plan.add_argument("--url", help="GitHub issue URL")
+    workflow_plan.add_argument("--text", "-t", help="Issue text")
+    workflow_plan.add_argument("--json", action="store_true", help="JSON output")
+
     return model_parser
 
 
@@ -294,6 +450,11 @@ def handle_command(args):
         "show": _cmd_show,
         "report": _cmd_report,
         "locate": _cmd_locate,
+        "trial": _cmd_trial,
+        "arena": _cmd_arena,
+        "ticket": _cmd_ticket,
+        "autonomy": _cmd_autonomy,
+        "workflow": _cmd_workflow,
     }
     handler = cmd_map.get(args.model_command)
     if handler:
@@ -1988,6 +2149,809 @@ def _cmd_locate(args):
             print(f"  ... and {len(candidates) - 10} more")
         print(f"\nTotal files scanned: {result['total_scanned']}")
     return 0
+
+
+def _cmd_trial(args):
+    """Handle trial harness commands."""
+    from .trial.models import TaskType
+    from .trial.seeded_tasks import SEEDED_TASKS, get_seeded_task, list_seeded_tasks
+
+    trial_cmd = getattr(args, 'trial_command', None)
+    runner = TrialRunner(dry_run=getattr(args, 'dry_run', False))
+    replay = TrialReplay(Path(".lyme/trials"))
+    report = TrialReport()
+
+    if trial_cmd == "list":
+        task_type_str = getattr(args, 'type', None)
+        task_type = TaskType(task_type_str) if task_type_str else None
+        difficulty = getattr(args, 'difficulty', None)
+        tasks = runner.list_tasks(task_type_str, difficulty)
+        if getattr(args, 'json', False):
+            print(json.dumps(tasks, indent=2))
+        else:
+            print(f"Seeded Trial Tasks ({len(tasks)}):")
+            print()
+            current_type = None
+            for t in tasks:
+                if t["task_type"] != current_type:
+                    current_type = t["task_type"]
+                    print(f"\n  [{current_type}]")
+                print(f"    {t['id']:20s} {t['difficulty']:8s} {t['title'][:60]}")
+            print(f"\nTotal: {len(tasks)} tasks")
+            print("Run:  lyme model trial run <task-id>")
+        return 0
+
+    if trial_cmd == "run":
+        task_id = args.task_id
+        repo = getattr(args, 'repo', '.')
+        result = runner.run_task(task_id, repo)
+        if getattr(args, 'json', False):
+            print(json.dumps(result.to_dict(), indent=2, default=str))
+        else:
+            v = result.verdict.value if result.verdict else "?"
+            icon = "✓" if v == "pass" else ("✗" if v == "fail" else "~")
+            print(f"{icon} Trial: {result.title}")
+            print(f"  ID:      {result.trial_id}")
+            print(f"  Status:  {result.status.value}")
+            print(f"  Verdict: {v.upper()}")
+            print(f"  Score:   {result.score:.4f}")
+            print(f"  Time:    {result.duration_s:.1f}s")
+            if result.failures:
+                print(f"  Failures ({len(result.failures)}):")
+                for f in result.failures[:5]:
+                    print(f"    ✗ {f}")
+            if result.file_changes:
+                print(f"  Changes ({len(result.file_changes)}):")
+                for fc in result.file_changes[:5]:
+                    print(f"    {fc.change_type}: {fc.path} (+{fc.lines_added}/-{fc.lines_removed})")
+            print(f"  Report:  lyme model trial report {result.trial_id}")
+        return 0
+
+    if trial_cmd == "run-all":
+        repo = getattr(args, 'repo', '.')
+        run = runner.run_all(repo)
+        if getattr(args, 'json', False):
+            print(json.dumps(run.compute_summary(), indent=2))
+        else:
+            s = run.summary or run.compute_summary()
+            print("=" * 60)
+            print(f"ALL TRIALS COMPLETE: {run.run_id}")
+            print("=" * 60)
+            print(f"  Total:     {s['total']}")
+            print(f"  Passed:    {s['passed']}")
+            print(f"  Failed:    {s['failed']}")
+            print(f"  Ambiguous: {s['ambiguous']}")
+            print(f"  Pass Rate: {s['pass_rate']:.1%}")
+            print(f"  Avg Score: {s['avg_score']:.4f}")
+            print(f"  Duration:  {s['total_duration_s']:.1f}s")
+            print(f"\n  Summary: lyme model trial summary {run.run_id}")
+        return 0
+
+    if trial_cmd == "run-type":
+        task_type = args.task_type
+        repo = getattr(args, 'repo', '.')
+        run = runner.run_by_type(task_type, repo)
+        if getattr(args, 'json', False):
+            print(json.dumps(run.compute_summary(), indent=2))
+        else:
+            s = run.summary or run.compute_summary()
+            print(f"Trials by type '{task_type}': {s['passed']}/{s['total']} passed ({s['pass_rate']:.0%})")
+        return 0
+
+    if trial_cmd == "replay":
+        trial_id = args.trial_id
+        output = replay.replay_trial(trial_id, "json" if getattr(args, 'json', False) else "text")
+        if output is None:
+            print(f"No trial or run found with ID: {trial_id}", file=sys.stderr)
+            available = replay.list_replays()
+            if available:
+                print(f"Available replays: {[a['id'] for a in available[:10]]}")
+            return 1
+        print(output)
+        return 0
+
+    if trial_cmd == "report":
+        trial_id = args.trial_id
+        data = runner.recorder.load_trial(trial_id)
+        if data is None:
+            data = runner.recorder.load_run(trial_id)
+            if data is None:
+                print(f"No data found for ID: {trial_id}", file=sys.stderr)
+                return 1
+            from .trial.models import TrialRun, TrialResult, TrialStatus, Verdict
+            from .trial.seeded_tasks import get_seeded_task
+            trial_run = TrialRun(run_id=data["run_id"], config=data.get("config", {}),
+                                 started_at=data.get("started_at", ""),
+                                 completed_at=data.get("completed_at", ""))
+            for rd in data.get("results", []):
+                tr = TrialResult(trial_id=rd["trial_id"], task_id=rd["task_id"],
+                                 title=rd["title"], status=TrialStatus(rd["status"]),
+                                 verdict=Verdict(rd["verdict"]) if rd.get("verdict") else None,
+                                 starting_commit=rd.get("starting_commit", ""),
+                                 task_prompt=rd.get("task_prompt", ""),
+                                 files_touched=rd.get("files_touched", []),
+                                 commands_run=[], failures=rd.get("failures", []),
+                                 final_diff=rd.get("final_diff", ""),
+                                 test_results=rd.get("test_results", {}),
+                                 duration_s=rd.get("duration_s", 0),
+                                 timestamp=rd.get("timestamp", ""),
+                                 score=rd.get("score", 0))
+                trial_run.add_result(tr)
+            content = report.generate_summary_report(trial_run)
+        else:
+            from .models import TrialResult as TRModel, TrialStatus, Verdict
+            result_obj = TRModel(
+                trial_id=data["trial_id"], task_id=data["task_id"],
+                title=data["title"], status=TrialStatus(data["status"]),
+                verdict=Verdict(data["verdict"]) if data.get("verdict") else None,
+                starting_commit=data.get("starting_commit", ""),
+                task_prompt=data.get("task_prompt", ""),
+                files_touched=data.get("files_touched", []),
+                commands_run=[], failures=data.get("failures", []),
+                final_diff=data.get("final_diff", ""),
+                test_results=data.get("test_results", {}),
+                duration_s=data.get("duration_s", 0),
+                timestamp=data.get("timestamp", ""),
+                score=data.get("score", 0),
+            )
+            content = report.generate_trial_report(result_obj)
+
+        output_path = getattr(args, 'output', None)
+        if output_path:
+            Path(output_path).write_text(content)
+            print(f"Report saved to: {output_path}")
+        else:
+            print(content)
+        return 0
+
+    if trial_cmd == "results":
+        trials = runner.recorder.list_trials()
+        limit = getattr(args, 'limit', 20)
+        trials = trials[:limit]
+        if getattr(args, 'json', False):
+            print(json.dumps(trials, indent=2))
+        else:
+            print(f"Recent Trials ({len(trials)}):")
+            print(f"{'ID':<14s} {'Task':<20s} {'Status':<10s} {'Verdict':<10s} {'Score':<8s} {'Time':<10s}")
+            print("-" * 72)
+            for t in trials:
+                print(f"{t['trial_id']:<14s} {t['task_id']:<20s} {t['status']:<10s} "
+                      f"{str(t.get('verdict', '') or '?'):<10s} {t.get('score', 0):<8.3f} {t.get('duration_s', 0):<10.1f}")
+        return 0
+
+    if trial_cmd == "summary":
+        run_id = args.run_id
+        data = runner.recorder.load_run(run_id)
+        if data is None:
+            print(f"No run found with ID: {run_id}", file=sys.stderr)
+            return 1
+        from .trial.models import TrialRun as TRun, TrialResult, TrialStatus, Verdict
+        trial_run = TRun(run_id=data["run_id"], config=data.get("config", {}),
+                         started_at=data.get("started_at", ""),
+                         completed_at=data.get("completed_at", ""))
+        for rd in data.get("results", []):
+            tr = TrialResult(trial_id=rd["trial_id"], task_id=rd["task_id"],
+                             title=rd["title"], status=TrialStatus(rd["status"]),
+                             verdict=Verdict(rd["verdict"]) if rd.get("verdict") else None,
+                             starting_commit=rd.get("starting_commit", ""),
+                             task_prompt=rd.get("task_prompt", ""),
+                             files_touched=[], commands_run=[], failures=rd.get("failures", []),
+                             final_diff=rd.get("final_diff", ""),
+                             test_results=rd.get("test_results", {}),
+                             duration_s=rd.get("duration_s", 0),
+                             timestamp=rd.get("timestamp", ""),
+                             score=rd.get("score", 0))
+            trial_run.add_result(tr)
+        if getattr(args, 'json', False):
+            print(json.dumps(trial_run.compute_summary(), indent=2))
+        else:
+            content = report.generate_summary_report(trial_run)
+            print(content)
+        return 0
+
+    if trial_cmd == "compare":
+        run_ids = args.run_ids
+        content = report.generate_comparison_report(run_ids)
+        print(content)
+        return 0
+
+    print("Error: Unknown trial command. Use: list, run, run-all, run-type, replay, report, results, summary, compare", file=sys.stderr)
+    return 1
+
+
+def _cmd_arena(args):
+    """Handle benchmark arena commands."""
+    from .arena.models import ArenaConfig, ToolName
+    from .arena.runner import ArenaRunner
+    from .arena.scoring import ArenaScorer
+    from .arena.leaderboard import LeaderboardGenerator
+    from .arena.regression import RegressionChecker
+    from .trial.seeded_tasks import SEEDED_TASKS
+
+    arena_cmd = getattr(args, 'arena_command', None)
+    scorer = ArenaScorer()
+    board = LeaderboardGenerator()
+    regression = RegressionChecker()
+    runner = ArenaRunner()
+
+    if arena_cmd == "run":
+        task_type = getattr(args, 'task_type', 'all')
+        specific_tasks = getattr(args, 'tasks', None)
+        tools_str = getattr(args, 'tools', ['lyme'])
+        repo = getattr(args, 'repo', '.')
+        dry_run = getattr(args, 'dry_run', False)
+
+        if specific_tasks:
+            task_ids = specific_tasks
+        elif task_type == 'all':
+            task_ids = [t.id for t in SEEDED_TASKS]
+        else:
+            from .trial.models import TaskType
+            tt = TaskType(task_type)
+            task_ids = [t.id for t in SEEDED_TASKS if t.task_type == tt]
+
+        tools = [ToolName(t) for t in tools_str]
+        config = ArenaConfig(task_ids=task_ids, tools=tools, repo_path=repo)
+
+        if dry_run:
+            result = {
+                "dry_run": True,
+                "config": config.to_dict(),
+                "task_count": len(task_ids),
+                "tool_count": len(tools),
+            }
+            if getattr(args, 'json', False):
+                print(json.dumps(result, indent=2))
+            else:
+                print(f"Arena Dry Run:")
+                print(f"  Tasks: {len(task_ids)} ({', '.join(task_ids[:5])}{'...' if len(task_ids) > 5 else ''})")
+                print(f"  Tools: {', '.join(t.value for t in tools)}")
+                print(f"  Repo:  {repo}")
+            return 0
+
+        arena_run = runner.run_arena(config)
+        arena_run = scorer.score_run(arena_run)
+
+        runner._save_run(arena_run)
+
+        if getattr(args, 'json', False):
+            print(json.dumps(arena_run.to_dict(), indent=2, default=str))
+        else:
+            s = arena_run.summary
+            print("=" * 60)
+            print(f"ARENA COMPLETE: {arena_run.run_id}")
+            print("=" * 60)
+            for entry in s.get("rankings", []):
+                print(f"  #{entry['rank']} {entry['tool']:<20s} {entry['final_score']:.4f}")
+            print(f"\n  Winner: {s.get('winner', 'N/A')} ({s.get('winner_score', 0):.4f})")
+            print(f"\n  Run ID: {arena_run.run_id}")
+            print(f"  Leaderboard: lyme model arena leaderboard --run-id {arena_run.run_id}")
+        return 0
+
+    if arena_cmd == "leaderboard":
+        run_id = getattr(args, 'run_id', None)
+        fmt = getattr(args, 'format', 'both')
+        output = getattr(args, 'output', None)
+
+        if not run_id:
+            runs = sorted(runner.output_dir.glob("arena-*.json"))
+            if not runs:
+                print("No arena runs found.", file=sys.stderr)
+                return 1
+            run_id = runs[-1].stem.replace("arena-", "")
+
+        run_path = runner.output_dir / f"arena-{run_id}.json"
+        if not run_path.exists():
+            print(f"Arena run not found: {run_id}", file=sys.stderr)
+            return 1
+
+        run_data = json.loads(run_path.read_text())
+        summary = run_data.get("summary", {})
+
+        if fmt in ("markdown", "both"):
+            md_path = output or str(runner.output_dir / f"leaderboard-{run_id}.md")
+            board.generate_markdown(summary, md_path)
+            print(f"Markdown leaderboard: {md_path}")
+
+        if fmt in ("html", "both"):
+            html_path = output.replace(".md", ".html") if output and output.endswith(".md") else (output or str(runner.output_dir / f"leaderboard-{run_id}.html"))
+            board.generate_html(summary, html_path)
+            print(f"HTML leaderboard: {html_path}")
+        return 0
+
+    if arena_cmd == "regression":
+        run_id = getattr(args, 'run_id', None)
+
+        if not run_id:
+            runs = sorted(runner.output_dir.glob("arena-*.json"))
+            if not runs:
+                print("No arena runs found.", file=sys.stderr)
+                return 1
+            run_id = runs[-1].stem.replace("arena-", "")
+
+        run_path = runner.output_dir / f"arena-{run_id}.json"
+        if not run_path.exists():
+            print(f"Arena run not found: {run_id}", file=sys.stderr)
+            return 1
+
+        run_data = json.loads(run_path.read_text())
+        scores = run_data.get("scores", {})
+        if not scores:
+            print("No scores found in arena run. Run scoring first.", file=sys.stderr)
+            return 1
+
+        check_result = regression.check(scores)
+        print(regression.regression_report(check_result))
+        return 0
+
+    if arena_cmd == "list":
+        runs = []
+        for path in sorted(runner.output_dir.glob("arena-*.json")):
+            data = json.loads(path.read_text())
+            runs.append({
+                "run_id": data.get("run_id", path.stem),
+                "started_at": data.get("started_at", ""),
+                "completed_at": data.get("completed_at", ""),
+                "summary": data.get("summary", {}),
+            })
+        runs.sort(key=lambda r: r.get("started_at", ""), reverse=True)
+
+        if getattr(args, 'json', False):
+            print(json.dumps(runs, indent=2))
+        else:
+            print(f"Arena Runs ({len(runs)}):")
+            for r in runs:
+                s = r.get("summary", {})
+                winner = s.get("winner", "N/A") if s else "N/A"
+                print(f"  {r['run_id'][:12]}  {r.get('started_at', '')[:19]}  winner={winner}")
+        return 0
+
+    if arena_cmd == "results":
+        run_id = getattr(args, 'run_id', None)
+
+        if not run_id:
+            runs = sorted(runner.output_dir.glob("arena-*.json"))
+            if not runs:
+                print("No arena runs found.", file=sys.stderr)
+                return 1
+            run_id = runs[-1].stem.replace("arena-", "")
+
+        run_path = runner.output_dir / f"arena-{run_id}.json"
+        if not run_path.exists():
+            print(f"Arena run not found: {run_id}", file=sys.stderr)
+            return 1
+
+        run_data = json.loads(run_path.read_text())
+
+        if getattr(args, 'json', False):
+            print(json.dumps(run_data, indent=2))
+        else:
+            summary = run_data.get("summary", {})
+            print("=" * 60)
+            print(f"ARENA RESULTS: {run_id}")
+            print("=" * 60)
+            for entry in summary.get("rankings", []):
+                print(f"\n  #{entry['rank']} {entry['tool']} — Final: {entry['final_score']:.4f}")
+                dims = entry.get("dimensions", {})
+                for d, v in dims.items():
+                    print(f"      {d}: {v:.4f}")
+
+            results = run_data.get("results", {})
+            if results:
+                print(f"\n  Results by tool:")
+                for tool_key, tool_results in results.items():
+                    passed = sum(1 for r in tool_results if r.get("success"))
+                    total = len(tool_results)
+                    avg_time = sum(r.get("duration_s", 0) for r in tool_results) / max(total, 1)
+                    print(f"    {tool_key}: {passed}/{total} passed, avg {avg_time:.1f}s")
+        return 0
+
+    print("Error: Unknown arena command. Use: run, leaderboard, regression, list, results", file=sys.stderr)
+    return 1
+
+
+def _cmd_ticket(args):
+    """Handle paid ticket simulator commands."""
+    from .ticket.models import TicketDifficulty
+    from .ticket.seeded_tickets import SEEDED_TICKETS, get_seeded_ticket, list_seeded_tickets
+    from .ticket.runner import TicketRunner
+    from .ticket.scoring import TicketScorer, RevenueEstimator
+    from .ticket.acceptance import AcceptanceGrader
+
+    ticket_cmd = getattr(args, 'ticket_command', None)
+
+    if ticket_cmd == "list":
+        diff_str = getattr(args, 'difficulty', None)
+        difficulty = TicketDifficulty(diff_str) if diff_str else None
+        tickets = list_seeded_tickets(difficulty)
+
+        if getattr(args, 'json', False):
+            print(json.dumps([t.to_dict() for t in tickets], indent=2))
+        else:
+            total_revenue = sum(t.estimated_revenue for t in tickets)
+            total_hours = sum(t.estimated_hours for t in tickets)
+            print(f"Seeded Client Tickets ({len(tickets)}):")
+            print(f"Total estimated revenue: ${total_revenue:.2f}")
+            print(f"Total estimated hours: {total_hours:.1f}h")
+            print()
+            for t in tickets:
+                hidden = f"{len(t.hidden_tests)} hidden tests" if t.hidden_tests else ""
+                constraints = f"{len(t.architecture_constraints)} constraints" if t.architecture_constraints else ""
+                meta = ", ".join(filter(None, [hidden, constraints]))
+                print(f"  {t.id:14s} {t.difficulty.value:8s} ${t.estimated_revenue:<7.2f} {t.title[:55]}")
+                if meta:
+                    print(f"  {'':14s} {'':8s} {'':9s} {meta}")
+            print(f"\nTotal: {len(tickets)} tickets | ${total_revenue:.2f} | {total_hours:.1f}h")
+        return 0
+
+    if ticket_cmd == "run":
+        ticket_id = args.ticket_id
+        runner = TicketRunner(dry_run=getattr(args, 'dry_run', False))
+        result = runner.run_ticket(ticket_id)
+
+        if getattr(args, 'json', False):
+            print(json.dumps(result.to_dict(), indent=2, default=str))
+        else:
+            grade = result.acceptance_grade.value if result.acceptance_grade else "N/A"
+            icon = "✓" if result.success else "✗"
+            print(f"{icon} Ticket: {result.title}")
+            print(f"  ID:      {result.ticket_id}")
+            print(f"  Grade:   {grade}")
+            print(f"  Score:   {result.score:.4f}")
+            print(f"  Revenue: ${result.revenue_earned:.2f}")
+            print(f"  Hours:   {result.duration_hours:.1f}h")
+            print(f"  Criteria: {result.criteria_met}/{result.criteria_met}")
+            print(f"  Hidden:  {result.hidden_tests_passed}/{result.hidden_tests_total}")
+            if result.constraints_violated:
+                print(f"  Violated constraints: {len(result.constraints_violated)}")
+                for c in result.constraints_violated[:3]:
+                    print(f"    - {c}")
+            if result.ambiguity_resolved:
+                print(f"  Ambiguity resolved: yes")
+        return 0
+
+    if ticket_cmd == "run-all":
+        runner = TicketRunner(dry_run=getattr(args, 'dry_run', False))
+        run = runner.run_all()
+        s = run.summary
+        if getattr(args, 'json', False):
+            print(json.dumps(s, indent=2))
+        else:
+            print("=" * 60)
+            print("PAID TICKET SIMULATION — COMPLETE")
+            print("=" * 60)
+            print(f"  Run ID:          {run.run_id}")
+            print(f"  Total:           {s['total']}")
+            print(f"  Accepted:        {s['accepted']}")
+            print(f"  Conditional:     {s['conditionally_accepted']}")
+            print(f"  Rejected:        {s['rejected']}")
+            print(f"  Acceptance Rate: {s['acceptance_rate']:.1%}")
+            print(f"  Revenue Earned:  ${s['total_revenue']:.2f}")
+            print(f"  Revenue Est.:    ${s['estimated_revenue']:.2f}")
+            print(f"  Revenue Capture: {s['revenue_capture_rate']:.1%}")
+            print(f"  Avg Score:       {s['avg_score']:.4f}")
+            print()
+            print(f"  Breakdown:")
+            for r in run.results:
+                grade = r.acceptance_grade.value[:4] if r.acceptance_grade else "?"
+                icon = "✓" if r.success else "✗"
+                print(f"    {icon} {r.ticket_id:12s} ${r.revenue_earned:<7.2f} {grade:>6s} {r.title[:45]}")
+        return 0
+
+    if ticket_cmd == "results":
+        runner = TicketRunner()
+        results_path = runner.output_dir / "results"
+        results = []
+        if results_path.exists():
+            for path in sorted(results_path.glob("*.json")):
+                results.append(json.loads(path.read_text()))
+        results.sort(key=lambda r: r.get("timestamp", ""), reverse=True)
+        if getattr(args, 'json', False):
+            print(json.dumps(results[:20], indent=2))
+        else:
+            print(f"Ticket Results ({len(results)}):")
+            for r in results[:20]:
+                grade = r.get("acceptance_grade", "N/A")[:6]
+                print(f"  {r.get('ticket_id', '?'):14s} ${r.get('revenue_earned', 0):<7.2f} "
+                      f"{grade:<8s} score={r.get('score', 0):.3f}")
+        return 0
+
+    if ticket_cmd == "report":
+        runner = TicketRunner()
+        run_id = getattr(args, 'run_id', None)
+        if not run_id:
+            runs_path = runner.output_dir / "runs"
+            if runs_path.exists():
+                runs = sorted(runs_path.glob("*.json"))
+                if runs:
+                    data = json.loads(runs[-1].read_text())
+                    s = data.get("summary", {})
+                else:
+                    print("No ticket runs found.", file=sys.stderr)
+                    return 1
+            else:
+                print("No ticket runs found.", file=sys.stderr)
+                return 1
+        else:
+            run_path = runner.output_dir / "runs" / f"run-{run_id}.json"
+            if not run_path.exists():
+                print(f"Run not found: {run_id}", file=sys.stderr)
+                return 1
+            data = json.loads(run_path.read_text())
+            s = data.get("summary", {})
+
+        print("=" * 60)
+        print("PAID TICKET BENCHMARK REPORT")
+        print("=" * 60)
+        print(f"Total tickets:    {s.get('total', 0)}")
+        print(f"Accepted:         {s.get('accepted', 0)}")
+        print(f"Conditional:      {s.get('conditionally_accepted', 0)}")
+        print(f"Rejected:         {s.get('rejected', 0)}")
+        print(f"Acceptance rate:  {s.get('acceptance_rate', 0):.1%}")
+        print()
+        print(f"Revenue earned:   ${s.get('total_revenue', 0):.2f}")
+        print(f"Revenue target:   ${s.get('estimated_revenue', 0):.2f}")
+        print(f"Revenue capture:  {s.get('revenue_capture_rate', 0):.1%}")
+        print(f"Avg quality:      {s.get('avg_score', 0):.4f}")
+        print()
+        print("Client-Acceptance Scoring:")
+        print("  ACCEPTED = meets all criteria, passes hidden tests, respects constraints")
+        print("  CONDITIONALLY_ACCEPTED = meets most criteria, minor issues")
+        print("  REJECTED_MINOR = significant gaps, partial rewrite needed")
+        print("  REJECTED_MAJOR = fundamentally wrong approach")
+        print()
+        revenue_rate = s.get('revenue_capture_rate', 0)
+        if revenue_rate >= 0.8:
+            print(f"✓ Commercial Viability: STRONG ({revenue_rate:.0%} revenue capture)")
+        elif revenue_rate >= 0.5:
+            print(f"~ Commercial Viability: MODERATE ({revenue_rate:.0%} revenue capture)")
+        else:
+            print(f"✗ Commercial Viability: WEAK ({revenue_rate:.0%} revenue capture)")
+        print("=" * 60)
+        return 0
+
+    print("Error: Unknown ticket command. Use: list, run, run-all, results, report", file=sys.stderr)
+    return 1
+
+
+def _cmd_autonomy(args):
+    """Handle trust-gated autonomy commands."""
+    controller = AutonomyController()
+    audit = AuditTrail()
+    explainer = ContinuationExplainer()
+    autonomy_cmd = getattr(args, 'autonomy_command', None)
+
+    if autonomy_cmd == "mode":
+        level_str = getattr(args, 'level', None)
+        show = getattr(args, 'show', False)
+
+        if level_str:
+            level = AutonomyLevel(level_str)
+            controller.set_level(level)
+            print(f"Autonomy mode set to: {level.value}")
+            print()
+            print(explainer.explain_config(controller.config))
+            audit.record(level, Action.READ_FILE, f"Changed autonomy level to {level.value}",
+                         1.0, 0.0, True, "mode_changed")
+            return 0
+
+        if show or not level_str:
+            print(explainer.explain_config(controller.config))
+            return 0
+
+    if autonomy_cmd == "decide":
+        action_str = args.action
+        description = args.description
+        confidence = args.confidence
+        risk = args.risk
+        files = args.files
+
+        action = Action(action_str)
+        decision = controller.decide(action, description, confidence, risk, files)
+        print(explainer.explain_decision(decision, controller.config))
+
+        audit.record(controller.config.level, action, description, confidence, risk,
+                     decision.allowed, "allowed" if decision.allowed else "blocked",
+                     files_changed=files)
+        return 0 if decision.allowed else 1
+
+    if autonomy_cmd == "approvals":
+        approve_id = getattr(args, 'approve', None)
+        deny_id = getattr(args, 'deny', None)
+
+        if approve_id:
+            decision = controller.approve(approve_id, "cli")
+            if decision:
+                audit.record(controller.config.level, Action.COMMIT, f"Approved {approve_id}",
+                             1.0, 0.0, True, "approved")
+                print(f"Approval {approve_id} granted.")
+            else:
+                print(f"Approval {approve_id} not found or already decided.", file=sys.stderr)
+            return 0
+
+        if deny_id:
+            reason = getattr(args, 'reason', 'Denied by user')
+            decision = controller.deny(deny_id, "cli", reason)
+            if decision:
+                audit.record(controller.config.level, Action.COMMIT, f"Denied {deny_id}: {reason}",
+                             1.0, 0.0, False, "denied")
+                print(f"Approval {deny_id} denied: {reason}")
+            else:
+                print(f"Approval {deny_id} not found or already decided.", file=sys.stderr)
+            return 0
+
+        pending = controller.pending_approvals()
+        if not pending:
+            print("No pending approvals.")
+        else:
+            print(f"Pending Approvals ({len(pending)}):")
+            for a in pending:
+                print(f"\n  ID:     {a.id}")
+                print(f"  Action: {a.action.value}")
+                print(f"  Desc:   {a.description}")
+                print(f"  Conf:   {a.confidence:.3f} | Risk: {a.risk_score:.3f}")
+                print(f"  Files:  {', '.join(a.affected_files[:5])}")
+                print(f"  Created: {a.created_at}")
+        return 0
+
+    if autonomy_cmd == "audit":
+        summary = audit.summary()
+        if getattr(args, 'json', False):
+            print(json.dumps(summary, indent=2))
+        else:
+            limit = getattr(args, 'limit', 20)
+            print("=" * 55)
+            print("  AUDIT TRAIL")
+            print("=" * 55)
+            print(f"  Total: {summary['total_entries']}")
+            print(f"  Approved: {summary['approved']}")
+            print(f"  Denied: {summary['denied']}")
+            print(f"  Approval rate: {summary['approval_rate']:.1%}")
+            print(f"  Errors: {summary['errors']}")
+            print()
+            entries = audit.get_entries(limit=limit)
+            for e in entries:
+                icon = "✓" if e.approved else "✗"
+                print(f"  {icon} [{e.autonomy_level.value}] {e.action.value}")
+                print(f"     {e.description[:60]}")
+                print(f"     conf={e.confidence:.2f} risk={e.risk_score:.2f} {e.duration_ms:.0f}ms")
+                if e.error:
+                    print(f"     ERROR: {e.error[:60]}")
+        return 0
+
+    if autonomy_cmd == "explain":
+        print(explainer.explain_config(controller.config))
+        return 0
+
+    print("Error: Unknown autonomy command. Use: mode, decide, approvals, audit, explain", file=sys.stderr)
+    return 1
+
+
+def _cmd_workflow(args):
+    """Handle Issue→Verified PR workflow commands."""
+    from .workflow.models import IssueTicket, AcceptanceCriterion
+
+    wf_cmd = getattr(args, 'workflow_command', None)
+
+    if wf_cmd == "plan":
+        executor = WorkflowExecutor(dry_run=True)
+        url = getattr(args, 'url', None)
+        text = getattr(args, 'text', None)
+
+        if url:
+            ticket = executor.ingester.from_url(url)
+            if not ticket:
+                print(f"Could not fetch issue from URL: {url}", file=sys.stderr)
+                return 1
+        elif text:
+            ticket = executor.ingester.from_text(text)
+        else:
+            print("Error: --url or --text required", file=sys.stderr)
+            return 1
+
+        plan = executor.planner.plan(ticket)
+        risk = executor.planner.assess_risk(ticket, plan)
+
+        if getattr(args, 'json', False):
+            print(json.dumps({"plan": plan.to_dict(), "risk": risk.to_dict()}, indent=2, default=str))
+        else:
+            print("=" * 60)
+            print(f"IMPLEMENTATION PLAN: {ticket.title}")
+            print("=" * 60)
+            print(f"  Ticket:     {ticket.id}")
+            print(f"  Branch:     {plan.branch_name}")
+            print(f"  Difficulty: {plan.estimated_difficulty}")
+            print(f"  Files:      {', '.join(plan.estimated_files)}")
+            print(f"\n  Acceptance Criteria ({len(ticket.acceptance_criteria)}):")
+            for c in ticket.acceptance_criteria:
+                print(f"    • {c.description}")
+            print(f"\n  Steps ({len(plan.steps)}):")
+            for s in plan.steps:
+                print(f"    {s.order}. [{s.risk}] {s.action} on {s.file}")
+                print(f"       {s.description}")
+            print(f"\n  Risk Assessment:")
+            print(f"    Overall: {risk.overall_risk.upper()} ({risk.risk_score:.2f})")
+            for r in risk.risks:
+                print(f"    ⚠ {r['description']}")
+            print(f"\n  Rollback:")
+            for inst in plan.rollback_instructions:
+                print(f"    $ {inst}")
+        return 0
+
+    if wf_cmd == "run":
+        url = getattr(args, 'url', None)
+        text = getattr(args, 'text', None)
+        repo = getattr(args, 'repo', '.')
+        dry_run = getattr(args, 'dry_run', False)
+        simulate = getattr(args, 'simulate', True)
+
+        if not url and not text:
+            print("Error: --url or --text required", file=sys.stderr)
+            return 1
+
+        executor = WorkflowExecutor(dry_run=dry_run)
+
+        if url:
+            ticket = executor.ingester.from_url(url)
+            if not ticket:
+                print(f"Could not fetch issue from URL: {url}", file=sys.stderr)
+                return 1
+        else:
+            ticket_id = getattr(args, 'id', 'issue-001')
+            ticket = executor.ingester.from_text(text, ticket_id)
+
+        result = executor.run(ticket, repo_path=repo, simulate=simulate)
+        executor.save_result(result)
+
+        if getattr(args, 'json', False):
+            print(json.dumps(result.to_dict(), indent=2, default=str))
+        else:
+            reporter = PRReporter()
+            report = reporter.generate_full_report(result)
+            print(report)
+
+            report_path = reporter.save_report(result)
+            print(f"\nReport saved: {report_path}")
+        return 0
+
+    if wf_cmd == "report":
+        ticket_id = args.ticket_id
+        output = getattr(args, 'output', None)
+        executor = WorkflowExecutor()
+        path = executor.output_dir / f"pr-{ticket_id}.json"
+        if not path.exists():
+            print(f"No workflow result found for ticket: {ticket_id}", file=sys.stderr)
+            return 1
+        import json as _json
+        data = _json.loads(path.read_text())
+
+        reporter = PRReporter()
+        from .workflow.models import PRResult, ImplementationPlan, RiskReport, VerificationEvidence, ImplementationStep
+        plan = ImplementationPlan(**data["implementation_plan"])
+        plan.steps = [ImplementationStep(**s) for s in data["implementation_plan"]["steps"]]
+        risk = RiskReport(**data["risk_report"])
+        verif = VerificationEvidence(**data["verification"])
+        result = PRResult(
+            ticket_id=data["ticket_id"], title=data["title"],
+            branch_name=data["branch_name"], pr_url=data["pr_url"],
+            pr_summary=data["pr_summary"], implementation_plan=plan,
+            risk_report=risk, verification=verif,
+            rollback_instructions=data["rollback_instructions"],
+            files_changed=data["files_changed"], duration_s=data["duration_s"],
+            success=data["success"], created_at=data["created_at"],
+            errors=data.get("errors", []),
+        )
+
+        report = reporter.generate_full_report(result)
+        if output:
+            Path(output).write_text(report)
+            print(f"Report saved: {output}")
+        else:
+            print(report)
+        return 0
+
+    print("Error: Unknown workflow command. Use: run, report, plan", file=sys.stderr)
+    return 1
 
 
 def _cmd_profile(args):

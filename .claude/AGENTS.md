@@ -102,7 +102,41 @@ Current week tracked in the INDEX.md of that directory.
 | `lyme policy review --request '{}'` | Action review board |
 | `lyme demo-v03` | Full v0.3 demo |
 
-## Lyme Model CLI (building)
+## Phase 7 — Proof, Pressure, and Paid Use
+
+Built across 5 weeks, all under `src/lyme_model/`:
+
+### Week 1: Real Repo Trial Harness (`src/lyme_model/trial/`)
+- 25 seeded trial tasks (5 types: fix_test, implement_feature, refactor, update_dep, docs)
+- TrialRunner with setup/test/diff capture, TrialRecorder for JSON persistence
+- TrialReplay for step-by-step replay, TrialJudge with score+judgment, TrialReport
+- CLI: `lyme model trial {list,run,run-all,run-type,replay,report,results,summary,compare}`
+
+### Week 2: Competitive Benchmark Arena (`src/lyme_model/arena/`)
+- ArenaRunner runs identical tasks across Lyme/Claude Code/Codex/OpenCode/Aider/Cursor
+- ArenaScorer with 7 normalized dimensions (correctness, test_pass, time, cost, files, rollbacks, autonomy)
+- LeaderboardGenerator (Markdown + HTML output), RegressionChecker (5 gates)
+- CLI: `lyme model arena {run,leaderboard,regression,list,results}`
+
+### Week 3: Paid Ticket Simulator (`src/lyme_model/ticket/`)
+- 15 realistic client tickets with ambiguous requirements, hidden tests, architecture constraints
+- TicketRunner with AcceptanceGrader (client simulation), RevenueEstimator, TicketScorer
+- Difficulty scoring per ticket, revenue-value estimate, client-acceptance grading
+- CLI: `lyme model ticket {list,run,run-all,results,report}`
+
+### Week 4: Trust-Gated Autonomy (`src/lyme_model/autonomy/`)
+- 6 autonomy levels: suggest_only → patch_only → patch_and_test → patch_and_commit → patch_and_pr → continuous_background
+- AutonomyController with confidence thresholds, risk scoring, blocked actions
+- AuditTrail for every decision (persistent JSON log), ContinuationExplainer
+- CLI: `lyme model autonomy {mode,decide,approvals,audit,explain}`
+
+### Week 5: Issue→Verified PR (`src/lyme_model/workflow/`)
+- IssueIngester (GitHub API + text parsing), ImplementationPlanner, WorkflowExecutor
+- RiskReport, VerificationEvidence (test/lint/coverage), PRReporter
+- Full pipeline: ingest issue → parse criteria → plan → branch → code → test → verify → PR
+- CLI: `lyme model workflow {run,report,plan}`
+
+### CLI Commands (Lyme Model, new)
 
 | Command | Purpose |
 |---------|---------|
@@ -115,6 +149,11 @@ Current week tracked in the INDEX.md of that directory.
 | `lyme model eval` | Evaluate on benchmark |
 | `lyme model hardware` | Hardware detection/recommendation |
 | `lyme model serve` | Start local API server |
+| `lyme model trial` | Trial harness (list/run/replay/report) |
+| `lyme model arena` | Benchmark arena (run/leaderboard/regression) |
+| `lyme model ticket` | Paid ticket simulator (list/run/report) |
+| `lyme model autonomy` | Trust-gated autonomy (mode/decide/audit/explain) |
+| `lyme model workflow` | Issue→Verified PR (run/report/plan) |
 
 ## Module Conventions
 

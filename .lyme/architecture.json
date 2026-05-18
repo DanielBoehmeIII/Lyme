@@ -1,18 +1,79 @@
 {
-  "version": "0.3.0",
+  "version": "1.0.0",
   "name": "Lyme",
-  "description": "Research infrastructure for local coding agent evaluation",
-  "architecture": "Dual-layer: Product + Research on shared telemetry substrate",
-  "modules": {
-    "cross_repo": {"path": "src/lyme/cross_repo/", "maturity": "stable", "description": "Cross-repository pattern mining and intelligence"},
-    "ecosystem": {"path": "src/lyme/ecosystem/", "maturity": "stable", "description": "Ecosystem knowledge graph (Python/FastAPI)"},
-    "epistemology": {"path": "src/lyme/epistemology/", "maturity": "stable", "description": "Evidence theory, epistemic debugging, confidence calibration"},
-    "governance": {"path": "src/lyme/governance/", "maturity": "stable", "description": "Autonomy policy, sensitive code, action review board"},
-    "skills": {"path": "src/lyme/skills/", "maturity": "stable", "description": "Skill library, transfer, benchmarks"},
-    "cognition": {"path": "src/lyme/cognition/", "maturity": "stable", "description": "Cognitive tracing and anomaly detection"},
-    "graph": {"path": "src/lyme/graph/", "maturity": "stable", "description": "Causal graph analysis"},
-    "discovery": {"path": "src/lyme/discovery/", "maturity": "stable", "description": "Invariant discovery"},
-    "benchmark": {"path": "src/lyme/benchmark/", "maturity": "stable", "description": "Benchmark engine and scenarios"},
-    "telemetry": {"path": "src/lyme/telemetry/", "maturity": "stable", "description": "Tracing, events, metrics"}
+  "description": "Local-first coding agent platform with 8-layer architecture",
+  "architecture": "8-layer separation with shared event bus and plugin registry",
+  "package_version": "0.8.0",
+  "layers": {
+    "orchestration": {
+      "name": "orchestration",
+      "description": "Multi-agent orchestration, task routing, lifecycle management",
+      "status": "active",
+      "dependencies": ["planning", "execution", "validation"],
+      "module_path": "src/lyme/core/"
+    },
+    "inference": {
+      "name": "inference",
+      "description": "Local model runtime, streaming, batching, speculative decoding",
+      "status": "active",
+      "dependencies": [],
+      "module_path": "src/lyme/models/"
+    },
+    "planning": {
+      "name": "planning",
+      "description": "Multi-step planning, dependency reasoning, task decomposition",
+      "status": "active",
+      "dependencies": ["inference", "repo_memory"],
+      "module_path": "src/lyme/planning/"
+    },
+    "repo_memory": {
+      "name": "repo_memory",
+      "description": "Repository understanding, AST parsing, dependency graphing, semantic indexing",
+      "status": "active",
+      "dependencies": [],
+      "module_path": "src/lyme/memory/"
+    },
+    "validation": {
+      "name": "validation",
+      "description": "Test intelligence, diff validation, hallucination detection, rollback",
+      "status": "active",
+      "dependencies": ["execution"],
+      "module_path": "src/lyme/verification/"
+    },
+    "execution": {
+      "name": "execution",
+      "description": "Safe diff application, sandboxed execution, tool use, CI integration",
+      "status": "active",
+      "dependencies": ["planning"],
+      "module_path": "src/lyme/runtime/"
+    },
+    "training": {
+      "name": "training",
+      "description": "Fine-tuning, dataset pipelines, synthetic data, human preference",
+      "status": "experimental",
+      "dependencies": ["inference", "repo_memory"],
+      "module_path": "src/lyme/training/"
+    },
+    "ui": {
+      "name": "ui",
+      "description": "Terminal UI, dashboards, visualizations, IDE bridge",
+      "status": "active",
+      "dependencies": [],
+      "module_path": "src/lyme/ui/"
+    }
+  },
+  "plugin_system": {
+    "registry": "src/lyme/core/plugin.py",
+    "discovery": ["entry_points", "directory_scan", "manual_registration"],
+    "status": "active"
+  },
+  "event_bus": {
+    "implementation": "src/lyme/core/events.py",
+    "pattern": "pub/sub",
+    "status": "active"
+  },
+  "component_interfaces": {
+    "location": "src/lyme/core/interfaces.py",
+    "protocols": ["LymeComponent", "Configurable", "Runnable", "Stoppable", "HasMetrics", "HasStatus"]
   }
 }

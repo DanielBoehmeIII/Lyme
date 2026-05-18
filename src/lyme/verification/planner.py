@@ -5,6 +5,8 @@ from enum import Enum
 import json
 import time
 import uuid
+import subprocess
+from pathlib import Path
 
 
 class StepType(str, Enum):
@@ -109,6 +111,63 @@ class StrategyConfig:
 
 
 @dataclass
+class StepResult:
+    step_type: str
+    command: str
+    passed: bool
+    output_summary: str
+    duration_sec: float
+    error: str = ""
+
+    def to_dict(self) -> Dict:
+        return {
+            "step_type": self.step_type,
+            "command": self.command,
+            "passed": self.passed,
+            "output_summary": self.output_summary[:200],
+            "duration_sec": round(self.duration_sec, 2),
+            "error": self.error[:100] if self.error else "",
+        }
+
+
+@dataclass
+class ExecutionResult:
+    step_results: List[StepResult]
+    all_passed: bool
+    pass_rate: float
+    total_duration_sec: float
+    failures: List[str]
+
+    def to_dict(self) -> Dict:
+        return {
+            "step_results": [s.to_dict() for s in self.step_results],
+            "all_passed": self.all_passed,
+            "pass_rate": round(self.pass_rate, 3),
+            "total_duration_sec": round(self.total_duration_sec, 2),
+            "failures": self.failures[:5],
+        }
+
+    def render_cli(self) -> str:
+        lines = []
+        lines.append("=" * 70)
+        lines.append("  VERIFICATION EXECUTION RESULTS")
+        lines.append("=" * 70)
+        lines.append(f"  All Passed: {'✅' if self.all_passed else '❌'}")
+        lines.append(f"  Pass Rate:  {self.pass_rate:.0%}")
+        lines.append(f"  Duration:   {self.total_duration_sec:.1f}s")
+        lines.append(f"  Failures:   {len(self.failures)}")
+        lines.append("-" * 70)
+        for r in self.step_results:
+            icon = "✅" if r.passed else "❌"
+            lines.append(f"  {icon} [{r.step_type}] {r.command[:50]}")
+            lines.append(f"     {r.output_summary[:80]}")
+            if r.error:
+                lines.append(f"     Error: {r.error[:80]}")
+        lines.append("=" * 70)
+        return "\n".join(lines)
+
+
+@dataclass
 class PlannerResult:
     edit_description: str
     edit_risk: float
@@ -176,6 +235,7 @@ class PlannerResult:
 class VerificationStrategyPlanner:
     def __init__(self, config: Optional[StrategyConfig] = None):
         self.config = config or StrategyConfig()
+        self._execution_history: List[ExecutionResult] = []
 
     def plan(self, edit_description: str, context: Dict) -> PlannerResult:
         edit_risk = context.get("risk_score", 0.3)
@@ -225,6 +285,82 @@ class VerificationStrategyPlanner:
             total_confidence=strategies[recommended].confidence_score,
             explanations=explanations,
         )
+
+    def execute_strategy(self, strategy: VerificationStrategy,
+                         repo_path: Optional[Path] = None) -> ExecutionResult:
+        step_results: List[StepResult] = []
+        failures: List[str] = []
+        total_start = time.time()
+
+        for step in strategy.steps:
+            if not step.command:
+                step_results.append(StepResult(
+                    step_type=step.step_type.value,
+                    command="(no command — manual step)",
+                    passed=True,
+                    output_summary="Skipped (no automated command)",
+                    duration_sec=0.0,
+                ))
+                continue
+
+            step_start = time.time()
+            try:
+                cwd = str(repo_path) if repo_path else None
+                result = subprocess.run(
+                    step.command.split(),
+                    capture_output=True, text=True, timeout=step.expected_duration_sec + 30,
+                    cwd=cwd,
+                )
+                duration = time.time() - step_start
+                passed = result.returncode == 0
+                output = (result.stdout + result.stderr).strip()[:200]
+
+                step_results.append(StepResult(
+                    step_type=step.step_type.value,
+                    command=step.command,
+                    passed=passed,
+                    output_summary=output or ("Passed" if passed else "Failed"),
+                    duration_sec=duration,
+                    error="" if passed else f"exit code {result.returncode}",
+                ))
+                if not passed:
+                    failures.append(f"{step.step_type.value}: {step.command[:40]}")
+
+            except subprocess.TimeoutExpired:
+                duration = time.time() - step_start
+                step_results.append(StepResult(
+                    step_type=step.step_type.value,
+                    command=step.command,
+                    passed=False,
+                    output_summary="Timed out",
+                    duration_sec=duration,
+                    error="timeout",
+                ))
+                failures.append(f"{step.step_type.value}: timeout")
+            except FileNotFoundError:
+                step_results.append(StepResult(
+                    step_type=step.step_type.value,
+                    command=step.command,
+                    passed=False,
+                    output_summary="Command not found",
+                    duration_sec=0.0,
+                    error="command not found",
+                ))
+                failures.append(f"{step.step_type.value}: command not found")
+
+        total_duration = time.time() - total_start
+        passed_count = sum(1 for r in step_results if r.passed)
+        total_count = len(step_results)
+
+        execution_result = ExecutionResult(
+            step_results=step_results,
+            all_passed=len(failures) == 0,
+            pass_rate=passed_count / max(total_count, 1),
+            total_duration_sec=total_duration,
+            failures=failures,
+        )
+        self._execution_history.append(execution_result)
+        return execution_result
 
     def _build_fast_strategy(
         self, risk, scope, has_tests, sensitive, docs_only, config_change, language,
@@ -426,3 +562,9 @@ class VerificationStrategyPlanner:
             exps.append("Security scans are required for changes touching sensitive code paths.")
         exps.append("Manual review provides human judgment for high-risk or nuanced changes.")
         return exps
+
+    def get_execution_history(self) -> List[ExecutionResult]:
+        return self._execution_history
+
+    def clear_execution_history(self) -> None:
+        self._execution_history = []

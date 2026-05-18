@@ -1,373 +1,122 @@
-# Lyme
+# Lyme — One-Command Repo Repair
 
-**Local-first infrastructure for coding agent measurement and improvement.**
-
-Lyme is a research platform disguised as a developer tool. It helps you understand
-your codebase, diagnose problems, and interact with coding agents — while simultaneously
-collecting the structured data needed to study how agents actually think, fail, and improve.
-
-Unlike other coding agent tools, Lyme is built for observability. Every action is traced,
-every claim is evidence-grounded, every decision is recorded, and every outcome is measured.
-
----
-
-## Why Lyme Exists
-
-Coding agents are the most important tools we do not understand.
-
-We deploy them into production with less observability than the average web service.
-We evaluate them on benchmarks that measure everything except what matters.
-We treat them as black boxes and wonder why they behave unpredictably.
-
-Lyme exists to fix this. Not by building a better coding agent, but by building
-the infrastructure to study them scientifically.
-
-Read the full [manifesto](MANIFESTO.md) for the complete argument.
-
----
-
-## Quickstart
+**Your repository has problems. Lyme finds them, prioritizes them, and fixes them.**
 
 ```bash
-# Install
+pip install lyme
+cd your-project
+lyme heal        # Diagnose + prioritize + fix + verify
+lyme doctor      # Deep repo health check
+lyme v1-audit    # Honest readiness score
+```
+
+---
+
+## What Does Lyme Do?
+
+Lyme is a CLI tool that scans your repository, finds real issues, and either
+fixes them automatically or tells you exactly what to do.
+
+**It answers three questions:**
+- What is wrong with my repo?
+- What should I fix first?
+- Did the fix actually work?
+
+---
+
+## Why Should I Care?
+
+Most repos accumulate silent rot:
+- Dead code, missing tests, skewed dependencies
+- Architectural drift nobody tracks
+- Config that works by accident
+
+Lyme catches this before it bites you. One command, under 10 seconds.
+
+---
+
+## Install
+
+```bash
+# Install directly
 pip install lyme
 
-# Diagnose any repository
-lyme doctor
+# Or from source
+git clone https://github.com/anomalyco/lyme
+cd lyme && pip install -e .
 
-# Ask evidence-grounded questions
-lyme ask "What language is this? Are there tests?"
-
-# Run a benchmark
-lyme run --scenario latency-baseline
-
-# View the trace
-lyme trace <run-id>
+# Verify
+lyme doctor --install
 ```
 
-### Requirements
-
-- Python 3.10+
-- Optional: git (for temporal analysis)
-- Optional: Ollama (for local model benchmarking)
-- Optional: pytest (for test-aware analysis)
+**Requirements:** Python 3.10+ | git (recommended)
 
 ---
 
-## Core Commands
-
-| Command | Purpose | Product | Research |
-|---------|---------|---------|----------|
-| `lyme doctor` | Diagnose repository health | Structure, risks, suggestions | Graph quality, invariants, failure zones |
-| `lyme ask` | Evidence-grounded Q&A | File citations, confidence scores | Claim verification, uncertainty calibration |
-| `lyme diff` | Semantic diff classification | Understand what changed, not just what's different | Diff taxonomy, classification accuracy |
-| `lyme trace` | Execution trace viewer | Step through agent decisions | Decision quality analysis |
-| `lyme fix` | Safe, auditable edits | Explain, patch, rollback | Safe edit protocol effectiveness |
-| `lyme history` | Action audit trail | See what happened | Session pattern analysis |
-| `lyme audit` | Full action inspection | Diff, trace, patches, undo | Action attribution accuracy |
-| `lyme undo` | Reverse actions | Git-based rollback | Action reversibility study |
-| `lyme memory` | Persistent memory | Query agent experience | Memory utilization, forgetting curves |
-| `lyme bench` | Model benchmarking | Compare models on tasks | Scaling laws, capability matrices |
-| `lyme graph` | Causal graph analysis | Hidden dependencies, risk zones | Causal structure validation |
-| `lyme discover` | Invariant discovery | Architecture rules, violations | Invariant completeness |
-| `lyme run` | Run benchmarks | Compare agent/scenario performance | Reproducible agent evaluation |
-| `lyme stress` | Stress experiments | Degradation analysis | Context collapse measurement |
-| `lyme research` | Research framework | Intelligence dimensions, scaling laws | Automated experiment design |
-| `lyme self` | Repository self-description | Living README for machines and humans | Self-modeling repositories |
-| `lyme archfile` | Machine-readable architecture | Package.json for architecture | Architecture evolution tracking |
-| `lyme plan` | Architecture-aware planning | Smarter agent task decomposition | Planning benchmark |
-| `lyme skill` | Skill library | Reusable automation patterns | Skill acquisition and transfer |
-
----
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     LYME DUAL ARCHITECTURE                    │
-├──────────────────────┬──────────────────────────────────────┤
-│    PRODUCT LAYER     │           RESEARCH LAYER              │
-│                      │                                       │
-│  CLI (lyme *)        │  Cognitive Tracing                    │
-│  Repo Doctor         │  Causal Graphs                        │
-│  Evidence Q&A        │  Invariant Discovery                  │
-│  Semantic Diff       │  Temporal Modeling                    │
-│  Trace Viewer        │  Scaling Law Experiments              │
-│  Safe Edit Protocol  │  Agent Coordination Studies           │
-│  Audit System        │  Hallucination Study                  │
-│  Memory Store        │  Context Degradation Analysis         │
-│  Model Benchmarks    │  Failure Analysis                     │
-└──────────┬───────────┴──────────────────┬───────────────────┘
-           │                               │
-           └───────────┬───────────────────┘
-                       │
-            ┌──────────▼──────────┐
-            │ SHARED TELEMETRY     │
-            │ SUBSTRATE            │
-            │                      │
-            │  • Traces & Spans    │
-            │  • Events & Metrics  │
-            │  • Experiment Hooks  │
-            │  • Plugin System     │
-            │  • Privacy Boundary  │
-            │  • Storage Layer     │
-            └─────────────────────┘
-```
-
-**Key architectural principle:** Every product action generates research data.
-Every research insight improves product behavior.
-
-The telemetry substrate is shared between both layers. The privacy boundary
-is explicit. The data format is versioned, portable, and human-inspectable.
-
----
-
-## Local Model Support
-
-Lyme supports any model accessible via one of these adapters:
-
-- **Ollama** — `ollama run codellama:7b`, `qwen2.5-coder:7b`, etc.
-- **llama.cpp** — Any GGUF model
-- **OpenAI-compatible API** — Any provider with a compatible endpoint
-- **Claude Code** — Via the `claude` command
-- **OpenCode** — Via the `opencode` command
-
-Model capabilities are defined in the [capability matrix](src/lyme/models/evaluation.py)
-with standard evaluation tasks:
-- Code generation
-- Bug finding
-- Code explanation
-- Refactoring
-- Instruction following
-- Hallucination resistance
-
----
-
-## Telemetry Philosophy
-
-Lyme collects telemetry for one reason: to measure and improve coding agents.
-
-Every telemetry event is tagged with a consent level:
-
-| Consent Level | Meaning |
-|--------------|---------|
-| `product_only` | Only used for product operation |
-| `research_only` | Only used for research analysis |
-| `dual_use` | Shared between product and research |
-| `anonymized_research` | Sanitized for research use |
-
-You can inspect all telemetry data in `.lyme/telemetry/`. Nothing leaves your
-machine unless you explicitly choose to publish research data.
-
----
-
-## Privacy Model
-
-| Concern | How Lyme Handles It |
-|---------|-------------------|
-| Code content | Stays on your machine. Never uploaded. |
-| File paths | Anonymized in research data. |
-| API keys, secrets | Detected by sanitization rules, redacted before storage. |
-| Git history | Analyzed locally. Commits, authors, timestamps stay local. |
-| Model prompts | Stored only for replay. Never shared. |
-| Research data | Explicit opt-in to publish. Anonymized by default. |
-
-See [privacy_boundary.py](src/lyme/architecture/privacy_boundary.py) for the
-full implementation of sanitization rules and classification logic.
-
----
-
-## Research Agenda
-
-Lyme is designed to test the following hypotheses:
-
-1. **Compression-First Architecture** — A 7B model with Lyme's compression
-   pipeline matches a 70B model using raw file context.
-
-2. **Persistent Memory Improves Over Time** — Agents with persistent memory
-   show measurable improvement over 100+ sessions on the same codebase.
-
-3. **Context Budget Optimization** — As repositories grow, context budget
-   optimization prevents the accuracy collapse that naive retrieval suffers.
-
-4. **Cognitive Tracing Enables Failure Analysis** — Structured cognitive
-   traces enable automated failure classification with >80% accuracy.
-
-5. **Anomaly Detection Generalizes** — Failure patterns learned from one
-   model family transfer to another with <20% accuracy drop.
-
-6. **Semantic Diff Classification** — Diffs can be classified into semantic
-   categories with >90% precision using AST analysis.
-
-7. **Multi-Agent Coordination Overhead** — There is a measurable inflection
-   point beyond which adding agents decreases net throughput.
-
-Read the full [research framework](src/lyme/research/) for experiment designs,
-intelligence dimensions, and scaling law methodology.
-
----
-
-## Example Traces
-
-### `lyme doctor` output
-
-```
-# `lyme doctor`: my-project
-
-**Confidence**: 85%
-
-## Project Structure
-- Language: Python
-- Framework: FastAPI
-- Build system: poetry
-- Files: 248 in 63 directories (28,431 lines)
-- Tests: 34 test files
-
-## Risky Files
-- src/auth.py (score: 0.85) — Large file, contains auth logic
-- src/api/routes.py (score: 0.70) — High dependency count
-
-## Suggested Improvements
-- [high] Add README.md with setup instructions
-- [medium] Resolve 2 circular dependencies
-- [medium] Add test configuration
-
-## Research Diagnostics
-- Graph quality: 0.85
-- Inferred invariants: 14
-- Likely failure zones: 3
-```
-
-### `lyme ask` output
-
-```
-## Question: What language is this repository?
-
-**Overall confidence**: 90%
-
-## Answer
-This repository is written in Python.
-
-## Evidence
-**Claim 1:** This repository is written in Python
-**Confidence:** 90%
-**Citations:**
-- `pyproject.toml` (file) — Python project config
-- `src/main.py` (file) — Python source file
-- `setup.py` (file) — Python package setup
-
-## What I Checked
-- Scanned 248 files in repository
-- Detected language: Python
-- Checked file names, imports, function/class definitions
-
-## What I Did NOT Check
-- Did not run the code (static analysis only)
-- Did not check external dependencies for correctness
-- Did not verify test pass/fail status
-```
-
----
-
-## Benchmark Philosophy
-
-Lyme benchmarks are designed to measure cognition, not just task completion.
-
-| What We Measure | What We Don't Measure |
-|----------------|----------------------|
-| Decision quality | Task completion rate only |
-| Context utilization | Raw speed |
-| Hallucination frequency | Surface-level correctness |
-| Recovery behavior | First-attempt success only |
-| Degradation curves | Peak performance only |
-| Confidence calibration | Uncalibrated scores |
-
-Benchmarks are registered as `BenchmarkScenario` subclasses and can be
-combined, compared, and replayed. Every benchmark run produces:
-- A structured trace (JSON, replayable)
-- A cognitive trace (decision points, branches, confidence)
-- Metrics (performance, resource usage, timing)
-- An audit entry (linkable to patches and diffs)
-
----
-
-## Roadmap
-
-### v0.1 (Current) — Research Preview
-- [x] Local repo doctor (`lyme doctor`)
-- [x] Evidence-grounded Q&A (`lyme ask`)
-- [x] Semantic diff classification (`lyme diff`)
-- [x] Causal graph analysis (`lyme graph`)
-- [x] Invariant discovery (`lyme discover`)
-- [x] Cognitive tracing and anomaly detection
-- [x] Model benchmarking and capability matrix
-- [x] Safe edit protocol (`lyme fix`)
-- [x] Audit system (`lyme history`, `lyme undo`, `lyme audit`)
-- [x] Memory store and distillation
-- [x] Plugin system
-- [x] Privacy boundary and consent framework
-
-### v0.2 — Research Platform (Current)
-- [x] Repository self-description (`lyme self`)
-- [x] Machine-readable architecture file (`lyme archfile`)
-- [x] Architecture-aware planning (`lyme plan`)
-- [x] Experiment generator (`lyme research experiment`)
-- [x] Automated ablation studies (`lyme research ablation`)
-- [x] Research report generator (`lyme research report`)
-- [x] Skill library (`lyme skill list/search/extract`)
-- [x] Cross-repo skill transfer (`lyme skill transfer`)
-- [x] Skill critic (`lyme skill critique`)
-- [ ] Interactive dashboard (web UI)
-- [ ] Collaborative benchmark suites
-- [ ] Integration with major agent frameworks (LangChain, CrewAI, etc.)
-
-### v0.3 — Production Readiness
-- [ ] Team features (shared benchmarks, compliance reports)
-- [ ] CI/CD integration
-- [ ] Agent safety scoring
-- [ ] Custom experiment marketplace
-- [ ] Published research papers with Lyme-generated data
-
----
-
-## Contribution Guide
-
-Lyme is a research project. The most valuable contribution is not a pull request —
-it is a measurement.
-
-### How to contribute
-
-1. **Run Lyme on your codebase** — `lyme doctor`, `lyme ask`, `lyme bench`
-2. **Publish your results** — Share traces, benchmarks, and failure analyses
-3. **Report failures** — If Lyme makes an unsupported claim, that's a bug.
-   If a benchmark doesn't reproduce, that's data.
-4. **Add scenarios** — New `BenchmarkScenario` subclasses are always welcome
-5. **Improve detectors** — Better hallucination detection, invariant mining,
-   or anomaly classification
-
-### Development
+## First Command
 
 ```bash
-git clone https://github.com/lyme-research/lyme
-cd lyme
-pip install -e ".[dev]"
-pytest
+cd your-project
+lyme heal
 ```
 
-### Coding conventions
-
-- Type-annotated Python 3.10+
-- Dataclasses for all data models
-- `to_dict()` methods for serialization
-- Every module has an `__init__.py` that exports only the public API
-- CLI commands in `cli.py`, logic in dedicated modules
+This runs the full workflow:
+1. **Diagnose** — scan for issues (missing tests, high-risk files, config drift)
+2. **Prioritize** — order by real impact, not guesswork
+3. **Plan** — show exactly what needs to happen
+4. **Fix** — `lyme heal --fix` applies safe patches
+5. **Verify** — confirms fixes improved the score
 
 ---
 
-## License
+## What Does Success Look Like?
 
-MIT
+**Before:**
+```
+lyme v1-audit
+  Overall: 0.64  Grade: D
+  ! reliability  ████████████████░░░░
+  ✗ retention    ██████░░░░░░░░░░░░░░
+```
 
-Lyme is named for the tick-borne pathogen because, like a really bad bug
-in production, it's small, persistent, hard to detect, and surprisingly
-hard to get rid of.
+**After running recommended fixes:**
+```
+lyme v1-fix report
+  Score: D → C  (+0.11)
+  Tasks: 5/8 completed
+  ✓ reliability improved
+```
+
+Lyme is honest about what it can and cannot do. It starts with a D grade
+and works up from there — no fake confidence, no empty promises.
+
+---
+
+## Key Commands
+
+| Command | What it does |
+|---------|-------------|
+| `lyme heal` | Full diagnose → prioritize → fix → verify |
+| `lyme doctor` | Detailed repo health diagnosis |
+| `lyme v1-audit` | Honest readiness score (A-F) |
+| `lyme v1-fix` | Track and apply repairs |
+| `lyme fix --dry-run` | Safe edit preview |
+| `lyme start` | Daily dev workflow |
+
+---
+
+## Documentation
+
+- [Quickstart](docs/QUICKSTART.md) — get started in 2 minutes
+- [Heal Guide](docs/heal-guide.md) — deep dive on the killer workflow
+- [Troubleshooting](docs/TROUBLESHOOTING.md) — common issues
+- [Limitations](docs/LIMITATIONS.md) — honest about what we don't do
+
+---
+
+## Project Status
+
+**v0.9.0** — Beta. Core workflow works. Some experimental commands exist.
+
+Lyme measures itself: `lyme v1-audit` reports an honest readiness score.
+Currently scoring **D (0.64/1.0)**. Target: B+ for v1.0.

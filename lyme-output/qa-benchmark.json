@@ -3,7 +3,7 @@
     "total_questions": 8,
     "answered": 8,
     "refused": 0,
-    "avg_latency_s": 0.026,
+    "avg_latency_s": 0.029,
     "avg_confidence": 0.15,
     "total_evidence": 3,
     "avg_evidence_per_answer": 0.4
@@ -13,7 +13,7 @@
       "question": "What language is this project?",
       "refused": false,
       "confidence": 0.4,
-      "latency_s": 0.024,
+      "latency_s": 0.027,
       "has_evidence": true,
       "evidence_count": 1,
       "answer_length": 70
@@ -31,7 +31,7 @@
       "question": "How many files are in the repo?",
       "refused": false,
       "confidence": 0.4,
-      "latency_s": 0.025,
+      "latency_s": 0.029,
       "has_evidence": true,
       "evidence_count": 1,
       "answer_length": 29
@@ -40,7 +40,7 @@
       "question": "What test framework is used?",
       "refused": false,
       "confidence": 0.0,
-      "latency_s": 0.024,
+      "latency_s": 0.027,
       "has_evidence": false,
       "evidence_count": 0,
       "answer_length": 41
@@ -49,7 +49,7 @@
       "question": "Are there any risky files?",
       "refused": false,
       "confidence": 0.4,
-      "latency_s": 0.024,
+      "latency_s": 0.033,
       "has_evidence": true,
       "evidence_count": 1,
       "answer_length": 29
@@ -58,7 +58,7 @@
       "question": "What are the entry points?",
       "refused": false,
       "confidence": 0.0,
-      "latency_s": 0.026,
+      "latency_s": 0.027,
       "has_evidence": false,
       "evidence_count": 0,
       "answer_length": 25
@@ -67,7 +67,7 @@
       "question": "What recent changes were made?",
       "refused": false,
       "confidence": 0.0,
-      "latency_s": 0.027,
+      "latency_s": 0.028,
       "has_evidence": false,
       "evidence_count": 0,
       "answer_length": 25
@@ -76,7 +76,7 @@
       "question": "What build system is used?",
       "refused": false,
       "confidence": 0.0,
-      "latency_s": 0.026,
+      "latency_s": 0.029,
       "has_evidence": false,
       "evidence_count": 0,
       "answer_length": 41

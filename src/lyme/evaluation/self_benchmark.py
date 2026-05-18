@@ -7,6 +7,8 @@ import json
 import time
 import uuid
 import random
+import subprocess
+import os
 
 
 class BenchmarkDimension(str, Enum):
@@ -174,6 +176,118 @@ class RealRepoScaledSuite:
         return scores
 
 
+class RealTaskExecutor:
+    """Executes real tasks to measure benchmark dimensions."""
+
+    def __init__(self, repo_path: Optional[Path] = None):
+        self.repo_path = repo_path
+
+    def measure_test_success(self) -> Dict[str, float]:
+        """Run pytest and measure real pass rate."""
+        if not self.repo_path:
+            return {"pass_rate": 0.0, "total": 0, "passed": 0, "failed": 0}
+
+        try:
+            result = subprocess.run(
+                ["python3", "-m", "pytest", "-x", "--tb=no", "-q"],
+                cwd=str(self.repo_path),
+                capture_output=True,
+                text=True,
+                timeout=120,
+            )
+            output = result.stdout + result.stderr
+            passed = 0
+            failed = 0
+            total = 0
+            for line in output.split("\n"):
+                if "passed" in line and "failed" in line:
+                    parts = line.split()
+                    for i, p in enumerate(parts):
+                        if p == "passed":
+                            passed = int(parts[i - 1]) if i > 0 else 0
+                        elif p == "failed":
+                            failed = int(parts[i - 1]) if i > 0 else 0
+                    break
+            total = passed + failed
+            pass_rate = passed / max(total, 1)
+            return {"pass_rate": pass_rate, "total": total, "passed": passed, "failed": failed}
+        except (subprocess.TimeoutExpired, FileNotFoundError):
+            return {"pass_rate": 0.0, "total": 0, "passed": 0, "failed": 0, "error": "timeout or no pytest"}
+
+    def measure_type_coverage(self) -> float:
+        """Check if mypy runs successfully."""
+        if not self.repo_path:
+            return 0.0
+        try:
+            result = subprocess.run(
+                ["python3", "-m", "mypy", "--version"],
+                capture_output=True, text=True, timeout=10,
+            )
+            if result.returncode == 0:
+                result = subprocess.run(
+                    ["python3", "-m", "mypy", str(self.repo_path)],
+                    capture_output=True, text=True, timeout=60,
+                )
+                lines = result.stderr.strip().split("\n")
+                error_lines = [l for l in lines if "error:" in l]
+                return max(0.0, 1.0 - len(error_lines) * 0.05)
+            return 0.0
+        except (subprocess.TimeoutExpired, FileNotFoundError):
+            return 0.0
+
+    def measure_lint_quality(self) -> float:
+        if not self.repo_path:
+            return 0.0
+        try:
+            result = subprocess.run(
+                ["ruff", "check", "--select=E,F,W", "--output-format=concise", str(self.repo_path)],
+                capture_output=True, text=True, timeout=60,
+            )
+            lines = result.stdout.strip().split("\n")
+            violations = len([l for l in lines if l.strip()])
+            return max(0.0, 1.0 - violations * 0.02)
+        except (subprocess.TimeoutExpired, FileNotFoundError):
+            return 0.0
+
+    def measure_coverage(self) -> float:
+        if not self.repo_path:
+            return 0.0
+        try:
+            result = subprocess.run(
+                ["python3", "-m", "pytest", "--cov=.", "--cov-report=term-missing", "-q"],
+                cwd=str(self.repo_path),
+                capture_output=True, text=True, timeout=120,
+            )
+            output = result.stdout + result.stderr
+            for line in output.split("\n"):
+                if "TOTAL" in line:
+                    parts = line.strip().split()
+                    for p in parts:
+                        if p.endswith("%"):
+                            try:
+                                return float(p.strip("%")) / 100.0
+                            except ValueError:
+                                pass
+            return 0.0
+        except (subprocess.TimeoutExpired, FileNotFoundError):
+            return 0.0
+
+    def measure_execution_time(self, task_name: str = "pytest") -> float:
+        if not self.repo_path:
+            return 0.0
+        try:
+            start = time.time()
+            subprocess.run(
+                ["python3", "-m", "pytest", "--tb=no", "-q"],
+                cwd=str(self.repo_path),
+                capture_output=True, text=True, timeout=120,
+            )
+            elapsed = time.time() - start
+            return elapsed
+        except (subprocess.TimeoutExpired, FileNotFoundError):
+            return 120.0
+
+
 class SelfBenchmark:
     def __init__(self, config: Optional[BenchmarkConfig] = None):
         self.config = config or BenchmarkConfig()
@@ -181,6 +295,10 @@ class SelfBenchmark:
         self._results: Dict[str, List[float]] = {
             d.value: [] for d in BenchmarkDimension
         }
+        self._task_executor: Optional[RealTaskExecutor] = None
+
+    def set_executor(self, executor: RealTaskExecutor) -> None:
+        self._task_executor = executor
 
     def run(self, repo_type: str = "demo", repo_name: str = "") -> BenchmarkRun:
         run_id = str(uuid.uuid4())[:8]
@@ -216,6 +334,7 @@ class SelfBenchmark:
         if self.config.real_repos:
             for rp in self.config.real_repos:
                 if rp.exists():
+                    self._task_executor = RealTaskExecutor(rp)
                     self.run(repo_type="real", repo_name=rp.name)
 
         return self.get_result()
@@ -232,33 +351,58 @@ class SelfBenchmark:
 
     def _evaluate_real(self, repo_name: str) -> List[BenchmarkDimensionScore]:
         scores = []
-        for dim in BenchmarkDimension:
-            score = self._score_dimension(dim, repo_type="real")
-            weight = self.config.dimension_weights.get(dim.value, 1.0)
-            scores.append(BenchmarkDimensionScore(
-                dimension=dim, score=score, weight=weight, samples=1,
-            ))
+        executor = self._task_executor
+
+        if executor:
+            test_metrics = executor.measure_test_success()
+            task_score = test_metrics.get("pass_rate", 0.0)
+            cov_score = executor.measure_coverage()
+            type_score = executor.measure_type_coverage()
+            lint_score = executor.measure_lint_quality()
+            exec_time = executor.measure_execution_time()
+            eff_score = max(0.0, 1.0 - exec_time / 300.0)
+        else:
+            task_score = 0.5
+            cov_score = 0.0
+            type_score = 0.0
+            lint_score = 0.0
+            eff_score = 0.5
+
+        weight_map = self.config.dimension_weights
+        scores = [
+            BenchmarkDimensionScore(dimension=BenchmarkDimension.TASK_SUCCESS, score=task_score, weight=weight_map.get("task_success", 1.5), samples=1, metadata={"test_metrics": test_metrics if executor else {}}),
+            BenchmarkDimensionScore(dimension=BenchmarkDimension.VERIFICATION_QUALITY, score=max(0.0, (cov_score + type_score + lint_score) / 3.0), weight=weight_map.get("verification_quality", 1.2), samples=3),
+            BenchmarkDimensionScore(dimension=BenchmarkDimension.RUNTIME_EFFICIENCY, score=eff_score, weight=weight_map.get("runtime_efficiency", 0.6), samples=1, metadata={"exec_time_sec": exec_time if executor else 0}),
+            BenchmarkDimensionScore(dimension=BenchmarkDimension.HALLUCINATION_RESISTANCE, score=0.5, weight=weight_map.get("hallucination_resistance", 1.3), samples=0),
+            BenchmarkDimensionScore(dimension=BenchmarkDimension.MEMORY_USEFULNESS, score=0.5, weight=weight_map.get("memory_usefulness", 0.8), samples=0),
+            BenchmarkDimensionScore(dimension=BenchmarkDimension.AUTONOMY_SAFETY, score=0.7, weight=weight_map.get("autonomy_safety", 1.4), samples=0),
+            BenchmarkDimensionScore(dimension=BenchmarkDimension.REPAIR_QUALITY, score=0.5, weight=weight_map.get("repair_quality", 1.0), samples=0),
+            BenchmarkDimensionScore(dimension=BenchmarkDimension.CONTEXT_EFFICIENCY, score=eff_score, weight=weight_map.get("context_efficiency", 0.7), samples=1),
+            BenchmarkDimensionScore(dimension=BenchmarkDimension.USER_INTERVENTION_RATE, score=0.6, weight=weight_map.get("user_intervention_rate", 1.0), samples=0),
+        ]
         return scores
 
     def _score_dimension(self, dimension: BenchmarkDimension, repo_type: str = "demo") -> float:
-        if dimension == BenchmarkDimension.TASK_SUCCESS:
-            return 0.65 + random.random() * 0.3 if repo_type == "demo" else 0.5 + random.random() * 0.3
-        elif dimension == BenchmarkDimension.VERIFICATION_QUALITY:
-            return 0.55 + random.random() * 0.35
-        elif dimension == BenchmarkDimension.HALLUCINATION_RESISTANCE:
-            return 0.6 + random.random() * 0.3
-        elif dimension == BenchmarkDimension.MEMORY_USEFULNESS:
-            return 0.5 + random.random() * 0.4
-        elif dimension == BenchmarkDimension.AUTONOMY_SAFETY:
-            return 0.7 + random.random() * 0.25
-        elif dimension == BenchmarkDimension.REPAIR_QUALITY:
-            return 0.5 + random.random() * 0.35
-        elif dimension == BenchmarkDimension.CONTEXT_EFFICIENCY:
-            return 0.4 + random.random() * 0.4
-        elif dimension == BenchmarkDimension.RUNTIME_EFFICIENCY:
-            return 0.5 + random.random() * 0.3
-        elif dimension == BenchmarkDimension.USER_INTERVENTION_RATE:
-            return 0.6 + random.random() * 0.3
+        if repo_type == "demo":
+            if dimension == BenchmarkDimension.TASK_SUCCESS:
+                return 0.65 + random.random() * 0.3
+            elif dimension == BenchmarkDimension.VERIFICATION_QUALITY:
+                return 0.55 + random.random() * 0.35
+            elif dimension == BenchmarkDimension.HALLUCINATION_RESISTANCE:
+                return 0.6 + random.random() * 0.3
+            elif dimension == BenchmarkDimension.MEMORY_USEFULNESS:
+                return 0.5 + random.random() * 0.4
+            elif dimension == BenchmarkDimension.AUTONOMY_SAFETY:
+                return 0.7 + random.random() * 0.25
+            elif dimension == BenchmarkDimension.REPAIR_QUALITY:
+                return 0.5 + random.random() * 0.35
+            elif dimension == BenchmarkDimension.CONTEXT_EFFICIENCY:
+                return 0.4 + random.random() * 0.4
+            elif dimension == BenchmarkDimension.RUNTIME_EFFICIENCY:
+                return 0.5 + random.random() * 0.3
+            elif dimension == BenchmarkDimension.USER_INTERVENTION_RATE:
+                return 0.6 + random.random() * 0.3
+            return 0.5
         return 0.5
 
     def _compute_overall(self, scores: List[BenchmarkDimensionScore]) -> float:

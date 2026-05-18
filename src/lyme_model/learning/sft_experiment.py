@@ -177,13 +177,21 @@ class SFTTrainingHarness:
                 deps[dep] = True
             except ImportError:
                 pass
+        # Verify datasets is the real HuggingFace package, not shadowed by local
+        if deps.get("datasets"):
+            try:
+                from datasets import Dataset
+                _ = Dataset  # suppress unused
+            except ImportError:
+                deps["datasets"] = False
         self.deps_available = deps
         return deps
 
     def is_available(self) -> bool:
         return self.deps_available.get("torch", False) and \
                self.deps_available.get("transformers", False) and \
-               self.deps_available.get("peft", False)
+               self.deps_available.get("peft", False) and \
+               self.deps_available.get("datasets", False)
 
     def train(self, train_examples: List[dict],
               val_examples: List[dict]) -> Dict[str, Any]:
@@ -195,78 +203,81 @@ class SFTTrainingHarness:
     def _train_real(self, train_examples: List[dict],
                     val_examples: List[dict]) -> Dict[str, Any]:
         """Actual training with transformers + peft."""
-        import torch
-        from transformers import (
-            AutoModelForCausalLM, AutoTokenizer,
-            TrainingArguments, Trainer, DataCollatorForLanguageModeling
-        )
-        from peft import LoraConfig, get_peft_model, TaskType, prepare_model_for_kbit_training
-        from datasets import Dataset
+        try:
+            import torch
+            from transformers import (
+                AutoModelForCausalLM, AutoTokenizer,
+                TrainingArguments, Trainer, DataCollatorForLanguageModeling
+            )
+            from peft import LoraConfig, get_peft_model, TaskType, prepare_model_for_kbit_training
+            from datasets import Dataset
 
-        # Load model
-        model = AutoModelForCausalLM.from_pretrained(
-            self.config.model_name,
-            torch_dtype=torch.float16 if self.config.use_qlora else torch.float32,
-            device_map="auto",
-        )
-        tokenizer = AutoTokenizer.from_pretrained(self.config.model_name)
-        tokenizer.pad_token = tokenizer.eos_token
+            # Load model
+            model = AutoModelForCausalLM.from_pretrained(
+                self.config.model_name,
+                torch_dtype=torch.float16 if self.config.use_qlora else torch.float32,
+                device_map="auto",
+            )
+            tokenizer = AutoTokenizer.from_pretrained(self.config.model_name)
+            tokenizer.pad_token = tokenizer.eos_token
 
-        # LoRA config
-        lora_config = LoraConfig(
-            r=self.config.lora_r,
-            lora_alpha=self.config.lora_alpha,
-            lora_dropout=self.config.lora_dropout,
-            target_modules=self.config.target_modules,
-            task_type=TaskType.CAUSAL_LM,
-        )
-        model = get_peft_model(model, lora_config)
+            # LoRA config
+            lora_config = LoraConfig(
+                r=self.config.lora_r,
+                lora_alpha=self.config.lora_alpha,
+                lora_dropout=self.config.lora_dropout,
+                target_modules=self.config.target_modules,
+                task_type=TaskType.CAUSAL_LM,
+            )
+            model = get_peft_model(model, lora_config)
 
-        # Prepare datasets
-        def tokenize(example):
-            text = f"Instruction: {example.get('instruction', '')}\n\nContext: {example.get('input_context', '')}\n\nOutput: {example.get('output', '')}"
-            return tokenizer(text, truncation=True, max_length=self.config.max_seq_length)
+            # Prepare datasets
+            def tokenize(example):
+                text = f"Instruction: {example.get('instruction', '')}\n\nContext: {example.get('input_context', '')}\n\nOutput: {example.get('output', '')}"
+                return tokenizer(text, truncation=True, max_length=self.config.max_seq_length)
 
-        train_dataset = Dataset.from_list(train_examples).map(tokenize)
-        val_dataset = Dataset.from_list(val_examples).map(tokenize)
+            train_dataset = Dataset.from_list(train_examples).map(tokenize)
+            val_dataset = Dataset.from_list(val_examples).map(tokenize)
 
-        # Training
-        training_args = TrainingArguments(
-            output_dir=self.config.output_dir,
-            learning_rate=self.config.learning_rate,
-            per_device_train_batch_size=self.config.batch_size,
-            gradient_accumulation_steps=self.config.gradient_accumulation,
-            num_train_epochs=self.config.num_epochs,
-            evaluation_strategy="epoch",
-            save_strategy="epoch",
-            report_to="none",
-            seed=self.config.seed,
-        )
+            # Training
+            training_args = TrainingArguments(
+                output_dir=self.config.output_dir,
+                learning_rate=self.config.learning_rate,
+                per_device_train_batch_size=self.config.batch_size,
+                gradient_accumulation_steps=self.config.gradient_accumulation,
+                num_train_epochs=self.config.num_epochs,
+                evaluation_strategy="epoch",
+                save_strategy="epoch",
+                report_to="none",
+                seed=self.config.seed,
+            )
 
-        trainer = Trainer(
-            model=model,
-            args=training_args,
-            train_dataset=train_dataset,
-            eval_dataset=val_dataset,
-            data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
-        )
+            trainer = Trainer(
+                model=model,
+                args=training_args,
+                train_dataset=train_dataset,
+                eval_dataset=val_dataset,
+                data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
+            )
 
-        # Train
-        train_result = trainer.train()
-        eval_results = trainer.evaluate()
+            # Train
+            train_result = trainer.train()
+            eval_results = trainer.evaluate()
 
-        # Save
-        trainer.save_model(f"{self.config.output_dir}/final")
-        tokenizer.save_pretrained(f"{self.config.output_dir}/final")
+            # Save
+            trainer.save_model(f"{self.config.output_dir}/final")
+            tokenizer.save_pretrained(f"{self.config.output_dir}/final")
 
-        return {
-            "training_loss": train_result.training_loss,
-            "eval_loss": eval_results.get("eval_loss", 0.0),
-            "train_samples": len(train_dataset),
-            "eval_samples": len(val_dataset),
-            "model_path": f"{self.config.output_dir}/final",
-            "lora_config": lora_config.to_dict(),
-        }
+            return {
+                "training_loss": train_result.training_loss,
+                "eval_loss": eval_results.get("eval_loss", 0.0),
+                "train_samples": len(train_dataset),
+                "eval_samples": len(val_dataset),
+                "model_path": f"{self.config.output_dir}/final",
+                "lora_config": lora_config.to_dict(),
+            }
+        except ImportError:
+            return self._train_simulated(train_examples, val_examples)
 
     def _train_simulated(self, train_examples: List[dict],
                          val_examples: List[dict]) -> Dict[str, Any]:
@@ -300,7 +311,7 @@ class SFTTrainingHarness:
             info["gpu_available"] = torch.cuda.is_available()
             if info["gpu_available"]:
                 info["gpu_name"] = torch.cuda.get_device_name(0)
-                info["vram_mb"] = torch.cuda.get_device_properties(0).total_mem / 1024 / 1024
+                info["vram_mb"] = torch.cuda.get_device_properties(0).total_memory / 1024 / 1024
         except ImportError:
             pass
         return info

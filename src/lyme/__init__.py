@@ -10,5 +10,22 @@ from . import ide_bridge
 from . import research_corpus
 from . import research_portal
 from . import contribution_protocol
+from . import core, agents, evals, training
+from . import parser, retrieval, indexer, repomap, repoq
+from . import agent, recovery
+from . import memory as memory_module
+from . import nodiff, test_intel, tools, reliability
+from . import github, team, desktop, viz, plugin_sdk, daemon, enterprise
+from . import intelligence, agency, revenue, scale
+from . import positioning as positioning_mod
+from . import demo as demo_mod
+from . import launch as launch_mod
 
-__version__ = "0.7.0"
+from .core import (
+    ArchitectureLayers, PluginRegistry, Plugin, PluginSpec,
+    EventBus, Event, SystemEventType,
+    Task, TaskResult, TaskStatus,
+)
+from .core.layer import ORCHESTRATION_LAYER, INFERENCE_LAYER, PLANNING_LAYER, REPO_MEMORY_LAYER, VALIDATION_LAYER, EXECUTION_LAYER, TRAINING_LAYER, UI_LAYER
+
+__version__ = "1.0.0-rc1"

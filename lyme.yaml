@@ -1,0 +1,14 @@
+analytics:
+  crash_reporting: true
+  telemetry: product_only
+  usage_tracking: true
+beginner_mode: true
+benchmark:
+  max_parallel: 1
+  output_dir: ./lyme-output
+  record_thoughts: true
+storage:
+  backend: json
+  retention_days: 30
+verbose: false
+version: '1'
