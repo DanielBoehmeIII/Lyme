@@ -185,6 +185,7 @@ class TrialRunner:
     def _build_prompt(self, task: SeededTask) -> str:
         criteria = "\n".join(f"- {c}" for c in task.acceptance_criteria)
         hints = "\n".join(f"  Hint: {h}" for h in task.hints)
+        hints_section = f"Hints:\n{hints}" if hints else ""
         return (
             f"Task: {task.title}\n\n"
             f"Description: {task.description}\n\n"
@@ -194,7 +195,7 @@ class TrialRunner:
             f"Setup command: {task.setup_command}\n"
             f"Difficulty: {task.difficulty}\n"
             f"Estimated time: {task.estimated_time_minutes} minutes\n"
-            f"{f'Hints:\\n{hints}' if hints else ''}"
+            f"{hints_section}"
         )
 
     def _run_setup(self, task: SeededTask, repo: Path, commands: list[CommandRun],
